@@ -15,8 +15,7 @@
     {
       "binding": "DB",
       "database_name": "martinsglobaltravel-db",
-      // Create in Cloudflare dashboard → D1, then paste the real ID here before deploy.
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID_FROM_CLOUDFLARE_DASHBOARD"
+      "database_id": "02619fd8-1025-4577-94b2-4d58fedb98f8"
     }
   ]
 }
