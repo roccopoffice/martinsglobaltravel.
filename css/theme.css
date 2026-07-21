@@ -1,0 +1,431 @@
+/**
+ * Light / dark theme — default is light (mostly white, easier to read).
+ */
+
+html {
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── Toggle switch ── */
+.theme-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 58px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle.is-dark .theme-toggle-track {
+  background: rgba(201, 168, 76, 0.22);
+  border-color: rgba(201, 168, 76, 0.55);
+  box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f0d78a, #c9a84c);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.theme-toggle.is-dark .theme-toggle-thumb {
+  transform: translateX(28px);
+}
+
+.theme-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.theme-icon-sun {
+  left: 9px;
+  opacity: 1;
+}
+
+.theme-icon-moon {
+  right: 9px;
+  opacity: 0.45;
+}
+
+.theme-toggle.is-dark .theme-icon-sun {
+  opacity: 0.4;
+}
+
+.theme-toggle.is-dark .theme-icon-moon {
+  opacity: 1;
+}
+
+.theme-toggle-label {
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold2, #dfc06e);
+  min-width: 34px;
+  text-align: left;
+}
+
+.mob-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  margin-top: 8px;
+  border-top: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+}
+
+.mob-theme span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dimmer, rgba(255, 255, 255, 0.6));
+}
+
+@media (max-width: 1100px) {
+  .nav-right .theme-toggle-label {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-right .theme-toggle {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════
+   LIGHT MODE (default)
+══════════════════════════════════════ */
+html[data-theme='light'] {
+  --ink: #1a1a1a;
+  --ink2: #ffffff;
+  --ink3: #f6f6f6;
+  --ink4: #ececec;
+  --ink5: #e2e2e2;
+  --off: #fafafa;
+  --white: #ffffff;
+  --dim: rgba(26, 26, 26, 0.82);
+  --dimmer: rgba(26, 26, 26, 0.66);
+  --dimmest: rgba(0, 0, 0, 0.06);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-dark: rgba(0, 0, 0, 0.1);
+  --border-light: rgba(0, 0, 0, 0.09);
+  --gold: #9a7209;
+  --gold2: #b8922a;
+  --gold3: rgba(154, 114, 9, 0.12);
+  --muted2: rgba(26, 26, 26, 0.48);
+}
+
+html[data-theme='light'] body {
+  background: #fafafa !important;
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Nav — frosted white */
+html[data-theme='light'] nav#nav {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme='light'] nav:not(#nav) {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme='light'] nav:not(#nav) .nav-name {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] body:has(#page-home) nav#nav:not(.dark) {
+  background: rgba(255, 255, 255, 0.62) !important;
+  border-bottom-color: transparent !important;
+}
+
+html[data-theme='light'] .nav-name,
+html[data-theme='light'] nav .nav-links a {
+  color: rgba(26, 26, 26, 0.72) !important;
+}
+
+html[data-theme='light'] nav .nav-links a:hover,
+html[data-theme='light'] nav .nav-links a.act {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .nav-sub {
+  color: var(--gold) !important;
+}
+
+html[data-theme='light'] .ham span {
+  background: #1a1a1a !important;
+}
+
+html[data-theme='light'] .ham {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme='light'] .theme-toggle-track {
+  background: rgba(201, 168, 76, 0.16);
+  border-color: rgba(154, 114, 9, 0.35);
+}
+
+html[data-theme='light'] .theme-toggle-label {
+  color: var(--gold) !important;
+}
+
+html[data-theme='light'] body:has(#page-home) nav#nav:not(.dark) .theme-toggle-label {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .mob {
+  background: #ffffff !important;
+}
+
+html[data-theme='light'] .mob a {
+  color: rgba(26, 26, 26, 0.72) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme='light'] .mob a:hover,
+html[data-theme='light'] .mob a.act {
+  color: var(--gold) !important;
+}
+
+html[data-theme='light'] .mob-theme span {
+  color: rgba(26, 26, 26, 0.6) !important;
+}
+
+/* Main sections → white / soft gray */
+html[data-theme='light'] .mq,
+html[data-theme='light'] .about-strip,
+html[data-theme='light'] .gal-sec,
+html[data-theme='light'] .nl-sec,
+html[data-theme='light'] footer,
+html[data-theme='light'] .site-footer,
+html[data-theme='light'] .tours-sec,
+html[data-theme='light'] .pkg-sec,
+html[data-theme='light'] .legal-sec,
+html[data-theme='light'] .fbar,
+html[data-theme='light'] .dpg,
+html[data-theme='light'] .about-hero-grid,
+html[data-theme='light'] .toast {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .why-sec,
+html[data-theme='light'] .wcard,
+html[data-theme='light'] .pcard,
+html[data-theme='light'] .dpc,
+html[data-theme='light'] .tmc,
+html[data-theme='light'] .vcard,
+html[data-theme='light'] .acard,
+html[data-theme='light'] .abl,
+html[data-theme='light'] .abr,
+html[data-theme='light'] .cl,
+html[data-theme='light'] .cr,
+html[data-theme='light'] .faq-item,
+html[data-theme='light'] .commit-card,
+html[data-theme='light'] .portal-card,
+html[data-theme='light'] .card,
+html[data-theme='light'] .stat-box,
+html[data-theme='light'] .wc-popup-dialog {
+  background: #f6f6f6 !important;
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .dest-sec {
+  background: #f3f3f3 !important;
+}
+
+html[data-theme='light'] .h2,
+html[data-theme='light'] .wcard-t,
+html[data-theme='light'] .pcard-name,
+html[data-theme='light'] .dpc-name,
+html[data-theme='light'] .tmc-name,
+html[data-theme='light'] .vcard-t,
+html[data-theme='light'] .apillar-t,
+html[data-theme='light'] .portal-h1,
+html[data-theme='light'] h1,
+html[data-theme='light'] h2 {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .page .body,
+html[data-theme='light'] .page .hero-desc,
+html[data-theme='light'] .page .ph-s,
+html[data-theme='light'] .page .wcard-d,
+html[data-theme='light'] .page .pcard-sub,
+html[data-theme='light'] .page .dpc-desc,
+html[data-theme='light'] .page .apillar-d,
+html[data-theme='light'] .page .vcard-d,
+html[data-theme='light'] .page .tmc-bio,
+html[data-theme='light'] .page .abl p,
+html[data-theme='light'] .page .cdet-v,
+html[data-theme='light'] .page .faq-a,
+html[data-theme='light'] .legal-prose,
+html[data-theme='light'] .legal-prose p,
+html[data-theme='light'] .legal-prose li,
+html[data-theme='light'] .portal-lead,
+html[data-theme='light'] .lead,
+html[data-theme='light'] .hint,
+html[data-theme='light'] .pfeat {
+  color: rgba(26, 26, 26, 0.78) !important;
+}
+
+html[data-theme='light'] .legal-prose h2 {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .pfeat.off {
+  color: rgba(26, 26, 26, 0.35) !important;
+}
+
+html[data-theme='light'] footer .ft-links a,
+html[data-theme='light'] footer .ft-cv,
+html[data-theme='light'] .site-footer .ft-links a,
+html[data-theme='light'] .site-footer .ft-cv {
+  color: rgba(26, 26, 26, 0.72) !important;
+}
+
+html[data-theme='light'] footer .ft-tag,
+html[data-theme='light'] .site-footer .ft-tag {
+  color: rgba(26, 26, 26, 0.75) !important;
+}
+
+html[data-theme='light'] footer .ft-copy,
+html[data-theme='light'] footer .ft-leg a,
+html[data-theme='light'] .site-footer .ft-copy,
+html[data-theme='light'] .site-footer .ft-leg a {
+  color: rgba(26, 26, 26, 0.5) !important;
+}
+
+html[data-theme='light'] .link-arrow {
+  color: rgba(26, 26, 26, 0.65) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme='light'] .tours-scroll-hint {
+  color: rgba(26, 26, 26, 0.55) !important;
+}
+
+html[data-theme='light'] .tours-track {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme='light'] .portal-inp,
+html[data-theme='light'] .inp,
+html[data-theme='light'] .finp,
+html[data-theme='light'] .fsel,
+html[data-theme='light'] .fta,
+html[data-theme='light'] .nl-inp {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme='light'] .portal-inp::placeholder,
+html[data-theme='light'] .inp::placeholder,
+html[data-theme='light'] .finp::placeholder {
+  color: rgba(26, 26, 26, 0.45) !important;
+}
+
+html[data-theme='light'] .client-table td,
+html[data-theme='light'] .mini-table td,
+html[data-theme='light'] .pay-table td {
+  color: rgba(26, 26, 26, 0.78) !important;
+}
+
+/* Book page */
+html[data-theme='light'] body:has(.book-hero) {
+  background: #fafafa !important;
+}
+
+html[data-theme='light'] .book-search,
+html[data-theme='light'] .result-card,
+html[data-theme='light'] .trust-card,
+html[data-theme='light'] .modal-box,
+html[data-theme='light'] .cal-popover,
+html[data-theme='light'] .book-banner {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.09) !important;
+}
+
+html[data-theme='light'] .book-footer {
+  background: #ffffff !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme='light'] .book-footer .ft-links a,
+html[data-theme='light'] .book-footer .ft-cv,
+html[data-theme='light'] .book-footer .ft-tag {
+  color: rgba(26, 26, 26, 0.72) !important;
+}
+
+html[data-theme='light'] .book-footer .ft-copy,
+html[data-theme='light'] .book-footer .ft-leg a {
+  color: rgba(26, 26, 26, 0.5) !important;
+}
+
+html[data-theme='light'] .cta-inner {
+  background: #f0f0f0 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme='light'] .cta-inner h2 {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .cta-inner p {
+  color: rgba(26, 26, 26, 0.72) !important;
+}
+
+/* Hero & photo sections keep cinematic overlays + light text */
+html[data-theme='light'] .hero .hero-h1,
+html[data-theme='light'] .hero .hero-desc,
+html[data-theme='light'] .hero .hero-stat-lbl,
+html[data-theme='light'] .book-hero .book-h1,
+html[data-theme='light'] .book-hero .book-lead,
+html[data-theme='light'] .book-hero .tag,
+html[data-theme='light'] .ph .ph-t,
+html[data-theme='light'] .ph .ph-s,
+html[data-theme='light'] .cta-sec .h2,
+html[data-theme='light'] .cta-sec .body {
+  color: #fff !important;
+}
+
+html[data-theme='light'] .book-lead {
+  color: rgba(255, 255, 255, 0.88) !important;
+}

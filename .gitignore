@@ -1,0 +1,10 @@
+node_modules/
+js/config.js
+js/analytics-config.js
+.env
+.env.*
+!.env.example
+
+# Local duplicate copies - not part of the site
+Martins Global Travels Finished/
+Martins Global Travels Finished - Copy/

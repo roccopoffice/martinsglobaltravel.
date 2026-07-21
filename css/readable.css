@@ -1,0 +1,173 @@
+/**
+ * Dark-mode readability enhancements only.
+ * Light mode is handled in theme.css (default).
+ */
+
+html[data-theme='dark'] {
+  --ink: #141414;
+  --ink2: #1c1c1c;
+  --ink3: #242424;
+  --ink4: #2c2c2c;
+  --ink5: #343434;
+  --off: #f9f7f3;
+  --dim: rgba(255, 255, 255, 0.84);
+  --dimmer: rgba(255, 255, 255, 0.7);
+  --dimmest: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.14);
+  --border-dark: rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme='dark'] body {
+  background: var(--ink) !important;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+html[data-theme='dark'] body:has(.book-page),
+html[data-theme='dark'] body:has(.book-hero) {
+  background: var(--off) !important;
+  color: #1a1a1a !important;
+  --dim: rgba(26, 26, 26, 0.8);
+  --dimmer: rgba(26, 26, 26, 0.66);
+  --muted2: rgba(26, 26, 26, 0.48);
+}
+
+html[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+
+html[data-theme='dark'] body:has(#page-home) nav#nav:not(.dark) {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border-bottom-color: transparent !important;
+}
+
+html[data-theme='dark'] nav#nav.dark {
+  background: rgba(5, 5, 5, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+html[data-theme='dark'] .mob {
+  background: var(--ink2) !important;
+}
+
+html[data-theme='dark'] .mob a {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme='dark'] .hero-grad {
+  background: linear-gradient(
+    to top,
+    rgba(20, 20, 20, 0.96) 0%,
+    rgba(20, 20, 20, 0.42) 40%,
+    rgba(20, 20, 20, 0.1) 100%
+  ) !important;
+}
+
+html[data-theme='dark'] .hero-grad2 {
+  background: linear-gradient(to right, rgba(20, 20, 20, 0.48) 0%, transparent 60%) !important;
+}
+
+html[data-theme='dark'] .page .body,
+html[data-theme='dark'] .page .hero-desc,
+html[data-theme='dark'] .page .ph-s,
+html[data-theme='dark'] .page .wcard-d,
+html[data-theme='dark'] .page .pcard-sub,
+html[data-theme='dark'] .page .dpc-desc,
+html[data-theme='dark'] .page .apillar-d,
+html[data-theme='dark'] .page .vcard-d,
+html[data-theme='dark'] .page .tmc-bio,
+html[data-theme='dark'] .page .abl p,
+html[data-theme='dark'] .page .cdet-v,
+html[data-theme='dark'] .page .cdet-v a,
+html[data-theme='dark'] .page .faq-a,
+html[data-theme='dark'] .page .legal-prose,
+html[data-theme='dark'] .page .legal-prose p,
+html[data-theme='dark'] .page .legal-prose li {
+  color: rgba(255, 255, 255, 0.86) !important;
+  font-size: 17px !important;
+  line-height: 1.75 !important;
+}
+
+html[data-theme='dark'] nav .nav-links a {
+  color: rgba(255, 255, 255, 0.76) !important;
+  font-size: 12px !important;
+}
+
+html[data-theme='dark'] nav .nav-links a:hover,
+html[data-theme='dark'] nav .nav-links a.act {
+  color: #fff !important;
+}
+
+html[data-theme='dark'] footer .ft-links a,
+html[data-theme='dark'] footer .ft-cv,
+html[data-theme='dark'] .site-footer .ft-links a,
+html[data-theme='dark'] .site-footer .ft-cv,
+html[data-theme='dark'] .book-footer .ft-links a,
+html[data-theme='dark'] .book-footer .ft-cv {
+  color: rgba(255, 255, 255, 0.74) !important;
+  font-size: 15px !important;
+}
+
+html[data-theme='dark'] footer .ft-copy,
+html[data-theme='dark'] footer .ft-leg a,
+html[data-theme='dark'] .site-footer .ft-copy,
+html[data-theme='dark'] .book-footer .ft-copy {
+  color: rgba(255, 255, 255, 0.52) !important;
+}
+
+html[data-theme='dark'] .portal-lead,
+html[data-theme='dark'] .lead {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 16px !important;
+}
+
+html[data-theme='dark'] .portal-inp,
+html[data-theme='dark'] .inp,
+html[data-theme='dark'] .finp {
+  font-size: 16px !important;
+  background: var(--ink3) !important;
+}
+
+html[data-theme='dark'] .book-search,
+html[data-theme='dark'] .result-card,
+html[data-theme='dark'] .trust-card,
+html[data-theme='dark'] .modal-box {
+  background: #fff !important;
+}
+
+html[data-theme='dark'] .book-footer {
+  background: var(--ink2) !important;
+}
+
+html[data-theme='dark'] .cta-inner {
+  background: var(--ink3) !important;
+}
+
+html[data-theme='dark'] .book-lead {
+  color: rgba(255, 255, 255, 0.84) !important;
+}
+
+html[data-theme='dark'] .trust-d,
+html[data-theme='dark'] .result-per,
+html[data-theme='dark'] .leg-meta,
+html[data-theme='dark'] .modal-s {
+  color: var(--dimmer) !important;
+  font-size: 15px !important;
+}
+
+html[data-theme='dark'] .search-inp,
+html[data-theme='dark'] .search-sel,
+html[data-theme='dark'] .modal-inp {
+  font-size: 16px !important;
+  background: var(--off) !important;
+}
+
+html[data-theme='dark'] .tours-sec .tcard-desc {
+  color: rgba(5, 5, 5, 0.72) !important;
+}
+
+html[data-theme='dark'] .tours-scroll-hint {
+  color: rgba(255, 255, 255, 0.62) !important;
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('mgt_theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light')}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/mgt-logo.png">
+<title>Client Portal — Martins Global Travels</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#050505;--ink2:#0d0d0d;--ink3:#141414;
+  --gold:#c9a84c;--gold2:#dfc06e;--gold3:rgba(201,168,76,.12);
+  --dim:rgba(255,255,255,.5);--dimmer:rgba(255,255,255,.25);
+  --border:rgba(255,255,255,.07);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:#fff;min-height:100vh}
+a,button{font-family:inherit;cursor:pointer;text-decoration:none;color:inherit}
+nav#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  min-height:76px;padding:10px 52px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:rgba(5,5,5,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-logo img{height:48px;width:48px;object-fit:contain}
+.nav-name{font-family:'DM Serif Display',serif;font-size:15px}
+.nav-sub{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.nav-back{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);border:1px solid var(--border);padding:10px 18px;transition:all .3s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:18px;margin-left:auto}
+.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:2px}
+.nav-links a{
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
+  color:rgba(255,255,255,.52);padding:10px 12px;position:relative;transition:color .25s;white-space:nowrap;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:4px;left:12px;right:12px;height:1px;
+  background:var(--gold);transform:scaleX(0);transition:transform .3s var(--ease);transform-origin:left;
+}
+.nav-links a:hover,.nav-links a.act{color:#fff}
+.nav-links a:hover::after,.nav-links a.act::after{transform:scaleX(1)}
+.nav-cta{
+  padding:10px 18px;background:var(--gold);color:#050505;border:none;border-radius:4px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .3s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.ham{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;padding:8px;background:transparent;border:1px solid var(--border);border-radius:4px;
+}
+.ham span{display:block;height:1px;background:#fff;transition:all .3s}
+.mob{
+  position:fixed;inset:0;z-index:99;background:rgba(5,5,5,.98);
+  padding:calc(100px + env(safe-area-inset-top)) 28px 40px;display:flex;flex-direction:column;gap:4px;
+  transform:translateX(100%);transition:transform .4s var(--ease);pointer-events:none;
+}
+.mob.open{transform:translateX(0);pointer-events:auto}
+.mob a{
+  font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);
+  padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.mob a:hover,.mob a.act{color:var(--gold)}
+.site-footer{
+  background:#050505;border-top:1px solid var(--border);padding:72px 52px 36px;margin-top:48px;
+}
+.ft-grid{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1.2fr;gap:48px;
+  max-width:1240px;margin:0 auto;padding-bottom:48px;border-bottom:1px solid var(--border);
+}
+.ft-tag{
+  font-size:13px;color:var(--dimmer);line-height:1.8;margin:16px 0 0;
+  font-style:italic;font-weight:300;max-width:260px;font-family:'DM Serif Display',serif;
+}
+.ft-ch{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-links a{font-size:13px;color:var(--dimmer);font-weight:300;transition:color .25s}
+.ft-links a:hover{color:var(--gold)}
+.ft-ci{display:flex;gap:10px;margin-bottom:12px}
+.ft-dot{width:3px;height:3px;background:var(--gold);border-radius:50%;margin-top:9px;flex-shrink:0}
+.ft-cv{font-size:13px;color:var(--dimmer);line-height:1.6;font-weight:300}
+.ft-cv a{color:inherit;transition:color .25s}
+.ft-cv a:hover{color:var(--gold)}
+.ft-bot{
+  max-width:1240px;margin:28px auto 0;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
+}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.18);font-weight:300}
+.ft-leg{display:flex;gap:24px}
+.ft-leg a{font-size:12px;color:rgba(255,255,255,.18);transition:color .25s}
+.ft-leg a:hover{color:var(--gold)}
+.ft-logo-text{padding-left:14px;border-left:1px solid rgba(201,168,76,.28)}
+@media(max-width:1024px){
+  nav#nav{padding:10px 28px}
+  .nav-right{display:none}
+  .ham{display:flex}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .site-footer{padding:56px 28px 28px}
+}
+@media(max-width:700px){
+  .ft-grid{grid-template-columns:1fr}
+}
+.portal-main{
+  max-width:520px;margin:0 auto;padding:calc(100px + env(safe-area-inset-top)) 24px 80px;
+}
+.portal-ey{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
+.portal-h1{font-family:'DM Serif Display',serif;font-size:clamp(32px,6vw,44px);line-height:1.1;margin-bottom:8px}
+.portal-h1 em{font-style:italic;color:var(--gold)}
+.portal-lead{font-size:14px;color:var(--dimmer);font-weight:300;margin-bottom:36px;line-height:1.6}
+#portal-login .portal-lead{color:#fff}
+.portal-card{
+  background:var(--ink2);border:1px solid var(--border);
+  padding:36px 32px;margin-bottom:20px;
+}
+.portal-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+.portal-inp{
+  width:100%;padding:14px 16px;background:var(--ink3);border:1px solid var(--border);
+  color:#fff;font-size:14px;margin-bottom:16px;outline:none;
+}
+.portal-inp:focus{border-color:rgba(201,168,76,.45)}
+.portal-btn{
+  width:100%;padding:16px;background:var(--gold);color:var(--ink);border:none;
+  font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  transition:all .3s;margin-top:4px;
+}
+.portal-btn:hover:not(:disabled){background:var(--gold2);transform:translateY(-1px)}
+.portal-btn:disabled{opacity:.45;cursor:not-allowed}
+.portal-btn-outline{
+  background:transparent;color:var(--dim);border:1px solid var(--border);
+  margin-top:12px;
+}
+.portal-btn-outline:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.portal-error{font-size:13px;color:#e88;margin-top:12px}
+.portal-error[hidden]{display:none}
+.balance-display{
+  font-family:'DM Serif Display',serif;font-size:clamp(42px,10vw,56px);
+  color:var(--gold);line-height:1;margin:8px 0 16px;
+}
+.balance-note{font-size:13px;color:var(--dimmer);font-weight:300;line-height:1.5}
+.portal-banner{
+  padding:14px 18px;font-size:13px;margin-bottom:20px;border:1px solid var(--border);
+  background:var(--ink3);
+}
+.portal-banner.success{border-color:rgba(201,168,76,.35);color:var(--gold2)}
+.portal-banner.warn{border-color:rgba(255,200,100,.25);color:#e8c88a}
+.portal-banner.error{border-color:rgba(232,136,136,.35);color:#e88}
+.portal-banner[hidden]{display:none}
+.portal-foot{font-size:11px;color:var(--dimmer);text-align:center;margin-top:28px;line-height:1.6}
+.portal-foot a{color:var(--gold)}
+.portal-link-btn{background:none;border:none;color:var(--gold);font-size:12px;padding:0;margin-top:8px;text-decoration:underline;cursor:pointer}
+.portal-link-btn:hover{color:var(--gold2)}
+#forgot-panel{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+#forgot-panel[hidden]{display:none}
+.pw-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(5,5,5,.88);backdrop-filter:blur(8px)}
+.pw-modal[hidden]{display:none}
+.pw-modal-card{max-width:420px;width:100%;background:var(--ink2);border:1px solid var(--border);padding:32px 28px}
+.pw-modal-h{font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:8px}
+.pw-modal-h em{font-style:italic;color:var(--gold)}
+.pw-modal-lead{font-size:13px;color:var(--dimmer);margin-bottom:20px;line-height:1.55}
+@media(max-width:600px){
+  nav#nav{padding:10px 20px}
+  .portal-card{padding:28px 22px}
+}
+</style>
+<link rel="stylesheet" href="css/readable.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/theme.js" defer></script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/mgt-logo.png" alt="" width="96" height="96">
+    <div class="ft-logo-text">
+      <div class="nav-name">Martins Global Travels</div>
+      <div class="nav-sub">Client portal</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#destinations">Destinations</a>
+      <a href="index.html#packages">Packages</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <!-- <a href="book.html">Book Travel</a> hidden until booking setup complete -->
+      <a href="portal.html" class="act">Client Portal</a>
+    </div>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-icon theme-icon-sun">☀</span>
+        <span class="theme-icon theme-icon-moon">☽</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-toggle-label">Light</span>
+    </button>
+    <a href="index.html#contact" class="nav-cta">Book Now</a>
+  </div>
+  <button type="button" class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob" id="mob" aria-hidden="true">
+  <a href="index.html">Home</a>
+  <a href="index.html#destinations">Destinations</a>
+  <a href="index.html#packages">Packages</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact">Contact</a>
+  <!-- <a href="book.html">Book Travel</a> hidden until booking setup complete -->
+  <a href="portal.html" class="act">Client Portal</a>
+  <div class="mob-theme">
+    <span>Appearance</span>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-icon theme-icon-sun">☀</span>
+        <span class="theme-icon theme-icon-moon">☽</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-toggle-label">Light</span>
+    </button>
+  </div>
+</div>
+
+<main class="portal-main">
+  <div id="portal-status" class="portal-banner" hidden></div>
+
+  <section id="portal-login">
+    <div class="portal-ey">Secure access</div>
+    <h1 class="portal-h1">Client <em>Portal</em></h1>
+    <p class="portal-lead">Sign in to view your outstanding travel balance and pay securely online.</p>
+    <div class="portal-card">
+      <form id="login-form">
+        <label class="portal-lbl" for="login-email">Email</label>
+        <input class="portal-inp" id="login-email" type="email" autocomplete="email" required>
+        <label class="portal-lbl" for="login-password">Password</label>
+        <input class="portal-inp" id="login-password" type="password" autocomplete="current-password" required>
+        <button class="portal-btn" type="submit">Sign in</button>
+        <p id="login-error" class="portal-error" hidden></p>
+        <button type="button" class="portal-link-btn" id="forgot-toggle">Forgot password?</button>
+        <div id="forgot-panel" hidden>
+          <p class="portal-lead" style="margin-bottom:12px;font-size:13px">We will email you a link to reset your password.</p>
+          <label class="portal-lbl" for="forgot-email">Email</label>
+          <input class="portal-inp" id="forgot-email" type="email" autocomplete="email">
+          <button type="button" class="portal-btn" id="forgot-send-btn">Send reset link</button>
+          <p id="forgot-msg" class="portal-error" style="color:var(--gold2);margin-top:10px" hidden></p>
+        </div>
+      </form>
+    </div>
+    <p class="portal-foot">Need help? <a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a> · <a href="tel:+15082323003">(508) 232-3003</a></p>
+  </section>
+
+  <section id="portal-dashboard" hidden>
+    <div class="portal-ey">Welcome back</div>
+    <h1 class="portal-h1">Hello, <span id="welcome-name">Client</span></h1>
+    <p class="portal-lead">This is the only information shown in your portal — your current balance owed.</p>
+    <div class="portal-card">
+      <div class="portal-lbl">Balance owed</div>
+      <div id="balance-amount" class="balance-display">—</div>
+      <p id="balance-note" class="balance-note">Loading…</p>
+      <button type="button" class="portal-btn" id="pay-btn" disabled>Pay balance with card</button>
+      <button type="button" class="portal-btn portal-btn-outline" id="change-pw-btn">Change password</button>
+      <button type="button" class="portal-btn portal-btn-outline" id="logout-btn">Sign out</button>
+    </div>
+    <p class="portal-foot">Questions about your trip? <a href="index.html" onclick="if(window.go){return true}">Contact us</a> or call <a href="tel:+15082323003">(508) 232-3003</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="ft-grid">
+    <div>
+      <a href="index.html" class="nav-logo" style="margin-bottom:4px">
+        <img src="assets/mgt-logo.png" alt="" width="96" height="96">
+        <div class="ft-logo-text">
+          <div class="nav-name">Martins Global Travels</div>
+          <div class="nav-sub">Where luxury meets the world</div>
+        </div>
+      </a>
+      <p class="ft-tag">"The world is a book, and those who do not travel read only one page."</p>
+    </div>
+    <div>
+      <div class="ft-ch">Explore</div>
+      <ul class="ft-links">
+        <li><a href="index.html#destinations">Destinations</a></li>
+        <li><a href="index.html#packages">Packages</a></li>
+        <li><a href="book.html">Book Travel</a></li>
+        <li><a href="portal.html">Client Portal</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Company</div>
+      <ul class="ft-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Legal</div>
+      <ul class="ft-links">
+        <li><a href="index.html#privacy">Privacy</a></li>
+        <li><a href="index.html#terms">Terms</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Contact</div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">1350 Belmont St, Suite 114, Brockton, MA</div></div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2026 Martins Global Travels. All Rights Reserved.</div>
+    <div class="ft-leg">
+      <a href="index.html#privacy">Privacy</a>
+      <a href="index.html#terms">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<div id="password-modal" class="pw-modal" hidden role="dialog" aria-modal="true" aria-labelledby="pw-modal-title">
+  <div class="pw-modal-card">
+    <h2 class="pw-modal-h" id="pw-modal-title">Set your <em>password</em></h2>
+    <p class="pw-modal-lead" id="pw-modal-lead">Choose a new password to continue.</p>
+    <label class="portal-lbl" for="pw-new">New password</label>
+    <input class="portal-inp" id="pw-new" type="password" autocomplete="new-password" minlength="6">
+    <label class="portal-lbl" for="pw-confirm">Confirm password</label>
+    <input class="portal-inp" id="pw-confirm" type="password" autocomplete="new-password" minlength="6">
+    <p id="pw-modal-error" class="portal-error" hidden></p>
+    <button type="button" class="portal-btn" id="pw-save-btn">Save password</button>
+    <button type="button" class="portal-btn portal-btn-outline" id="pw-cancel-btn" hidden>Cancel</button>
+  </div>
+</div>
+
+<script src="js/analytics-config.js"></script>
+<script src="js/analytics.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/portal.js"></script>
+<script>
+(function(){
+  var ham=document.getElementById('ham');
+  var mob=document.getElementById('mob');
+  if(!ham||!mob)return;
+  ham.addEventListener('click',function(){
+    var open=mob.classList.toggle('open');
+    mob.setAttribute('aria-hidden',open?'false':'true');
+    var s=ham.querySelectorAll('span');
+    if(open){
+      s[0].style.transform='rotate(45deg) translate(5px,5px)';
+      s[1].style.opacity='0';
+      s[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+    }else{
+      s[0].style.transform=s[2].style.transform='';
+      s[1].style.opacity='1';
+    }
+  });
+  mob.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){mob.classList.remove('open');mob.setAttribute('aria-hidden','true');});
+  });
+})();
+</script>
+</body>
+</html>

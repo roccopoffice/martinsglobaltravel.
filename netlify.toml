@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+  command = "npm install && node scripts/generate-config.js"
+
+# Anon key is public in the browser; omit this path from secrets scanning
+[build.environment]
+  SECRETS_SCAN_OMIT_PATHS = "js/config.js,js/analytics-config.js"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"

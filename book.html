@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('mgt_theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light')}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/mgt-logo.png">
+<title>Book Flights — Martins Global Travels</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#050505;--ink2:#0d0d0d;
+  --off:#f0ece4;--white:#ffffff;
+  --gold:#c9a84c;--gold2:#dfc06e;--gold3:rgba(201,168,76,.14);
+  --dim:rgba(5,5,5,.55);--dimmer:rgba(5,5,5,.4);--muted2:rgba(5,5,5,.35);
+  --border-dark:rgba(255,255,255,.07);
+  --border-light:rgba(0,0,0,.1);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --nav-offset:calc(92px + env(safe-area-inset-top, 0px));
+  --shell:min(1240px, calc(100% - 104px));
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--ink);min-height:100vh}
+a,button{font-family:inherit;cursor:pointer;text-decoration:none;color:inherit}
+
+/* ── NAV ── */
+nav#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;min-height:76px;padding:10px 52px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:rgba(5,5,5,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-dark);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-logo img{height:48px;width:48px;object-fit:contain}
+.nav-name{font-family:'DM Serif Display',serif;font-size:15px;color:#fff}
+.nav-sub{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);margin-top:2px}
+.ft-logo-text{padding-left:14px;border-left:1px solid rgba(201,168,76,.28)}
+.nav-right{display:flex;align-items:center;gap:18px;margin-left:auto}
+.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:2px}
+.nav-links a{
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
+  color:rgba(255,255,255,.52);padding:10px 12px;position:relative;transition:color .25s;white-space:nowrap;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:4px;left:12px;right:12px;height:1px;
+  background:var(--gold2);transform:scaleX(0);transition:transform .3s var(--ease);transform-origin:left;
+}
+.nav-links a:hover,.nav-links a.act{color:#fff}
+.nav-links a:hover::after,.nav-links a.act::after{transform:scaleX(1)}
+.nav-cta{
+  padding:10px 18px;background:var(--gold);color:var(--ink);border:none;border-radius:6px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .3s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.ham{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;padding:8px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:6px;
+}
+.ham span{display:block;height:1px;background:#fff;transition:all .3s}
+.mob{
+  position:fixed;inset:0;z-index:99;background:rgba(5,5,5,.98);
+  padding:calc(var(--nav-offset) + 24px) 28px 40px;display:flex;flex-direction:column;gap:4px;
+  transform:translateX(100%);transition:transform .4s var(--ease);pointer-events:none;
+}
+.mob.open{transform:translateX(0);pointer-events:auto}
+.mob a{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.mob a:hover,.mob a.act{color:var(--gold2)}
+
+/* ── HERO ── */
+.book-hero{
+  position:relative;min-height:420px;padding:calc(var(--nav-offset) + 48px) 52px 120px;
+  display:flex;align-items:flex-end;overflow:hidden;
+}
+.book-hero-bg{position:absolute;inset:0;z-index:0}
+.book-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.book-hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(5,5,5,.55) 0%,rgba(5,5,5,.72) 55%,rgba(5,5,5,.92) 100%);
+}
+.book-hero-inner{position:relative;z-index:1;width:var(--shell);max-width:1240px;margin:0 auto}
+.tag{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);font-weight:600;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.tag::before{content:'';width:28px;height:1px;background:var(--gold2)}
+.book-h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,5.5vw,64px);line-height:1.02;color:#fff;margin-bottom:14px;letter-spacing:-.5px}
+.book-h1 em{font-style:italic;color:var(--gold2)}
+.book-lead{font-size:16px;color:rgba(255,255,255,.62);font-weight:300;max-width:520px;line-height:1.75;margin-bottom:28px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px}
+.hero-pill{
+  padding:8px 16px;border:1px solid rgba(255,255,255,.14);border-radius:999px;
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:500;
+  backdrop-filter:blur(8px);background:rgba(255,255,255,.04);
+}
+
+/* ── SEARCH CARD ── */
+.search-shell{max-width:1240px;margin:-72px auto 0;padding:0 52px;position:relative;z-index:5}
+.book-search{
+  background:var(--white);border:1px solid var(--border-light);border-radius:20px;
+  padding:32px 36px 28px;box-shadow:0 28px 72px rgba(0,0,0,.12),0 4px 16px rgba(0,0,0,.06);
+}
+.search-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.search-head-t{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink)}
+.trip-types{display:flex;gap:6px;background:var(--off);padding:4px;border-radius:999px}
+.trip-type-btn{
+  padding:10px 22px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  border:none;background:transparent;color:var(--dim);border-radius:999px;transition:all .25s;
+}
+.trip-type-btn.on{background:var(--ink);color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+
+.search-grid{display:grid;grid-template-columns:1fr 1fr 1.15fr auto;gap:14px;align-items:end}
+.search-field{display:flex;flex-direction:column;gap:8px;position:relative}
+.search-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600}
+.search-inp,.search-sel,.date-trigger{
+  width:100%;padding:15px 16px;background:var(--off);border:1px solid rgba(0,0,0,.08);
+  color:var(--ink);font-size:14px;outline:none;transition:border-color .25s,box-shadow .25s;border-radius:10px;
+}
+.search-inp:focus,.search-sel:focus,.date-trigger:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold3)}
+.search-inp::placeholder{color:var(--muted2)}
+.search-sel{appearance:none;cursor:pointer}
+.swap-btn{
+  position:absolute;right:-18px;top:50%;transform:translateY(-10%);
+  width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,0,0,.1);
+  background:var(--white);color:var(--gold);font-size:14px;z-index:2;box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.search-go{
+  padding:15px 28px;background:var(--gold);color:var(--ink);border:none;border-radius:10px;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  white-space:nowrap;height:52px;transition:all .3s;
+}
+.search-go:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 10px 28px rgba(201,168,76,.28)}
+.search-go:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.search-row2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(0,0,0,.06)}
+.search-opts label{font-size:13px;color:var(--dim);display:flex;align-items:center;gap:8px;cursor:pointer}
+.popular-routes{display:flex;align-items:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.popular-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);font-weight:600}
+.route-chip{
+  padding:8px 16px;font-size:12px;color:var(--dim);border:1px solid rgba(0,0,0,.1);
+  background:var(--white);transition:all .25s;border-radius:999px;
+}
+.route-chip:hover{border-color:var(--gold);color:var(--gold);background:var(--gold3)}
+.search-err{font-size:13px;color:#b44;margin-top:12px}
+.search-err[hidden]{display:none}
+
+.ac-list{
+  position:absolute;top:100%;left:0;right:0;z-index:60;margin-top:6px;
+  background:var(--white);border:1px solid rgba(0,0,0,.1);max-height:280px;overflow:auto;
+  box-shadow:0 16px 48px rgba(0,0,0,.12);border-radius:12px;
+}
+.ac-list[hidden]{display:none}
+.ac-item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:12px 16px;border:none;background:transparent;border-bottom:1px solid rgba(0,0,0,.06);transition:background .2s}
+.ac-item:hover,.ac-item.active{background:var(--gold3)}
+.ac-code{flex-shrink:0;min-width:46px;padding:6px 10px;text-align:center;font-size:11px;font-weight:700;color:var(--gold);background:var(--off);border-radius:6px}
+.ac-detail{display:flex;flex-direction:column;gap:2px}
+.ac-city{font-size:14px;color:var(--ink);font-weight:500}
+.ac-name{font-size:11px;color:var(--muted2)}
+
+.date-field{position:relative}
+.date-trigger{text-align:left;color:var(--muted2);cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.date-trigger.has-val{color:var(--ink);font-weight:500}
+.date-trigger::after{content:'';width:18px;height:18px;flex-shrink:0;opacity:.5;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23c9a84c' viewBox='0 0 24 24'%3E%3Cpath d='M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.cal-popover{
+  position:absolute;top:calc(100% + 10px);left:0;z-index:80;
+  background:var(--white);border:1px solid rgba(0,0,0,.1);
+  box-shadow:0 24px 64px rgba(0,0,0,.14);padding:22px;border-radius:14px;
+  min-width:min(660px,calc(100vw - 48px));
+}
+.cal-popover[hidden]{display:none!important}
+.cal-popover-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px}
+.cal-hint{font-size:14px;color:var(--dim);flex:1;font-weight:500}
+.cal-nav{display:flex;gap:8px}
+.cal-prev,.cal-next{width:38px;height:38px;border:1px solid rgba(0,0,0,.1);background:var(--off);color:var(--gold);font-size:20px;line-height:1;border-radius:8px}
+.cal-prev:hover,.cal-next:hover{border-color:var(--gold);background:var(--gold3)}
+.cal-months{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.cal-month-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:14px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dow{font-size:10px;color:var(--muted2);text-align:center;padding:8px 0;font-weight:600}
+.cal-day{aspect-ratio:1;border:none;background:transparent;color:var(--ink);font-size:13px;border-radius:8px;transition:all .15s;cursor:pointer}
+.cal-day:hover:not(.disabled):not(.empty){background:var(--gold3)}
+.cal-day.disabled{opacity:.3;cursor:not-allowed}
+.cal-day.empty{cursor:default}
+.cal-day.selected,.cal-day.start,.cal-day.end{background:var(--gold)!important;color:var(--ink)!important;font-weight:600}
+.cal-day.in-range{background:rgba(201,168,76,.2);border-radius:0}
+.cal-day.start{border-radius:8px 0 0 8px}
+.cal-day.end{border-radius:0 8px 8px 0}
+
+/* ── MARQUEE ── */
+.book-mq{overflow:hidden;border-top:1px solid rgba(0,0,0,.08);border-bottom:1px solid rgba(0,0,0,.08);padding:14px 0;background:rgba(255,255,255,.45);margin-top:48px}
+.mq-track{display:flex;animation:mqScroll 35s linear infinite;white-space:nowrap}
+.mq-item{display:inline-flex;align-items:center;gap:24px;padding:0 24px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dimmer);font-weight:500}
+.mq-sep{width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.55;flex-shrink:0}
+@keyframes mqScroll{to{transform:translateX(-50%)}}
+
+/* ── PAGE BODY ── */
+.book-page{
+  background:var(--off);
+  background-image:radial-gradient(rgba(201,168,76,.06) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+
+.trust-band{
+  max-width:1240px;margin:0 auto;padding:56px 52px 0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.trust-card{
+  background:var(--white);border:1px solid rgba(0,0,0,.08);border-radius:16px;
+  padding:26px 22px;box-shadow:0 12px 36px rgba(0,0,0,.06);
+  transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;
+}
+.trust-card:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(201,168,76,.28)}
+.trust-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--gold);line-height:1;margin-bottom:10px}
+.trust-t{font-family:'DM Serif Display',serif;font-size:17px;margin-bottom:8px;color:var(--ink)}
+.trust-d{font-size:12px;color:var(--dim);line-height:1.65;font-weight:300}
+
+.book-main{max-width:1240px;margin:0 auto;padding:64px 52px 72px}
+.book-banner{padding:14px 18px;font-size:13px;margin-bottom:24px;border:1px solid rgba(0,0,0,.1);background:var(--white);border-radius:12px}
+.book-banner.success{border-color:rgba(201,168,76,.4);color:#9a7b2e;background:#fffdf8}
+.book-banner.warn{border-color:rgba(200,150,50,.35);color:#9a7b2e}
+.book-banner.error{border-color:rgba(200,80,80,.35);color:#b44}
+.book-banner[hidden]{display:none}
+
+.section-hd{margin-bottom:32px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.section-hd .h2{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,44px);line-height:1.05;color:var(--ink)}
+.section-hd .h2 em{font-style:italic;color:var(--gold)}
+.section-sub{font-size:14px;color:var(--dim);font-weight:300;margin-top:8px;max-width:480px;line-height:1.7}
+
+.dest-showcase[hidden]{display:none!important}
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dest-card{
+  position:relative;border-radius:18px;overflow:hidden;background:var(--ink2);
+  border:1px solid rgba(0,0,0,.1);box-shadow:0 20px 48px rgba(0,0,0,.1);
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .35s;
+}
+.dest-card:hover{transform:translateY(-5px);box-shadow:0 28px 64px rgba(0,0,0,.14);border-color:rgba(201,168,76,.32)}
+.dest-img{aspect-ratio:3/4;position:relative;overflow:hidden}
+.dest-img img{width:100%;height:100%;object-fit:cover;transition:transform .85s var(--ease)}
+.dest-card:hover .dest-img img{transform:scale(1.07)}
+.dest-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,5,5,.95) 0%,rgba(5,5,5,.35) 48%,rgba(5,5,5,.08) 100%);
+  pointer-events:none;
+}
+.dest-body{position:absolute;left:0;right:0;bottom:0;padding:18px 16px 20px;z-index:1}
+.dest-region{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold2);font-weight:600;margin-bottom:6px}
+.dest-name{font-family:'DM Serif Display',serif;font-size:clamp(18px,1.4vw,22px);color:#fff;line-height:1.12;margin-bottom:4px}
+.dest-from{font-size:11px;color:rgba(255,255,255,.65);font-weight:300}
+
+.results-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.results-count{font-size:14px;color:var(--dim);font-weight:500}
+.sort-row{display:flex;gap:8px}
+.sort-btn{
+  padding:8px 16px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  border:1px solid rgba(0,0,0,.1);background:var(--white);color:var(--dim);border-radius:999px;
+}
+.sort-btn.on{background:var(--gold3);border-color:var(--gold);color:#9a7b2e;font-weight:600}
+
+.result-card{
+  display:grid;grid-template-columns:1fr auto;gap:24px;
+  background:var(--white);border:1px solid rgba(0,0,0,.08);padding:26px 28px;margin-bottom:14px;
+  border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.06);
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.result-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+.result-airline{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600}
+.result-legs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.leg-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);margin-bottom:4px}
+.leg-route{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:4px;color:var(--ink)}
+.leg-time{font-size:13px;color:var(--dim);margin-bottom:4px}
+.leg-meta{font-size:12px;color:var(--muted2)}
+.result-buy{text-align:right;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;min-width:140px}
+.result-price{font-family:'DM Serif Display',serif;font-size:34px;color:var(--gold);line-height:1}
+.result-per{font-size:11px;color:var(--muted2);margin:4px 0 14px}
+.result-select{
+  padding:12px 26px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+}
+.result-select:hover{background:var(--gold2)}
+.flight-empty{text-align:center;padding:48px 24px;color:var(--dim);font-size:15px;line-height:1.7}
+
+/* ── CTA STRIP ── */
+.cta-strip{
+  max-width:1240px;margin:0 auto 56px;padding:0 52px;
+}
+.cta-inner{
+  background:var(--ink);border-radius:20px;padding:40px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  border:1px solid var(--border-dark);
+  box-shadow:0 24px 64px rgba(0,0,0,.18);
+}
+.cta-inner h2{font-family:'DM Serif Display',serif;font-size:clamp(24px,3vw,32px);color:#fff;line-height:1.15}
+.cta-inner h2 em{font-style:italic;color:var(--gold2)}
+.cta-inner p{font-size:14px;color:rgba(255,255,255,.5);margin-top:8px;font-weight:300}
+.cta-btn{
+  padding:14px 28px;background:var(--gold);color:var(--ink);border-radius:8px;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;
+  transition:all .3s;
+}
+.cta-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+.book-footer{background:#050505;border-top:1px solid var(--border-dark);padding:72px 52px 36px;color:#fff}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1.2fr;gap:48px;max-width:1240px;margin:0 auto;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-tag{font-size:13px;color:rgba(255,255,255,.35);line-height:1.8;margin:16px 0 0;font-style:italic;font-weight:300;max-width:260px;font-family:'DM Serif Display',serif}
+.ft-ch{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);font-weight:600;margin-bottom:18px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-links a{font-size:13px;color:rgba(255,255,255,.45);font-weight:300;transition:color .25s}
+.ft-links a:hover{color:var(--gold2)}
+.ft-ci{display:flex;gap:10px;margin-bottom:12px}
+.ft-dot{width:3px;height:3px;background:var(--gold2);border-radius:50%;margin-top:9px;flex-shrink:0}
+.ft-cv{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;font-weight:300}
+.ft-cv a{color:inherit;transition:color .25s}
+.ft-cv a:hover{color:var(--gold2)}
+.ft-bot{max-width:1240px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.22);font-weight:300}
+.ft-leg{display:flex;gap:24px}
+.ft-leg a{font-size:12px;color:rgba(255,255,255,.22);transition:color .25s}
+.ft-leg a:hover{color:var(--gold2)}
+
+/* ── MODAL ── */
+.modal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px}
+.modal[hidden]{display:none!important}
+body.modal-open{overflow:hidden}
+.modal-box{width:100%;max-width:480px;background:var(--white);border:1px solid rgba(0,0,0,.1);padding:32px 28px;position:relative;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.2)}
+.modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);border-radius:16px 16px 0 0}
+.modal-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border:1px solid rgba(0,0,0,.1);background:var(--off);color:var(--dim);font-size:20px;border-radius:8px}
+.modal-h{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:6px;color:var(--ink)}
+.modal-s{font-size:13px;color:var(--dim);margin-bottom:24px;line-height:1.6}
+.modal-summary{margin-bottom:20px;padding:16px 18px;background:var(--off);border-radius:10px;border:1px solid rgba(0,0,0,.08)}
+.receipt-route{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px;line-height:1.5}
+.price-receipt{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink)}
+.price-receipt td{padding:7px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.price-receipt td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.price-receipt tr.receipt-sub td{font-weight:600;padding-top:10px}
+.price-receipt tr.receipt-sub td:last-child{color:var(--dim)}
+.price-receipt tr.receipt-total td{font-size:15px;font-weight:700;padding-top:12px;border-bottom:none;color:var(--ink)}
+.price-receipt tr.receipt-total td:last-child{color:var(--gold)}
+.receipt-note{font-size:11px;color:var(--dim);margin-top:12px;line-height:1.5}
+.modal-field{margin-bottom:14px}
+.modal-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;font-weight:600}
+.modal-inp{width:100%;padding:12px 14px;background:var(--off);border:1px solid rgba(0,0,0,.1);color:var(--ink);font-size:14px;border-radius:8px}
+.modal-pay{width:100%;margin-top:8px;padding:16px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
+.modal-pay:disabled{opacity:.5}
+
+@media(max-width:1024px){
+  nav#nav,.search-shell,.trust-band,.book-main,.cta-strip,.book-footer{padding-left:28px;padding-right:28px}
+  nav#nav{padding-left:28px;padding-right:28px}
+  .nav-right{display:none}
+  .ham{display:flex}
+  .search-grid{grid-template-columns:1fr 1fr}
+  .search-go{grid-column:1/-1;width:100%}
+  .search-row2{grid-template-columns:1fr 1fr}
+  .cal-months{grid-template-columns:1fr}
+  .trust-band{grid-template-columns:1fr 1fr;padding-top:40px}
+  .dest-grid{grid-template-columns:1fr 1fr}
+  .result-card{grid-template-columns:1fr}
+  .result-buy{align-items:flex-start;text-align:left;flex-direction:row;justify-content:space-between;width:100%}
+  .result-legs{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:700px){
+  .book-hero{padding-left:20px;padding-right:20px;padding-bottom:100px}
+  .search-shell{padding-left:20px;padding-right:20px}
+  .book-search{padding:24px 20px;border-radius:16px}
+  .search-grid,.search-row2{grid-template-columns:1fr}
+  .swap-btn{display:none}
+  .cal-popover{left:0;right:0;min-width:auto}
+  .trust-band,.dest-grid{grid-template-columns:1fr}
+  .cta-inner{padding:28px 24px}
+  .book-footer{padding:56px 20px 28px}
+  .ft-grid{grid-template-columns:1fr}
+}
+</style>
+<link rel="stylesheet" href="css/readable.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/theme.js" defer></script>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/mgt-logo.png" alt="" width="96" height="96">
+    <div class="ft-logo-text">
+      <div class="nav-name">Martins Global Travels</div>
+      <div class="nav-sub">Book flights</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#destinations">Destinations</a>
+      <a href="index.html#packages">Packages</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <!-- <a href="book.html" class="act">Book Travel</a> hidden until booking setup complete -->
+      <a href="portal.html">Client Portal</a>
+    </div>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-icon theme-icon-sun">☀</span>
+        <span class="theme-icon theme-icon-moon">☽</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-toggle-label">Light</span>
+    </button>
+    <a href="index.html#contact" class="nav-cta">Book Now</a>
+  </div>
+  <button type="button" class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob" id="mob" aria-hidden="true">
+  <a href="index.html">Home</a>
+  <a href="index.html#destinations">Destinations</a>
+  <a href="index.html#packages">Packages</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact">Contact</a>
+  <!-- <a href="book.html" class="act">Book Travel</a> hidden until booking setup complete -->
+  <a href="portal.html">Client Portal</a>
+  <div class="mob-theme">
+    <span>Appearance</span>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-icon theme-icon-sun">☀</span>
+        <span class="theme-icon theme-icon-moon">☽</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-toggle-label">Light</span>
+    </button>
+  </div>
+</div>
+
+<section class="book-hero">
+  <div class="book-hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=85&auto=format&fit=crop" alt="" loading="eager" decoding="async">
+  </div>
+  <div class="book-hero-inner">
+    <div class="tag">Flight booking</div>
+    <h1 class="book-h1">Where will you<br><em>fly next?</em></h1>
+    <p class="book-lead">Search live fares from major airlines, choose your dates on one calendar, and book securely with your Martins Global Travels specialist.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Live pricing</span>
+      <span class="hero-pill">Secure checkout</span>
+      <span class="hero-pill">Personal service</span>
+    </div>
+  </div>
+</section>
+
+<div class="search-shell">
+  <div class="book-search">
+    <div class="search-head">
+      <div class="search-head-t">Search flights</div>
+      <div class="trip-types">
+        <button type="button" class="trip-type-btn on" data-trip="roundtrip">Round-trip</button>
+        <button type="button" class="trip-type-btn" data-trip="oneway">One-way</button>
+      </div>
+    </div>
+    <form id="flight-form">
+      <div class="search-grid">
+        <div class="search-field">
+          <label class="search-lbl" for="from-input">From</label>
+          <input class="search-inp" id="from-input" type="text" placeholder="City or airport" autocomplete="off" required>
+          <input type="hidden" id="from-code">
+          <div class="ac-list" id="from-list" hidden></div>
+        </div>
+        <div class="search-field" style="position:relative">
+          <button type="button" class="swap-btn" id="swap-airports" aria-label="Swap airports">⇄</button>
+          <label class="search-lbl" for="to-input">To</label>
+          <input class="search-inp" id="to-input" type="text" placeholder="City or airport" autocomplete="off" required>
+          <input type="hidden" id="to-code">
+          <div class="ac-list" id="to-list" hidden></div>
+        </div>
+        <div class="search-field date-field" id="dates-field">
+          <label class="search-lbl">Dates</label>
+          <button type="button" class="date-trigger" id="dates-trigger">Select dates</button>
+          <input type="hidden" id="flight-depart">
+          <input type="hidden" id="flight-return">
+          <div id="calendar-popover" class="cal-popover" hidden>
+            <div class="cal-popover-head">
+              <span class="cal-hint">Choose departure date — then return</span>
+              <div class="cal-nav">
+                <button type="button" class="cal-prev" aria-label="Previous month">‹</button>
+                <button type="button" class="cal-next" aria-label="Next month">›</button>
+              </div>
+            </div>
+            <div class="cal-months"></div>
+          </div>
+        </div>
+        <button type="submit" class="search-go" id="flight-search-btn">Search flights</button>
+      </div>
+      <div class="search-row2">
+        <div class="search-field">
+          <label class="search-lbl" for="flight-adults">Travelers</label>
+          <select class="search-sel" id="flight-adults">
+            <option value="1">1 Adult</option>
+            <option value="2">2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+            <option value="5">5 Adults</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <label class="search-lbl" for="flight-class">Cabin</label>
+          <select class="search-sel" id="flight-class">
+            <option value="ECONOMY">Economy</option>
+            <option value="PREMIUM_ECONOMY">Premium economy</option>
+            <option value="BUSINESS">Business</option>
+            <option value="FIRST">First class</option>
+          </select>
+        </div>
+        <div class="search-field" style="justify-content:flex-end">
+          <label class="search-opts" style="margin:0;padding-top:22px">
+            <input type="checkbox" id="flight-nonstop"> Nonstop only
+          </label>
+        </div>
+      </div>
+      <div class="popular-routes">
+        <span class="popular-lbl">Popular:</span>
+        <button type="button" class="route-chip" data-from="BOS" data-from-label="Boston (BOS)" data-to="MIA" data-to-label="Miami (MIA)">Boston → Miami</button>
+        <button type="button" class="route-chip" data-from="BOS" data-from-label="Boston (BOS)" data-to="LHR" data-to-label="London (LHR)">Boston → London</button>
+        <button type="button" class="route-chip" data-from="JFK" data-from-label="New York (JFK)" data-to="MCO" data-to-label="Orlando (MCO)">NYC → Orlando</button>
+        <button type="button" class="route-chip" data-from="LAX" data-from-label="Los Angeles (LAX)" data-to="CUN" data-to-label="Cancún (CUN)">LA → Cancún</button>
+      </div>
+      <p id="flight-search-err" class="search-err" hidden></p>
+    </form>
+  </div>
+</div>
+
+<div class="book-page">
+  <div class="book-mq" aria-hidden="true">
+    <div class="mq-track">
+      <span class="mq-item">Boston<span class="mq-sep"></span></span>
+      <span class="mq-item">London<span class="mq-sep"></span></span>
+      <span class="mq-item">Paris<span class="mq-sep"></span></span>
+      <span class="mq-item">Tokyo<span class="mq-sep"></span></span>
+      <span class="mq-item">Maldives<span class="mq-sep"></span></span>
+      <span class="mq-item">Cancún<span class="mq-sep"></span></span>
+      <span class="mq-item">Dubai<span class="mq-sep"></span></span>
+      <span class="mq-item">Rome<span class="mq-sep"></span></span>
+      <span class="mq-item">Boston<span class="mq-sep"></span></span>
+      <span class="mq-item">London<span class="mq-sep"></span></span>
+      <span class="mq-item">Paris<span class="mq-sep"></span></span>
+      <span class="mq-item">Tokyo<span class="mq-sep"></span></span>
+      <span class="mq-item">Maldives<span class="mq-sep"></span></span>
+      <span class="mq-item">Cancún<span class="mq-sep"></span></span>
+      <span class="mq-item">Dubai<span class="mq-sep"></span></span>
+      <span class="mq-item">Rome<span class="mq-sep"></span></span>
+    </div>
+  </div>
+
+  <section class="trust-band" aria-label="Why book with us">
+    <div class="trust-card">
+      <div class="trust-num">01</div>
+      <div class="trust-t">Live fares</div>
+      <div class="trust-d">Real-time prices from major airlines worldwide</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-num">02</div>
+      <div class="trust-t">Secure pay</div>
+      <div class="trust-d">Checkout powered by Stripe — safe &amp; encrypted</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-num">03</div>
+      <div class="trust-t">Luxury service</div>
+      <div class="trust-d">Personal specialist confirms every booking</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-num">04</div>
+      <div class="trust-t">Always here</div>
+      <div class="trust-d">Call (508) 232-3003 anytime you need help</div>
+    </div>
+  </section>
+
+  <main class="book-main">
+    <div id="book-banner" class="book-banner" hidden></div>
+
+    <div id="dest-showcase" class="dest-showcase">
+      <div class="section-hd">
+        <div>
+          <div class="tag" style="color:var(--gold);margin-bottom:12px">Trending routes</div>
+          <h2 class="h2">Popular <em>destinations</em></h2>
+          <p class="section-sub">Click a route above or explore where our clients love to fly.</p>
+        </div>
+      </div>
+      <div class="dest-grid">
+        <article class="dest-card">
+          <div class="dest-img">
+            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=85&auto=format&fit=crop" alt="Maldives" loading="lazy" decoding="async">
+            <div class="dest-ov"></div>
+            <div class="dest-body">
+              <div class="dest-region">Indian Ocean</div>
+              <div class="dest-name">Maldives</div>
+              <div class="dest-from">From Boston · Beach &amp; luxury</div>
+            </div>
+          </div>
+        </article>
+        <article class="dest-card">
+          <div class="dest-img">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=85&auto=format&fit=crop" alt="Paris" loading="lazy" decoding="async">
+            <div class="dest-ov"></div>
+            <div class="dest-body">
+              <div class="dest-region">Europe</div>
+              <div class="dest-name">Paris</div>
+              <div class="dest-from">From New York · Culture &amp; cuisine</div>
+            </div>
+          </div>
+        </article>
+        <article class="dest-card">
+          <div class="dest-img">
+            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=85&auto=format&fit=crop" alt="Tokyo" loading="lazy" decoding="async">
+            <div class="dest-ov"></div>
+            <div class="dest-body">
+              <div class="dest-region">Asia Pacific</div>
+              <div class="dest-name">Tokyo</div>
+              <div class="dest-from">From LA · City &amp; culture</div>
+            </div>
+          </div>
+        </article>
+        <article class="dest-card">
+          <div class="dest-img">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=85&auto=format&fit=crop" alt="Cancún" loading="lazy" decoding="async">
+            <div class="dest-ov"></div>
+            <div class="dest-body">
+              <div class="dest-region">Caribbean</div>
+              <div class="dest-name">Cancún</div>
+              <div class="dest-from">From Boston · Sun &amp; sand</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div id="flight-results-wrap" hidden style="margin-top:48px">
+      <div class="section-hd" style="margin-bottom:20px">
+        <h2 class="h2">Your <em>results</em></h2>
+      </div>
+      <div class="results-head">
+        <span class="results-count" id="results-count">0 flights found</span>
+        <div class="sort-row">
+          <button type="button" class="sort-btn on" data-sort="price">Cheapest</button>
+          <button type="button" class="sort-btn" data-sort="duration">Shortest</button>
+        </div>
+      </div>
+      <div id="flight-results"></div>
+      <p id="flight-empty" class="flight-empty" hidden>No flights match your search. Try different dates or airports, or call <a href="tel:+15082323003" style="color:var(--gold)">(508) 232-3003</a>.</p>
+    </div>
+  </main>
+
+  <div class="cta-strip">
+    <div class="cta-inner">
+      <div>
+        <h2>Need help <em>planning?</em></h2>
+        <p>Jeanie and our team are ready to assist with flights, hotels, and full itineraries.</p>
+      </div>
+      <a href="tel:+15082323003" class="cta-btn">Call (508) 232-3003</a>
+    </div>
+  </div>
+</div>
+
+<footer class="book-footer">
+  <div class="ft-grid">
+    <div>
+      <a href="index.html" class="nav-logo" style="margin-bottom:4px">
+        <img src="assets/mgt-logo.png" alt="" width="96" height="96">
+        <div class="ft-logo-text">
+          <div class="nav-name">Martins Global Travels</div>
+          <div class="nav-sub">Where luxury meets the world</div>
+        </div>
+      </a>
+      <p class="ft-tag">"The world is a book, and those who do not travel read only one page."</p>
+    </div>
+    <div>
+      <div class="ft-ch">Explore</div>
+      <ul class="ft-links">
+        <li><a href="index.html#destinations">Destinations</a></li>
+        <li><a href="index.html#packages">Packages</a></li>
+        <li><a href="book.html">Book Travel</a></li>
+        <li><a href="portal.html">Client Portal</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Company</div>
+      <ul class="ft-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Legal</div>
+      <ul class="ft-links">
+        <li><a href="index.html#privacy">Privacy</a></li>
+        <li><a href="index.html#terms">Terms</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Contact</div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">1350 Belmont St, Suite 114, Brockton, MA</div></div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2026 Martins Global Travels. All Rights Reserved.</div>
+    <div class="ft-leg">
+      <a href="index.html#privacy">Privacy</a>
+      <a href="index.html#terms">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<div id="checkout-modal" class="modal" hidden>
+  <div class="modal-box">
+    <button type="button" class="modal-x" id="checkout-close" aria-label="Close">×</button>
+    <h2 class="modal-h">Complete booking</h2>
+    <p class="modal-s">Enter traveler details. You'll pay securely via Stripe — Jeanie confirms your ticket within 24 hours.</p>
+    <div class="modal-summary" id="checkout-summary"></div>
+    <form id="checkout-form">
+      <div class="modal-field"><label class="modal-lbl" for="co-first">First name</label><input class="modal-inp" id="co-first" required></div>
+      <div class="modal-field"><label class="modal-lbl" for="co-last">Last name</label><input class="modal-inp" id="co-last" required></div>
+      <div class="modal-field"><label class="modal-lbl" for="co-email">Email</label><input class="modal-inp" id="co-email" type="email" required></div>
+      <div class="modal-field"><label class="modal-lbl" for="co-phone">Phone</label><input class="modal-inp" id="co-phone" type="tel"></div>
+      <button type="submit" class="modal-pay" id="checkout-pay">Pay &amp; book flight</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script src="js/book-airports.js"></script>
+<script src="js/book-calendar.js"></script>
+<script src="js/flight-pricing.js"></script>
+<script src="js/book.js"></script>
+<script>
+(function(){
+  var ham=document.getElementById('ham');
+  var mob=document.getElementById('mob');
+  if(!ham||!mob)return;
+  ham.addEventListener('click',function(){
+    var open=mob.classList.toggle('open');
+    mob.setAttribute('aria-hidden',open?'false':'true');
+    var s=ham.querySelectorAll('span');
+    if(open){
+      s[0].style.transform='rotate(45deg) translate(5px,5px)';
+      s[1].style.opacity='0';
+      s[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+    }else{
+      s[0].style.transform=s[2].style.transform='';
+      s[1].style.opacity='1';
+    }
+  });
+  mob.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){mob.classList.remove('open');mob.setAttribute('aria-hidden','true');});
+  });
+})();
+</script>
+</body>
+</html>
