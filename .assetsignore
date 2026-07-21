@@ -1,0 +1,18 @@
+.git
+.gitignore
+.env
+.env.example
+node_modules
+netlify
+scripts
+supabase
+terminals
+package.json
+package-lock.json
+netlify.toml
+wrangler.jsonc
+.assetsignore
+.wrangler
+*.md
+Martins Global Travels Finished
+Martins Global Travels Finished - Copy
