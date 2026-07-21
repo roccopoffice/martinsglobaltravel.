@@ -17,5 +17,9 @@
       "database_name": "martinsglobaltravel-db",
       "database_id": "02619fd8-1025-4577-94b2-4d58fedb98f8"
     }
-  ]
+  ],
+  "vars": {
+    "SITE_URL": "https://martinsglobaltravel.com",
+    "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V"
+  }
 }
