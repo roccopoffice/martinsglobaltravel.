@@ -19,7 +19,7 @@
   }
 
   async function api(path, body) {
-    const res = await fetch('/.netlify/functions/' + path, {
+    const res = await fetch('/api/' + path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

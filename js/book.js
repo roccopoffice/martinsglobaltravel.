@@ -1,9 +1,9 @@
 (function () {
   const $ = (id) => document.getElementById(id);
   const API = {
-    search: '/.netlify/functions/flight-search',
-    airports: '/.netlify/functions/airport-search',
-    flightCheckout: '/.netlify/functions/create-flight-checkout',
+    search: '/api/flight-search',
+    airports: '/api/airport-search',
+    flightCheckout: '/api/create-flight-checkout',
   };
 
   let selectedOffer = null;

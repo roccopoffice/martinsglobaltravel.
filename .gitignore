@@ -4,6 +4,8 @@ js/analytics-config.js
 .env
 .env.*
 !.env.example
+.dev.vars
+.wrangler
 
 # Local duplicate copies - not part of the site
 Martins Global Travels Finished/

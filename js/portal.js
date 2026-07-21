@@ -1,10 +1,6 @@
 (function () {
-  const cfg = window.MGT_CONFIG || {};
-  const supabaseReady =
-    cfg.SUPABASE_URL &&
-    cfg.SUPABASE_ANON_KEY &&
-    !String(cfg.SUPABASE_URL).includes('YOUR_PROJECT') &&
-    !String(cfg.SUPABASE_ANON_KEY).includes('YOUR_SUPABASE');
+  const TOKEN_KEY = 'mgt_portal_token';
+  const API = '/api/';
 
   const $ = (id) => document.getElementById(id);
   const loginView = $('portal-login');
@@ -24,6 +20,23 @@
   const pwCancelBtn = $('pw-cancel-btn');
 
   let pwModalRequired = false;
+  let currentUser = null;
+
+  function getToken() {
+    return localStorage.getItem(TOKEN_KEY) || '';
+  }
+
+  function setToken(token) {
+    if (token) localStorage.setItem(TOKEN_KEY, token);
+    else localStorage.removeItem(TOKEN_KEY);
+  }
+
+  function authHeaders() {
+    const headers = { 'Content-Type': 'application/json' };
+    const token = getToken();
+    if (token) headers.Authorization = 'Bearer ' + token;
+    return headers;
+  }
 
   function formatMoney(cents, currency) {
     return new Intl.NumberFormat('en-US', {
@@ -44,21 +57,8 @@
     loginErr.hidden = !msg;
   }
 
-  function showSetupMessage() {
-    loginView.hidden = false;
-    dashView.hidden = true;
-    showError(
-      'Portal is not connected yet. Add your Supabase URL and anon key in js/config.js, then redeploy (see SETUP-PORTAL.md).'
-    );
-    if (loginForm) loginForm.querySelector('button[type=submit]').disabled = true;
-  }
-
   function mustChangePassword(user) {
-    return user?.user_metadata?.must_change_password === true;
-  }
-
-  function portalRedirectUrl() {
-    return window.location.origin + '/portal.html';
+    return user?.must_change_password === true;
   }
 
   function showPasswordModal(opts) {
@@ -70,11 +70,7 @@
     pwModalError.hidden = true;
     pwModalError.textContent = '';
 
-    if (opts?.recovery) {
-      pwModalLead.textContent =
-        'You opened a password reset link. Choose a new password for your account.';
-      $('pw-modal-title').innerHTML = 'Reset your <em>password</em>';
-    } else if (opts?.required) {
+    if (opts?.required) {
       pwModalLead.textContent =
         'Your temporary password must be changed before you can use the portal.';
       $('pw-modal-title').innerHTML = 'Create your <em>password</em>';
@@ -91,60 +87,6 @@
     pwModal.hidden = true;
     document.body.style.overflow = '';
   }
-
-  async function saveNewPassword() {
-    const pw = $('pw-new').value;
-    const confirm = $('pw-confirm').value;
-    pwModalError.hidden = true;
-
-    if (pw.length < 6) {
-      pwModalError.textContent = 'Password must be at least 6 characters.';
-      pwModalError.hidden = false;
-      return;
-    }
-    if (pw !== confirm) {
-      pwModalError.textContent = 'Passwords do not match.';
-      pwModalError.hidden = false;
-      return;
-    }
-
-    const btn = $('pw-save-btn');
-    btn.disabled = true;
-    btn.textContent = 'Saving…';
-
-    const { data, error } = await client.auth.updateUser({
-      password: pw,
-      data: { must_change_password: false },
-    });
-
-    btn.disabled = false;
-    btn.textContent = 'Save password';
-
-    if (error) {
-      pwModalError.textContent = error.message;
-      pwModalError.hidden = false;
-      return;
-    }
-
-    pwModalRequired = false;
-    pwModal.hidden = true;
-    document.body.style.overflow = '';
-    showBanner('Password updated successfully.', 'success');
-
-    const session = data?.user ? { user: data.user } : null;
-    const { data: sessionData } = await client.auth.getSession();
-    if (sessionData?.session) {
-      showDashboardSession(sessionData.session);
-    }
-  }
-
-  if (!supabaseReady) {
-    showSetupMessage();
-    return;
-  }
-
-  const { createClient } = supabase;
-  const client = createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
 
   function clientDisplayName(account) {
     const first = account.first_name?.trim();
@@ -168,21 +110,18 @@
     }
   }
 
-  async function loadBalance(session) {
-    const { data, error } = await client
-      .from('client_accounts')
-      .select('balance_cents, currency, full_name, first_name, last_name')
-      .eq('id', session.user.id)
-      .maybeSingle();
+  async function loadBalance() {
+    const res = await fetch(API + 'auth/balance', { headers: authHeaders() });
+    const json = await res.json().catch(() => ({}));
 
-    if (error) {
+    if (!res.ok) {
       balanceEl.textContent = '—';
-      balanceNote.textContent = 'Could not load balance. Please try again or contact us.';
+      balanceNote.textContent = json.error || 'Could not load balance. Please try again or contact us.';
       payBtn.disabled = true;
       return;
     }
 
-    if (!data) {
+    if (!json.account) {
       balanceEl.textContent = '—';
       balanceNote.textContent =
         'Your account is not set up yet. Email Jeanie@MartinsGlobalTravels.com or call (508) 232-3003.';
@@ -191,11 +130,8 @@
     }
 
     renderBalance({
-      first_name: data.first_name,
-      last_name: data.last_name,
-      full_name: data.full_name || session.user.email?.split('@')[0],
-      balance_cents: data.balance_cents,
-      currency: data.currency,
+      ...json.account,
+      full_name: json.account.full_name || currentUser?.email?.split('@')[0],
     });
   }
 
@@ -208,17 +144,80 @@
   function showLogin() {
     loginView.hidden = false;
     dashView.hidden = true;
+    currentUser = null;
     showError('');
     hidePasswordModal();
   }
 
-  function showDashboardSession(session) {
+  async function showDashboardForUser(user) {
+    currentUser = user;
     showDashboard();
-    if (mustChangePassword(session.user)) {
+    if (mustChangePassword(user)) {
       showPasswordModal({ required: true });
       return;
     }
-    loadBalance(session);
+    await loadBalance();
+  }
+
+  async function restoreSession() {
+    const token = getToken();
+    if (!token) {
+      showLogin();
+      return;
+    }
+
+    const res = await fetch(API + 'auth/session', { headers: authHeaders() });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json.user) {
+      setToken('');
+      showLogin();
+      return;
+    }
+    await showDashboardForUser(json.user);
+  }
+
+  async function saveNewPassword() {
+    const pw = $('pw-new').value;
+    const confirm = $('pw-confirm').value;
+    pwModalError.hidden = true;
+
+    if (pw.length < 6) {
+      pwModalError.textContent = 'Password must be at least 6 characters.';
+      pwModalError.hidden = false;
+      return;
+    }
+    if (pw !== confirm) {
+      pwModalError.textContent = 'Passwords do not match.';
+      pwModalError.hidden = false;
+      return;
+    }
+
+    const btn = $('pw-save-btn');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    const res = await fetch(API + 'auth/change-password', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ newPassword: pw }),
+    });
+    const json = await res.json().catch(() => ({}));
+
+    btn.disabled = false;
+    btn.textContent = 'Save password';
+
+    if (!res.ok) {
+      pwModalError.textContent = json.error || 'Could not update password.';
+      pwModalError.hidden = false;
+      return;
+    }
+
+    pwModalRequired = false;
+    pwModal.hidden = true;
+    document.body.style.overflow = '';
+    if (currentUser) currentUser.must_change_password = false;
+    showBanner('Password updated successfully.', 'success');
+    await loadBalance();
   }
 
   loginForm?.addEventListener('submit', async (e) => {
@@ -230,17 +229,23 @@
     btn.disabled = true;
     btn.textContent = 'Signing in…';
 
-    const { data, error } = await client.auth.signInWithPassword({ email, password });
+    const res = await fetch(API + 'auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    const json = await res.json().catch(() => ({}));
 
     btn.disabled = false;
     btn.textContent = 'Sign in';
 
-    if (error) {
-      showError(error.message === 'Invalid login credentials' ? 'Invalid email or password.' : error.message);
+    if (!res.ok) {
+      showError(json.error || 'Invalid email or password.');
       return;
     }
 
-    showDashboardSession(data.session);
+    setToken(json.token);
+    await showDashboardForUser(json.user);
   });
 
   $('forgot-toggle')?.addEventListener('click', () => {
@@ -248,40 +253,14 @@
     const open = !panel.hidden;
     panel.hidden = open;
     $('forgot-toggle').textContent = open ? 'Forgot password?' : 'Back to sign in';
-    if (!open) {
-      $('forgot-email').value = $('login-email').value.trim();
-    }
+    if (!open) $('forgot-email').value = $('login-email').value.trim();
   });
 
-  $('forgot-send-btn')?.addEventListener('click', async () => {
-    const email = $('forgot-email').value.trim();
+  $('forgot-send-btn')?.addEventListener('click', () => {
     const msg = $('forgot-msg');
-    msg.hidden = true;
-    if (!email) {
-      msg.textContent = 'Enter your email address.';
-      msg.hidden = false;
-      return;
-    }
-    const btn = $('forgot-send-btn');
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-
-    const { error } = await client.auth.resetPasswordForEmail(email, {
-      redirectTo: portalRedirectUrl(),
-    });
-
-    btn.disabled = false;
-    btn.textContent = 'Send reset link';
-
-    if (error) {
-      msg.style.color = '#e88';
-      msg.textContent = error.message;
-      msg.hidden = false;
-      return;
-    }
-
     msg.style.color = '';
-    msg.textContent = 'Check your email for a password reset link.';
+    msg.textContent =
+      'Please email Jeanie@MartinsGlobalTravels.com or call (508) 232-3003 to reset your password.';
     msg.hidden = false;
   });
 
@@ -289,16 +268,14 @@
   pwCancelBtn?.addEventListener('click', hidePasswordModal);
   changePwBtn?.addEventListener('click', () => showPasswordModal({ required: false }));
 
-  logoutBtn?.addEventListener('click', async () => {
-    await client.auth.signOut();
+  logoutBtn?.addEventListener('click', () => {
+    setToken('');
     showLogin();
     showBanner('');
   });
 
   payBtn?.addEventListener('click', async () => {
-    const { data: sessionData } = await client.auth.getSession();
-    const session = sessionData?.session;
-    if (!session) {
+    if (!getToken()) {
       showLogin();
       return;
     }
@@ -307,12 +284,9 @@
     payBtn.textContent = 'Redirecting to Stripe…';
 
     try {
-      const res = await fetch('/.netlify/functions/create-checkout', {
+      const res = await fetch(API + 'create-checkout', {
         method: 'POST',
-        headers: {
-          Authorization: 'Bearer ' + session.access_token,
-          'Content-Type': 'application/json',
-        },
+        headers: authHeaders(),
         body: '{}',
       });
       const json = await res.json();
@@ -335,23 +309,20 @@
     history.replaceState({}, '', 'portal.html');
   }
 
-  async function confirmPaidSession(session) {
-    if (!session) return;
+  async function confirmPaidSession() {
+    if (!getToken()) return;
     showBanner('Thank you — confirming your payment…', 'success');
 
     if (sessionId) {
       try {
-        const res = await fetch('/.netlify/functions/confirm-payment', {
+        const res = await fetch(API + 'confirm-payment', {
           method: 'POST',
-          headers: {
-            Authorization: 'Bearer ' + session.access_token,
-            'Content-Type': 'application/json',
-          },
+          headers: authHeaders(),
           body: JSON.stringify({ sessionId }),
         });
         const json = await res.json();
         if (!res.ok) throw new Error(json.error || 'Could not confirm payment');
-        await loadBalance(session);
+        await loadBalance();
         showBanner('Thank you — your payment was received. Your balance is updated.', 'success');
         return;
       } catch (err) {
@@ -363,38 +334,12 @@
       }
     }
 
-    setTimeout(() => loadBalance(session), 2000);
-    setTimeout(() => loadBalance(session), 6000);
+    setTimeout(loadBalance, 2000);
+    setTimeout(loadBalance, 6000);
   }
 
-  if (paidReturn) {
-    client.auth.getSession().then(({ data }) => {
-      if (data.session) confirmPaidSession(data.session);
-    });
-  } else if (canceledReturn) {
-    showBanner('Payment canceled. Your balance is unchanged.', 'warn');
-  }
-
-  client.auth.onAuthStateChange((event, session) => {
-    if (event === 'PASSWORD_RECOVERY' && session) {
-      showDashboard();
-      showPasswordModal({ required: true, recovery: true });
-      return;
-    }
-    if (session) {
-      if (mustChangePassword(session.user) && !pwModalRequired) {
-        showDashboard();
-        showPasswordModal({ required: true });
-      } else if (!pwModalRequired) {
-        showDashboardSession(session);
-      }
-    } else {
-      showLogin();
-    }
-  });
-
-  client.auth.getSession().then(({ data }) => {
-    if (data.session) showDashboardSession(data.session);
-    else showLogin();
+  restoreSession().then(() => {
+    if (paidReturn && getToken()) confirmPaidSession();
+    else if (canceledReturn) showBanner('Payment canceled. Your balance is unchanged.', 'warn');
   });
 })();

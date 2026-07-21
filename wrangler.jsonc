@@ -1,12 +1,22 @@
 {
-  // Serves static assets on Cloudflare; proxies /.netlify/functions/* to Netlify backend.
+  // Cloudflare Workers + D1 backend (no Supabase). Static assets + /api/* routes.
   "$schema": "node_modules/wrangler/config-schema.json",
+  "account_id": "9d1ca5329918e495aa0b71c99de6369a",
   "name": "martinsglobaltravel",
   "main": "worker.js",
   "compatibility_date": "2026-07-21",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "martinsglobaltravel-db",
+      // Create in Cloudflare dashboard → D1, then paste the real ID here before deploy.
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID_FROM_CLOUDFLARE_DASHBOARD"
+    }
+  ]
 }

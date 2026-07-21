@@ -11,8 +11,11 @@ package.json
 package-lock.json
 netlify.toml
 wrangler.jsonc
+wrangler.dev.jsonc
+worker-api-only.js
 worker.js
-.assetsignore
+worker/
+migrations/
 .wrangler
 *.md
 Martins Global Travels Finished

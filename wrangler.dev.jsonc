@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "martinsglobaltravel-api-dev",
+  "main": "worker-api-only.js",
+  "compatibility_date": "2026-07-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "martinsglobaltravel-db",
+      "database_id": "local-dev-placeholder"
+    }
+  ]
+}
