@@ -11,6 +11,7 @@ package.json
 package-lock.json
 netlify.toml
 wrangler.jsonc
+worker.js
 .assetsignore
 .wrangler
 *.md

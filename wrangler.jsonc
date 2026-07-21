@@ -1,11 +1,12 @@
 {
-  // Cloudflare Workers config — serves the site as static assets.
-  // The API backend still lives in netlify/functions and does NOT run on Cloudflare.
+  // Serves static assets on Cloudflare; proxies /.netlify/functions/* to Netlify backend.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "martins-global-travels",
+  "name": "martinsglobaltravel",
+  "main": "worker.js",
   "compatibility_date": "2026-07-21",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash"
   }
 }
