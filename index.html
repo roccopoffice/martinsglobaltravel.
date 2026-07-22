@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="assets/mgt-logo.png" sizes="192x192">
 <link rel="shortcut icon" type="image/png" href="assets/mgt-logo.png">
 <link rel="apple-touch-icon" href="assets/mgt-logo.png">
-<title>Martins Global Travels</title>
+<title data-i18n-title="meta.title">Martins Global Travels</title>
 <!-- Your photos: save as JPG/PNG/WebP in assets/photos/ using the names in data-local (e.g. hero.jpg matches data-local="assets/photos/hero") -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -692,6 +692,15 @@ body.wc-popup-open{overflow:hidden}
   .wc-popup-continue,.wc-popup-cta{width:100%;justify-content:center;text-align:center}
   .wc-popup-art img{max-height:min(52vh,682px)}
 }
+
+.lang-switcher{display:flex;align-items:center;flex-shrink:0}
+.lang-select{appearance:none;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dim);background:var(--ink3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center/10px;border:1px solid var(--border);padding:8px 26px 8px 12px;cursor:pointer;transition:border-color .25s,color .25s}
+.lang-select:hover{border-color:rgba(201,168,76,.35);color:#fff}
+.lang-select option{color:var(--ink);background:#fff}
+.mob .lang-switcher{padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:8px}
+.mob .lang-select{width:100%;font-size:12px;padding:12px 28px 12px 14px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 </style>
 <link rel="stylesheet" href="css/readable.css">
 <link rel="stylesheet" href="css/theme.css">
@@ -705,56 +714,64 @@ body.wc-popup-open{overflow:hidden}
 <nav id="nav">
   <div class="nav-logo" onclick="go('home')">
     <div class="nav-logo-wrap">
-      <img class="nav-logo-img" src="assets/mgt-logo.png" alt="Martins Global Travels — gold seal logo with MGT monogram and globe" width="128" height="128" decoding="async">
+      <img class="nav-logo-img" src="assets/mgt-logo.png" alt="Martins Global Travels — gold seal logo with MGT monogram and globe" data-i18n-alt="a11y.brandAlt" width="128" height="128" decoding="async">
       <div class="nav-logo-text">
-        <span class="nav-name">Martins Global Travels</span>
-        <span class="nav-sub">Where luxury meets the world</span>
+        <span class="nav-name" data-i18n="brand.name">Martins Global Travels</span>
+        <span class="nav-sub" data-i18n="brand.tagline">Where luxury meets the world</span>
       </div>
     </div>
   </div>
   <div class="nav-right">
     <div class="nav-links">
-      <a onclick="go('home')" data-p="home" class="act">Home</a>
-      <a onclick="go('destinations')" data-p="destinations">Destinations</a>
-      <a onclick="go('packages')" data-p="packages">Packages</a>
-      <a onclick="go('faq')" data-p="faq">FAQ</a>
-      <a onclick="go('about')" data-p="about">About</a>
-      <a onclick="go('contact')" data-p="contact">Contact</a>
+      <a onclick="go('home')" data-p="home" class="act" data-i18n="nav.home">Home</a>
+      <a onclick="go('destinations')" data-p="destinations" data-i18n="nav.destinations">Destinations</a>
+      <a onclick="go('packages')" data-p="packages" data-i18n="nav.packages">Packages</a>
+      <a onclick="go('faq')" data-p="faq" data-i18n="nav.faq">FAQ</a>
+      <a onclick="go('about')" data-p="about" data-i18n="nav.about">About</a>
+      <a onclick="go('contact')" data-p="contact" data-i18n="nav.contact">Contact</a>
       <!-- <a href="book.html">Book Travel</a> hidden until booking setup complete -->
-      <a href="portal.html">Client Portal</a>
+      <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
     </div>
-    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+    <div class="lang-switcher">
+      <label class="visually-hidden" for="lang-select-desktop" data-i18n="a11y.langSwitcher">Select language</label>
+      <select id="lang-select-desktop" class="lang-select" aria-label="Select language" data-i18n-aria="a11y.langSwitcher"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="ht">Kreyòl</option><option value="kea">Kabuverdianu</option><option value="fr">Français</option><option value="zh">中文</option></select>
+    </div>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode">
       <span class="theme-toggle-track" aria-hidden="true">
         <span class="theme-icon theme-icon-sun">☀</span>
         <span class="theme-icon theme-icon-moon">☽</span>
         <span class="theme-toggle-thumb"></span>
       </span>
-      <span class="theme-toggle-label">Light</span>
+      <span class="theme-toggle-label" data-i18n="theme.light">Light</span>
     </button>
-    <button type="button" class="nav-cta" onclick="go('contact')">Book Now</button>
+    <button type="button" class="nav-cta" onclick="go('contact')" data-i18n="nav.bookNow">Book Now</button>
   </div>
   <div class="ham" onclick="toggleMob()" id="ham"><span></span><span></span><span></span></div>
 </nav>
 
 <div class="mob" id="mob">
-  <a onclick="go('home');toggleMob()">Home</a>
-  <a onclick="go('destinations');toggleMob()">Destinations</a>
-  <a onclick="go('packages');toggleMob()">Packages</a>
-  <a onclick="go('faq');toggleMob()">FAQ</a>
+  <div class="lang-switcher">
+    <label class="visually-hidden" for="lang-select-mobile" data-i18n="a11y.langSwitcher">Select language</label>
+    <select id="lang-select-mobile" class="lang-select" aria-label="Select language" data-i18n-aria="a11y.langSwitcher"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="ht">Kreyòl</option><option value="kea">Kabuverdianu</option><option value="fr">Français</option><option value="zh">中文</option></select>
+  </div>
+  <a onclick="go('home');toggleMob()" data-i18n="nav.home">Home</a>
+  <a onclick="go('destinations');toggleMob()" data-i18n="nav.destinations">Destinations</a>
+  <a onclick="go('packages');toggleMob()" data-i18n="nav.packages">Packages</a>
+  <a onclick="go('faq');toggleMob()" data-i18n="nav.faq">FAQ</a>
   
-  <a onclick="go('about');toggleMob()">About</a>
-  <a onclick="go('contact');toggleMob()">Contact</a>
+  <a onclick="go('about');toggleMob()" data-i18n="nav.about">About</a>
+  <a onclick="go('contact');toggleMob()" data-i18n="nav.contact">Contact</a>
   <!-- <a href="book.html" onclick="toggleMob()">Book Travel</a> hidden until booking setup complete -->
-  <a href="portal.html" onclick="toggleMob()">Client Portal</a>
+  <a href="portal.html" onclick="toggleMob()" data-i18n="nav.portal">Client Portal</a>
   <div class="mob-theme">
-    <span>Appearance</span>
-    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+    <span data-i18n="theme.appearance">Appearance</span>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode">
       <span class="theme-toggle-track" aria-hidden="true">
         <span class="theme-icon theme-icon-sun">☀</span>
         <span class="theme-icon theme-icon-moon">☽</span>
         <span class="theme-toggle-thumb"></span>
       </span>
-      <span class="theme-toggle-label">Light</span>
+      <span class="theme-toggle-label" data-i18n="theme.light">Light</span>
     </button>
   </div>
 </div>
@@ -762,7 +779,7 @@ body.wc-popup-open{overflow:hidden}
 <div class="toast" id="toast"></div>
 
 <!-- World Cup promo (home) -->
-<div id="wc-popup" class="wc-popup" role="dialog" aria-modal="true" aria-label="World Cup 2026 travel packages" hidden>
+<div id="wc-popup" class="wc-popup" role="dialog" aria-modal="true" aria-label="World Cup 2026 travel packages" data-i18n-aria="a11y.wcPopup" hidden>
   <div class="wc-popup-backdrop" onclick="closeWcPopup()" aria-hidden="true"></div>
   <div class="wc-popup-dialog">
     <div class="wc-popup-art">
@@ -771,17 +788,17 @@ body.wc-popup-open{overflow:hidden}
           src="assets/world-cup-popup.png?v=2"
           srcset="assets/world-cup-popup.png?v=2 1024w"
           sizes="(max-width: 920px) 92vw, 920px"
-          alt="World Cup 2026 travel packages — flights, hotels, transportation, and ticket assistance from Martins Global Travels."
+          alt="World Cup 2026 travel packages — flights, hotels, transportation, and ticket assistance from Martins Global Travels." data-i18n-alt="wc.imgAlt"
           width="1024"
           height="682"
           fetchpriority="high"
           decoding="async">
-        <button type="button" class="wc-popup-img-close" aria-label="Close" onclick="closeWcPopup()"></button>
+        <button type="button" class="wc-popup-img-close" aria-label="Close" data-i18n-aria="a11y.close" onclick="closeWcPopup()"></button>
       </div>
     </div>
     <div class="wc-popup-foot">
-      <button type="button" class="wc-popup-continue" onclick="closeWcPopup()">Continue browsing</button>
-      <button type="button" class="wc-popup-cta" onclick="wcPopupBook()">Book your experience</button>
+      <button type="button" class="wc-popup-continue" onclick="closeWcPopup()" data-i18n="wc.continue">Continue browsing</button>
+      <button type="button" class="wc-popup-cta" onclick="wcPopupBook()" data-i18n="wc.book">Book your experience</button>
     </div>
   </div>
 </div>
@@ -798,33 +815,33 @@ body.wc-popup-open{overflow:hidden}
     <div class="hero-content">
       <div class="hero-left">
         <h1 class="hero-h1">
-          <span>The World's</span>
-          <span>Most <em>Extraordinary</em></span>
-          <span>Destinations</span>
+          <span data-i18n="home.heroLine1">The World's</span>
+          <span data-i18n-html="home.heroLine2">Most <em>Extraordinary</em></span>
+          <span data-i18n="home.heroLine3">Destinations</span>
         </h1>
-        <p class="hero-desc">Tailor-made journeys crafted entirely around you — from overwater villas to safari wilderness and everything between.</p>
+        <p class="hero-desc" data-i18n="home.heroDesc">Tailor-made journeys crafted entirely around you — from overwater villas to safari wilderness and everything between.</p>
         <div class="hero-actions">
           <button class="btn-primary" onclick="go('destinations')">
-            Explore Destinations
+            <span data-i18n="home.exploreDestinations">Explore Destinations</span>
             <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <button class="btn-outline-w" onclick="go('packages')">View Packages</button>
+          <button class="btn-outline-w" onclick="go('packages')" data-i18n="home.viewPackages">View Packages</button>
         </div>
       </div>
       <div class="hero-right">
         <div class="hero-stat-row">
           <div class="hero-stat">
             <div class="hero-stat-num">120+</div>
-            <div class="hero-stat-lbl">Destinations</div>
+            <div class="hero-stat-lbl" data-i18n="home.statDestinations">Destinations</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-num">6</div>
-            <div class="hero-stat-lbl">Continents</div>
+            <div class="hero-stat-lbl" data-i18n="home.statContinents">Continents</div>
           </div>
         </div>
         <div class="hero-scroll">
           <div class="hero-scroll-line"></div>
-          Scroll to explore
+          <span data-i18n="common.scrollExplore"><span data-i18n="common.scrollExplore">Scroll to explore</span></span>
         </div>
       </div>
     </div>
@@ -833,10 +850,10 @@ body.wc-popup-open{overflow:hidden}
   <!-- DESTINATIONS -->
   <section class="dest-sec" aria-labelledby="top-dest-heading">
     <div class="dest-intro">
-      <div class="tag">Top Destinations</div>
+      <div class="tag" data-i18n="home.topDestinations">Top Destinations</div>
       <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
-        <h2 id="top-dest-heading" class="h2" style="font-size:clamp(38px,5vw,64px)">Where Will You<br><em>Go Next?</em></h2>
-        <button class="link-arrow" type="button" onclick="go('destinations')">All Destinations</button>
+        <h2 id="top-dest-heading" class="h2" style="font-size:clamp(38px,5vw,64px)" data-i18n-html="home.whereNextHtml">Where Will You<br><em>Go Next?</em></h2>
+        <button class="link-arrow" type="button" onclick="go('destinations')" data-i18n="common.allDestinations">All Destinations</button>
       </div>
     </div>
     <div class="td-wrap">
@@ -846,10 +863,10 @@ body.wc-popup-open{overflow:hidden}
             <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&amp;q=85&amp;auto=format&amp;fit=crop" alt="Positano and the Amalfi Coast, Italy" width="800" height="1000" loading="eager" data-local="assets/photos/dest-italy">
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
-              <p class="td-card-region">Europe</p>
-              <h3 class="td-card-title">Italy</h3>
-              <p class="td-card-desc">From Venetian canals to Tuscan hills — art, cuisine, and la dolce vita tailored to your pace.</p>
-              <button type="button" class="td-card-btn" onclick="go('destinations')">Explore Italy</button>
+              <p class="td-card-region" data-i18n="home.tdItalyRegion">Europe</p>
+              <h3 class="td-card-title" data-i18n="home.tdItalyTitle">Italy</h3>
+              <p class="td-card-desc" data-i18n="home.tdItalyDesc">From Venetian canals to Tuscan hills — art, cuisine, and la dolce vita tailored to your pace.</p>
+              <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdItalyBtn">Explore Italy</button>
             </div>
           </div>
         </article>
@@ -858,10 +875,10 @@ body.wc-popup-open{overflow:hidden}
             <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=85" alt="Great Wall of China at sunrise" width="800" height="1000" loading="lazy" data-local="assets/photos/dest-china">
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
-              <p class="td-card-region">East Asia</p>
-              <h3 class="td-card-title">China</h3>
-              <p class="td-card-desc">Ancient wonders and ultramodern cities — private guides unlock history, flavor, and spectacle.</p>
-              <button type="button" class="td-card-btn" onclick="go('destinations')">Explore China</button>
+              <p class="td-card-region" data-i18n="home.tdChinaRegion">East Asia</p>
+              <h3 class="td-card-title" data-i18n="home.tdChinaTitle">China</h3>
+              <p class="td-card-desc" data-i18n="home.tdChinaDesc">Ancient wonders and ultramodern cities — private guides unlock history, flavor, and spectacle.</p>
+              <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdChinaBtn">Explore China</button>
             </div>
           </div>
         </article>
@@ -871,9 +888,9 @@ body.wc-popup-open{overflow:hidden}
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
               <p class="td-card-region">Europe</p>
-              <h3 class="td-card-title">Portugal</h3>
-              <p class="td-card-desc">Atlantic light, azulejo tiles, and soulful Fado — Lisbon, Porto, and the Algarve on your terms.</p>
-              <button type="button" class="td-card-btn" onclick="go('destinations')">Explore Portugal</button>
+              <h3 class="td-card-title" data-i18n="home.tdPortugalTitle">Portugal</h3>
+              <p class="td-card-desc" data-i18n="home.tdPortugalDesc">Atlantic light, azulejo tiles, and soulful Fado — Lisbon, Porto, and the Algarve on your terms.</p>
+              <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdPortugalBtn">Explore Portugal</button>
             </div>
           </div>
         </article>
@@ -883,9 +900,9 @@ body.wc-popup-open{overflow:hidden}
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
               <p class="td-card-region">Europe</p>
-              <h3 class="td-card-title">Spain</h3>
-              <p class="td-card-desc">Moorish palaces, Gaudí’s Barcelona, and sun-soaked coasts — rhythm, tapas, and pure passion.</p>
-              <button type="button" class="td-card-btn" onclick="go('destinations')">Explore Spain</button>
+              <h3 class="td-card-title" data-i18n="home.tdSpainTitle">Spain</h3>
+              <p class="td-card-desc" data-i18n="home.tdSpainDesc">Moorish palaces, Gaudí's Barcelona, and sun-soaked coasts — rhythm, tapas, and pure passion.</p>
+              <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdSpainBtn">Explore Spain</button>
             </div>
           </div>
         </article>
@@ -894,29 +911,29 @@ body.wc-popup-open{overflow:hidden}
             <img src="https://images.unsplash.com/photo-1744604030401-b24c5975a574?w=800&amp;q=85&amp;auto=format&amp;fit=crop" alt="Table Mountain and Cape Town city bowl, South Africa" width="800" height="1000" loading="lazy" data-local="assets/photos/dest-south-africa">
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
-              <p class="td-card-region">Africa</p>
-              <h3 class="td-card-title">South Africa</h3>
-              <p class="td-card-desc">Cape elegance meets Big Five safari — wine routes, dramatic coast, and unforgettable wildlife.</p>
-              <button type="button" class="td-card-btn" onclick="go('destinations')">Explore South Africa</button>
+              <p class="td-card-region" data-i18n="home.tdSaRegion">Africa</p>
+              <h3 class="td-card-title" data-i18n="home.tdSaTitle">South Africa</h3>
+              <p class="td-card-desc" data-i18n="home.tdSaDesc">Cape elegance meets Big Five safari — wine routes, dramatic coast, and unforgettable wildlife.</p>
+              <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdSaBtn">Explore South Africa</button>
             </div>
           </div>
         </article>
       </div>
     </div>
     <div class="dest-foot">
-      <span style="font-size:13px;font-weight:300">Our five signature countries — hand-picked for bespoke journeys worldwide.</span>
-      <button type="button" class="link-arrow" onclick="go('destinations')">View all destinations</button>
+      <span style="font-size:13px;font-weight:300" data-i18n="home.signatureFoot">Our five signature countries — hand-picked for bespoke journeys worldwide.</span>
+      <button type="button" class="link-arrow" onclick="go('destinations')" data-i18n="common.viewAllDestinations">View all destinations</button>
     </div>
   </section>
 
   <!-- MARQUEE -->
   <div class="mq">
     <div class="mq-track">
-      <div class="mq-item">Italy<span class="mq-sep"></span></div>
-      <div class="mq-item">China<span class="mq-sep"></span></div>
-      <div class="mq-item">Portugal<span class="mq-sep"></span></div>
-      <div class="mq-item">Spain<span class="mq-sep"></span></div>
-      <div class="mq-item">South Africa<span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqItaly">Italy</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqChina">China</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqPortugal">Portugal</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSpain">Spain</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSa">South Africa</span><span class="mq-sep"></span></div>
       <div class="mq-item">Italy<span class="mq-sep"></span></div>
       <div class="mq-item">China<span class="mq-sep"></span></div>
       <div class="mq-item">Portugal<span class="mq-sep"></span></div>
@@ -942,18 +959,18 @@ body.wc-popup-open{overflow:hidden}
       <div class="about-strip-overlay"></div>
     </div>
     <div class="about-strip-text">
-      <div class="tag">About Martins Global Travels</div>
-      <h2 class="h2 about-strip-text" style="font-family:'DM Serif Display',serif">A Travel Agency Built<br>Around <em>You</em></h2>
-      <p class="body">Martins Global Travels was built on one belief — every traveler deserves a journey crafted entirely around them. Our specialists personally explore every destination they recommend. No templates, no guesswork.</p>
+      <div class="tag" data-i18n="home.aboutTag">About Martins Global Travels</div>
+      <h2 class="h2 about-strip-text" style="font-family:'DM Serif Display',serif" data-i18n-html="home.aboutTitleHtml">A Travel Agency Built<br>Around <em>You</em></h2>
+      <p class="body" data-i18n="home.aboutBody">Martins Global Travels was built on one belief — every traveler deserves a journey crafted entirely around them. Our specialists personally explore every destination they recommend. No templates, no guesswork.</p>
       <div class="about-pills">
-        <span class="pill">120+ Destinations</span>
-        <span class="pill">6 Continents</span>
-        <span class="pill">24/7 Support</span>
+        <span class="pill" data-i18n="home.pill1">120+ Destinations</span>
+        <span class="pill" data-i18n="home.pill2">6 Continents</span>
+        <span class="pill" data-i18n="home.pill3">24/7 Support</span>
         
-        <span class="pill">100% Tailored</span>
+        <span class="pill" data-i18n="home.pill4">100% Tailored</span>
       </div>
       <div style="margin-top:8px">
-        <button class="btn-primary" onclick="go('about')">
+        <button class="btn-primary" onclick="go('about')" data-i18n="home.ourStory">
           Our Story
           <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:var(--ink);stroke-width:2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
@@ -965,35 +982,35 @@ body.wc-popup-open{overflow:hidden}
   <section class="tours-sec">
     <div class="tours-hd row-hd">
       <div>
-        <div class="tag">Featured Journeys</div>
-        <h2 class="h2">Our Curated <em>Itineraries</em></h2>
+        <div class="tag" data-i18n="home.featuredJourneys">Featured Journeys</div>
+        <h2 class="h2" data-i18n-html="home.curatedHtml">Our Curated <em>Itineraries</em></h2>
       </div>
-      <button class="link-arrow" onclick="go('packages')">All packages</button>
+      <button class="link-arrow" onclick="go('packages')" data-i18n="home.allPackages">All packages</button>
     </div>
     <div class="tours-scroll">
       <div class="tcard">
         <div class="tcard-img"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldives" data-local="assets/photos/tour-01"><div class="tcard-cat">Beach &amp; Luxury</div><div class="tcard-days">10 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Maldives, Indian Ocean</div><div class="tcard-name">Maldives Overwater Escape</div><p class="tcard-desc">Private overwater villas, coral reef diving, and sunset cruises in the most pristine waters on earth.</p><button class="tcard-btn" onclick="go('contact')">Enquire Now</button></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Maldives, Indian Ocean</div><div class="tcard-name">Maldives Overwater Escape</div><p class="tcard-desc">Private overwater villas, coral reef diving, and sunset cruises in the most pristine waters on earth.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
         <div class="tcard-img"><img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80" alt="Safari" data-local="assets/photos/tour-02"><div class="tcard-cat">Safari</div><div class="tcard-days">14 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tanzania, East Africa</div><div class="tcard-name">Great Migration Safari</div><p class="tcard-desc">Witness 1.5 million wildebeest cross the Serengeti — one of nature's greatest spectacles.</p><button class="tcard-btn" onclick="go('contact')">Enquire Now</button></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tanzania, East Africa</div><div class="tcard-name">Great Migration Safari</div><p class="tcard-desc">Witness 1.5 million wildebeest cross the Serengeti — one of nature's greatest spectacles.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
         <div class="tcard-img"><img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=90" alt="Japan" data-local="assets/photos/tour-03"><div class="tcard-cat">Cultural</div><div class="tcard-days">12 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Japan, East Asia</div><div class="tcard-name">Japan Cherry Blossom</div><p class="tcard-desc">Tokyo, Kyoto, and Osaka during sakura season — an unforgettable cultural immersion.</p><button class="tcard-btn" onclick="go('contact')">Enquire Now</button></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Japan, East Asia</div><div class="tcard-name">Japan Cherry Blossom</div><p class="tcard-desc">Tokyo, Kyoto, and Osaka during sakura season — an unforgettable cultural immersion.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
         <div class="tcard-img"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=80" alt="Greece" data-local="assets/photos/tour-04"><div class="tcard-cat">Luxury</div><div class="tcard-days">8 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Greece, Mediterranean</div><div class="tcard-name">Greek Islands Yacht Charter</div><p class="tcard-desc">Private yacht hopping across Santorini, Mykonos, and Crete with your personal crew.</p><button class="tcard-btn" onclick="go('contact')">Enquire Now</button></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Greece, Mediterranean</div><div class="tcard-name">Greek Islands Yacht Charter</div><p class="tcard-desc">Private yacht hopping across Santorini, Mykonos, and Crete with your personal crew.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
         <div class="tcard-img"><img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=600&q=80" alt="Iceland" data-local="assets/photos/tour-05"><div class="tcard-cat">Adventure</div><div class="tcard-days">9 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Iceland, North Atlantic</div><div class="tcard-name">Northern Lights Iceland</div><p class="tcard-desc">Chase the aurora borealis and soak in geothermal pools under a painted sky.</p><button class="tcard-btn" onclick="go('contact')">Enquire Now</button></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Iceland, North Atlantic</div><div class="tcard-name">Northern Lights Iceland</div><p class="tcard-desc">Chase the aurora borealis and soak in geothermal pools under a painted sky.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
         <div class="tcard-img"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Patagonia" data-local="assets/photos/tour-06"><div class="tcard-cat">Adventure</div><div class="tcard-days">16 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Patagonia, South America</div><div class="tcard-name">Patagonia Wilderness Trek</div><p class="tcard-desc">Glacier trekking, condor sightings, and end-of-the-world fjords across Argentina and Chile.</p><button class="tcard-btn" onclick="go('contact')">Enquire Now</button></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Patagonia, South America</div><div class="tcard-name">Patagonia Wilderness Trek</div><p class="tcard-desc">Glacier trekking, condor sightings, and end-of-the-world fjords across Argentina and Chile.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
     </div>
     <!-- Scroll indicator -->
@@ -1001,7 +1018,7 @@ body.wc-popup-open{overflow:hidden}
       <div class="tours-track"><div class="tours-thumb" id="toursThumb"></div></div>
       <div class="tours-scroll-hint">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="6"/><circle cx="12" cy="8" r="2" fill="currentColor"/></svg>
-        Scroll to see more
+        <span data-i18n="common.scrollMore">Scroll to see more</span>
       </div>
     </div>
   </section>
@@ -1010,16 +1027,16 @@ body.wc-popup-open{overflow:hidden}
   <section class="why-sec">
     <div class="wrap">
       <div class="row-hd" style="margin-bottom:0">
-        <div><div class="tag">Why Martins Global Travels</div><h2 class="h2">Travel Built <em>Differently</em></h2></div>
-        <p class="body" style="max-width:360px">We handle every detail so you can focus entirely on the experience.</p>
+        <div><div class="tag" data-i18n="home.whyTag">Why Martins Global Travels</div><h2 class="h2" data-i18n-html="home.whyTitleHtml">Travel Built <em>Differently</em></h2></div>
+        <p class="body" style="max-width:360px" data-i18n="home.whyLead">We handle every detail so you can focus entirely on the experience.</p>
       </div>
     </div>
     <div class="wrap">
       <div class="why-grid">
-        <div class="wcard"><div class="wcard-n">01</div><div class="wcard-t">Personally Curated</div><p class="wcard-d">Every hotel, guide, and experience is personally vetted. We only recommend places our team has been to themselves.</p></div>
-        <div class="wcard"><div class="wcard-n">02</div><div class="wcard-t">Fully Protected</div><p class="wcard-d">Your trip investment is fully secured. We work only with trusted, vetted suppliers and carry full travel agent liability insurance.</p></div>
-        <div class="wcard"><div class="wcard-n">03</div><div class="wcard-t">Global Network</div><p class="wcard-d">A carefully curated network of trusted local experts across every destination we offer, giving you access to experiences unavailable anywhere else.</p></div>
-        <div class="wcard"><div class="wcard-n">04</div><div class="wcard-t">24/7 Support</div><p class="wcard-d">Round-the-clock concierge service. Wherever you are in the world, our team is always just a call away.</p></div>
+        <div class="wcard"><div class="wcard-n">01</div><div class="wcard-t" data-i18n="home.why1t">Personally Curated</div><p class="wcard-d" data-i18n="home.why1d">Every hotel, guide, and experience is personally vetted. We only recommend places our team has been to themselves.</p></div>
+        <div class="wcard"><div class="wcard-n">02</div><div class="wcard-t" data-i18n="home.why2t">Fully Protected</div><p class="wcard-d" data-i18n="home.why2d">Your trip investment is fully secured. We work only with trusted, vetted suppliers and carry full travel agent liability insurance.</p></div>
+        <div class="wcard"><div class="wcard-n">03</div><div class="wcard-t" data-i18n="home.why3t">Global Network</div><p class="wcard-d" data-i18n="home.why3d">A carefully curated network of trusted local experts across every destination we offer, giving you access to experiences unavailable anywhere else.</p></div>
+        <div class="wcard"><div class="wcard-n">04</div><div class="wcard-t" data-i18n="home.why4t">24/7 Support</div><p class="wcard-d" data-i18n="home.why4d">Round-the-clock concierge service. Wherever you are in the world, our team is always just a call away.</p></div>
       </div>
     </div>
   </section>
@@ -1029,10 +1046,10 @@ body.wc-popup-open{overflow:hidden}
     <div class="cta-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=85" alt="CTA" data-local="assets/photos/cta"></div>
     <div class="cta-ov"></div>
     <div class="cta-body">
-      <div class="tag">Ready to Travel?</div>
-      <h2 class="h2">Your Dream Trip<br><em>Starts Here</em></h2>
-      <p class="body">Tell us where you want to go. Our specialists will craft every detail of your perfect journey — all you have to do is show up.</p>
-      <button class="btn-primary" onclick="go('contact')">
+      <div class="tag" data-i18n="home.readyTag">Ready to Travel?</div>
+      <h2 class="h2" data-i18n-html="home.readyTitleHtml">Your Dream Trip<br><em>Starts Here</em></h2>
+      <p class="body" data-i18n="home.readyBody">Tell us where you want to go. Our specialists will craft every detail of your perfect journey — all you have to do is show up.</p>
+      <button class="btn-primary" onclick="go('contact')" data-i18n="common.planMyTrip">
         Plan My Trip
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
@@ -1042,16 +1059,16 @@ body.wc-popup-open{overflow:hidden}
   <!-- NEWSLETTER -->
   <div class="nl-sec">
     <div>
-      <div class="tag">Stay Inspired</div>
-      <h2 class="h2" style="font-size:clamp(30px,3.5vw,44px)">Be First to <em>Discover</em><br>Our Exclusive Deals</h2>
-      <p class="body" style="font-size:14px;margin-top:12px">Exclusive offers, destination guides, and travel inspiration from our specialists.</p>
+      <div class="tag" data-i18n="home.nlTag">Stay Inspired</div>
+      <h2 class="h2" style="font-size:clamp(30px,3.5vw,44px)" data-i18n-html="home.nlTitleHtml">Be First to <em>Discover</em><br>Our Exclusive Deals</h2>
+      <p class="body" style="font-size:14px;margin-top:12px" data-i18n="home.nlBody">Exclusive offers, destination guides, and travel inspiration from our specialists.</p>
     </div>
     <div>
       <div class="nl-form">
-        <input class="nl-inp" type="email" placeholder="Your email address...">
-        <button class="nl-btn" onclick="toast('Subscribed! Welcome aboard.')">Subscribe</button>
+        <input class="nl-inp" type="email" data-i18n-placeholder="home.nlPlaceholder" placeholder="Your email address...">
+        <button class="nl-btn" onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.subscribed'))||'Subscribed! Welcome aboard.')" data-i18n="common.subscribe">Subscribe</button>
       </div>
-      <p style="font-size:11px;color:var(--dimmer);margin-top:12px;font-weight:300">No spam, ever. Unsubscribe any time.</p>
+      <p style="font-size:11px;color:var(--dimmer);margin-top:12px;font-weight:300" data-i18n="footer.noSpam">No spam, ever. Unsubscribe any time.</p>
     </div>
   </div>
 
@@ -1063,491 +1080,491 @@ body.wc-popup-open{overflow:hidden}
           <div class="nav-logo-wrap">
             <img class="nav-logo-img" src="assets/mgt-logo.png" alt="" width="128" height="128" decoding="async" aria-hidden="true">
             <div class="nav-logo-text">
-              <span class="nav-name">Martins Global Travels</span>
-              <span class="nav-sub">Where luxury meets the world</span>
+              <span class="nav-name" data-i18n="brand.name">Martins Global Travels</span>
+              <span class="nav-sub" data-i18n="brand.tagline">Where luxury meets the world</span>
             </div>
           </div>
         </div>
-        <p class="ft-tag">"The world is a book, and those who do not travel read only one page."</p>
+        <p class="ft-tag" data-i18n="footer.quote">"The world is a book, and those who do not travel read only one page."</p>
       </div>
-      <div><div class="ft-ch">Destinations</div><ul class="ft-links"><li><a onclick="go('destinations')">Maldives</a></li><li><a onclick="go('destinations')">Africa Safaris</a></li><li><a onclick="go('destinations')">Japan &amp; Asia</a></li><li><a onclick="go('destinations')">Europe</a></li><li><a onclick="go('destinations')">Caribbean</a></li><li><a onclick="go('destinations')">South America</a></li></ul></div>
-      <div><div class="ft-ch">Packages</div><ul class="ft-links"><li><a onclick="go('packages')">Honeymoons</a></li><li><a onclick="go('packages')">Family Holidays</a></li><li><a onclick="go('packages')">Adventure Tours</a></li><li><a onclick="go('packages')">Luxury Escapes</a></li><li><a onclick="go('packages')">Cruises</a></li></ul></div>
-      <div><div class="ft-ch">Company</div><ul class="ft-links"><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('about')">Our Team</a></li><li><a onclick="go('faq')">FAQ</a></li>
-<li><a onclick="toast('Blog coming soon!')">Travel Blog</a></li><li><a onclick="toast('Careers coming soon!')">Careers</a></li></ul></div>
-      <div><div class="ft-ch">Contact</div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">1350 Belmont St, Suite 114, Brockton, MA</div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">Licensed US Travel Agency</div></div></div>
+      <div><div class="ft-ch" data-i18n="footer.destinations">Destinations</div><ul class="ft-links"><li><a onclick="go('destinations')">Maldives</a></li><li><a onclick="go('destinations')">Africa Safaris</a></li><li><a onclick="go('destinations')">Japan &amp; Asia</a></li><li><a onclick="go('destinations')">Europe</a></li><li><a onclick="go('destinations')">Caribbean</a></li><li><a onclick="go('destinations')">South America</a></li></ul></div>
+      <div><div class="ft-ch" data-i18n="footer.packages">Packages</div><ul class="ft-links"><li><a onclick="go('packages')">Honeymoons</a></li><li><a onclick="go('packages')">Family Holidays</a></li><li><a onclick="go('packages')">Adventure Tours</a></li><li><a onclick="go('packages')">Luxury Escapes</a></li><li><a onclick="go('packages')">Cruises</a></li></ul></div>
+      <div><div class="ft-ch" data-i18n="footer.company">Company</div><ul class="ft-links"><li><a onclick="go('about')" data-i18n="footer.aboutUs">About Us</a></li><li><a onclick="go('about')" data-i18n="footer.ourTeam">Our Team</a></li><li><a onclick="go('faq')" data-i18n="nav.faq">FAQ</a></li>
+<li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.blogSoon'))||'Blog coming soon!')" data-i18n="footer.travelBlog">Travel Blog</a></li><li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.careersSoon'))||'Careers coming soon!')" data-i18n="footer.careers">Careers</a></li></ul></div>
+      <div><div class="ft-ch" data-i18n="footer.contact">Contact</div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">1350 Belmont St, Suite 114, Brockton, MA</div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><span data-i18n="footer.licensed">Licensed US Travel Agency</span></div></div></div>
     </div>
-    <div class="ft-bot"><div class="ft-copy">© 2026 Martins Global Travels. All Rights Reserved.</div><div class="ft-leg"><a onclick="go('privacy')">Privacy</a><a onclick="go('terms')">Terms</a><a onclick="goPrivacyCookies()">Cookies</a></div></div>
+    <div class="ft-bot"><div class="ft-copy" data-i18n="footer.copyright">© 2026 Martins Global Travels. All Rights Reserved.</div><div class="ft-leg"><a onclick="go('privacy')" data-i18n="common.privacy">Privacy</a><a onclick="go('terms')" data-i18n="common.terms">Terms</a><a onclick="goPrivacyCookies()" data-i18n="common.cookies">Cookies</a></div></div>
   </footer>
 </div>
 
 <!-- ══════════════ DESTINATIONS ══════════════ -->
 <div class="page" id="page-destinations">
-  <div class="ph"><div class="ph-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=85" alt="Destinations" data-local="assets/photos/page-destinations"></div><div class="ph-ov"></div><div class="ph-c"><div class="ph-ey">57 Top Destinations</div><h1 class="ph-t">Explore the World<br><em>Without Limits</em></h1><p class="ph-s">From secluded island hideaways to cosmopolitan capitals — every corner of the globe is within reach.</p></div></div>
+  <div class="ph"><div class="ph-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=85" alt="Destinations" data-local="assets/photos/page-destinations"></div><div class="ph-ov"></div><div class="ph-c"><div class="ph-ey" data-i18n="dest.heroEyebrow">57 Top Destinations</div><h1 class="ph-t" data-i18n-html="dest.heroTitleHtml">Explore the World<br><em>Without Limits</em></h1><p class="ph-s" data-i18n="dest.heroSub">From secluded island hideaways to cosmopolitan capitals — every corner of the globe is within reach.</p></div></div>
   <div class="fbar"><div class="fbar-inner">
-    <button class="fb on" onclick="filterDest('all',this)">All (57)</button>
-    <button class="fb" onclick="filterDest('beach',this)">Beach &amp; Islands</button>
-    <button class="fb" onclick="filterDest('safari',this)">Safari &amp; Wilderness</button>
-    <button class="fb" onclick="filterDest('culture',this)">Culture &amp; History</button>
-    <button class="fb" onclick="filterDest('adventure',this)">Adventure</button>
-    <button class="fb" onclick="filterDest('food',this)">Food &amp; Wine</button>
-    <button class="fb" onclick="filterDest('city',this)">City Breaks</button>
+    <button class="fb on" onclick="filterDest('all',this)" data-i18n="dest.filterAll">All (57)</button>
+    <button class="fb" onclick="filterDest('beach',this)" data-i18n="dest.filterBeach">Beach &amp; Islands</button>
+    <button class="fb" onclick="filterDest('safari',this)" data-i18n="dest.filterSafari">Safari &amp; Wilderness</button>
+    <button class="fb" onclick="filterDest('culture',this)" data-i18n="dest.filterCulture">Culture &amp; History</button>
+    <button class="fb" onclick="filterDest('adventure',this)" data-i18n="dest.filterAdventure">Adventure</button>
+    <button class="fb" onclick="filterDest('food',this)" data-i18n="dest.filterFood">Food &amp; Wine</button>
+    <button class="fb" onclick="filterDest('city',this)" data-i18n="dest.filterCity">City Breaks</button>
   </div></div>
-  <div id="destCount" style="padding:16px 52px;background:var(--ink2);border-bottom:1px solid var(--border);font-size:12px;color:var(--dimmer);letter-spacing:1px">Showing all 57 destinations</div>
+  <div id="destCount" style="padding:16px 52px;background:var(--ink2);border-bottom:1px solid var(--border);font-size:12px;color:var(--dimmer);letter-spacing:1px" data-i18n="dest.countDefault">Showing all 57 destinations</div>
   <div class="dpg" id="destGrid">
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Overwater villas, Maldives" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Indian Ocean Beach & Islands</div>
-        <div class="dpc-name">Maldives</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.maldives.region">Indian Ocean Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.maldives.name">Maldives</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Mount Otemanu and lagoon, Bora Bora" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">French Polynesia Beach & Islands</div>
-        <div class="dpc-name">Bora Bora</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.bora_bora.region">French Polynesia Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.bora_bora.name">Bora Bora</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Blue domes and caldera view, Santorini, Greece" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Greece Beach & Islands</div>
-        <div class="dpc-name">Santorini</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.santorini.region">Greece Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.santorini.name">Santorini</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Positano on the Amalfi Coast, Italy" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Italy Beach & Islands</div>
-        <div class="dpc-name">Amalfi Coast</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.amalfi_coast.region">Italy Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.amalfi_coast.name">Amalfi Coast</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Tropical beach, Seychelles" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">East Africa Beach & Islands</div>
-        <div class="dpc-name">Seychelles</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.seychelles.region">East Africa Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.seychelles.name">Seychelles</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Temple gates, Bali, Indonesia" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Indonesia Beach & Islands</div>
-        <div class="dpc-name">Bali</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.bali.region">Indonesia Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.bali.name">Bali</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Coastal karst and long-tail boats, Phuket, Thailand" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Thailand Beach & Islands</div>
-        <div class="dpc-name">Phuket</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.phuket.region">Thailand Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.phuket.name">Phuket</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Overwater villas and lagoon, Maldives" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Indian Ocean Beach & Islands</div>
-        <div class="dpc-name">Maldives Resorts</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.maldives_resorts.region">Indian Ocean Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.maldives_resorts.name">Maldives Resorts</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Windmills of Mykonos, Greece" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Greece Beach & Islands</div>
-        <div class="dpc-name">Mykonos</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.mykonos.region">Greece Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.mykonos.name">Mykonos</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Le Morne and lagoon, Mauritius" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Indian Ocean Beach & Islands</div>
-        <div class="dpc-name">Mauritius</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.mauritius.region">Indian Ocean Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.mauritius.name">Mauritius</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Tropical beach, Fiji" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">South Pacific Beach & Islands</div>
-        <div class="dpc-name">Fiji</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.fiji.region">South Pacific Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.fiji.name">Fiji</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="beach">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Turquoise water and beach, Zanzibar, Tanzania" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">East Africa Beach & Islands</div>
-        <div class="dpc-name">Zanzibar</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.zanzibar.region">East Africa Beach & Islands</div>
+        <div class="dpc-name" data-i18n="dest.cards.zanzibar.name">Zanzibar</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="safari">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Wildebeest migration, Serengeti, Tanzania" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Tanzania Safari & Wilderness</div>
-        <div class="dpc-name">Serengeti Plains</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.serengeti_plains.region">Tanzania Safari & Wilderness</div>
+        <div class="dpc-name" data-i18n="dest.cards.serengeti_plains.name">Serengeti Plains</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="safari">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Sunset over Masai Mara, Kenya" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Kenya Safari & Wilderness</div>
-        <div class="dpc-name">Masai Mara Savanna</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.masai_mara_savanna.region">Kenya Safari & Wilderness</div>
+        <div class="dpc-name" data-i18n="dest.cards.masai_mara_savanna.name">Masai Mara Savanna</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="safari">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1549366021-9f761d450615?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Okavango Delta wetlands, Botswana" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Botswana Safari & Wilderness</div>
-        <div class="dpc-name">Okavango Delta</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.okavango_delta.region">Botswana Safari & Wilderness</div>
+        <div class="dpc-name" data-i18n="dest.cards.okavango_delta.name">Okavango Delta</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="safari">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1744604030401-b24c5975a574?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Table Mountain and Cape Town city bowl, South Africa" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">South Africa Safari & Wilderness</div>
-        <div class="dpc-name">Cape Town</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.cape_town.region">South Africa Safari & Wilderness</div>
+        <div class="dpc-name" data-i18n="dest.cards.cape_town.name">Cape Town</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="safari">
       <div class="dpc-img"><img src="https://images.pexels.com/photos/3378996/pexels-photo-3378996.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600" alt="Victoria Falls Bridge and Zambezi gorge, Zambia/Zimbabwe" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Zimbabwe/Zambia Safari & Wilderness</div>
-        <div class="dpc-name">Victoria Falls</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.victoria_falls.region">Zimbabwe/Zambia Safari & Wilderness</div>
+        <div class="dpc-name" data-i18n="dest.cards.victoria_falls.name">Victoria Falls</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="safari">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Red sand dunes, Namib Desert, Namibia" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Namibia Safari & Wilderness</div>
-        <div class="dpc-name">Namib Desert</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.namib_desert.region">Namibia Safari & Wilderness</div>
+        <div class="dpc-name" data-i18n="dest.cards.namib_desert.name">Namib Desert</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Fushimi Inari torii gates, Kyoto, Japan" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Japan Culture & History</div>
-        <div class="dpc-name">Kyoto</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.kyoto.region">Japan Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.kyoto.name">Kyoto</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Colosseum and ancient Rome, Italy" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Italy Culture & History</div>
-        <div class="dpc-name">Rome</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.rome.region">Italy Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.rome.name">Rome</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Eiffel Tower and Paris skyline, France" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">France Culture & History</div>
-        <div class="dpc-name">Paris</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.paris.region">France Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.paris.name">Paris</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Marrakech medina and souks, Morocco" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Morocco Culture & History</div>
-        <div class="dpc-name">Marrakech</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.marrakech.region">Morocco Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.marrakech.name">Marrakech</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="The Treasury (Al-Khazneh), Petra, Jordan" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Jordan Culture & History</div>
-        <div class="dpc-name">Petra</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.petra.region">Jordan Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.petra.name">Petra</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Machu Picchu citadel, Peru" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Peru Culture & History</div>
-        <div class="dpc-name">Machu Picchu</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.machu_picchu.region">Peru Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.machu_picchu.name">Machu Picchu</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1553603227-2358aabe821e?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Angkor Wat temple ruins, Cambodia" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Cambodia Culture & History</div>
-        <div class="dpc-name">Angkor Wat</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.angkor_wat.region">Cambodia Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.angkor_wat.name">Angkor Wat</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Hagia Sophia and Istanbul skyline, Turkey" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Turkey Culture & History</div>
-        <div class="dpc-name">Istanbul</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.istanbul.region">Turkey Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.istanbul.name">Istanbul</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Giza pyramids and desert, Egypt" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Egypt Culture & History</div>
-        <div class="dpc-name">Cairo & Pyramids</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.cairo_pyramids.region">Egypt Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.cairo_pyramids.name">Cairo & Pyramids</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Acropolis of Athens, Greece" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Greece Culture & History</div>
-        <div class="dpc-name">Athens</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.athens.region">Greece Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.athens.name">Athens</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Sagrada Família, Barcelona, Spain" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Spain Culture & History</div>
-        <div class="dpc-name">Barcelona</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.barcelona.region">Spain Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.barcelona.name">Barcelona</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Charles Bridge and Old Town, Prague, Czech Republic" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Czech Republic Culture & History</div>
-        <div class="dpc-name">Prague</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.prague.region">Czech Republic Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.prague.name">Prague</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Historic tram and hills, Lisbon, Portugal" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Portugal Culture & History</div>
-        <div class="dpc-name">Lisbon</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.lisbon.region">Portugal Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.lisbon.name">Lisbon</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="culture">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1565426873118-a17ed65d74b9?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Parliament on the Danube, Budapest, Hungary" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Hungary Culture & History</div>
-        <div class="dpc-name">Budapest</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.budapest.region">Hungary Culture & History</div>
+        <div class="dpc-name" data-i18n="dest.cards.budapest.name">Budapest</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Waterfall and basalt cliffs, Iceland" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">North Atlantic Adventure</div>
-        <div class="dpc-name">Iceland</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.iceland.region">North Atlantic Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.iceland.name">Iceland</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Torres del Paine peaks, Patagonia" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Chile/Argentina Adventure</div>
-        <div class="dpc-name">Patagonia</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.patagonia.region">Chile/Argentina Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.patagonia.name">Patagonia</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Matterhorn and alpine valley, Switzerland" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Switzerland Adventure</div>
-        <div class="dpc-name">Swiss Alps</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.swiss_alps.region">Switzerland Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.swiss_alps.name">Swiss Alps</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1531761535209-180857e963b9?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Geirangerfjord cliffs and water, Norway" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Norway Adventure</div>
-        <div class="dpc-name">Norwegian Fjords</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.norwegian_fjords.region">Norway Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.norwegian_fjords.name">Norwegian Fjords</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Himalayan peaks and prayer flags, Nepal" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">South Asia Adventure</div>
-        <div class="dpc-name">Nepal</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.nepal.region">South Asia Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.nepal.name">Nepal</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Fiordland mountains and lake, New Zealand" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">South Pacific Adventure</div>
-        <div class="dpc-name">New Zealand</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.new_zealand.region">South Pacific Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.new_zealand.name">New Zealand</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Moraine Lake and peaks, Canadian Rockies" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Canada Adventure</div>
-        <div class="dpc-name">Canadian Rockies</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.canadian_rockies.region">Canada Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.canadian_rockies.name">Canadian Rockies</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Fishing village and peaks, Lofoten, Norway" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Norway Adventure</div>
-        <div class="dpc-name">Lofoten Islands</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.lofoten_islands.region">Norway Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.lofoten_islands.name">Lofoten Islands</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1471958680802-1345a694ba6d?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Seceda ridge and peaks, Dolomites, Italy" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Italy Adventure</div>
-        <div class="dpc-name">Dolomites</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.dolomites.region">Italy Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.dolomites.name">Dolomites</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="adventure">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Galápagos coastline and wildlife, Ecuador" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Ecuador Adventure</div>
-        <div class="dpc-name">Galápagos Islands</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.gal_pagos_islands.region">Ecuador Adventure</div>
+        <div class="dpc-name" data-i18n="dest.cards.gal_pagos_islands.name">Galápagos Islands</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="food">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Cypress road and rolling hills, Tuscany, Italy" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Italy Food & Wine</div>
-        <div class="dpc-name">Tuscany</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.tuscany.region">Italy Food & Wine</div>
+        <div class="dpc-name" data-i18n="dest.cards.tuscany.name">Tuscany</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="food">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Dotonbori neon, Osaka, Japan" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Japan Food & Wine</div>
-        <div class="dpc-name">Osaka & Kyoto</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.osaka_kyoto.region">Japan Food & Wine</div>
+        <div class="dpc-name" data-i18n="dest.cards.osaka_kyoto.name">Osaka & Kyoto</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="food">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1553455010-bdb488ac12e5?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="La Concha bay and San Sebastián at dusk, Spain" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Spain Food & Wine</div>
-        <div class="dpc-name">San Sebastián</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.san_sebasti_n.region">Spain Food & Wine</div>
+        <div class="dpc-name" data-i18n="dest.cards.san_sebasti_n.name">San Sebastián</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="food">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Marina Bay skyline, Singapore" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Southeast Asia Food & Wine</div>
-        <div class="dpc-name">Singapore</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.singapore.region">Southeast Asia Food & Wine</div>
+        <div class="dpc-name" data-i18n="dest.cards.singapore.name">Singapore</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="food">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Wat Arun temple at dusk, Bangkok, Thailand" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Thailand Food & Wine</div>
-        <div class="dpc-name">Bangkok</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.bangkok.region">Thailand Food & Wine</div>
+        <div class="dpc-name" data-i18n="dest.cards.bangkok.name">Bangkok</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="food">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Nyhavn harbour, Copenhagen, Denmark" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Denmark Food & Wine</div>
-        <div class="dpc-name">Copenhagen</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.copenhagen.region">Denmark Food & Wine</div>
+        <div class="dpc-name" data-i18n="dest.cards.copenhagen.name">Copenhagen</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Manhattan skyline, New York City, USA" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">USA City Breaks</div>
-        <div class="dpc-name">New York</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.new_york.region">USA City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.new_york.name">New York</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Tower Bridge and Thames, London, UK" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">UK City Breaks</div>
-        <div class="dpc-name">London</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.london.region">UK City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.london.name">London</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Dubai Marina towers at dusk, UAE" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">UAE City Breaks</div>
-        <div class="dpc-name">Dubai</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.dubai.region">UAE City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.dubai.name">Dubai</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Shibuya crossing and city lights, Tokyo, Japan" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Japan City Breaks</div>
-        <div class="dpc-name">Tokyo</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.tokyo.region">Japan City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.tokyo.name">Tokyo</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Sydney Opera House and harbour, Australia" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Australia City Breaks</div>
-        <div class="dpc-name">Sydney</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.sydney.region">Australia City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.sydney.name">Sydney</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Canal houses and bridges, Amsterdam, Netherlands" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Netherlands City Breaks</div>
-        <div class="dpc-name">Amsterdam</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.amsterdam.region">Netherlands City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.amsterdam.name">Amsterdam</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Schönbrunn Palace gardens, Vienna, Austria" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Austria City Breaks</div>
-        <div class="dpc-name">Vienna</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.vienna.region">Austria City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.vienna.name">Vienna</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Christ the Redeemer and bay, Rio de Janeiro, Brazil" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Brazil City Breaks</div>
-        <div class="dpc-name">Rio de Janeiro</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.rio_de_janeiro.region">Brazil City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.rio_de_janeiro.name">Rio de Janeiro</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
     <div class="dpc" data-cat="city">
       <div class="dpc-img"><img src="https://images.unsplash.com/photo-1518659526054-190340b32735?w=600&amp;q=85&amp;auto=format&amp;fit=crop" alt="Palacio de Bellas Artes, Mexico City, Mexico" loading="lazy" decoding="async"></div>
       <div class="dpc-body">
-        <div class="dpc-region">Mexico City Breaks</div>
-        <div class="dpc-name">Mexico City</div>
-        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')">Enquire</button></div>
+        <div class="dpc-region" data-i18n="dest.cards.mexico_city.region">Mexico City Breaks</div>
+        <div class="dpc-name" data-i18n="dest.cards.mexico_city.name">Mexico City</div>
+        <div class="dpc-foot"><button class="dpc-btn" onclick="go('contact')" data-i18n="common.enquire">Enquire</button></div>
       </div>
     </div>
   </div>
@@ -1561,58 +1578,58 @@ body.wc-popup-open{overflow:hidden}
 
 <!-- ══════════════ PACKAGES ══════════════ -->
 <div class="page" id="page-packages">
-  <div class="ph"><div class="ph-bg"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&q=85" alt="Packages" data-local="assets/photos/page-packages"></div><div class="ph-ov"></div><div class="ph-c"><div class="ph-ey">Travel Packages</div><h1 class="ph-t">Choose Your<br><em>Perfect</em> Journey</h1><p class="ph-s">Thoughtfully structured packages for every style of travel — from intimate escapes to grand expeditions.</p></div></div>
+  <div class="ph"><div class="ph-bg"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&q=85" alt="Packages" data-local="assets/photos/page-packages"></div><div class="ph-ov"></div><div class="ph-c"><div class="ph-ey" data-i18n="packages.heroEyebrow">Travel Packages</div><h1 class="ph-t" data-i18n-html="packages.heroTitleHtml">Choose Your<br><em>Perfect</em> Journey</h1><p class="ph-s" data-i18n="packages.heroSub">Thoughtfully structured packages for every style of travel — from intimate escapes to grand expeditions.</p></div></div>
   <section class="pkg-sec">
-    <div class="tag">Our Packages</div>
-    <div class="row-hd" style="margin-top:0"><h2 class="h2">Find the Right <em>Package</em></h2></div>
+    <div class="tag" data-i18n="packages.tag">Our Packages</div>
+    <div class="row-hd" style="margin-top:0"><h2 class="h2" data-i18n-html="packages.titleHtml">Find the Right <em>Package</em></h2></div>
     <div class="pkg-grid">
       <div class="pcard">
-        <div class="pcard-top"><div class="pcard-tier">Tier One</div><div class="pcard-name">Essential Explorer</div><div class="pcard-sub">The perfect introduction to world travel</div></div>
+        <div class="pcard-top"><div class="pcard-tier" data-i18n="packages.tier1">Tier One</div><div class="pcard-name" data-i18n="packages.essentialName">Essential Explorer</div><div class="pcard-sub" data-i18n="packages.essentialSub">The perfect introduction to world travel</div></div>
         <ul class="pcard-feats">
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Return flights included</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>3-star accommodation</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Airport transfers</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Daily breakfast</li>
-          <li class="pfeat off"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Dedicated concierge</li>
-          <li class="pfeat off"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Private guides</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featReturnFlights">Return flights included</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.feat3Star">3-star accommodation</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featAirportXfer">Airport transfers</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featBreakfast">Daily breakfast</li>
+          <li class="pfeat off"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featConcierge">Dedicated concierge</li>
+          <li class="pfeat off"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featPrivateGuides">Private guides</li>
         </ul>
-        <div class="pcard-cta"><button class="pcard-btn outline" onclick="go('contact')">Get Started</button></div>
+        <div class="pcard-cta"><button class="pcard-btn outline" onclick="go('contact')" data-i18n="packages.getStarted">Get Started</button></div>
       </div>
       <div class="pcard pop">
-        <div class="pop-tag">Most Popular</div>
-        <div class="pcard-top" style="padding-top:52px"><div class="pcard-tier">Tier Two</div><div class="pcard-name">Signature Journey</div><div class="pcard-sub">Our premium travel experience</div></div>
+        <div class="pop-tag" data-i18n="packages.mostPopular">Most Popular</div>
+        <div class="pcard-top" style="padding-top:52px"><div class="pcard-tier" data-i18n="packages.tier2">Tier Two</div><div class="pcard-name" data-i18n="packages.signatureName">Signature Journey</div><div class="pcard-sub" data-i18n="packages.signatureSub">Our premium travel experience</div></div>
         <ul class="pcard-feats">
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Business class flights</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>5-star accommodation</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Private transfers</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>All meals included</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Personal concierge</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Private guides</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featBusinessClass">Business class flights</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.feat5Star">5-star accommodation</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featPrivateXfer">Private transfers</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featAllMeals">All meals included</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featPersonalConcierge">Personal concierge</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featPrivateGuides">Private guides</li>
         </ul>
-        <div class="pcard-cta"><button class="pcard-btn solid" onclick="go('contact')">Book Signature</button></div>
+        <div class="pcard-cta"><button class="pcard-btn solid" onclick="go('contact')" data-i18n="packages.bookSignature">Book Signature</button></div>
       </div>
       <div class="pcard">
-        <div class="pcard-top"><div class="pcard-tier">Tier Three</div><div class="pcard-name">Ultra Luxury</div><div class="pcard-sub">The pinnacle of world travel</div></div>
+        <div class="pcard-top"><div class="pcard-tier" data-i18n="packages.tier3">Tier Three</div><div class="pcard-name" data-i18n="packages.ultraName">Ultra Luxury</div><div class="pcard-sub" data-i18n="packages.ultraSub">The pinnacle of world travel</div></div>
         <ul class="pcard-feats">
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Private jet available</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Exclusive private villas</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Helicopter transfers</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>All-inclusive gourmet dining</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>24/7 personal butler</li>
-          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>Unlimited experiences</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featPrivateJet">Private jet available</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featVillas">Exclusive private villas</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featHeli">Helicopter transfers</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featGourmet">All-inclusive gourmet dining</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featButler">24/7 personal butler</li>
+          <li class="pfeat"><div class="pfeat-icon"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div data-i18n="packages.featUnlimited">Unlimited experiences</li>
         </ul>
-        <div class="pcard-cta"><button class="pcard-btn outline" onclick="go('contact')">Request Quote</button></div>
+        <div class="pcard-cta"><button class="pcard-btn outline" onclick="go('contact')" data-i18n="packages.requestQuote">Request Quote</button></div>
       </div>
     </div>
   </section>
   <!-- Add-ons -->
   <section style="background:var(--ink3);padding:80px 52px;border-top:1px solid var(--border)">
-    <div class="row-hd"><div><div class="tag">Enhancements</div><h2 class="h2">Elevate Your <em>Experience</em></h2></div></div>
+    <div class="row-hd"><div><div class="tag" data-i18n="packages.enhanceTag">Enhancements</div><h2 class="h2" data-i18n-html="packages.enhanceTitleHtml">Elevate Your <em>Experience</em></h2></div></div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)">
-      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px">Fine Dining Upgrade</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">Michelin-starred restaurant reservations at your destinations, pre-booked and confirmed.</p></div>
-      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px">Wellness &amp; Spa</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">Daily spa treatments, yoga sessions, and wellness experiences at world-class facilities.</p></div>
-      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px">Private Photographer</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">A professional travel photographer documents your journey with stunning, lasting imagery.</p></div>
-      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px">Helicopter Tours</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">Private helicopter experiences over iconic landscapes — fjords, volcanoes, and glaciers.</p></div>
+      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px" data-i18n="packages.addDining">Fine Dining Upgrade</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">Michelin-starred restaurant reservations at your destinations, pre-booked and confirmed.</p></div>
+      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px" data-i18n="packages.addWellness">Wellness &amp; Spa</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">Daily spa treatments, yoga sessions, and wellness experiences at world-class facilities.</p></div>
+      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px" data-i18n="packages.addPhoto">Private Photographer</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">A professional travel photographer documents your journey with stunning, lasting imagery.</p></div>
+      <div style="background:var(--ink2);padding:36px 28px;transition:background .3s" onmouseover="this.style.background='var(--ink3)'" onmouseout="this.style.background='var(--ink2)'"><div style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:10px" data-i18n="packages.addHeli">Helicopter Tours</div><p style="font-size:13px;color:var(--dimmer);line-height:1.7;font-weight:300">Private helicopter experiences over iconic landscapes — fjords, volcanoes, and glaciers.</p></div>
     </div>
   </section>
 </div>
@@ -1621,10 +1638,10 @@ body.wc-popup-open{overflow:hidden}
 <div class="page" id="page-about">
   <div class="about-hero-grid">
     <div class="about-hero-l">
-      <div class="tag">Our Story</div>
-      <h1 class="h2" style="font-size:clamp(40px,5vw,64px)">More Than a Travel<br>Agency. <em>A Vision.</em></h1>
-      <p class="body">Built on the belief that every traveler deserves a truly personal experience — not a package, not a template, but a journey crafted entirely around you.</p>
-      <button class="btn-primary" onclick="go('contact')">Plan Your Journey <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:none;stroke:var(--ink);stroke-width:2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <div class="tag" data-i18n="about.storyTag">Our Story</div>
+      <h1 class="h2" style="font-size:clamp(40px,5vw,64px)" data-i18n-html="about.storyTitleHtml">More Than a Travel<br>Agency. <em>A Vision.</em></h1>
+      <p class="body" data-i18n="about.storyBody">Built on the belief that every traveler deserves a truly personal experience — not a package, not a template, but a journey crafted entirely around you.</p>
+      <button class="btn-primary" onclick="go('contact')" data-i18n="about.planJourney">Plan Your Journey <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:none;stroke:var(--ink);stroke-width:2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="about-hero-r">
       <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1000&q=85" alt="About" data-local="assets/photos/about-hero">
@@ -1633,17 +1650,17 @@ body.wc-popup-open{overflow:hidden}
   </div>
   <div class="about-body-grid">
     <div class="abl">
-      <div class="tag">Who We Are</div>
-      <h2 class="h2" style="font-size:clamp(30px,3.5vw,46px);margin-bottom:28px">Passion for Travel<br><em>in Our DNA</em></h2>
-      <p>Martins Global Travels was born from a single belief: that travel, done right, has the power to change lives. Our founder Martins spent years exploring the world's greatest destinations and built this agency to share that sense of wonder — with the comfort and precision modern travelers deserve.</p>
-      <p>Our team of specialist travel designers is passionate about every destination we offer. Each person personally explores the places they recommend — we never suggest anywhere we haven't experienced firsthand.</p>
-      <p>From meticulously selecting the perfect hotel to providing real-time support while you're on the road — everything we do is guided by one question: what would make this the most extraordinary trip of your life?</p>
+      <div class="tag" data-i18n="about.whoTag">Who We Are</div>
+      <h2 class="h2" style="font-size:clamp(30px,3.5vw,46px);margin-bottom:28px" data-i18n-html="about.whoTitleHtml">Passion for Travel<br><em>in Our DNA</em></h2>
+      <p data-i18n="about.whoP1">Martins Global Travels was born from a single belief: that travel, done right, has the power to change lives. Our founder Martins spent years exploring the world's greatest destinations and built this agency to share that sense of wonder — with the comfort and precision modern travelers deserve.</p>
+      <p data-i18n="about.whoP2">Our team of specialist travel designers is passionate about every destination we offer. Each person personally explores the places they recommend — we never suggest anywhere we haven't experienced firsthand.</p>
+      <p data-i18n="about.whoP3">From meticulously selecting the perfect hotel to providing real-time support while you're on the road — everything we do is guided by one question: what would make this the most extraordinary trip of your life?</p>
     </div>
     <div class="abr">
-      <div class="apillar"><div class="apillar-n">Vision</div><div class="apillar-t">Your Journey, Our Passion</div><div class="apillar-d">Every trip reflects our deep love of travel and our commitment to making your experience genuinely extraordinary.</div></div>
-      <div class="apillar"><div class="apillar-n">Approach</div><div class="apillar-t">Handcrafted, Not Automated</div><div class="apillar-d">No algorithms, no generic templates. Every itinerary is built by a specialist who has been there themselves.</div></div>
-      <div class="apillar"><div class="apillar-n">Reach</div><div class="apillar-t">120+ Destinations Worldwide</div><div class="apillar-d">From hidden tropical coves to buzzing cultural capitals — our network spans every continent.</div></div>
-      <div class="apillar"><div class="apillar-n">Promise</div><div class="apillar-t">Always There For You</div><div class="apillar-d">24/7 support before, during, and after your trip. We don't disappear after the booking is made.</div></div>
+      <div class="apillar"><div class="apillar-n" data-i18n="about.pillarVision">Vision</div><div class="apillar-t" data-i18n="about.pillarVisionT">Your Journey, Our Passion</div><div class="apillar-d" data-i18n="about.pillarVisionD">Every trip reflects our deep love of travel and our commitment to making your experience genuinely extraordinary.</div></div>
+      <div class="apillar"><div class="apillar-n" data-i18n="about.pillarApproach">Approach</div><div class="apillar-t" data-i18n="about.pillarApproachT">Handcrafted, Not Automated</div><div class="apillar-d" data-i18n="about.pillarApproachD">No algorithms, no generic templates. Every itinerary is built by a specialist who has been there themselves.</div></div>
+      <div class="apillar"><div class="apillar-n" data-i18n="about.pillarReach">Reach</div><div class="apillar-t" data-i18n="about.pillarReachT">120+ Destinations Worldwide</div><div class="apillar-d" data-i18n="about.pillarReachD">From hidden tropical coves to buzzing cultural capitals — our network spans every continent.</div></div>
+      <div class="apillar"><div class="apillar-n" data-i18n="about.pillarPromise">Promise</div><div class="apillar-t" data-i18n="about.pillarPromiseT">Always There For You</div><div class="apillar-d" data-i18n="about.pillarPromiseD">24/7 support before, during, and after your trip. We don't disappear after the booking is made.</div></div>
     </div>
   </div>
 
@@ -1651,14 +1668,14 @@ body.wc-popup-open{overflow:hidden}
 
   <section class="sec" style="background:var(--ink2)">
     <div class="wrap">
-      <div class="row-hd"><div><div class="tag">Our Values</div><h2 class="h2">Principles That<br>Guide <em>Everything</em></h2></div></div>
+      <div class="row-hd"><div><div class="tag" data-i18n="about.valuesTag">Our Values</div><h2 class="h2" data-i18n-html="about.valuesTitleHtml">Principles That<br>Guide <em>Everything</em></h2></div></div>
       <div class="vals-grid">
-        <div class="vcard"><div class="vcard-n">01</div><div class="vcard-t">Authenticity First</div><p class="vcard-d">We design experiences connecting you with real culture, real people, and real moments — beyond tourist checkboxes.</p></div>
-        <div class="vcard"><div class="vcard-n">02</div><div class="vcard-t">Relentless Excellence</div><p class="vcard-d">Every hotel inspected, every guide trained, every itinerary stress-tested before we recommend it to a single client.</p></div>
-        <div class="vcard"><div class="vcard-n">03</div><div class="vcard-t">Responsible Travel</div><p class="vcard-d">We carefully select responsible operators and are committed to sustainable, ethical travel practices at every destination.</p></div>
-        <div class="vcard"><div class="vcard-n">04</div><div class="vcard-t">Total Transparency</div><p class="vcard-d">No hidden fees, no surprises. What you see is exactly what you get — always stated clearly upfront.</p></div>
-        <div class="vcard"><div class="vcard-n">05</div><div class="vcard-t">Human Connection</div><p class="vcard-d">Real specialists, real conversations — you will always speak to a human who genuinely cares about your trip.</p></div>
-        <div class="vcard"><div class="vcard-n">06</div><div class="vcard-t">Your Journey, Always</div><p class="vcard-d">We build each trip entirely around you — your preferences, your pace, your budget, your dream.</p></div>
+        <div class="vcard"><div class="vcard-n">01</div><div class="vcard-t" data-i18n="about.val1t">Authenticity First</div><p class="vcard-d" data-i18n="about.val1d">We design experiences connecting you with real culture, real people, and real moments — beyond tourist checkboxes.</p></div>
+        <div class="vcard"><div class="vcard-n">02</div><div class="vcard-t" data-i18n="about.val2t">Relentless Excellence</div><p class="vcard-d" data-i18n="about.val2d">Every hotel inspected, every guide trained, every itinerary stress-tested before we recommend it to a single client.</p></div>
+        <div class="vcard"><div class="vcard-n">03</div><div class="vcard-t" data-i18n="about.val3t">Responsible Travel</div><p class="vcard-d" data-i18n="about.val3d">We carefully select responsible operators and are committed to sustainable, ethical travel practices at every destination.</p></div>
+        <div class="vcard"><div class="vcard-n">04</div><div class="vcard-t" data-i18n="about.val4t">Total Transparency</div><p class="vcard-d" data-i18n="about.val4d">No hidden fees, no surprises. What you see is exactly what you get — always stated clearly upfront.</p></div>
+        <div class="vcard"><div class="vcard-n">05</div><div class="vcard-t" data-i18n="about.val5t">Human Connection</div><p class="vcard-d" data-i18n="about.val5d">Real specialists, real conversations — you will always speak to a human who genuinely cares about your trip.</p></div>
+        <div class="vcard"><div class="vcard-n">06</div><div class="vcard-t" data-i18n="about.val6t">Your Journey, Always</div><p class="vcard-d" data-i18n="about.val6d">We build each trip entirely around you — your preferences, your pace, your budget, your dream.</p></div>
       </div>
     </div>
   </section>
@@ -1667,10 +1684,10 @@ body.wc-popup-open{overflow:hidden}
     <div class="wrap">
       <div class="row-hd" style="margin-bottom:52px">
         <div>
-          <div class="tag">Our Commitments</div>
-          <h2 class="h2" style="font-size:clamp(28px,3.5vw,42px)">What You Can Always <em>Expect From Us</em></h2>
+          <div class="tag" data-i18n="about.commitTag">Our Commitments</div>
+          <h2 class="h2" style="font-size:clamp(28px,3.5vw,42px)" data-i18n-html="about.commitTitleHtml">What You Can Always <em>Expect From Us</em></h2>
         </div>
-        <p class="body" style="max-width:360px;font-size:15px">These aren't awards — they're promises. Every single trip, every single time.</p>
+        <p class="body" style="max-width:360px;font-size:15px" data-i18n="about.commitLead">These aren't awards — they're promises. Every single trip, every single time.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)">
 
@@ -1678,48 +1695,48 @@ body.wc-popup-open{overflow:hidden}
           <div class="commit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
           </div>
-          <div class="commit-title">Fully Insured &amp; Licensed</div>
-          <p class="commit-desc">We are a fully licensed US travel agency carrying professional liability insurance. Your booking and money are protected every step of the way.</p>
+          <div class="commit-title" data-i18n="about.c1t">Fully Insured &amp; Licensed</div>
+          <p class="commit-desc" data-i18n="about.c1d">We are a fully licensed US travel agency carrying professional liability insurance. Your booking and money are protected every step of the way.</p>
         </div>
 
         <div class="commit-card">
           <div class="commit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
-          <div class="commit-title">24/7 Real Human Support</div>
-          <p class="commit-desc">Not a chatbot. Not a call centre. A real specialist who knows your trip, available around the clock before and during travel.</p>
+          <div class="commit-title" data-i18n="about.c2t">24/7 Real Human Support</div>
+          <p class="commit-desc" data-i18n="about.c2d">Not a chatbot. Not a call centre. A real specialist who knows your trip, available around the clock before and during travel.</p>
         </div>
 
         <div class="commit-card">
           <div class="commit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <div class="commit-title">Personally Recommended Only</div>
-          <p class="commit-desc">We never recommend a hotel, guide, or experience we haven't personally visited. If we wouldn't send our own family there, we won't send you.</p>
+          <div class="commit-title" data-i18n="about.c3t">Personally Recommended Only</div>
+          <p class="commit-desc" data-i18n="about.c3d">We never recommend a hotel, guide, or experience we haven't personally visited. If we wouldn't send our own family there, we won't send you.</p>
         </div>
 
         <div class="commit-card">
           <div class="commit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <div class="commit-title">Best Price Guarantee</div>
-          <p class="commit-desc">Find the same trip cheaper elsewhere and we'll match it. We stand behind the value of every itinerary we build.</p>
+          <div class="commit-title" data-i18n="about.c4t">Best Price Guarantee</div>
+          <p class="commit-desc" data-i18n="about.c4d">Find the same trip cheaper elsewhere and we'll match it. We stand behind the value of every itinerary we build.</p>
         </div>
 
         <div class="commit-card">
           <div class="commit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           </div>
-          <div class="commit-title">Fully Bespoke, Always</div>
-          <p class="commit-desc">No two trips are the same. Every itinerary is built from scratch around you — your pace, your interests, your budget.</p>
+          <div class="commit-title" data-i18n="about.c5t">Fully Bespoke, Always</div>
+          <p class="commit-desc" data-i18n="about.c5d">No two trips are the same. Every itinerary is built from scratch around you — your pace, your interests, your budget.</p>
         </div>
 
         <div class="commit-card">
           <div class="commit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
-          <div class="commit-title">Responsible Travel</div>
-          <p class="commit-desc">We carefully select responsible operators and are committed to giving back to the communities in the destinations we serve.</p>
+          <div class="commit-title" data-i18n="about.c6t">Responsible Travel</div>
+          <p class="commit-desc" data-i18n="about.c6d">We carefully select responsible operators and are committed to giving back to the communities in the destinations we serve.</p>
         </div>
 
       </div>
@@ -1729,65 +1746,314 @@ body.wc-popup-open{overflow:hidden}
 
 <!-- ══════════════ CONTACT ══════════════ -->
 <div class="page" id="page-contact">
-  <div class="ph"><div class="ph-bg"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&q=85" alt="Contact" data-local="assets/photos/page-contact"></div><div class="ph-ov"></div><div class="ph-c"><div class="ph-ey">Get in Touch</div><h1 class="ph-t">Let's Plan Your<br><em>Dream Trip</em></h1><p class="ph-s">Tell us where you want to go and a specialist will reach out within 24 hours.</p></div></div>
+  <div class="ph"><div class="ph-bg"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&q=85" alt="Contact" data-local="assets/photos/page-contact"></div><div class="ph-ov"></div><div class="ph-c"><div class="ph-ey" data-i18n="contact.heroEyebrow">Get in Touch</div><h1 class="ph-t" data-i18n-html="contact.heroTitleHtml">Let's Plan Your<br><em>Dream Trip</em></h1><p class="ph-s" data-i18n="contact.heroSub">Tell us where you want to go and a specialist will reach out within 24 hours.</p></div></div>
   <div class="contact-grid">
     <div class="cl">
-      <div class="tag">Contact Info</div>
-      <h2 class="h2" style="font-size:clamp(32px,3.5vw,46px);margin-bottom:8px">We're Here<br><em>For You</em></h2>
+      <div class="tag" data-i18n="contact.infoTag">Contact Info</div>
+      <h2 class="h2" style="font-size:clamp(32px,3.5vw,46px);margin-bottom:8px" data-i18n-html="contact.infoTitleHtml">We're Here<br><em>For You</em></h2>
       <div class="cl-details">
         
-        <div class="cdet"><div class="cdet-line"></div><div><div class="cdet-lbl">Phone</div><div class="cdet-val"><a href="tel:+15082323003">(508) 232-3003</a></div></div></div>
-        <div class="cdet"><div class="cdet-line"></div><div><div class="cdet-lbl">Email</div><div class="cdet-val"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div></div>
-        <div class="cdet"><div class="cdet-line"></div><div><div class="cdet-lbl">Office</div><div class="cdet-val">1350 Belmont St, Suite 114<br>Brockton, MA</div></div></div>
+        <div class="cdet"><div class="cdet-line"></div><div><div class="cdet-lbl" data-i18n="contact.phone">Phone</div><div class="cdet-val"><a href="tel:+15082323003">(508) 232-3003</a></div></div></div>
+        <div class="cdet"><div class="cdet-line"></div><div><div class="cdet-lbl" data-i18n="contact.email">Email</div><div class="cdet-val"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div></div>
+        <div class="cdet"><div class="cdet-line"></div><div><div class="cdet-lbl" data-i18n="contact.office">Office</div><div class="cdet-val"><span data-i18n-html="contact.officeAddr">1350 Belmont St, Suite 114<br>Brockton, MA</span></div></div></div>
         
       </div>
       <div class="hours-box">
-        <div class="hours-title">Office Hours</div>
-        <div class="hrow"><span class="hday">Monday – Friday</span><span class="htime">8:00 AM – 8:00 PM</span></div>
-        <div class="hrow"><span class="hday">Saturday</span><span class="htime">9:00 AM – 6:00 PM</span></div>
-        <div class="hrow"><span class="hday">Sunday</span><span class="htime">10:00 AM – 4:00 PM</span></div>
-        <div class="hrow"><span class="hday">Emergency</span><span class="htime">24/7 Always</span></div>
+        <div class="hours-title" data-i18n="contact.hoursTitle">Office Hours</div>
+        <div class="hrow"><span class="hday" data-i18n="contact.monFri">Monday – Friday</span><span class="htime" data-i18n="contact.monFriTime">8:00 AM – 8:00 PM</span></div>
+        <div class="hrow"><span class="hday" data-i18n="contact.sat">Saturday</span><span class="htime" data-i18n="contact.satTime">9:00 AM – 6:00 PM</span></div>
+        <div class="hrow"><span class="hday" data-i18n="contact.sun">Sunday</span><span class="htime" data-i18n="contact.sunTime">10:00 AM – 4:00 PM</span></div>
+        <div class="hrow"><span class="hday" data-i18n="contact.emergency">Emergency</span><span class="htime" data-i18n="contact.emergencyTime">24/7 Always</span></div>
       </div>
       </div>
     </div>
     <div class="cr">
-      <form id="enquiry-form" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="enquiry">
-        <p class="hp-field" hidden><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
-        <div class="form-h">Send an Enquiry</div>
-        <div class="form-s">Fill out the form and Jeanie will respond within 24 hours.</div>
+      <form id="enquiry-form" class="contact-form" name="enquiry" method="post" action="/api/contact" accept-charset="UTF-8">
+        <input type="hidden" name="_subject" value="New enquiry — Martins Global Travels website">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-h" data-i18n="form.title">Send an Enquiry</div>
+        <div class="form-s" data-i18n="form.subtitle">Fill out the form and Jeanie will respond within 24 hours.</div>
         <div class="fgrid">
-          <div class="fg"><label class="flbl" for="enq-first">First Name</label><input class="finp" id="enq-first" name="firstName" type="text" placeholder="John" required></div>
-          <div class="fg"><label class="flbl" for="enq-last">Last Name</label><input class="finp" id="enq-last" name="lastName" type="text" placeholder="Smith" required></div>
-          <div class="fg"><label class="flbl" for="enq-email">Email</label><input class="finp" id="enq-email" name="email" type="email" placeholder="john@email.com" required></div>
-          <div class="fg"><label class="flbl" for="enq-phone">Phone</label><input class="finp" id="enq-phone" name="phone" type="tel" placeholder="(508) 555-1234"></div>
-          <div class="fg"><label class="flbl" for="enq-dest">Destination</label><select class="fsel" id="enq-dest" name="destination"><option value="">Select region...</option><option>Maldives / Indian Ocean</option><option>Africa / Safari</option><option>Japan / Asia Pacific</option><option>Europe / Mediterranean</option><option>Caribbean</option><option>South America</option><option>Not sure yet</option></select></div>
-          <div class="fg"><label class="flbl" for="enq-pkg">Package</label><select class="fsel" id="enq-pkg" name="package"><option value="">Select package...</option><option>Essential Explorer</option><option>Signature Journey</option><option>Ultra Luxury</option><option>Honeymoon</option><option>Family Holiday</option><option>Group Travel</option></select></div>
-          <div class="fg"><label class="flbl" for="enq-date">Departure Date</label><input class="finp" id="enq-date" name="departureDate" type="date"></div>
-          <div class="fg"><label class="flbl" for="enq-travelers">Travelers</label><select class="fsel" id="enq-travelers" name="travelers"><option>1 Person</option><option>2 People</option><option>3–4 People</option><option>5–8 People</option><option>9+ Group</option></select></div>
-          <div class="fg full"><label class="flbl" for="enq-message">Tell Us About Your Dream Trip</label><textarea class="fta" id="enq-message" name="message" placeholder="Share any special requests, interests, or must-have experiences..."></textarea></div>
+          <div class="fg"><label class="flbl" for="enq-first" data-i18n="form.firstName">First Name</label><input class="finp" id="enq-first" name="firstName" type="text" data-i18n-placeholder="form.placeholderFirst" placeholder="John" required></div>
+          <div class="fg"><label class="flbl" for="enq-last" data-i18n="form.lastName">Last Name</label><input class="finp" id="enq-last" name="lastName" type="text" data-i18n-placeholder="form.placeholderLast" placeholder="Smith" required></div>
+          <div class="fg"><label class="flbl" for="enq-email" data-i18n="form.email">Email</label><input class="finp" id="enq-email" name="email" type="email" data-i18n-placeholder="form.placeholderEmail" placeholder="john@email.com" required></div>
+          <div class="fg"><label class="flbl" for="enq-phone" data-i18n="form.phone">Phone</label><input class="finp" id="enq-phone" name="phone" type="tel" data-i18n-placeholder="form.placeholderPhone" placeholder="(508) 555-1234"></div>
+          <div class="fg"><label class="flbl" for="enq-dest" data-i18n="form.destination">Destination</label><select class="fsel" id="enq-dest" name="destination"><option value="" data-i18n="form.selectRegion">Select region...</option><option data-i18n="contact.destMaldives">Maldives / Indian Ocean</option><option data-i18n="contact.destAfrica">Africa / Safari</option><option data-i18n="contact.destJapan">Japan / Asia Pacific</option><option data-i18n="contact.destEurope">Europe / Mediterranean</option><option data-i18n="contact.destCaribbean">Caribbean</option><option data-i18n="contact.destSa">South America</option><option data-i18n="contact.destUnsure">Not sure yet</option></select></div>
+          <div class="fg"><label class="flbl" for="enq-pkg" data-i18n="form.package">Package</label><select class="fsel" id="enq-pkg" name="package"><option value="" data-i18n="form.selectPackage">Select package...</option><option data-i18n="contact.pkgEssential">Essential Explorer</option><option data-i18n="contact.pkgSignature">Signature Journey</option><option data-i18n="contact.pkgUltra">Ultra Luxury</option><option data-i18n="contact.pkgHoneymoon">Honeymoon</option><option data-i18n="contact.pkgFamily">Family Holiday</option><option data-i18n="contact.pkgGroup">Group Travel</option></select></div>
+          <div class="fg"><label class="flbl" for="enq-date" data-i18n="form.departureDate">Departure Date</label><input class="finp" id="enq-date" name="departureDate" type="date"></div>
+          <div class="fg"><label class="flbl" for="enq-travelers" data-i18n="form.travelers">Travelers</label><select class="fsel" id="enq-travelers" name="travelers"><option data-i18n="contact.travel1">1 Person</option><option data-i18n="contact.travel2">2 People</option><option data-i18n="contact.travel34">3–4 People</option><option data-i18n="contact.travel58">5–8 People</option><option data-i18n="contact.travel9">9+ Group</option></select></div>
+          <div class="fg full"><label class="flbl" for="enq-message" data-i18n="form.message">Tell Us About Your Dream Trip</label><textarea class="fta" id="enq-message" name="message" data-i18n-placeholder="form.messagePlaceholder" placeholder="Share any special requests, interests, or must-have experiences..."></textarea></div>
         </div>
-        <button class="fsub" type="submit">Send Enquiry</button>
-        <p class="fnote">Your information is secure and will never be shared with third parties.</p>
+        <button class="fsub" type="submit" data-i18n="form.sendEnquiry">Send Enquiry</button>
+        <p class="fnote" data-i18n="form.note">Your information is secure and will never be shared with third parties.</p>
       </form>
     </div>
   </div>
 </div>
 
-<!-- Netlify reads this at deploy time so the enquiry form is detected -->
-<form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
-  <input type="hidden" name="form-name" value="enquiry">
-  <input name="bot-field">
-  <input name="firstName">
-  <input name="lastName">
-  <input name="email">
-  <input name="phone">
-  <input name="destination">
-  <input name="package">
-  <input name="departureDate">
-  <input name="travelers">
-  <textarea name="message"></textarea>
-</form>
+
+
+<!-- ══════════════ FAQ ══════════════ -->
+<div class="page" id="page-faq">
+  <div class="ph">
+    <div class="ph-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=85" alt="FAQ" data-local="assets/photos/page-faq"></div>
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="ph-ey" data-i18n="faq.heroEyebrow">Help &amp; Information</div>
+      <h1 class="ph-t" data-i18n-html="faq.heroTitleHtml">Frequently Asked<br><em>Questions</em></h1>
+      <p class="ph-s" data-i18n="faq.heroSub">Everything you need to know about booking and traveling with Martins Global Travels.</p>
+    </div>
+  </div>
+  <section style="background:var(--ink);padding:80px 52px">
+    <div style="max-width:860px;margin:0 auto">
+
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="faq-group-icon">01</span><span data-i18n="faq.g1">Booking &amp; Planning</span></div>
+        <div class="faq-list">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q1">How do I start planning a trip?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a1">Head to our Contact page and send an enquiry with your destination, dates, and group size. One of our travel specialists will reach out within 24 hours to begin building your itinerary from scratch.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q2">How far in advance should I book?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a2">We recommend 3–6 months for most destinations, and 6–12 months for popular seasons like African safari, Japan cherry blossom, or peak European summer. We can accommodate last-minute bookings too — just ask.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q3">Can I fully customise my package?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a3">Every trip we build is completely bespoke. Our packages are a starting point — we tailor accommodation, activities, pace, dietary needs, and every detail to exactly what you want. Nothing is off the table.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q4">Do you organise group travel?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a4">Yes — from intimate family trips to large corporate retreats. We handle groups from 5 to 50+ people. Contact us with your group size and we'll put together a tailored proposal.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q5">Can you arrange honeymoons or special occasions?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a5">Absolutely. Honeymoons and special occasions are some of our most requested trips. We partner with hotels and resorts worldwide to arrange private dinners, room upgrades, surprise experiences, and bespoke touches that make the moment truly unforgettable.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="faq-group-icon">02</span><span data-i18n="faq.g2">Pricing &amp; Payment</span></div>
+        <div class="faq-list">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q6">Why don't you show prices on the website?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a6">Every trip is completely bespoke, so prices vary based on destination, season, accommodation, duration, and group size. We prefer to give you an accurate quote based on exactly what you want — rather than a generic number that doesn't reflect your trip.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q7">Is there a consultation fee?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a7">No. Initial consultations and quotes are completely free. We only charge once you decide to proceed with a booking, at which point a deposit secures your arrangements.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q8">What payment methods do you accept?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a8">We accept all major credit and debit cards, bank transfers, and select digital payment methods. A deposit is required at booking, with the balance due 60–90 days before departure. Full payment terms are outlined in your booking agreement.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q9">Do you offer a best price guarantee?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a9">Yes. If you find the same itinerary at a lower price elsewhere — same hotels, flights, and dates — we will match it. We are confident in the value we provide, especially given the level of personalisation and support included.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="faq-group-icon">03</span><span data-i18n="faq.g3">Protection &amp; Safety</span></div>
+        <div class="faq-list">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q10">Are my bookings financially protected?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a10">Yes, completely. Martins Global Travels is a fully licensed US travel agency carrying professional liability insurance. We work exclusively with financially stable, vetted suppliers worldwide, and every booking includes a detailed written agreement outlining your protections.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q11">What is your cancellation policy?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a11">Signature Journey and Ultra Luxury bookings include free cancellation up to 60 days before departure. Essential Explorer bookings carry a small cancellation fee. We strongly recommend comprehensive travel insurance for full peace of mind.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q12">Do I need travel insurance?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a12">We strongly recommend it for all trips. Travel insurance protects you against medical emergencies, trip disruption, lost luggage, and the unexpected. We can recommend trusted providers if you need help choosing the right policy.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="faq-group-icon">04</span><span data-i18n="faq.g4">During Your Trip</span></div>
+        <div class="faq-list">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q13">What support do I get while traveling?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a13">All bookings include 24/7 emergency support throughout your trip. Signature Journey and Ultra Luxury clients also have a dedicated personal concierge reachable at any hour for anything from restaurant recommendations to urgent rebooking.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q14">Will I have a local guide?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a14">Signature Journey and Ultra Luxury packages include expert private guides at each destination. Essential Explorer trips include group guides for included excursions. All guides are carefully vetted, English-speaking, and passionate about their destinations.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q15">Do you offer sustainable travel options?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a15">Yes. We carefully select responsible, locally-invested operators at every destination and are committed to sustainable travel practices. Ask us about our responsible travel options when you enquire.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q"><span data-i18n="faq.q16">What if something goes wrong on my trip?</span><span class="faq-arrow">↓</span></div>
+            <div class="faq-a" data-i18n="faq.a16">Contact us immediately — our 24/7 emergency line is always open. We have local contacts and partners in every destination and can typically resolve issues quickly. Our goal is always to ensure any disruption has minimal impact on your experience.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="margin-top:64px;padding:48px;background:var(--ink3);border:1px solid var(--border);text-align:center">
+        <div class="tag" style="justify-content:center;margin-bottom:14px" data-i18n="faq.ctaTag">Still have questions?</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px" data-i18n-html="faq.ctaTitleHtml">We're Happy to <em style="font-style:italic;color:var(--gold)">Help</em></h3>
+        <p class="body" style="max-width:520px;margin:0 auto 28px;font-size:15px" data-i18n="faq.ctaBody">Reach out anytime — we typically respond within one business day.</p>
+        <button class="btn-primary" onclick="go('contact')" data-i18n="common.contactUs">
+          Contact Us
+          <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:var(--ink);stroke-width:2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ PRIVACY ══════════════ -->
+<div class="page" id="page-privacy">
+  <div class="ph">
+    <div class="ph-bg"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&amp;q=85" alt="" data-local="assets/photos/page-contact"></div>
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="ph-ey" data-i18n="privacy.heroEyebrow">Your Data</div>
+      <h1 class="ph-t" data-i18n-html="privacy.heroTitleHtml">Privacy<br><em>Policy</em></h1>
+      <p class="ph-s" data-i18n="privacy.heroSub">How Martins Global Travels collects, uses, and protects your personal information.</p>
+    </div>
+  </div>
+  <section class="legal-sec">
+    <div class="legal-inner">
+      <p class="legal-meta" data-i18n="privacy.updated">Last updated: March 27, 2026</p>
+      <div class="legal-note" data-i18n="privacy.note">This policy is provided for general information. It does not constitute legal advice. Have it reviewed by a qualified attorney for your business, jurisdiction, and practices.</div>
+      <div class="legal-prose">
+        <h2 data-i18n="privacy.introH">Introduction</h2>
+        <p data-i18n="privacy.introP1">Martins Global Travels ("we," "us," or "our") respects your privacy. This Privacy Policy describes how we collect, use, disclose, and safeguard personal information when you visit our website, contact us, subscribe to updates, or use our travel planning and booking services.</p>
+        <p data-i18n="privacy.introP2">By using our website or providing information to us, you agree to this policy. If you do not agree, please do not use our services.</p>
+
+        <h2 data-i18n="privacy.collectH">Information we collect</h2>
+        <p data-i18n="privacy.collectP">Depending on how you interact with us, we may collect:</p>
+        <ul>
+          <li data-i18n="privacy.collectL1"><strong>Contact and identity data:</strong> name, email address, phone number, mailing address, and similar details you provide on forms or in correspondence.</li>
+          <li data-i18n="privacy.collectL2"><strong>Trip and preference data:</strong> destinations, dates, budget, travel style, dietary or accessibility needs, loyalty program numbers, and other information needed to plan or arrange travel.</li>
+          <li data-i18n="privacy.collectL3"><strong>Payment-related data:</strong> limited payment information as needed to process transactions. Card data may be handled directly by payment processors; we do not store full card numbers on our servers unless required for a specific transaction and permitted by law.</li>
+          <li data-i18n="privacy.collectL4"><strong>Communications:</strong> emails, messages, call notes, and feedback you send to us.</li>
+          <li data-i18n="privacy.collectL5"><strong>Technical and usage data:</strong> IP address, browser type, device information, general location derived from IP, pages viewed, and similar data collected through cookies and similar technologies (see the <a href="#legal-cookies">Cookies</a> section below).</li>
+        </ul>
+
+        <h2 data-i18n="privacy.useH">How we use information</h2>
+        <p data-i18n="privacy.useP">We use personal information to:</p>
+        <ul>
+          <li data-i18n="privacy.useL1">Respond to enquiries and provide travel consultations;</li>
+          <li data-i18n="privacy.useL2">Research, plan, price, book, and manage travel arrangements with suppliers (airlines, hotels, tour operators, insurers, etc.);</li>
+          <li data-i18n="privacy.useL3">Process payments and send related notices;</li>
+          <li data-i18n="privacy.useL4">Send service-related messages and, where permitted, marketing communications (you may opt out of marketing at any time);</li>
+          <li data-i18n="privacy.useL5">Improve our website, services, and customer experience;</li>
+          <li data-i18n="privacy.useL6">Comply with legal obligations, enforce our terms, and protect rights, safety, and security.</li>
+        </ul>
+
+        <h2 data-i18n="privacy.legalH">Legal bases (where applicable)</h2>
+        <p data-i18n="privacy.legalP">If applicable law requires a "legal basis" for processing (for example in the European Economic Area or United Kingdom), we rely on one or more of: performance of a contract, legitimate interests (such as operating our business and securing our systems), consent where required, and legal obligation.</p>
+
+        <h2 data-i18n="privacy.shareH">Sharing of information</h2>
+        <p data-i18n="privacy.shareP">We may share personal information with:</p>
+        <ul>
+          <li data-i18n="privacy.shareL1"><strong>Suppliers and partners</strong> who fulfill or support your travel (e.g., hotels, airlines, ground operators, insurers);</li>
+          <li data-i18n="privacy.shareL2"><strong>Service providers</strong> that assist us (e.g., hosting, email delivery, analytics, payment processing, customer relationship tools);</li>
+          <li data-i18n="privacy.shareL3"><strong>Professional advisers</strong> when required (e.g., lawyers, accountants);</li>
+          <li data-i18n="privacy.shareL4"><strong>Authorities</strong> when required by law, court order, or to protect vital interests.</li>
+        </ul>
+        <p data-i18n="privacy.shareP2">We do not sell your personal information for monetary consideration as that term is commonly understood in US state privacy laws. We may use analytics or advertising tools that involve cookies or similar technologies as described below.</p>
+
+        <h2 id="legal-cookies" data-i18n="privacy.cookiesH">Cookies and similar technologies</h2>
+        <p data-i18n="privacy.cookiesP">We and our partners may use cookies, pixels, and similar technologies to operate the site, remember preferences, measure traffic, and (where applicable) deliver relevant content. You can control cookies through your browser settings. Blocking certain cookies may affect site functionality.</p>
+
+        <h2 data-i18n="privacy.retentionH">Retention</h2>
+        <p data-i18n="privacy.retentionP">We retain personal information only as long as needed for the purposes described in this policy, including legal, accounting, or reporting requirements, unless a longer period is required or permitted by law.</p>
+
+        <h2 data-i18n="privacy.securityH">Security</h2>
+        <p data-i18n="privacy.securityP">We implement reasonable administrative, technical, and organizational measures designed to protect personal information. No method of transmission over the Internet is completely secure; we cannot guarantee absolute security.</p>
+
+        <h2 data-i18n="privacy.rightsH">Your choices and rights</h2>
+        <p data-i18n="privacy.rightsP">Depending on where you live, you may have rights to access, correct, delete, or restrict processing of your personal information, or to object to certain processing or to data portability. You may also have the right to lodge a complaint with a supervisory authority. To exercise applicable rights, contact us using the details below. We may need to verify your identity before responding.</p>
+
+        <h2 data-i18n="privacy.intlH">International transfers</h2>
+        <p data-i18n="privacy.intlP">If you are located outside the United States, your information may be transferred to and processed in the United States or other countries where we or our suppliers operate. We take steps designed to ensure appropriate safeguards where required by law.</p>
+
+        <h2 data-i18n="privacy.childrenH">Children</h2>
+        <p data-i18n="privacy.childrenP">Our services are not directed to children under 16, and we do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us and we will take appropriate steps to delete it.</p>
+
+        <h2 data-i18n="privacy.changesH">Changes to this policy</h2>
+        <p data-i18n="privacy.changesP">We may update this Privacy Policy from time to time. We will post the revised policy on this page and update the "Last updated" date. Material changes may be communicated through additional notice where appropriate.</p>
+
+        <h2 data-i18n="privacy.contactH">Contact us</h2>
+        <p data-i18n="privacy.contactP">For privacy-related questions or requests, contact Martins Global Travels using the details on our <a onclick="go('contact')" data-i18n="privacy.contactLink">Contact</a> page.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ TERMS ══════════════ -->
+<div class="page" id="page-terms">
+  <div class="ph">
+    <div class="ph-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&amp;q=85" alt="" data-local="assets/photos/page-faq"></div>
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="ph-ey" data-i18n="terms.heroEyebrow">Legal</div>
+      <h1 class="ph-t" data-i18n-html="terms.heroTitleHtml">Terms of<br><em>Service</em></h1>
+      <p class="ph-s" data-i18n="terms.heroSub">Please read these terms carefully before using our website or services.</p>
+    </div>
+  </div>
+  <section class="legal-sec">
+    <div class="legal-inner">
+      <p class="legal-meta" data-i18n="terms.updated">Last updated: March 27, 2026</p>
+      <div class="legal-note">These terms are a general template. They are not legal advice. Have them reviewed and customized by a qualified attorney for your business, jurisdiction, and risk profile.</div>
+      <div class="legal-prose">
+        <h2 data-i18n="terms.agreeH">Agreement to terms</h2>
+        <p data-i18n="terms.agreeP">These Terms of Service ("Terms") govern your access to and use of the website and services of Martins Global Travels (collectively, "we," "us," or "our"). By accessing our website, submitting an enquiry, or using our services, you agree to these Terms. If you do not agree, do not use our services.</p>
+
+        <h2 data-i18n="terms.roleH">Our role</h2>
+        <p data-i18n="terms.roleP">Martins Global Travels is a travel agency. We assist in researching, planning, and arranging travel-related products and services provided by third-party suppliers (such as airlines, hotels, cruise lines, tour operators, and insurers). Unless we expressly state otherwise in a signed agreement, we act as an intermediary between you and those suppliers.</p>
+
+        <h2 data-i18n="terms.eligH">Eligibility</h2>
+        <p data-i18n="terms.eligP">You represent that you are at least 18 years old and have the legal capacity to enter into these Terms. If you use our services on behalf of a company or other entity, you represent that you have authority to bind that entity.</p>
+
+        <h2 data-i18n="terms.bookH">Bookings, suppliers, and your contract</h2>
+        <p data-i18n="terms.bookP">When travel is booked, separate terms and conditions apply from each supplier (fare rules, cancellation policies, health requirements, etc.). Those supplier terms form part of your agreement for the relevant services. You are responsible for reviewing supplier terms, passports, visas, health requirements, and travel advisories. We are not responsible for supplier acts, omissions, failures, or changes, except as required by applicable law or as expressly stated in a written agreement between you and us.</p>
+
+        <h2 data-i18n="terms.feesH">Fees and payment</h2>
+        <p data-i18n="terms.feesP">Quotes are estimates unless confirmed in writing. Prices can change until deposit or full payment is received and tickets or reservations are issued, subject to supplier rules. You agree to pay all amounts when due, including our professional or service fees where disclosed. Late payments may result in cancellation or penalties per supplier rules.</p>
+
+        <h2 data-i18n="terms.cancelH">Cancellations, changes, and refunds</h2>
+        <p data-i18n="terms.cancelP">Cancellation, change, and refund rules depend on supplier terms, fare class, timing, and insurance coverage. Fees may be non-refundable. We will use reasonable efforts to assist with changes or cancellations as permitted by suppliers; we do not guarantee refunds or waivers.</p>
+
+        <h2 data-i18n="terms.insH">Travel insurance</h2>
+        <p data-i18n="terms.insP">We strongly recommend comprehensive travel insurance. Insurance is subject to the insurer's policy terms. You are responsible for determining whether coverage meets your needs.</p>
+
+        <h2 data-i18n="terms.discH">Disclaimers</h2>
+        <p data-i18n="terms.discP">Information on our website (including sample itineraries, descriptions, and photographs) is for general guidance and may change. We do not warrant that all information is complete, current, or error-free. Travel involves inherent risks; we do not guarantee safety, satisfaction, or uninterrupted travel.</p>
+
+        <h2 data-i18n="terms.liabH">Limitation of liability</h2>
+        <p data-i18n="terms.liabP">To the fullest extent permitted by applicable law, Martins Global Travels and our officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or for loss of profits, goodwill, or data, arising from your use of our services or travel arrangements. Our aggregate liability for any claim arising out of or relating to these Terms or our services is limited to the fees you paid to us for the specific booking or service giving rise to the claim during the six (6) months before the claim arose, except where prohibited by law. Some jurisdictions do not allow certain limitations; in those cases, our liability is limited to the maximum extent permitted.</p>
+
+        <h2 data-i18n="terms.indemH">Indemnity</h2>
+        <p data-i18n="terms.indemP">You agree to indemnify and hold harmless Martins Global Travels and our affiliates, officers, employees, and agents from claims, losses, damages, and expenses (including reasonable attorneys' fees) arising from your breach of these Terms, your travel, or your violation of law or third-party rights, except to the extent caused by our gross negligence or willful misconduct.</p>
+
+        <h2 data-i18n="terms.ipH">Intellectual property</h2>
+        <p data-i18n="terms.ipP">Content on this website (including text, graphics, logos, and design) is owned by Martins Global Travels or our licensors and is protected by intellectual property laws. You may not copy, modify, distribute, or create derivative works without our prior written consent, except for limited personal, non-commercial viewing.</p>
+
+        <h2 data-i18n="terms.govH">Governing law and disputes</h2>
+        <p data-i18n="terms.govP">These Terms are governed by the laws of the State in which Martins Global Travels maintains its principal place of business, without regard to conflict-of-law principles, except where mandatory consumer protection laws of your jurisdiction apply. You agree to the exclusive jurisdiction and venue of the state and federal courts located in that State for disputes, subject to any rights you cannot waive under applicable law.</p>
+
+        <h2 data-i18n="terms.chgH">Changes</h2>
+        <p data-i18n="terms.chgP">We may modify these Terms at any time. The updated Terms will be posted on this page with a revised "Last updated" date. Continued use after changes constitutes acceptance of the revised Terms, except where applicable law requires additional notice or consent.</p>
+
+        <h2 data-i18n="terms.contactH">Contact</h2>
+        <p data-i18n="terms.contactP">For questions about these Terms, contact us via our <a onclick="go('contact')" data-i18n="terms.contactLink">Contact</a> page.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
 <script>
 // World Cup home popup
 var WC_POPUP_KEY='mgt_wc_popup_closed';
@@ -1830,6 +2096,7 @@ function go(id){
   document.querySelectorAll('.nav-links a[data-p]').forEach(a=>a.classList.toggle('act',a.dataset.p===id));
   window.scrollTo({top:0,behavior:'smooth'});
   updateNav();
+  if(window.MartinsI18n&&typeof window.MartinsI18n.apply==='function')window.MartinsI18n.apply(document);
 }
 function goPrivacyCookies(){
   go('privacy');
@@ -1856,6 +2123,7 @@ function toggleMob(){
   const m=document.getElementById('mob');
   const h=document.getElementById('ham');
   m.classList.toggle('open');
+  if(m.classList.contains('open')&&window.MartinsI18n&&typeof window.MartinsI18n.apply==='function')window.MartinsI18n.apply(m);
   const s=h.querySelectorAll('span');
   if(m.classList.contains('open')){
     s[0].style.transform='rotate(45deg) translate(5px,5px)';
@@ -1878,9 +2146,12 @@ function filterDest(cat, el){
   });
   const countEl = document.getElementById('destCount');
   const label = el.textContent.replace(/\s*\(\d+\)/, '').trim();
-  if(countEl) countEl.textContent = cat==='all'
-    ? 'Showing all ' + visible + ' destinations'
-    : 'Showing ' + visible + ' ' + label + ' destination' + (visible!==1?'s':'');
+  if(countEl){
+    var i18n=window.MartinsI18n;
+    var t=i18n&&i18n.t?function(k){return i18n.t(k);}:function(k){return k;};
+    if(cat==='all') countEl.textContent=t('common.showingAll').replace('{n}',visible);
+    else countEl.textContent=(visible===1?t('common.showingCat'):t('common.showingCats')).replace('{n}',visible).replace('{cat}',label);
+  }
 }
 // Toast
 function toast(msg){
@@ -1888,30 +2159,6 @@ function toast(msg){
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3000);
 }
-// Enquiry form → Netlify (notifications: Netlify dashboard → Forms → enquiry)
-(function(){
-  const form=document.getElementById('enquiry-form');
-  if(!form)return;
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    const btn=form.querySelector('.fsub');
-    if(btn){btn.disabled=true;btn.textContent='Sending…';}
-    fetch('/',{
-      method:'POST',
-      headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body:new URLSearchParams(new FormData(form)).toString()
-    }).then(function(res){
-      if(!res.ok)throw new Error('submit failed');
-      toast("Enquiry sent! Jeanie will be in touch within 24 hours.");
-      form.reset();
-      setTimeout(function(){go('home');},1500);
-    }).catch(function(){
-      toast('Could not send — please call (508) 232-3003 or email Jeanie@MartinsGlobalTravels.com.');
-    }).finally(function(){
-      if(btn){btn.disabled=false;btn.textContent='Send Enquiry';}
-    });
-  });
-})();
 // Tours scroll tracker
 const toursEl = document.querySelector('.tours-scroll');
 const thumb = document.getElementById('toursThumb');
@@ -1973,267 +2220,8 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
-
-<!-- ══════════════ FAQ ══════════════ -->
-<div class="page" id="page-faq">
-  <div class="ph">
-    <div class="ph-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=85" alt="FAQ" data-local="assets/photos/page-faq"></div>
-    <div class="ph-ov"></div>
-    <div class="ph-c">
-      <div class="ph-ey">Help &amp; Information</div>
-      <h1 class="ph-t">Frequently Asked<br><em>Questions</em></h1>
-      <p class="ph-s">Everything you need to know about booking and traveling with Martins Global Travels.</p>
-    </div>
-  </div>
-  <section style="background:var(--ink);padding:80px 52px">
-    <div style="max-width:860px;margin:0 auto">
-
-      <div class="faq-group">
-        <div class="faq-group-title"><span class="faq-group-icon">01</span>Booking &amp; Planning</div>
-        <div class="faq-list">
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">How do I start planning a trip?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Head to our Contact page and send an enquiry with your destination, dates, and group size. One of our travel specialists will reach out within 24 hours to begin building your itinerary from scratch.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">How far in advance should I book?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">We recommend 3–6 months for most destinations, and 6–12 months for popular seasons like African safari, Japan cherry blossom, or peak European summer. We can accommodate last-minute bookings too — just ask.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Can I fully customise my package?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Every trip we build is completely bespoke. Our packages are a starting point — we tailor accommodation, activities, pace, dietary needs, and every detail to exactly what you want. Nothing is off the table.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Do you organise group travel?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Yes — from intimate family trips to large corporate retreats. We handle groups from 5 to 50+ people. Contact us with your group size and we'll put together a tailored proposal.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Can you arrange honeymoons or special occasions?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Absolutely. Honeymoons and special occasions are some of our most requested trips. We partner with hotels and resorts worldwide to arrange private dinners, room upgrades, surprise experiences, and bespoke touches that make the moment truly unforgettable.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-group">
-        <div class="faq-group-title"><span class="faq-group-icon">02</span>Pricing &amp; Payment</div>
-        <div class="faq-list">
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Why don't you show prices on the website?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Every trip is completely bespoke, so prices vary based on destination, season, accommodation, duration, and group size. We prefer to give you an accurate quote based on exactly what you want — rather than a generic number that doesn't reflect your trip.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Is there a consultation fee?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">No. Initial consultations and quotes are completely free. We only charge once you decide to proceed with a booking, at which point a deposit secures your arrangements.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">What payment methods do you accept?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">We accept all major credit and debit cards, bank transfers, and select digital payment methods. A deposit is required at booking, with the balance due 60–90 days before departure. Full payment terms are outlined in your booking agreement.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Do you offer a best price guarantee?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Yes. If you find the same itinerary at a lower price elsewhere — same hotels, flights, and dates — we will match it. We are confident in the value we provide, especially given the level of personalisation and support included.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-group">
-        <div class="faq-group-title"><span class="faq-group-icon">03</span>Protection &amp; Safety</div>
-        <div class="faq-list">
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Are my bookings financially protected?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Yes, completely. Martins Global Travels is a fully licensed US travel agency carrying professional liability insurance. We work exclusively with financially stable, vetted suppliers worldwide, and every booking includes a detailed written agreement outlining your protections.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">What is your cancellation policy?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Signature Journey and Ultra Luxury bookings include free cancellation up to 60 days before departure. Essential Explorer bookings carry a small cancellation fee. We strongly recommend comprehensive travel insurance for full peace of mind.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Do I need travel insurance?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">We strongly recommend it for all trips. Travel insurance protects you against medical emergencies, trip disruption, lost luggage, and the unexpected. We can recommend trusted providers if you need help choosing the right policy.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-group">
-        <div class="faq-group-title"><span class="faq-group-icon">04</span>During Your Trip</div>
-        <div class="faq-list">
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">What support do I get while traveling?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">All bookings include 24/7 emergency support throughout your trip. Signature Journey and Ultra Luxury clients also have a dedicated personal concierge reachable at any hour for anything from restaurant recommendations to urgent rebooking.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Will I have a local guide?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Signature Journey and Ultra Luxury packages include expert private guides at each destination. Essential Explorer trips include group guides for included excursions. All guides are carefully vetted, English-speaking, and passionate about their destinations.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">Do you offer sustainable travel options?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Yes. We carefully select responsible, locally-invested operators at every destination and are committed to sustainable travel practices. Ask us about our responsible travel options when you enquire.</div>
-          </div>
-          <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-q">What if something goes wrong on my trip?<span class="faq-arrow">↓</span></div>
-            <div class="faq-a">Contact us immediately — our 24/7 emergency line is always open. We have local contacts and partners in every destination and can typically resolve issues quickly. Our goal is always to ensure any disruption has minimal impact on your experience.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div style="margin-top:64px;padding:48px;background:var(--ink3);border:1px solid var(--border);text-align:center">
-        <div class="tag" style="justify-content:center;margin-bottom:14px">Still have questions?</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px">We're Happy to <em style="font-style:italic;color:var(--gold)">Help</em></h3>
-        <p class="body" style="max-width:520px;margin:0 auto 28px;font-size:15px">Reach out anytime — we typically respond within one business day.</p>
-        <button class="btn-primary" onclick="go('contact')">
-          Contact Us
-          <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:var(--ink);stroke-width:2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!-- ══════════════ PRIVACY ══════════════ -->
-<div class="page" id="page-privacy">
-  <div class="ph">
-    <div class="ph-bg"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&amp;q=85" alt="" data-local="assets/photos/page-contact"></div>
-    <div class="ph-ov"></div>
-    <div class="ph-c">
-      <div class="ph-ey">Your Data</div>
-      <h1 class="ph-t">Privacy<br><em>Policy</em></h1>
-      <p class="ph-s">How Martins Global Travels collects, uses, and protects your personal information.</p>
-    </div>
-  </div>
-  <section class="legal-sec">
-    <div class="legal-inner">
-      <p class="legal-meta">Last updated: March 27, 2026</p>
-      <div class="legal-note">This policy is provided for general information. It does not constitute legal advice. Have it reviewed by a qualified attorney for your business, jurisdiction, and practices.</div>
-      <div class="legal-prose">
-        <h2>Introduction</h2>
-        <p>Martins Global Travels ("we," "us," or "our") respects your privacy. This Privacy Policy describes how we collect, use, disclose, and safeguard personal information when you visit our website, contact us, subscribe to updates, or use our travel planning and booking services.</p>
-        <p>By using our website or providing information to us, you agree to this policy. If you do not agree, please do not use our services.</p>
-
-        <h2>Information we collect</h2>
-        <p>Depending on how you interact with us, we may collect:</p>
-        <ul>
-          <li><strong>Contact and identity data:</strong> name, email address, phone number, mailing address, and similar details you provide on forms or in correspondence.</li>
-          <li><strong>Trip and preference data:</strong> destinations, dates, budget, travel style, dietary or accessibility needs, loyalty program numbers, and other information needed to plan or arrange travel.</li>
-          <li><strong>Payment-related data:</strong> limited payment information as needed to process transactions. Card data may be handled directly by payment processors; we do not store full card numbers on our servers unless required for a specific transaction and permitted by law.</li>
-          <li><strong>Communications:</strong> emails, messages, call notes, and feedback you send to us.</li>
-          <li><strong>Technical and usage data:</strong> IP address, browser type, device information, general location derived from IP, pages viewed, and similar data collected through cookies and similar technologies (see the <a href="#legal-cookies">Cookies</a> section below).</li>
-        </ul>
-
-        <h2>How we use information</h2>
-        <p>We use personal information to:</p>
-        <ul>
-          <li>Respond to enquiries and provide travel consultations;</li>
-          <li>Research, plan, price, book, and manage travel arrangements with suppliers (airlines, hotels, tour operators, insurers, etc.);</li>
-          <li>Process payments and send related notices;</li>
-          <li>Send service-related messages and, where permitted, marketing communications (you may opt out of marketing at any time);</li>
-          <li>Improve our website, services, and customer experience;</li>
-          <li>Comply with legal obligations, enforce our terms, and protect rights, safety, and security.</li>
-        </ul>
-
-        <h2>Legal bases (where applicable)</h2>
-        <p>If applicable law requires a "legal basis" for processing (for example in the European Economic Area or United Kingdom), we rely on one or more of: performance of a contract, legitimate interests (such as operating our business and securing our systems), consent where required, and legal obligation.</p>
-
-        <h2>Sharing of information</h2>
-        <p>We may share personal information with:</p>
-        <ul>
-          <li><strong>Suppliers and partners</strong> who fulfill or support your travel (e.g., hotels, airlines, ground operators, insurers);</li>
-          <li><strong>Service providers</strong> that assist us (e.g., hosting, email delivery, analytics, payment processing, customer relationship tools);</li>
-          <li><strong>Professional advisers</strong> when required (e.g., lawyers, accountants);</li>
-          <li><strong>Authorities</strong> when required by law, court order, or to protect vital interests.</li>
-        </ul>
-        <p>We do not sell your personal information for monetary consideration as that term is commonly understood in US state privacy laws. We may use analytics or advertising tools that involve cookies or similar technologies as described below.</p>
-
-        <h2 id="legal-cookies">Cookies and similar technologies</h2>
-        <p>We and our partners may use cookies, pixels, and similar technologies to operate the site, remember preferences, measure traffic, and (where applicable) deliver relevant content. You can control cookies through your browser settings. Blocking certain cookies may affect site functionality.</p>
-
-        <h2>Retention</h2>
-        <p>We retain personal information only as long as needed for the purposes described in this policy, including legal, accounting, or reporting requirements, unless a longer period is required or permitted by law.</p>
-
-        <h2>Security</h2>
-        <p>We implement reasonable administrative, technical, and organizational measures designed to protect personal information. No method of transmission over the Internet is completely secure; we cannot guarantee absolute security.</p>
-
-        <h2>Your choices and rights</h2>
-        <p>Depending on where you live, you may have rights to access, correct, delete, or restrict processing of your personal information, or to object to certain processing or to data portability. You may also have the right to lodge a complaint with a supervisory authority. To exercise applicable rights, contact us using the details below. We may need to verify your identity before responding.</p>
-
-        <h2>International transfers</h2>
-        <p>If you are located outside the United States, your information may be transferred to and processed in the United States or other countries where we or our suppliers operate. We take steps designed to ensure appropriate safeguards where required by law.</p>
-
-        <h2>Children</h2>
-        <p>Our services are not directed to children under 16, and we do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us and we will take appropriate steps to delete it.</p>
-
-        <h2>Changes to this policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will post the revised policy on this page and update the "Last updated" date. Material changes may be communicated through additional notice where appropriate.</p>
-
-        <h2>Contact us</h2>
-        <p>For privacy-related questions or requests, contact Martins Global Travels using the details on our <a onclick="go('contact')">Contact</a> page.</p>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ══════════════ TERMS ══════════════ -->
-<div class="page" id="page-terms">
-  <div class="ph">
-    <div class="ph-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&amp;q=85" alt="" data-local="assets/photos/page-faq"></div>
-    <div class="ph-ov"></div>
-    <div class="ph-c">
-      <div class="ph-ey">Legal</div>
-      <h1 class="ph-t">Terms of<br><em>Service</em></h1>
-      <p class="ph-s">Please read these terms carefully before using our website or services.</p>
-    </div>
-  </div>
-  <section class="legal-sec">
-    <div class="legal-inner">
-      <p class="legal-meta">Last updated: March 27, 2026</p>
-      <div class="legal-note">These terms are a general template. They are not legal advice. Have them reviewed and customized by a qualified attorney for your business, jurisdiction, and risk profile.</div>
-      <div class="legal-prose">
-        <h2>Agreement to terms</h2>
-        <p>These Terms of Service ("Terms") govern your access to and use of the website and services of Martins Global Travels (collectively, "we," "us," or "our"). By accessing our website, submitting an enquiry, or using our services, you agree to these Terms. If you do not agree, do not use our services.</p>
-
-        <h2>Our role</h2>
-        <p>Martins Global Travels is a travel agency. We assist in researching, planning, and arranging travel-related products and services provided by third-party suppliers (such as airlines, hotels, cruise lines, tour operators, and insurers). Unless we expressly state otherwise in a signed agreement, we act as an intermediary between you and those suppliers.</p>
-
-        <h2>Eligibility</h2>
-        <p>You represent that you are at least 18 years old and have the legal capacity to enter into these Terms. If you use our services on behalf of a company or other entity, you represent that you have authority to bind that entity.</p>
-
-        <h2>Bookings, suppliers, and your contract</h2>
-        <p>When travel is booked, separate terms and conditions apply from each supplier (fare rules, cancellation policies, health requirements, etc.). Those supplier terms form part of your agreement for the relevant services. You are responsible for reviewing supplier terms, passports, visas, health requirements, and travel advisories. We are not responsible for supplier acts, omissions, failures, or changes, except as required by applicable law or as expressly stated in a written agreement between you and us.</p>
-
-        <h2>Fees and payment</h2>
-        <p>Quotes are estimates unless confirmed in writing. Prices can change until deposit or full payment is received and tickets or reservations are issued, subject to supplier rules. You agree to pay all amounts when due, including our professional or service fees where disclosed. Late payments may result in cancellation or penalties per supplier rules.</p>
-
-        <h2>Cancellations, changes, and refunds</h2>
-        <p>Cancellation, change, and refund rules depend on supplier terms, fare class, timing, and insurance coverage. Fees may be non-refundable. We will use reasonable efforts to assist with changes or cancellations as permitted by suppliers; we do not guarantee refunds or waivers.</p>
-
-        <h2>Travel insurance</h2>
-        <p>We strongly recommend comprehensive travel insurance. Insurance is subject to the insurer's policy terms. You are responsible for determining whether coverage meets your needs.</p>
-
-        <h2>Disclaimers</h2>
-        <p>Information on our website (including sample itineraries, descriptions, and photographs) is for general guidance and may change. We do not warrant that all information is complete, current, or error-free. Travel involves inherent risks; we do not guarantee safety, satisfaction, or uninterrupted travel.</p>
-
-        <h2>Limitation of liability</h2>
-        <p>To the fullest extent permitted by applicable law, Martins Global Travels and our officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or for loss of profits, goodwill, or data, arising from your use of our services or travel arrangements. Our aggregate liability for any claim arising out of or relating to these Terms or our services is limited to the fees you paid to us for the specific booking or service giving rise to the claim during the six (6) months before the claim arose, except where prohibited by law. Some jurisdictions do not allow certain limitations; in those cases, our liability is limited to the maximum extent permitted.</p>
-
-        <h2>Indemnity</h2>
-        <p>You agree to indemnify and hold harmless Martins Global Travels and our affiliates, officers, employees, and agents from claims, losses, damages, and expenses (including reasonable attorneys' fees) arising from your breach of these Terms, your travel, or your violation of law or third-party rights, except to the extent caused by our gross negligence or willful misconduct.</p>
-
-        <h2>Intellectual property</h2>
-        <p>Content on this website (including text, graphics, logos, and design) is owned by Martins Global Travels or our licensors and is protected by intellectual property laws. You may not copy, modify, distribute, or create derivative works without our prior written consent, except for limited personal, non-commercial viewing.</p>
-
-        <h2>Governing law and disputes</h2>
-        <p>These Terms are governed by the laws of the State in which Martins Global Travels maintains its principal place of business, without regard to conflict-of-law principles, except where mandatory consumer protection laws of your jurisdiction apply. You agree to the exclusive jurisdiction and venue of the state and federal courts located in that State for disputes, subject to any rights you cannot waive under applicable law.</p>
-
-        <h2>Changes</h2>
-        <p>We may modify these Terms at any time. The updated Terms will be posted on this page with a revised "Last updated" date. Continued use after changes constitutes acceptance of the revised Terms, except where applicable law requires additional notice or consent.</p>
-
-        <h2>Contact</h2>
-        <p>For questions about these Terms, contact us via our <a onclick="go('contact')">Contact</a> page.</p>
-      </div>
-    </div>
-  </section>
-</div>
-
+<script src="i18n/translations.js"></script>
+<script src="i18n.js"></script>
+<script src="js/contact-form.js"></script>
 </body>
 </html>

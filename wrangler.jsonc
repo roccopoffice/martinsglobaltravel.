@@ -21,5 +21,12 @@
   "vars": {
     "SITE_URL": "https://martinsglobaltravel.com",
     "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V"
-  }
+  },
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "destination_address": "Jeanie@MartinsGlobalTravels.com",
+      "allowed_sender_addresses": ["website@martinsglobaltravels.com"]
+    }
+  ]
 }
