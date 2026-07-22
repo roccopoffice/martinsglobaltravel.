@@ -714,7 +714,7 @@ body.wc-popup-open{overflow:hidden}
 <nav id="nav">
   <div class="nav-logo" onclick="go('home')">
     <div class="nav-logo-wrap">
-      <img class="nav-logo-img" src="assets/mgt-logo.png" alt="Martins Global Travels — gold seal logo with MGT monogram and globe" data-i18n-alt="a11y.brandAlt" width="128" height="128" decoding="async">
+      <img class="nav-logo-img" src="assets/mgt-logo.png" alt="Martins Global Travels — gold seal logo with MGT monogram and globe" data-i18n-alt="a11y.brandAlt" data-i18n-alt="a11y.brandAlt" width="128" height="128" decoding="async">
       <div class="nav-logo-text">
         <span class="nav-name" data-i18n="brand.name">Martins Global Travels</span>
         <span class="nav-sub" data-i18n="brand.tagline">Where luxury meets the world</span>
@@ -736,7 +736,7 @@ body.wc-popup-open{overflow:hidden}
       <label class="visually-hidden" for="lang-select-desktop" data-i18n="a11y.langSwitcher">Select language</label>
       <select id="lang-select-desktop" class="lang-select" aria-label="Select language" data-i18n-aria="a11y.langSwitcher"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="ht">Kreyòl</option><option value="kea">Kabuverdianu</option><option value="fr">Français</option><option value="zh">中文</option></select>
     </div>
-    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode">
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode" data-i18n-aria="theme.darkMode">
       <span class="theme-toggle-track" aria-hidden="true">
         <span class="theme-icon theme-icon-sun">☀</span>
         <span class="theme-icon theme-icon-moon">☽</span>
@@ -765,7 +765,7 @@ body.wc-popup-open{overflow:hidden}
   <a href="portal.html" onclick="toggleMob()" data-i18n="nav.portal">Client Portal</a>
   <div class="mob-theme">
     <span data-i18n="theme.appearance">Appearance</span>
-    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode">
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode" data-i18n-aria="theme.darkMode">
       <span class="theme-toggle-track" aria-hidden="true">
         <span class="theme-icon theme-icon-sun">☀</span>
         <span class="theme-icon theme-icon-moon">☽</span>
@@ -779,7 +779,7 @@ body.wc-popup-open{overflow:hidden}
 <div class="toast" id="toast"></div>
 
 <!-- World Cup promo (home) -->
-<div id="wc-popup" class="wc-popup" role="dialog" aria-modal="true" aria-label="World Cup 2026 travel packages" data-i18n-aria="a11y.wcPopup" hidden>
+<div id="wc-popup" class="wc-popup" role="dialog" aria-modal="true" aria-label="World Cup 2026 travel packages" data-i18n-aria="a11y.wcPopup" data-i18n-aria="a11y.wcPopup" hidden>
   <div class="wc-popup-backdrop" onclick="closeWcPopup()" aria-hidden="true"></div>
   <div class="wc-popup-dialog">
     <div class="wc-popup-art">
@@ -788,7 +788,7 @@ body.wc-popup-open{overflow:hidden}
           src="assets/world-cup-popup.png?v=2"
           srcset="assets/world-cup-popup.png?v=2 1024w"
           sizes="(max-width: 920px) 92vw, 920px"
-          alt="World Cup 2026 travel packages — flights, hotels, transportation, and ticket assistance from Martins Global Travels." data-i18n-alt="wc.imgAlt"
+          alt="World Cup 2026 travel packages — flights, hotels, transportation, and ticket assistance from Martins Global Travels." data-i18n-alt="wc.imgAlt" data-i18n-alt="wc.imgAlt"
           width="1024"
           height="682"
           fetchpriority="high"
@@ -841,7 +841,7 @@ body.wc-popup-open{overflow:hidden}
         </div>
         <div class="hero-scroll">
           <div class="hero-scroll-line"></div>
-          <span data-i18n="common.scrollExplore"><span data-i18n="common.scrollExplore">Scroll to explore</span></span>
+          <span data-i18n="common.scrollExplore">Scroll to explore</span>
         </div>
       </div>
     </div>
@@ -887,7 +887,7 @@ body.wc-popup-open{overflow:hidden}
             <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=85" alt="Colorful streets of Lisbon, Portugal" width="800" height="1000" loading="lazy" data-local="assets/photos/dest-portugal">
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
-              <p class="td-card-region">Europe</p>
+              <p class="td-card-region" data-i18n="home.tdPortugalRegion">Europe</p>
               <h3 class="td-card-title" data-i18n="home.tdPortugalTitle">Portugal</h3>
               <p class="td-card-desc" data-i18n="home.tdPortugalDesc">Atlantic light, azulejo tiles, and soulful Fado — Lisbon, Porto, and the Algarve on your terms.</p>
               <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdPortugalBtn">Explore Portugal</button>
@@ -899,7 +899,7 @@ body.wc-popup-open{overflow:hidden}
             <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=85" alt="Sagrada Familia basilica in Barcelona, Spain" width="800" height="1000" loading="lazy" data-local="assets/photos/dest-spain">
             <div class="td-card-ov" aria-hidden="true"></div>
             <div class="td-card-content">
-              <p class="td-card-region">Europe</p>
+              <p class="td-card-region" data-i18n="home.tdSpainRegion">Europe</p>
               <h3 class="td-card-title" data-i18n="home.tdSpainTitle">Spain</h3>
               <p class="td-card-desc" data-i18n="home.tdSpainDesc">Moorish palaces, Gaudí's Barcelona, and sun-soaked coasts — rhythm, tapas, and pure passion.</p>
               <button type="button" class="td-card-btn" onclick="go('destinations')" data-i18n="home.tdSpainBtn">Explore Spain</button>
@@ -934,21 +934,21 @@ body.wc-popup-open{overflow:hidden}
       <div class="mq-item"><span data-i18n="home.mqPortugal">Portugal</span><span class="mq-sep"></span></div>
       <div class="mq-item"><span data-i18n="home.mqSpain">Spain</span><span class="mq-sep"></span></div>
       <div class="mq-item"><span data-i18n="home.mqSa">South Africa</span><span class="mq-sep"></span></div>
-      <div class="mq-item">Italy<span class="mq-sep"></span></div>
-      <div class="mq-item">China<span class="mq-sep"></span></div>
-      <div class="mq-item">Portugal<span class="mq-sep"></span></div>
-      <div class="mq-item">Spain<span class="mq-sep"></span></div>
-      <div class="mq-item">South Africa<span class="mq-sep"></span></div>
-      <div class="mq-item">Italy<span class="mq-sep"></span></div>
-      <div class="mq-item">China<span class="mq-sep"></span></div>
-      <div class="mq-item">Portugal<span class="mq-sep"></span></div>
-      <div class="mq-item">Spain<span class="mq-sep"></span></div>
-      <div class="mq-item">South Africa<span class="mq-sep"></span></div>
-      <div class="mq-item">Italy<span class="mq-sep"></span></div>
-      <div class="mq-item">China<span class="mq-sep"></span></div>
-      <div class="mq-item">Portugal<span class="mq-sep"></span></div>
-      <div class="mq-item">Spain<span class="mq-sep"></span></div>
-      <div class="mq-item">South Africa<span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqItaly">Italy</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqChina">China</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqPortugal">Portugal</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSpain">Spain</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSa">South Africa</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqItaly">Italy</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqChina">China</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqPortugal">Portugal</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSpain">Spain</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSa">South Africa</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqItaly">Italy</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqChina">China</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqPortugal">Portugal</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSpain">Spain</span><span class="mq-sep"></span></div>
+      <div class="mq-item"><span data-i18n="home.mqSa">South Africa</span><span class="mq-sep"></span></div>
     </div>
   </div>
 
@@ -989,28 +989,28 @@ body.wc-popup-open{overflow:hidden}
     </div>
     <div class="tours-scroll">
       <div class="tcard">
-        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldives" data-local="assets/photos/tour-01"><div class="tcard-cat">Beach &amp; Luxury</div><div class="tcard-days">10 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Maldives, Indian Ocean</div><div class="tcard-name">Maldives Overwater Escape</div><p class="tcard-desc">Private overwater villas, coral reef diving, and sunset cruises in the most pristine waters on earth.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
+        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldives" data-local="assets/photos/tour-01"><div class="tcard-cat" data-i18n="home.tour1Cat">Beach &amp; Luxury</div><div class="tcard-days" data-i18n="home.tour1Days">10 Days</div></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="home.tour1Loc">Maldives, Indian Ocean</span></div><div class="tcard-name" data-i18n="home.tour1Name">Maldives Overwater Escape</div><p class="tcard-desc" data-i18n="home.tour1Desc">Private overwater villas, coral reef diving, and sunset cruises in the most pristine waters on earth.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
-        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80" alt="Safari" data-local="assets/photos/tour-02"><div class="tcard-cat">Safari</div><div class="tcard-days">14 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tanzania, East Africa</div><div class="tcard-name">Great Migration Safari</div><p class="tcard-desc">Witness 1.5 million wildebeest cross the Serengeti — one of nature's greatest spectacles.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
+        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80" alt="Safari" data-local="assets/photos/tour-02"><div class="tcard-cat" data-i18n="home.tour2Cat">Safari</div><div class="tcard-days" data-i18n="home.tour2Days">14 Days</div></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="home.tour2Loc">Tanzania, East Africa</span></div><div class="tcard-name" data-i18n="home.tour2Name">Great Migration Safari</div><p class="tcard-desc" data-i18n="home.tour2Desc">Witness 1.5 million wildebeest cross the Serengeti — one of nature's greatest spectacles.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
-        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=90" alt="Japan" data-local="assets/photos/tour-03"><div class="tcard-cat">Cultural</div><div class="tcard-days">12 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Japan, East Asia</div><div class="tcard-name">Japan Cherry Blossom</div><p class="tcard-desc">Tokyo, Kyoto, and Osaka during sakura season — an unforgettable cultural immersion.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
+        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=90" alt="Japan" data-local="assets/photos/tour-03"><div class="tcard-cat" data-i18n="home.tour3Cat">Cultural</div><div class="tcard-days" data-i18n="home.tour3Days">12 Days</div></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="home.tour3Loc">Japan, East Asia</span></div><div class="tcard-name" data-i18n="home.tour3Name">Japan Cherry Blossom</div><p class="tcard-desc" data-i18n="home.tour3Desc">Tokyo, Kyoto, and Osaka during sakura season — an unforgettable cultural immersion.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
-        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=80" alt="Greece" data-local="assets/photos/tour-04"><div class="tcard-cat">Luxury</div><div class="tcard-days">8 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Greece, Mediterranean</div><div class="tcard-name">Greek Islands Yacht Charter</div><p class="tcard-desc">Private yacht hopping across Santorini, Mykonos, and Crete with your personal crew.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
+        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=80" alt="Greece" data-local="assets/photos/tour-04"><div class="tcard-cat" data-i18n="home.tour4Cat">Luxury</div><div class="tcard-days" data-i18n="home.tour4Days">8 Days</div></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="home.tour4Loc">Greece, Mediterranean</span></div><div class="tcard-name" data-i18n="home.tour4Name">Greek Islands Yacht Charter</div><p class="tcard-desc" data-i18n="home.tour4Desc">Private yacht hopping across Santorini, Mykonos, and Crete with your personal crew.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
-        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=600&q=80" alt="Iceland" data-local="assets/photos/tour-05"><div class="tcard-cat">Adventure</div><div class="tcard-days">9 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Iceland, North Atlantic</div><div class="tcard-name">Northern Lights Iceland</div><p class="tcard-desc">Chase the aurora borealis and soak in geothermal pools under a painted sky.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
+        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=600&q=80" alt="Iceland" data-local="assets/photos/tour-05"><div class="tcard-cat" data-i18n="home.tour5Cat">Adventure</div><div class="tcard-days" data-i18n="home.tour5Days">9 Days</div></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="home.tour5Loc">Iceland, North Atlantic</span></div><div class="tcard-name" data-i18n="home.tour5Name">Northern Lights Iceland</div><p class="tcard-desc" data-i18n="home.tour5Desc">Chase the aurora borealis and soak in geothermal pools under a painted sky.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
       <div class="tcard">
-        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Patagonia" data-local="assets/photos/tour-06"><div class="tcard-cat">Adventure</div><div class="tcard-days">16 Days</div></div>
-        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Patagonia, South America</div><div class="tcard-name">Patagonia Wilderness Trek</div><p class="tcard-desc">Glacier trekking, condor sightings, and end-of-the-world fjords across Argentina and Chile.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
+        <div class="tcard-img"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Patagonia" data-local="assets/photos/tour-06"><div class="tcard-cat" data-i18n="home.tour6Cat">Adventure</div><div class="tcard-days" data-i18n="home.tour6Days">16 Days</div></div>
+        <div class="tcard-body"><div class="tcard-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="home.tour6Loc">Patagonia, South America</span></div><div class="tcard-name" data-i18n="home.tour6Name">Patagonia Wilderness Trek</div><p class="tcard-desc" data-i18n="home.tour6Desc">Glacier trekking, condor sightings, and end-of-the-world fjords across Argentina and Chile.</p><button class="tcard-btn" onclick="go('contact')" data-i18n="common.enquireNow">Enquire Now</button></div>
       </div>
     </div>
     <!-- Scroll indicator -->
@@ -1018,7 +1018,7 @@ body.wc-popup-open{overflow:hidden}
       <div class="tours-track"><div class="tours-thumb" id="toursThumb"></div></div>
       <div class="tours-scroll-hint">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="6"/><circle cx="12" cy="8" r="2" fill="currentColor"/></svg>
-        <span data-i18n="common.scrollMore">Scroll to see more</span>
+        <span data-i18n="common.scrollMore"><span data-i18n="common.scrollMore">Scroll to see more</span></span>
       </div>
     </div>
   </section>
@@ -1065,7 +1065,7 @@ body.wc-popup-open{overflow:hidden}
     </div>
     <div>
       <div class="nl-form">
-        <input class="nl-inp" type="email" data-i18n-placeholder="home.nlPlaceholder" placeholder="Your email address...">
+        <input class="nl-inp" type="email" data-i18n-placeholder="home.nlPlaceholder" data-i18n-placeholder="home.nlPlaceholder" placeholder="Your email address...">
         <button class="nl-btn" onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.subscribed'))||'Subscribed! Welcome aboard.')" data-i18n="common.subscribe">Subscribe</button>
       </div>
       <p style="font-size:11px;color:var(--dimmer);margin-top:12px;font-weight:300" data-i18n="footer.noSpam">No spam, ever. Unsubscribe any time.</p>
@@ -1090,7 +1090,7 @@ body.wc-popup-open{overflow:hidden}
       <div><div class="ft-ch" data-i18n="footer.destinations">Destinations</div><ul class="ft-links"><li><a onclick="go('destinations')">Maldives</a></li><li><a onclick="go('destinations')">Africa Safaris</a></li><li><a onclick="go('destinations')">Japan &amp; Asia</a></li><li><a onclick="go('destinations')">Europe</a></li><li><a onclick="go('destinations')">Caribbean</a></li><li><a onclick="go('destinations')">South America</a></li></ul></div>
       <div><div class="ft-ch" data-i18n="footer.packages">Packages</div><ul class="ft-links"><li><a onclick="go('packages')">Honeymoons</a></li><li><a onclick="go('packages')">Family Holidays</a></li><li><a onclick="go('packages')">Adventure Tours</a></li><li><a onclick="go('packages')">Luxury Escapes</a></li><li><a onclick="go('packages')">Cruises</a></li></ul></div>
       <div><div class="ft-ch" data-i18n="footer.company">Company</div><ul class="ft-links"><li><a onclick="go('about')" data-i18n="footer.aboutUs">About Us</a></li><li><a onclick="go('about')" data-i18n="footer.ourTeam">Our Team</a></li><li><a onclick="go('faq')" data-i18n="nav.faq">FAQ</a></li>
-<li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.blogSoon'))||'Blog coming soon!')" data-i18n="footer.travelBlog">Travel Blog</a></li><li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.careersSoon'))||'Careers coming soon!')" data-i18n="footer.careers">Careers</a></li></ul></div>
+<li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.blogSoon'))||'Blog coming soon!')" data-i18n="footer.travelBlog" data-i18n="footer.travelBlog">Travel Blog</a></li><li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.careersSoon'))||'Careers coming soon!')" data-i18n="footer.careers" data-i18n="footer.careers">Careers</a></li></ul></div>
       <div><div class="ft-ch" data-i18n="footer.contact">Contact</div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">1350 Belmont St, Suite 114, Brockton, MA</div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><span data-i18n="footer.licensed">Licensed US Travel Agency</span></div></div></div>
     </div>
     <div class="ft-bot"><div class="ft-copy" data-i18n="footer.copyright">© 2026 Martins Global Travels. All Rights Reserved.</div><div class="ft-leg"><a onclick="go('privacy')" data-i18n="common.privacy">Privacy</a><a onclick="go('terms')" data-i18n="common.terms">Terms</a><a onclick="goPrivacyCookies()" data-i18n="common.cookies">Cookies</a></div></div>
@@ -2054,6 +2054,7 @@ body.wc-popup-open{overflow:hidden}
   </section>
 </div>
 
+
 <script>
 // World Cup home popup
 var WC_POPUP_KEY='mgt_wc_popup_closed';
@@ -2218,6 +2219,14 @@ document.addEventListener('DOMContentLoaded',function(){
     }
     tryNext();
   });
+});
+
+document.addEventListener('martins:langchange', function () {
+  var active = document.querySelector('.fb.on');
+  if (active && typeof filterDest === 'function') {
+    var match = (active.getAttribute('onclick') || '').match(/filterDest\('([^']+)'/);
+    filterDest(match ? match[1] : 'all', active);
+  }
 });
 </script>
 <script src="i18n/translations.js"></script>

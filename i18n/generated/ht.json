@@ -1,0 +1,769 @@
+{
+  "meta": {
+    "title": "Martins Global Travels"
+  },
+  "nav": {
+    "home": "Lakay",
+    "destinations": "Destinasyon",
+    "packages": "Pakè",
+    "faq": "FAQ",
+    "about": "Konsènan",
+    "contact": "Kontakte",
+    "portal": "Portal Kliyan",
+    "bookNow": "Liv kounye a"
+  },
+  "brand": {
+    "name": "Martins Global Travels",
+    "tagline": "Kote liksye rankontre mond lan"
+  },
+  "a11y": {
+    "langSwitcher": "Chwazi lang",
+    "brandAlt": "Martins Global Travels — logo sele lò ak monogram MGT ak glòb",
+    "wcPopup": "Pakè vwayaj koup dimond 2026",
+    "close": "Fèmen"
+  },
+  "theme": {
+    "appearance": "Aparans",
+    "light": "Limyè",
+    "darkMode": "Chanje nan mòd nwa"
+  },
+  "form": {
+    "sendEnquiry": "Voye ankèt",
+    "sending": "Voye...",
+    "success": "Ankèt voye! Jeanie pral kontakte nan 24 èdtan.",
+    "error": "Pa t 'kapab voye - tanpri rele (508) 232-3003 oswa imèl Jeanie@MartinsGlobalTravels.com.",
+    "title": "Voye yon ankèt",
+    "subtitle": "Ranpli fòm nan epi Jeanie ap reponn nan 24 èdtan.",
+    "firstName": "Premye Non",
+    "lastName": "Siyati",
+    "email": "Imèl",
+    "phone": "Telefòn",
+    "destination": "Destinasyon",
+    "package": "Pake",
+    "departureDate": "Dat Depa",
+    "travelers": "Vwayajè",
+    "message": "Pale nou sou vwayaj rèv ou",
+    "messagePlaceholder": "Pataje nenpòt demann espesyal, enterè, oswa eksperyans ki dwe genyen...",
+    "selectRegion": "Chwazi rejyon...",
+    "selectPackage": "Chwazi pake...",
+    "note": "Enfòmasyon ou an sekirite epi yo pap janm pataje ak twazyèm pati.",
+    "placeholderFirst": "John",
+    "placeholderLast": "Smith",
+    "placeholderEmail": "john@email.com",
+    "placeholderPhone": "(508) 555-1234"
+  },
+  "toast": {
+    "subscribed": "Abòne! Byenvini abò.",
+    "blogSoon": "Blog ap vini byento!",
+    "careersSoon": "Karyè ap vini byento!"
+  },
+  "common": {
+    "enquire": "Mande",
+    "explore": "Eksplore",
+    "scrollExplore": "Scroll pou eksplore",
+    "scrollMore": "Scroll pou wè plis",
+    "allDestinations": "Tout Destinasyon",
+    "viewAllDestinations": "Gade tout destinasyon yo",
+    "enquireNow": "Mande kounye a",
+    "contactUs": "Kontakte nou",
+    "planMyTrip": "Planifye vwayaj mwen an",
+    "subscribe": "Abònman",
+    "privacy": "Konfidansyalite",
+    "terms": "Regleman",
+    "cookies": "Cookies",
+    "days": "Jou",
+    "showingAll": "Montre tout {n} destinasyon yo",
+    "showingCat": "Montre destinasyon {n} {cat}",
+    "showingCats": "Montre {n} {cat} destinasyon yo"
+  },
+  "footer": {
+    "quote": "\"Mond lan se yon liv, ak moun ki pa vwayaje li sèlman yon paj.\"",
+    "destinations": "Destinasyon",
+    "packages": "Pakè",
+    "company": "Konpayi",
+    "contact": "Kontakte",
+    "aboutUs": "Sou nou",
+    "ourTeam": "Ekip nou an",
+    "travelBlog": "Blog vwayaj",
+    "careers": "Karyè",
+    "licensed": "Ajans vwayaj ameriken ki gen lisans",
+    "copyright": "© 2026 Martins Global Travels. Tout dwa rezève.",
+    "noSpam": "Pa gen spam, tout tan. Dezabòne nenpòt ki lè.",
+    "maldives": "Maldiv",
+    "africaSafaris": "Afrik Safaris",
+    "japanAsia": "Japon ak Azi",
+    "europe": "Ewòp",
+    "caribbean": "Karayib la",
+    "southAmerica": "Amerik di Sid",
+    "honeymoons": "Lin de myèl",
+    "familyHolidays": "Jou Ferye Fanmi",
+    "adventureTours": "Tours avanti",
+    "luxuryEscapes": "Sove Luxury",
+    "cruises": "Kwazyè"
+  },
+  "wc": {
+    "continue": "Kontinye navige",
+    "book": "Liv eksperyans ou",
+    "imgAlt": "Pake vwayaj World Cup 2026 — vòl, otèl, transpò, ak asistans tikè nan men Martins Global Travels."
+  },
+  "home": {
+    "heroLine1": "Mond lan",
+    "heroLine2": "Ki pi ekstraòdinè",
+    "heroLine2html": "Pifò <em>Ekstrawòdinè</em>",
+    "heroLine3": "Destinasyon",
+    "heroDesc": "Vwayaj tayè ki fèt antyèman bò kote ou - soti nan Villas sou dlo rive nan dezè safari ak tout bagay ant.",
+    "exploreDestinations": "Eksplore Destinasyon",
+    "viewPackages": "Gade pakè yo",
+    "statDestinations": "Destinasyon",
+    "statContinents": "Kontinan",
+    "topDestinations": "Top Destinasyon",
+    "whereNext": "Ki kote w pral",
+    "whereNextEm": "Ale Next?",
+    "whereNextHtml": "Ki kote w ap <br><em>ale apre?</em>",
+    "signatureFoot": "Senk peyi siyati nou yo - chwazi alamen pou vwayaj ki fèt sou mezi atravè lemond.",
+    "aboutTag": "Konsènan Martins Global Travels",
+    "aboutTitle": "Yon Ajans Vwayaj Bati",
+    "aboutTitleEm": "Bò kote w",
+    "aboutTitleHtml": "Yon Ajans Vwayaj Konstwi<br>Anviwon <em>Ou</em>",
+    "aboutBody": "Martins Global Travels te bati sou yon sèl kwayans - chak vwayajè merite yon vwayaj fabrike antyèman alantou yo. Espesyalis nou yo pèsonèlman eksplore chak destinasyon yo rekòmande. Pa gen modèl, pa gen devine.",
+    "pill1": "120+ Destinasyon",
+    "pill2": "6 Kontinan",
+    "pill3": "Sipò 24/7",
+    "pill4": "100% Adapte",
+    "ourStory": "Istwa nou an",
+    "featuredJourneys": "En Vwayaj",
+    "curatedItineraries": "Curated nou an",
+    "curatedEm": "Itinerè",
+    "curatedHtml": "<em>Itinerè nou yo</em>",
+    "allPackages": "Tout pakè",
+    "whyTag": "Poukisa Martins Global Travels",
+    "whyTitle": "Vwayaj Bati",
+    "whyEm": "Yon lòt jan",
+    "whyTitleHtml": "Vwayaj Bati <em>Diferans</em>",
+    "whyLead": "Nou okipe tout detay pou ou ka konsantre antyèman sou eksperyans la.",
+    "readyTag": "Pare pou vwayaje?",
+    "readyTitle": "Vwayaj rèv ou",
+    "readyEm": "Kòmanse isit la",
+    "readyTitleHtml": "Vwayaj rèv ou<br><em>Komanse isit la</em>",
+    "readyBody": "Di nou ki kote ou vle ale. Espesyalis nou yo pral fè tout detay nan vwayaj pafè ou a - tout sa ou dwe fè se parèt.",
+    "nlTag": "Rete Enspire",
+    "nlTitle": "Fè premye",
+    "nlEm": "Dekouvri",
+    "nlTitle2": "Afè eksklizif nou yo",
+    "nlTitleHtml": "Se pou premye <em>Dekouvri</em><br>Oferte eksklizif nou yo",
+    "nlBody": "Ofri eksklizif, gid destinasyon, ak enspirasyon vwayaj nan men espesyalis nou yo.",
+    "nlPlaceholder": "Adrès imel ou...",
+    "why1t": "Pèsonèlman òganize",
+    "why1d": "Chak otèl, gid, ak eksperyans yo kontwole pèsonèlman. Nou sèlman rekòmande kote ekip nou an te ale nan tèt yo.",
+    "why2t": "Konplètman Pwoteje",
+    "why2d": "Envèstisman vwayaj ou a konplètman an sekirite. Nou travay sèlman ak founisè ki fè konfyans, ki verifye epi nou pote asirans responsablite ajan vwayaj konplè.",
+    "why3t": "Rezo mondyal",
+    "why3d": "Yon rezo ak anpil atansyon òganize ekspè lokal ou fè konfyans atravè chak destinasyon nou ofri, ki ba ou aksè a eksperyans ki pa disponib nenpòt lòt kote.",
+    "why4t": "Sipò 24/7",
+    "why4d": "Sèvis gardyen toutan. Kèlkeswa kote ou ye nan mond lan, ekip nou an toujou jis yon apèl lwen.",
+    "tdItalyRegion": "Ewòp",
+    "tdItalyTitle": "Itali",
+    "tdItalyDesc": "Soti nan kanal Venetian rive nan ti mòn Tuscan - atizay, cuisine, ak la dolce vita adapte a vitès ou.",
+    "tdItalyBtn": "Eksplore Itali",
+    "tdChinaRegion": "Azi de Lès",
+    "tdChinaTitle": "Lachin",
+    "tdChinaDesc": "Ansyen mèvèy ak vil ultramodernes - gid prive debloke istwa, gou, ak spektak.",
+    "tdChinaBtn": "Eksplore Lachin",
+    "tdPortugalRegion": "Ewòp",
+    "tdPortugalTitle": "Pòtigal",
+    "tdPortugalDesc": "Limyè Atlantik, mozayik azulejo, ak fado soul - Lisbon, Porto, ak Algarve nan kondisyon ou.",
+    "tdPortugalBtn": "Eksplore Pòtigal",
+    "tdSpainRegion": "Ewòp",
+    "tdSpainTitle": "Espay",
+    "tdSpainDesc": "Palè mor, Barcelona Gaudí a, ak kòt solèy tranpe - ritm, tapas, ak pasyon pi.",
+    "tdSpainBtn": "Eksplore Espay",
+    "tdSaRegion": "Lafrik",
+    "tdSaTitle": "Lafrik di sid",
+    "tdSaDesc": "Elegans Cape rankontre Big Five safari - wout diven, kòt dramatik, ak bèt sovaj inoubliyab.",
+    "tdSaBtn": "Eksplore Lafrik di sid",
+    "mqItaly": "Italy",
+    "mqChina": "China",
+    "mqPortugal": "Portugal",
+    "mqSpain": "Espay",
+    "mqSa": "Lafrik di sid",
+    "tour1Cat": "Beach & Luxury",
+    "tour1Days": "10 jou",
+    "tour1Loc": "Maldiv, Oseyan Endyen",
+    "tour1Name": "Maldiv Overwater chape",
+    "tour1Desc": "Vila prive sou dlo, plonje resif koray, ak kwazyè solèy kouche nan dlo ki pi primitif sou tè a.",
+    "tour2Cat": "Safari",
+    "tour2Days": "14 jou",
+    "tour2Loc": "Tanzani, Afrik de Lès",
+    "tour2Name": "Gwo Migrasyon Safari",
+    "tour2Desc": "Temwen 1.5 milyon gnu travèse Serengeti a - youn nan pi gwo spektak lanati.",
+    "tour3Cat": "Kiltirèl",
+    "tour3Days": "12 jou",
+    "tour3Loc": "Japon, Azi de Lès",
+    "tour3Name": "Japon Cherry Blossom",
+    "tour3Desc": "Tokyo, Kyoto, ak Osaka pandan sezon sakura - yon imèsyon kiltirèl inoubliyab.",
+    "tour4Cat": "Luxury",
+    "tour4Days": "8 Jou",
+    "tour4Loc": "Lagrès, Mediterane",
+    "tour4Name": "Greek Islands Yatch Charter",
+    "tour4Desc": "Prive yatch sote atravè Santorini, Mykonos, ak Krèt ak ekipaj pèsonèl ou.",
+    "tour5Cat": "Avanti",
+    "tour5Days": "9 Jou",
+    "tour5Loc": "Islann, Atlantik Nò",
+    "tour5Name": "Northern Lights Islann",
+    "tour5Desc": "Chase aurora borealis ak tranpe nan pisin jewotèmal anba yon syèl ki pentire.",
+    "tour6Cat": "Avanti",
+    "tour6Days": "16 jou",
+    "tour6Loc": "Patagonia, Amerik di Sid",
+    "tour6Name": "Patagonia dezè charyo",
+    "tour6Desc": "Trekking Glasye, wè kondò, ak fyord nan fen mond lan atravè Ajantin ak Chili."
+  },
+  "dest": {
+    "heroEyebrow": "57 Top Destinasyon",
+    "heroTitle1": "Eksplore mond lan",
+    "heroTitleEm": "San limit",
+    "heroTitleHtml": "Eksplore mond lan<br><em>San limit</em>",
+    "heroSub": "Soti nan kachèt zile izole yo nan kapital kosmopolit - chak kwen nan glòb la se nan rive.",
+    "filterAll": "Tout (57)",
+    "filterBeach": "Beach & Islands",
+    "filterSafari": "Safari & dezè",
+    "filterCulture": "Kilti ak Istwa",
+    "filterAdventure": "Avanti",
+    "filterFood": "Manje & Diven",
+    "filterCity": "Jwèt City Breaks",
+    "countDefault": "Montre tout 57 destinasyon yo",
+    "cards": {
+      "maldives": {
+        "region": "Oseyan Endyen Beach & Islands",
+        "name": "Maldives"
+      },
+      "bora_bora": {
+        "region": "Polinesi franse Beach & Islands",
+        "name": "Bora Bora"
+      },
+      "santorini": {
+        "region": "Grès Beach & Islands",
+        "name": "Santorini"
+      },
+      "amalfi_coast": {
+        "region": "Itali Beach & Islands",
+        "name": "Amalfi Coast"
+      },
+      "seychelles": {
+        "region": "East Afrik Beach & Islands",
+        "name": "Seychelles"
+      },
+      "bali": {
+        "region": "Endonezi Beach & Islands",
+        "name": "Bali"
+      },
+      "phuket": {
+        "region": "Thailand Beach & Islands",
+        "name": "Phuket"
+      },
+      "maldives_resorts": {
+        "region": "Oseyan Endyen Beach & Islands",
+        "name": "Maldives Resorts"
+      },
+      "mykonos": {
+        "region": "Grès Beach & Islands",
+        "name": "Mykonos"
+      },
+      "mauritius": {
+        "region": "Oseyan Endyen Beach & Islands",
+        "name": "Mauritius"
+      },
+      "fiji": {
+        "region": "South Pacific Beach & Islands",
+        "name": "Fiji"
+      },
+      "zanzibar": {
+        "region": "East Afrik Beach & Islands",
+        "name": "Zanzibar"
+      },
+      "serengeti_plains": {
+        "region": "Tanzani Safari & Wilderness",
+        "name": "Serengeti Plains"
+      },
+      "masai_mara_savanna": {
+        "region": "Kenya Safari & Wilderness",
+        "name": "Masai Mara Savanna"
+      },
+      "okavango_delta": {
+        "region": "Botswana Safari & Wilderness",
+        "name": "Okavango Delta"
+      },
+      "cape_town": {
+        "region": "Lafrik di sid Safari & Wilderness",
+        "name": "Cape Town"
+      },
+      "victoria_falls": {
+        "region": "Zimbabwe/Zanbi Safari & Wilderness",
+        "name": "Victoria Falls"
+      },
+      "namib_desert": {
+        "region": "Namibi Safari & Wilderness",
+        "name": "Namib Desert"
+      },
+      "kyoto": {
+        "region": "Kilti ak Istwa Japon",
+        "name": "Kyoto"
+      },
+      "rome": {
+        "region": "Itali Kilti ak Istwa",
+        "name": "Rome"
+      },
+      "paris": {
+        "region": "Lafrans Kilti ak Istwa",
+        "name": "Paris"
+      },
+      "marrakech": {
+        "region": "Kilti ak Istwa Maròk",
+        "name": "Marrakech"
+      },
+      "petra": {
+        "region": "Kilti ak Istwa lòt bò larivyè Jouden",
+        "name": "Petra"
+      },
+      "machu_picchu": {
+        "region": "Kilti ak Istwa Perou",
+        "name": "Machu Picchu"
+      },
+      "angkor_wat": {
+        "region": "Kilti Kanbòdj ak Istwa",
+        "name": "Angkor Wat"
+      },
+      "istanbul": {
+        "region": "Kilti ak Istwa Turkey",
+        "name": "Istanbul"
+      },
+      "cairo_pyramids": {
+        "region": "Kilti ak Istwa peyi Lejip",
+        "name": "Cairo & Pyramids"
+      },
+      "athens": {
+        "region": "Lagrès Kilti ak Istwa",
+        "name": "Athens"
+      },
+      "barcelona": {
+        "region": "Espay Kilti ak Istwa",
+        "name": "Barcelona"
+      },
+      "prague": {
+        "region": "Repiblik Tchekoslovaki Kilti ak Istwa",
+        "name": "Prague"
+      },
+      "lisbon": {
+        "region": "Pòtigal Kilti ak Istwa",
+        "name": "Lisbon"
+      },
+      "budapest": {
+        "region": "Ongri Kilti ak Istwa",
+        "name": "Budapest"
+      },
+      "iceland": {
+        "region": "Nò Atlantik avanti",
+        "name": "Iceland"
+      },
+      "patagonia": {
+        "region": "Chili/Ajantin avanti",
+        "name": "Patagonia"
+      },
+      "swiss_alps": {
+        "region": "Swis avanti",
+        "name": "Swiss Alps"
+      },
+      "norwegian_fjords": {
+        "region": "Nòvèj avanti",
+        "name": "Norwegian Fjords"
+      },
+      "nepal": {
+        "region": "Azi Sid avanti",
+        "name": "Nepal"
+      },
+      "new_zealand": {
+        "region": "South Pasifik avanti",
+        "name": "New Zealand"
+      },
+      "canadian_rockies": {
+        "region": "Kanada avanti",
+        "name": "Canadian Rockies"
+      },
+      "lofoten_islands": {
+        "region": "Nòvèj avanti",
+        "name": "Lofoten Islands"
+      },
+      "dolomites": {
+        "region": "Itali avanti",
+        "name": "Dolomites"
+      },
+      "gal_pagos_islands": {
+        "region": "Ekwatè avanti",
+        "name": "Galápagos Islands"
+      },
+      "tuscany": {
+        "region": "Itali Manje & Diven",
+        "name": "Tuscany"
+      },
+      "osaka_kyoto": {
+        "region": "Japon manje ak diven",
+        "name": "Osaka & Kyoto"
+      },
+      "san_sebasti_n": {
+        "region": "Espay Manje & Diven",
+        "name": "San Sebastián"
+      },
+      "singapore": {
+        "region": "Azi Sidès Manje & Diven",
+        "name": "Singapore"
+      },
+      "bangkok": {
+        "region": "Thailand Manje & Diven",
+        "name": "Bangkok"
+      },
+      "copenhagen": {
+        "region": "Denmark Manje & Diven",
+        "name": "Copenhagen"
+      },
+      "new_york": {
+        "region": "Etazini City Breaks",
+        "name": "New York"
+      },
+      "london": {
+        "region": "UK City Breaks",
+        "name": "London"
+      },
+      "dubai": {
+        "region": "UAE City Breaks",
+        "name": "Dubai"
+      },
+      "tokyo": {
+        "region": "Japon City Breaks",
+        "name": "Tokyo"
+      },
+      "sydney": {
+        "region": "Ostrali City Breaks",
+        "name": "Sydney"
+      },
+      "amsterdam": {
+        "region": "Netherlands City Breaks",
+        "name": "Amsterdam"
+      },
+      "vienna": {
+        "region": "Otrich City Breaks",
+        "name": "Vienna"
+      },
+      "rio_de_janeiro": {
+        "region": "Brezil City Breaks",
+        "name": "Rio de Janeiro"
+      },
+      "mexico_city": {
+        "region": "Meksik City Breaks",
+        "name": "Mexico City"
+      }
+    }
+  },
+  "packages": {
+    "heroEyebrow": "Pakè vwayaj",
+    "heroTitle1": "Chwazi ou",
+    "heroTitleEm": "Vwayaj pafè",
+    "heroTitleHtml": "Chwazi <br><em>Vwayaj pafè w la</em>",
+    "heroSub": "Pake byen estriktire pou chak estil vwayaj - soti nan chape entim rive nan gwo ekspedisyon.",
+    "tag": "Pakè nou yo",
+    "title": "Jwenn dwa a",
+    "titleEm": "Pake",
+    "titleHtml": "Jwenn bon <em>Pake</em>",
+    "tier1": "Nivo Youn",
+    "essentialName": "Esansyèl Explorer",
+    "essentialSub": "Entwodiksyon pafè a nan vwayaj nan lemonn",
+    "tier2": "Nivo De",
+    "signatureName": "Vwayaj siyati",
+    "signatureSub": "Eksperyans vwayaj prim nou an",
+    "tier3": "Nivo Twa",
+    "ultraName": "Ultra Luxury",
+    "ultraSub": "Pinacle nan vwayaj nan lemonn",
+    "mostPopular": "Ki pi popilè",
+    "featReturnFlights": "Vòl retounen enkli",
+    "feat3Star": "3-zetwal aranjman",
+    "featAirportXfer": "Transfè ayewopò",
+    "featBreakfast": "Dejene chak jou",
+    "featConcierge": "Concierge dedye",
+    "featPrivateGuides": "Gid prive",
+    "featBusinessClass": "Vòl nan klas biznis",
+    "feat5Star": "5-zetwal aranjman",
+    "featPrivateXfer": "Transfè prive",
+    "featAllMeals": "Tout repa enkli",
+    "featPersonalConcierge": "Concierge pèsonèl",
+    "featPrivateJet": "Avyon prive ki disponib",
+    "featVillas": "Villas prive eksklizif",
+    "featHeli": "Transfè elikoptè",
+    "featGourmet": "Gastronomie tout-enklizif",
+    "featButler": "24 sou 24, 7j / 7 pèsonèl kanbiz",
+    "featUnlimited": "Eksperyans san limit",
+    "getStarted": "Kòmanse",
+    "bookSignature": "Siyati Liv",
+    "requestQuote": "Mande Quote",
+    "enhanceTag": "Amelyorasyon",
+    "enhanceTitle": "Elve ou",
+    "enhanceEm": "Eksperyans",
+    "enhanceTitleHtml": "Ogmante <em>Eksperyans ou</em>",
+    "addDining": "Fine Gastronomie Upgrade",
+    "addDiningDesc": "Rezèvasyon restoran ki gen zetwal Michelin nan destinasyon ou yo, pre-rezerve ak konfime.",
+    "addWellness": "Byennèt & Spa",
+    "addWellnessDesc": "Tretman spa chak jou, sesyon yoga, ak eksperyans byennèt nan enstalasyon klas mondyal.",
+    "addPhoto": "Fotograf prive",
+    "addPhotoDesc": "Yon fotograf vwayaj pwofesyonèl dokimante vwayaj ou ak simagri sansasyonèl, dirab.",
+    "addHeli": "Sou entènèt jwèt Tours elikoptè",
+    "addHeliDesc": "Eksperyans elikoptè prive sou peyizaj iconik - fyord, vòlkan, ak glasye."
+  },
+  "about": {
+    "storyTag": "Istwa nou an",
+    "storyTitle1": "Plis pase yon vwayaj",
+    "storyTitle2": "Ajans.",
+    "storyTitleEm": "Yon Vizyon.",
+    "storyTitleHtml": "Plis Pase yon Ajans Vwayaj<br>. <em>Yon Vizyon.</em>",
+    "storyBody": "Bati sou kwayans ke chak vwayajè merite yon eksperyans vrèman pèsonèl - pa yon pake, pa yon modèl, men yon vwayaj fabrike antyèman alantou ou.",
+    "planJourney": "Planifye vwayaj ou",
+    "whoTag": "Ki moun nou ye",
+    "whoTitle1": "Pasyon pou vwayaj",
+    "whoTitleEm": "nan ADN nou an",
+    "whoTitleHtml": "Pasyon pou vwayaje<br><em>nan ADN nou an</em>",
+    "whoP1": "Martins Global Travels te fèt nan yon sèl kwayans: ke vwayaj, fè byen, gen pouvwa a chanje lavi. Fondatè nou an, Martins, te pase plizyè ane ap eksplore pi gwo destinasyon mond lan e li te bati ajans sa a pou pataje sans sa a mèvèy — avèk konfò ak presizyon vwayajè modèn yo merite.",
+    "whoP2": "Ekip espesyalis konsèpteur vwayaj nou yo pasyone pou chak destinasyon nou ofri. Chak moun pèsonèlman eksplore kote yo rekòmande yo - nou pa janm sijere nenpòt kote nou pa te fè eksperyans premye men.",
+    "whoP3": "Soti nan seleksyon metikuleu otèl la pafè a bay sipò an tan reyèl pandan w ap sou wout la - tout sa nou fè se gide pa yon sèl kesyon: ki sa ki ta fè vwayaj sa a pi ekstraòdinè nan lavi ou?",
+    "pillarVision": "Vizyon",
+    "pillarVisionT": "Vwayaj ou a, pasyon nou",
+    "pillarVisionD": "Chak vwayaj reflete lanmou pwofon nou pou vwayaj ak angajman nou pou fè eksperyans ou vrèman ekstraòdinè.",
+    "pillarApproach": "Apwòch",
+    "pillarApproachT": "Atizanal, pa otomatik",
+    "pillarApproachD": "Pa gen algoritm, pa gen okenn modèl jenerik. Chak chimen bati pa yon espesyalis ki te la tèt yo.",
+    "pillarReach": "Rive",
+    "pillarReachT": "Plis pase 120 destinasyon atravè lemond",
+    "pillarReachD": "Soti nan ans twopikal ki kache yo rive nan kapital kiltirèl ki brize - rezo nou an kouvri tout kontinan.",
+    "pillarPromise": "Pwomèt",
+    "pillarPromiseT": "Toujou La Pou Ou",
+    "pillarPromiseD": "24/7 sipò anvan, pandan, ak apre vwayaj ou. Nou pa disparèt apre yo fin fè anrjistreman an.",
+    "valuesTag": "Valè nou yo",
+    "valuesTitle1": "Prensip Sa",
+    "valuesTitleEm": "Gid tout bagay",
+    "valuesTitleHtml": "Prensip ki<br>Gid <em>Tout</em>",
+    "val1t": "Otantisite Premye",
+    "val1d": "Nou konsepsyon eksperyans ki konekte ou ak kilti reyèl, moun reyèl, ak moman reyèl - pi lwen pase kaz touris yo.",
+    "val2t": "Ekselans inplakabl",
+    "val2d": "Chak otèl enspekte, chak gid fòme, chak itinerè teste estrès anvan nou rekòmande li nan yon sèl kliyan.",
+    "val3t": "Vwayaj Responsab",
+    "val3d": "Nou chwazi ak anpil atansyon operatè responsab epi nou angaje nan pratik vwayaj dirab, etik nan chak destinasyon.",
+    "val4t": "Total Transparency",
+    "val4d": "Pa gen frè kache, pa gen sipriz. Sa ou wè se egzakteman sa ou jwenn - toujou deklare klèman davans.",
+    "val5t": "Koneksyon imen",
+    "val5d": "Espesyalis reyèl, konvèsasyon reyèl - w ap toujou pale ak yon moun ki vrèman gen sousi pou vwayaj ou.",
+    "val6t": "Vwayaj ou, toujou",
+    "val6d": "Nou bati chak vwayaj antyèman alantou ou - preferans ou, vitès ou, bidjè ou, rèv ou.",
+    "commitTag": "Angajman nou yo",
+    "commitTitle1": "Ki sa ou ka toujou",
+    "commitTitleEm": "Atann nan men nou",
+    "commitTitleHtml": "Sa w ka toujou <em>Atann nan men nou</em>",
+    "commitLead": "Sa yo pa prim - se pwomès. Chak vwayaj, chak fwa.",
+    "c1t": "Konplètman Asire ak Lisans",
+    "c1d": "Nou se yon ajans vwayaj Ozetazini ki gen lisans total ki genyen asirans responsablite pwofesyonèl. Anrjistreman ou ak lajan ou pwoteje chak etap nan wout la.",
+    "c2t": "24/7 Sipò Imèn reyèl",
+    "c2d": "Pa yon chatbot. Pa yon sant apèl. Yon espesyalis reyèl ki konnen vwayaj ou a, ki disponib nan revèy la anvan ak pandan vwayaj.",
+    "c3t": "Rekòmande pèsonèlman sèlman",
+    "c3d": "Nou pa janm rekòmande yon otèl, gid, oswa eksperyans nou pa te vizite pèsonèlman. Si nou pa ta voye pwòp fanmi nou la, nou p'ap voye ou.",
+    "c4t": "Pi bon pri garanti",
+    "c4d": "Jwenn menm vwayaj la pi bon mache yon lòt kote epi nou pral matche ak li. Nou kanpe dèyè valè chak itinerè nou bati.",
+    "c5t": "Konplètman Sur, Toujou",
+    "c5d": "Pa gen de vwayaj menm jan. Chak chimen bati nan grafouyen alantou ou - vitès ou, enterè ou, bidjè ou.",
+    "c6t": "Vwayaj Responsab",
+    "c6d": "Nou chwazi ak anpil atansyon operatè responsab epi nou pran angajman pou bay kominote yo nan destinasyon n ap sèvi yo."
+  },
+  "contact": {
+    "heroEyebrow": "Pran kontak",
+    "heroTitle1": "Ann planifye ou",
+    "heroTitleEm": "Sou entènèt jwèt rèv vwayaj",
+    "heroTitleHtml": "Ann planifye vwayaj ou <br><em>Rèv</em>",
+    "infoTitle1": "Nou la",
+    "infoTitleEm": "Pou Ou",
+    "infoTitleHtml": "Nou la<br><em>Pou ou</em>",
+    "heroSub": "Di nou ki kote ou vle ale epi yon espesyalis pral kontakte nan 24 èdtan.",
+    "infoTag": "Enfòmasyon sou Kontakte",
+    "phone": "Telefòn",
+    "email": "Imèl",
+    "office": "Biwo",
+    "officeAddr": "1350 Belmont St, Suite 114\nBrockton, MA",
+    "hoursTitle": "Orè biwo",
+    "monFri": "Lendi – Vandredi",
+    "monFriTime": "8:00 AM – 8:00 PM",
+    "sat": "Samdi",
+    "satTime": "9:00 AM – 6:00 PM",
+    "sun": "Dimanch",
+    "sunTime": "10:00 AM – 4:00 PM",
+    "emergency": "Ijans",
+    "emergencyTime": "24/7 Toujou",
+    "destMaldives": "Maldiv / Oseyan Endyen",
+    "destAfrica": "Lafrik di / Safari",
+    "destJapan": "Japon / Azi Pasifik",
+    "destEurope": "Ewòp / Mediterane",
+    "destCaribbean": "Karayib la",
+    "destSa": "Amerik di Sid",
+    "destUnsure": "Pa sèten ankò",
+    "pkgEssential": "Esansyèl Explorer",
+    "pkgSignature": "Vwayaj siyati",
+    "pkgUltra": "Ultra Luxury",
+    "pkgHoneymoon": "Lin de myèl",
+    "pkgFamily": "Jou Konje Fanmi",
+    "pkgGroup": "Gwoup vwayaj",
+    "travel1": "1 moun",
+    "travel2": "2 moun",
+    "travel34": "3–4 Moun",
+    "travel58": "5–8 Moun",
+    "travel9": "9+ Gwoup"
+  },
+  "faq": {
+    "heroEyebrow": "Èd & Enfòmasyon",
+    "heroTitle1": "Poze Souvan",
+    "heroTitleEm": "Kesyon",
+    "heroTitleHtml": "Kesyon yo poze souvan<br><em>Kesyon</em>",
+    "heroSub": "Tout sa ou bezwen konnen sou anrjistreman ak vwayaje ak Martins Global Travels.",
+    "g1": "Anrjistreman & Planifikasyon",
+    "q1": "Kouman pou mwen kòmanse planifye yon vwayaj?",
+    "a1": "Ale nan paj Kontakte nou an epi voye yon demann ak destinasyon ou, dat, ak gwosè gwoup ou. Youn nan espesyalis vwayaj nou yo pral kontakte nan lespas 24 èdtan pou kòmanse bati chimen ou a nan grafouyen.",
+    "q2": "Konbyen tan davans mwen ta dwe rezève?",
+    "a2": "Nou rekòmande 3-6 mwa pou pifò destinasyon, ak 6-12 mwa pou sezon popilè tankou safari Afriken, Japon Cherry blossom, oswa pik ete Ewopeyen an. Nou ka akomode rezèrvasyon dènye minit tou - jis mande.",
+    "q3": "Èske mwen ka konplètman Customize pake mwen an?",
+    "a3": "Chak vwayaj nou konstwi nèt sou mezi. Pakè nou yo se yon pwen depa — nou adapte aranjman, aktivite, ritm, bezwen dyetetik, ak tout detay nan egzakteman sa ou vle. Pa gen anyen ki sou tab la.",
+    "q4": "Èske ou òganize vwayaj gwoup?",
+    "a4": "Wi - soti nan vwayaj fanmi entim nan gwo retrè antrepriz. Nou okipe gwoup ki soti nan 5 a 50+ moun. Kontakte nou ak gwosè gwoup ou a epi nou pral mete ansanm yon pwopozisyon tayè.",
+    "q5": "Èske ou ka fè aranjman pou lin de myèl oswa okazyon espesyal?",
+    "a5": "Absoliman. Lin de myèl ak okazyon espesyal se kèk nan vwayaj ki pi mande nou yo. Nou fè patenarya ak otèl ak resort atravè lemond pou fè aranjman pou dine prive, amelyorasyon chanm yo, eksperyans sipriz, ak manyen sou mesure ki fè moman sa a vrèman inoubliyab.",
+    "g2": "Pri & Peman",
+    "q6": "Poukisa ou pa montre pri sou sit entènèt la?",
+    "a6": "Chak vwayaj se konplètman Sur, kidonk pri yo varye selon destinasyon, sezon, aranjman, dire, ak gwosè gwoup la. Nou pito ba ou yon sitasyon egzat ki baze sou egzakteman sa ou vle - olye ke yon nimewo jenerik ki pa reflete vwayaj ou.",
+    "q7": "Èske gen yon frè konsiltasyon?",
+    "a7": "Non. Premye konsiltasyon ak quotes yo konplètman gratis. Nou peye sèlman yon fwa ou deside kontinye ak yon anrjistreman, nan moman sa a yon depo garanti aranjman ou yo.",
+    "q8": "Ki metòd peman ou aksepte?",
+    "a8": "Nou aksepte tout gwo kat kredi ak debi, transfè labank, epi chwazi metòd peman dijital. Yon depo obligatwa nan anrjistreman, ak balans lan dwe 60-90 jou anvan depa. Kondisyon peman konplè yo dekri nan akò anrjistreman ou a.",
+    "q9": "Èske ou ofri yon garanti pi bon pri?",
+    "a9": "Wi. Si w jwenn menm chimen an nan yon pri pi ba yon lòt kote - menm otèl, vòl, ak dat - nou pral matche ak li. Nou gen konfyans nan valè nou bay la, espesyalman bay nivo pèsonalizasyon ak sipò enkli.",
+    "g3": "Pwoteksyon & Sekirite",
+    "q10": "Èske rezèvasyon mwen yo pwoteje finansyèman?",
+    "a10": "Wi, nèt. Martins Global Travels se yon ajans vwayaj Ozetazini ki gen lisans total ki genyen asirans responsablite pwofesyonèl. Nou travay sèlman ak founisè ki estab finansyèman, ki kalifye atravè lemond, epi chak anrjistreman gen ladann yon akò ekri detaye ki esplike pwoteksyon ou yo.",
+    "q11": "Ki politik anile ou ye?",
+    "a11": "Vwayaj siyati ak rezèrvasyon Ultra Luxury gen ladan anile gratis jiska 60 jou anvan depa. Rezèvasyon Essential Explorer gen yon ti frè anile. Nou rekòmande anpil asirans vwayaj konplè pou tout lapè nan tèt ou.",
+    "q12": "Èske mwen bezwen asirans vwayaj?",
+    "a12": "Nou rekòmande li pou tout vwayaj. Asirans vwayaj pwoteje ou kont ijans medikal, dezòd vwayaj, pèdi bagaj, ak inatandi. Nou ka rekòmande founisè ou fè konfyans si w bezwen èd pou w chwazi bon politik la.",
+    "g4": "Pandan vwayaj ou a",
+    "q13": "Ki sipò mwen jwenn pandan m ap vwayaje?",
+    "a13": "Tout rezèrvasyon yo enkli sipò ijans 24/24 pandan tout vwayaj ou. Kliyan Vwayaj Siyati ak Ultra Luxury yo gen tou yon konsyèn pèsonèl devwe ki ka jwenn nan nenpòt lè pou nenpòt ki bagay, soti nan rekòmandasyon restoran ak rebooking ijan.",
+    "q14": "Èske mwen pral gen yon gid lokal?",
+    "a14": "Pake Vwayaj Siyati ak Ultra Luxury gen ladan gid prive ekspè nan chak destinasyon. Vwayaj Essential Explorer gen ladan gid gwoup pou randone enkli. Tout gid yo ak anpil atansyon verifye, yo pale angle, ak pasyone sou destinasyon yo.",
+    "q15": "Èske ou ofri opsyon vwayaj dirab?",
+    "a15": "Wi. Nou chwazi ak anpil atansyon operatè responsab, ki envesti lokalman nan chak destinasyon epi nou angaje nan pratik vwayaj dirab. Mande nou sou opsyon vwayaj responsab nou yo lè ou mande.",
+    "q16": "E si yon bagay ale mal nan vwayaj mwen an?",
+    "a16": "Kontakte nou imedyatman — liy ijans nou an 24/24 toujou louvri. Nou gen kontak lokal ak patnè nan chak destinasyon epi anjeneral nou ka rezoud pwoblèm byen vit. Objektif nou se toujou asire nenpòt dezòd gen enpak minim sou eksperyans ou.",
+    "ctaTag": "Toujou gen kesyon?",
+    "ctaTitle1": "Nou kontan",
+    "ctaTitleEm": "Ede",
+    "ctaTitleHtml": "Nou kontan <em style=\"font-style:italic;color:var(--gold)\">Ede</em>",
+    "ctaBody": "Kontakte nenpòt lè — anjeneral nou reponn nan yon jou ouvrab."
+  },
+  "privacy": {
+    "heroEyebrow": "Done ou yo",
+    "heroTitle1": "Konfidansyalite",
+    "heroTitleEm": "Règleman",
+    "heroTitleHtml": "Konfidansyalite<br><em>Règleman</em>",
+    "heroSub": "Ki jan Martins Global Travels kolekte, itilize, ak pwoteje enfòmasyon pèsonèl ou yo.",
+    "updated": "Dènye mizajou: 27 mas 2026",
+    "note": "Yo bay règleman sa a pou enfòmasyon jeneral. Li pa konstitye konsèy legal. Fè li revize pa yon avoka ki kalifye pou biznis ou, jiridiksyon, ak pratik ou.",
+    "introH": "Entwodiksyon",
+    "introP1": "Martins Global Travels (\"nou,\" \"nou,\" oswa \"nou\") respekte vi prive w. Règleman sou enfòmasyon prive sa a dekri fason nou kolekte, itilize, divilge, ak pwoteje enfòmasyon pèsonèl lè ou vizite sit entènèt nou an, kontakte nou, abònman ak mizajou, oswa itilize sèvis planifikasyon vwayaj ak rezèvasyon nou yo.",
+    "introP2": "Lè w sèvi ak sit entènèt nou an oswa lè w bay enfòmasyon nou, ou dakò ak règleman sa a. Si ou pa dakò, tanpri pa sèvi ak sèvis nou yo.",
+    "collectH": "Enfòmasyon nou kolekte",
+    "collectP": "Tou depan de fason ou kominike avèk nou, nou ka kolekte:",
+    "collectL1": "Done kontak ak idantite: non, adrès imel, nimewo telefòn, adrès postal, ak detay menm jan ou bay sou fòm oswa nan korespondans.",
+    "collectL2": "Done sou vwayaj ak preferans: destinasyon, dat, bidjè, style vwayaj, bezwen dyetetik oswa aksè, nimewo pwogram lwayote, ak lòt enfòmasyon ki nesesè pou planifye oswa fè aranjman pou vwayaj.",
+    "collectL3": "Done ki gen rapò ak peman: enfòmasyon limite peman jan sa nesesè pou trete tranzaksyon yo. Done kat yo ka okipe dirèkteman pa processeurs peman; nou pa estoke nimewo kat konplè sou sèvè nou yo sof si sa nesesè pou yon tranzaksyon espesifik epi lalwa pèmèt.",
+    "collectL4": "Kominikasyon: imèl, mesaj, nòt apèl, ak fidbak ou voye ba nou.",
+    "collectL5": "Done teknik ak itilizasyon: adrès IP, kalite navigatè, enfòmasyon aparèy, kote jeneral ki sòti nan IP, paj gade, ak done menm jan yo kolekte atravè bonbon ak teknoloji menm jan an (gade seksyon Bonbon ki anba a).",
+    "useH": "Ki jan nou itilize enfòmasyon yo",
+    "useP": "Nou itilize enfòmasyon pèsonèl pou:",
+    "useL1": "Reponn demann epi bay konsiltasyon vwayaj;",
+    "useL2": "Rechèch, plan, pri, liv, ak jere aranjman vwayaj ak founisè (konpayi avyon, otèl, operatè touris, konpayi asirans, elatriye);",
+    "useL3": "Pwosesis peman yo epi voye avi ki gen rapò;",
+    "useL4": "Voye mesaj ki gen rapò ak sèvis ak, kote yo pèmèt, kominikasyon maketing (ou ka refize fè maketing nenpòt ki lè);",
+    "useL5": "Amelyore sit entènèt nou an, sèvis, ak eksperyans kliyan;",
+    "useL6": "Konfòme ak obligasyon legal yo, aplike kondisyon nou yo, epi pwoteje dwa, sekirite ak sekirite.",
+    "legalH": "Baz legal (kote sa aplikab)",
+    "legalP": "Si lalwa aplikab egzije yon \"baz legal\" pou pwosesis (pa egzanp nan Zòn Ekonomik Ewopeyen an oswa Wayòm Ini), nou konte sou youn oswa plis nan: pèfòmans nan yon kontra, enterè lejitim (tankou opere biznis nou an ak sekirite sistèm nou yo), konsantman kote sa nesesè, ak obligasyon legal.",
+    "shareH": "Pataje enfòmasyon",
+    "shareP": "Nou ka pataje enfòmasyon pèsonèl ak:",
+    "shareL1": "Founisè ak patnè ki akonpli oswa sipòte vwayaj ou (pa egzanp, otèl, konpayi avyon, operatè tè, konpayi asirans);",
+    "shareL2": "Founisè sèvis ki ede nou (pa egzanp, hosting, livrezon imel, analiz, pwosesis peman, zouti relasyon kliyan);",
+    "shareL3": "Konseye pwofesyonèl lè sa nesesè (pa egzanp, avoka, kontab);",
+    "shareL4": "Otorite yo lè lalwa mande, lòd tribinal, oswa pou pwoteje enterè vital yo.",
+    "shareP2": "Nou pa vann enfòmasyon pèsonèl ou pou konsiderasyon monetè jan tèm sa a souvan konprann nan lwa sou vi prive eta US. Nou ka itilize zouti analytics oswa piblisite ki enplike bonbon oswa teknoloji ki sanble jan sa dekri anba a.",
+    "cookiesH": "Bonbon ak teknoloji menm jan an",
+    "cookiesP": "Nou menm ak patnè nou yo ka itilize bonbon, piksèl, ak teknoloji menm jan an pou opere sit la, sonje preferans yo, mezire trafik, epi (kote sa aplikab) bay kontni ki enpòtan. Ou ka kontwole bonbon atravè paramèt navigatè w la. Bloke sèten cookies ka afekte fonksyonalite sit la.",
+    "retentionH": "Retansyon",
+    "retentionP": "Nou kenbe enfòmasyon pèsonèl sèlman toutotan sa nesesè pou rezon ki dekri nan règleman sa a, ki gen ladan kondisyon legal, kontablite, oswa rapò, sof si lalwa egzije yon peryòd ki pi long oswa pèmèt.",
+    "securityH": "Sekirite",
+    "securityP": "Nou aplike mezi administratif, teknik ak òganizasyon rezonab ki fèt pou pwoteje enfòmasyon pèsonèl yo. Pa gen okenn metòd transmisyon sou Entènèt ki konplètman an sekirite; nou pa ka garanti sekirite absoli.",
+    "rightsH": "Chwa w ak dwa w yo",
+    "rightsP": "Tou depan de kote w ap viv, ou ka gen dwa pou jwenn aksè, korije, efase, oswa mete restriksyon sou tretman enfòmasyon pèsonèl ou, oswa pou fè objeksyon kont sèten pwosesis oswa transparans done. Ou ka gen dwa tou pou pote yon plent ak yon otorite sipèvize. Pou egzèse dwa aplikab yo, kontakte nou lè l sèvi avèk detay ki anba yo. Nou ka bezwen verifye idantite w anvan ou reponn.",
+    "intlH": "Transfè entènasyonal yo",
+    "intlP": "Si w sitiye andeyò peyi Etazini, enfòmasyon w yo ka transfere ak trete nan peyi Etazini oswa nan lòt peyi kote nou oswa founisè nou yo opere. Nou pran mezi ki fèt pou asire pwoteksyon apwopriye kote lalwa egzije sa.",
+    "childrenH": "Timoun yo",
+    "childrenP": "Sèvis nou yo pa dirije pou timoun ki poko gen 16, epi nou pa fè espre kolekte enfòmasyon pèsonèl nan men timoun yo. Si ou kwè nou te kolekte enfòmasyon nan men yon timoun, tanpri kontakte nou epi n ap pran mezi apwopriye pou efase li.",
+    "changesH": "Chanjman nan politik sa a",
+    "changesP": "Nou ka mete ajou Règleman sou enfòmasyon prive sa a detanzantan. Nou pral poste règleman revize a sou paj sa a epi mete ajou dat \"Dènye mete ajou\". Chanjman materyèl yo ka kominike atravè avi adisyonèl kote sa apwopriye.",
+    "contactH": "Kontakte nou",
+    "contactP": "Pou kesyon oswa demann ki gen rapò ak vi prive, kontakte Martins Global Travels lè l sèvi avèk detay yo nan paj Kontakte nou an.",
+    "contactLink": "Kontakte"
+  },
+  "terms": {
+    "heroEyebrow": "Legal",
+    "heroTitle1": "Kondisyon yo",
+    "heroTitleEm": "Sèvis",
+    "heroTitleHtml": "Kondisyon <br><em>Sèvis</em>",
+    "heroSub": "Tanpri li kondisyon sa yo ak anpil atansyon anvan ou sèvi ak sit entènèt nou an oswa sèvis nou yo.",
+    "updated": "Dènye mizajou: 27 mas 2026",
+    "note": "Tèm sa yo se yon modèl jeneral. Yo pa konsèy legal. Fè yo revize ak Customized pa yon avoka ki kalifye pou biznis ou, jiridiksyon, ak pwofil risk.",
+    "agreeH": "Akò sou tèm",
+    "agreeP": "Kondisyon Sèvis sa yo (\"Tèm\") gouvène aksè ou ak itilizasyon sitwèb la ak sèvis Martins Global Travels (ansanm, \"nou,\" \"nou,\" oswa \"nou\"). Lè w jwenn aksè nan sit entènèt nou an, lè w soumèt yon demann oswa lè w sèvi ak sèvis nou yo, ou dakò ak kondisyon sa yo. Si ou pa dakò, pa sèvi ak sèvis nou yo.",
+    "roleH": "Wòl nou",
+    "roleP": "Martins Global Travels se yon ajans vwayaj. Nou ede nan rechèch, planifikasyon, ak fè aranjman pou pwodwi ak sèvis ki gen rapò ak vwayaj ki ofri pa founisè twazyèm pati (tankou konpayi avyon, otèl, liy kwazyè, operatè touris, ak konpayi asirans). Sòf si nou di ekspreseman otreman nan yon akò ki siyen, nou aji kòm yon entèmedyè ant ou menm ak founisè sa yo.",
+    "eligH": "Elijiblite",
+    "eligP": "Ou reprezante ke ou gen omwen 18 ane epi ou gen kapasite legal pou antre nan Regleman sa yo. Si w sèvi ak sèvis nou yo sou non yon konpayi oswa yon lòt antite, ou reprezante ke ou gen otorite pou mare antite sa a.",
+    "bookH": "Rezèvasyon, founisè, ak kontra ou",
+    "bookP": "Lè vwayaj la rezerve, tèm ak kondisyon separe yo aplike nan chak founisè (règleman pri pri, règleman anilasyon, kondisyon sante, elatriye). Kondisyon founisè sa yo fè pati akò ou pou sèvis ki enpòtan yo. Ou responsab pou revize kondisyon founisè yo, paspò, viza, kondisyon sante, ak konsèy vwayaj. Nou pa responsab pou aksyon founisè, omisyon, echèk, oswa chanjman, eksepte jan lalwa aplikab egzije sa oswa jan ekspreseman endike nan yon akò alekri ant oumenm ak nou.",
+    "feesH": "Frè ak peman",
+    "feesP": "Sitasyon yo se estimasyon sof si yo konfime alekri. Pri yo ka chanje jiskaske yo resevwa depo oswa peman konplè epi yo bay tikè oswa rezèvasyon, dapre règleman founisè yo. Ou dakò pou peye tout montan yo lè yo dwe, enkli frè pwofesyonèl nou yo oswa frè sèvis yo kote yo divilge yo. Peman an reta ka lakòz anilasyon oswa penalite dapre règleman founisè yo.",
+    "cancelH": "Anilasyon, chanjman, ak ranbousman",
+    "cancelP": "Anilasyon, chanjman, ak ranbousman règ depann sou kondisyon founisè, klas pri tikè, distribisyon, ak kouvèti asirans. Frè yo ka pa ranbousab. Nou pral fè efò rezonab pou ede ak chanjman oswa anilasyon jan founisè yo pèmèt; nou pa garanti ranbousman oswa egzansyon.",
+    "insH": "Asirans vwayaj",
+    "insP": "Nou rekòmande anpil asirans vwayaj konplè. Asirans se sijè a kondisyon politik konpayi asirans lan. Ou responsab pou detèmine si pwoteksyon an satisfè bezwen ou yo.",
+    "discH": "Limit responsabilite yo",
+    "discP": "Enfòmasyon sou sitwèb nou an (ki gen ladann echantiyon itinerè, deskripsyon, ak foto) se pou konsèy jeneral epi yo ka chanje. Nou pa garanti ke tout enfòmasyon yo konplè, aktyèl oswa san erè. Vwayaj enplike nannan risk; nou pa garanti sekirite, satisfaksyon, oswa vwayaj san enteripsyon.",
+    "liabH": "Limitasyon responsablite",
+    "liabP": "Nan tout limit lalwa aplikab pèmèt, Martins Global Travels ak ofisye, anplwaye, ak ajan nou yo pa dwe responsab pou okenn domaj endirèk, ensidan, espesyal, konsekan, oswa pinitif, oswa pou pèt pwofi, bòn volonte, oswa done, ki soti nan itilizasyon sèvis nou yo oswa aranjman vwayaj nou yo. Responsablite total nou an pou nenpòt reklamasyon ki soti nan oswa ki gen rapò ak Kondisyon sa yo oswa sèvis nou yo limite a sa sèlman frè ou te peye nou pou anrjistreman espesifik oswa sèvis ki te lakòz reklamasyon an pandan sis (6) mwa anvan reklamasyon an leve, eksepte kote lalwa entèdi. Kèk jiridiksyon pa pèmèt sèten limit; nan ka sa yo, responsablite nou an limite nan limit maksimòm ki pèmèt.",
+    "indemH": "Endannman",
+    "indemP": "You agree to indemnify and hold harmless Martins Global Travels and our affiliates, officers, employees, and agents from claims, losses, damages, and expenses (including reasonable attorneys' fees) arising from your breach of these Terms, your travel, or your violation of law or third-party rights, except to the extent caused by our gross negligence or willful misconduct.",
+    "ipH": "Pwopriyete entelektyèl",
+    "ipP": "Kontni sou sit entènèt sa a (ki gen ladan tèks, grafik, logo, ak konsepsyon) se posede pa Martins Global Travels oswa lisansye nou yo epi li pwoteje pa lwa pwopriyete entelektyèl. Ou pa gen dwa kopye, modifye, distribye, oswa kreye travay derive san konsantman alekri anvan nou an, eksepte pou gade pèsonèl ki limite, ki pa komèsyal.",
+    "govH": "Lwa ki gouvène ak diskisyon",
+    "govP": "Kondisyon sa yo gouvène pa lwa Eta kote Martins Global Travels kenbe kote prensipal biznis li a, san yo pa konsidere prensip konfli lwa yo, eksepte kote lwa pwoteksyon konsomatè obligatwa nan jiridiksyon w la aplike. Ou dakò ak jiridiksyon eksklizif ak lokal tribinal eta a ak tribinal federal ki nan Eta sa a pou diskisyon, sijè a nenpòt dwa ou pa kapab renonse dapre lalwa ki aplikab yo.",
+    "chgH": "Chanjman",
+    "chgP": "Nou ka modifye Kondisyon sa yo nenpòt ki lè. Kondisyon ki ajou yo pral afiche sou paj sa a ak yon dat revize \"Dènye mete ajou\". Kontinye itilizasyon apre chanjman yo reprezante akseptasyon Kondisyon revize yo, eksepte kote lalwa aplikab egzije plis avi oswa konsantman.",
+    "contactH": "Kontakte",
+    "contactP": "Pou kesyon sou Kondisyon sa yo, kontakte nou atravè paj Kontakte nou an.",
+    "contactLink": "Kontakte"
+  },
+  "bookNav": {
+    "bookFlights": "Liv vòl",
+    "portalSub": "Portal kliyan",
+    "explore": "Eksplore",
+    "legal": "Legal",
+    "support": "Sipò",
+    "bookTravel": "Liv vwayaj",
+    "contactUs": "Kontakte nou"
+  }
+}

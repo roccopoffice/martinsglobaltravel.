@@ -1,0 +1,769 @@
+{
+  "meta": {
+    "title": "Martins Global Travels"
+  },
+  "nav": {
+    "home": "家",
+    "destinations": "目的地",
+    "packages": "套餐",
+    "faq": "FAQ",
+    "about": "关于",
+    "contact": "接触",
+    "portal": "客户门户",
+    "bookNow": "立即预订"
+  },
+  "brand": {
+    "name": "Martins Global Travels",
+    "tagline": "奢华与世界相遇的地方"
+  },
+  "a11y": {
+    "langSwitcher": "选择语言",
+    "brandAlt": "Martins Global Travels — 带 MGT 字母组合和地球仪的金印标志",
+    "wcPopup": "2026 年世界杯旅行套餐",
+    "close": "关闭"
+  },
+  "theme": {
+    "appearance": "外貌",
+    "light": "光",
+    "darkMode": "切换到深色模式"
+  },
+  "form": {
+    "sendEnquiry": "发送询问",
+    "sending": "正在发送...",
+    "success": "询价已发送！ Jeanie 将在 24 小时内与您联系。",
+    "error": "无法发送 — 请致电 (508) 232-3003 或发送电子邮件至 Jeanie@MartinsGlobalTravels.com。",
+    "title": "发送询盘",
+    "subtitle": "填写表格，Jeanie 将在 24 小时内回复。",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "电子邮件",
+    "phone": "电话",
+    "destination": "目的地",
+    "package": "包裹",
+    "departureDate": "出发日期",
+    "travelers": "旅行者",
+    "message": "告诉我们您的梦想之旅",
+    "messagePlaceholder": "分享任何特殊要求、兴趣或必备经验...",
+    "selectRegion": "选择地区...",
+    "selectPackage": "选择套餐...",
+    "note": "您的信息是安全的，绝不会与第三方共享。",
+    "placeholderFirst": "John",
+    "placeholderLast": "Smith",
+    "placeholderEmail": "john@email.com",
+    "placeholderPhone": "(508) 555-1234"
+  },
+  "toast": {
+    "subscribed": "已订阅！欢迎登机。",
+    "blogSoon": "博客即将推出！",
+    "careersSoon": "职业生涯即将到来！"
+  },
+  "common": {
+    "enquire": "查询",
+    "explore": "探索",
+    "scrollExplore": "滚动探索",
+    "scrollMore": "滚动查看更多",
+    "allDestinations": "所有目的地",
+    "viewAllDestinations": "查看所有目的地",
+    "enquireNow": "立即咨询",
+    "contactUs": "联系我们",
+    "planMyTrip": "计划我的旅行",
+    "subscribe": "订阅",
+    "privacy": "隐私",
+    "terms": "条款",
+    "cookies": "Cookies",
+    "days": "天",
+    "showingAll": "显示所有 {n} 个目的地",
+    "showingCat": "显示 {n} {cat} 目的地",
+    "showingCats": "显示 {n} {cat} 个目的地"
+  },
+  "footer": {
+    "quote": "“世界是一本书，不旅行的人只读了其中的一页。”",
+    "destinations": "目的地",
+    "packages": "套餐",
+    "company": "公司",
+    "contact": "接触",
+    "aboutUs": "关于我们",
+    "ourTeam": "我们的团队",
+    "travelBlog": "旅游博客",
+    "careers": "职业机会",
+    "licensed": "持牌美国旅行社",
+    "copyright": "© 2026 马丁斯环球旅行。版权所有。",
+    "noSpam": "永远没有垃圾邮件。随时取消订阅。",
+    "maldives": "Maldives",
+    "africaSafaris": "非洲狩猎之旅",
+    "japanAsia": "日本及亚洲",
+    "europe": "Europe",
+    "caribbean": "加勒比海",
+    "southAmerica": "南美洲",
+    "honeymoons": "蜜月",
+    "familyHolidays": "家庭假期",
+    "adventureTours": "探险之旅",
+    "luxuryEscapes": "奢华逍遥游",
+    "cruises": "游轮"
+  },
+  "wc": {
+    "continue": "继续浏览",
+    "book": "预订您的体验",
+    "imgAlt": "2026 年世界杯旅行套餐 — 来自 Martins Global Travels 的航班、酒店、交通和票务帮助。"
+  },
+  "home": {
+    "heroLine1": "世界的",
+    "heroLine2": "最非凡",
+    "heroLine2html": "最<em>非凡</em>",
+    "heroLine3": "目的地",
+    "heroDesc": "完全围绕您量身定制的旅程——从水上别墅到野生动物园以及介于两者之间的一切。",
+    "exploreDestinations": "探索目的地",
+    "viewPackages": "查看套餐",
+    "statDestinations": "目的地",
+    "statContinents": "大陆",
+    "topDestinations": "热门目的地",
+    "whereNext": "你会去哪里",
+    "whereNextEm": "下一步？",
+    "whereNextHtml": "您接下来会<br><em>去哪里？</em>",
+    "signatureFoot": "我们精心挑选的五个标志性国家/地区，用于全球定制旅程。",
+    "aboutTag": "关于马丁斯环球旅游",
+    "aboutTitle": "成立一家旅行社",
+    "aboutTitleEm": "在你身边",
+    "aboutTitleHtml": "一家旅行社建立<br>围绕<em>You</em>",
+    "aboutBody": "马丁斯环球旅行 (Martins Global Travels) 建立在一个信念之上：每位旅行者都应该享受完全围绕他们打造的旅程。我们的专家亲自探索他们推荐的每个目的地。没有模板，没有猜测。",
+    "pill1": "120+ 目的地",
+    "pill2": "6大洲",
+    "pill3": "24/7 支持",
+    "pill4": "100% 量身定制",
+    "ourStory": "我们的故事",
+    "featuredJourneys": "特色旅程",
+    "curatedItineraries": "我们策划的",
+    "curatedEm": "行程",
+    "curatedHtml": "我们策划的 <em>Itineraries</em>",
+    "allPackages": "所有套餐",
+    "whyTag": "为什么选择马丁斯环球旅行",
+    "whyTitle": "旅行建造",
+    "whyEm": "不同地",
+    "whyTitleHtml": "旅行构建<em>不同</em>",
+    "whyLead": "我们处理每一个细节，以便您可以完全专注于体验。",
+    "readyTag": "准备好旅行了吗？",
+    "readyTitle": "您的梦想之旅",
+    "readyEm": "从这里开始",
+    "readyTitleHtml": "您的梦想之旅<br><em>从这里开始</em>",
+    "readyBody": "告诉我们您想去哪里。我们的专家将为您打造完美旅程的每一个细节——您所要做的就是出现。",
+    "nlTag": "保持灵感",
+    "nlTitle": "成为第一个",
+    "nlEm": "发现",
+    "nlTitle2": "我们的独家优惠",
+    "nlTitleHtml": "抢先<em>发现</em><br>我们的独家优惠",
+    "nlBody": "来自我们专家的独家优惠、目的地指南和旅行灵感。",
+    "nlPlaceholder": "您的电子邮件地址...",
+    "why1t": "个人策划",
+    "why1d": "每家酒店、导游和体验都经过个人审核。我们只推荐我​​们的团队自己去过的地方。",
+    "why2t": "全面保护",
+    "why2d": "您的旅行投资得到充分保障。我们只与值得信赖、经过审查的供应商合作，并购买全额旅行社责任保险。",
+    "why3t": "全球网络",
+    "why3d": "我们在每个目的地都精心策划了由值得信赖的当地专家组成的网络，让您能够获得其他地方无法获得的体验。",
+    "why4t": "24/7 支持",
+    "why4d": "全天候礼宾服务。无论您身在世界何处，只需一个电话即可联系我们的团队。",
+    "tdItalyRegion": "Europe",
+    "tdItalyTitle": "Italy",
+    "tdItalyDesc": "从威尼斯运河到托斯卡纳山丘——根据您的节奏量身定制的艺术、美食和甜蜜生活。",
+    "tdItalyBtn": "探索意大利",
+    "tdChinaRegion": "东亚",
+    "tdChinaTitle": "China",
+    "tdChinaDesc": "古代奇观和超现代城市——私人导游带您了解历史、风味和奇观。",
+    "tdChinaBtn": "探索中国",
+    "tdPortugalRegion": "Europe",
+    "tdPortugalTitle": "Portugal",
+    "tdPortugalDesc": "大西洋之光、阿苏莱霍瓷砖和深情的法朵——里斯本、波尔图和阿尔加维随您选择。",
+    "tdPortugalBtn": "探索葡萄牙",
+    "tdSpainRegion": "Europe",
+    "tdSpainTitle": "Spain",
+    "tdSpainDesc": "摩尔式宫殿、高迪的巴塞罗那和阳光普照的海岸——节奏、小吃和纯粹的激情。",
+    "tdSpainBtn": "探索西班牙",
+    "tdSaRegion": "Africa",
+    "tdSaTitle": "南非",
+    "tdSaDesc": "开普敦的优雅与五巨头狩猎之旅相结合——葡萄酒之路、壮丽的海岸和令人难忘的野生动物。",
+    "tdSaBtn": "探索南非",
+    "mqItaly": "Italy",
+    "mqChina": "China",
+    "mqPortugal": "Portugal",
+    "mqSpain": "Spain",
+    "mqSa": "南非",
+    "tour1Cat": "海滩与奢华",
+    "tour1Days": "10天",
+    "tour1Loc": "马尔代夫、印度洋",
+    "tour1Name": "马尔代夫水上逃生",
+    "tour1Desc": "私人水上别墅、珊瑚礁潜水和地球上最原始水域的日落巡游。",
+    "tour2Cat": "狩猎之旅",
+    "tour2Days": "14天",
+    "tour2Loc": "坦桑尼亚、东非",
+    "tour2Name": "大迁徙野生动物园",
+    "tour2Desc": "目睹 150 万只角马穿越塞伦盖蒂——大自然最伟大的奇观之一。",
+    "tour3Cat": "文化",
+    "tour3Days": "12天",
+    "tour3Loc": "日本、东亚",
+    "tour3Name": "日本樱花",
+    "tour3Desc": "樱花季期间的东京、京都和大阪 — 一次难忘的文化沉浸。",
+    "tour4Cat": "奢华",
+    "tour4Days": "8天",
+    "tour4Loc": "希腊、地中海",
+    "tour4Name": "希腊群岛游艇租赁",
+    "tour4Desc": "私人游艇与您的私人船员一起穿越圣托里尼岛、米科诺斯岛和克里特岛。",
+    "tour5Cat": "冒险",
+    "tour5Days": "9 天",
+    "tour5Loc": "冰岛、北大西洋",
+    "tour5Name": "冰岛北极光",
+    "tour5Desc": "追逐北极光，在彩绘天空下浸泡在地热池中。",
+    "tour6Cat": "冒险",
+    "tour6Days": "16天",
+    "tour6Loc": "南美洲巴塔哥尼亚",
+    "tour6Name": "巴塔哥尼亚荒野跋涉",
+    "tour6Desc": "冰川徒步、秃鹰目击以及阿根廷和智利的世界尽头峡湾。"
+  },
+  "dest": {
+    "heroEyebrow": "57 个热门目的地",
+    "heroTitle1": "探索世界",
+    "heroTitleEm": "无极限",
+    "heroTitleHtml": "探索世界<br><em>无限制</em>",
+    "heroSub": "从僻静的岛屿到国际化的首都——全球每个角落都触手可及。",
+    "filterAll": "全部 (57)",
+    "filterBeach": "海滩和岛屿",
+    "filterSafari": "野生动物园和荒野",
+    "filterCulture": "文化与历史",
+    "filterAdventure": "冒险",
+    "filterFood": "美食美酒",
+    "filterCity": "城市休闲",
+    "countDefault": "显示全部 57 个目的地",
+    "cards": {
+      "maldives": {
+        "region": "印度洋海滩和岛屿",
+        "name": "Maldives"
+      },
+      "bora_bora": {
+        "region": "法属波利尼西亚海滩和岛屿",
+        "name": "Bora Bora"
+      },
+      "santorini": {
+        "region": "希腊海滩和岛屿",
+        "name": "Santorini"
+      },
+      "amalfi_coast": {
+        "region": "意大利海滩和岛屿",
+        "name": "Amalfi Coast"
+      },
+      "seychelles": {
+        "region": "东非海滩和岛屿",
+        "name": "Seychelles"
+      },
+      "bali": {
+        "region": "印度尼西亚海滩和岛屿",
+        "name": "Bali"
+      },
+      "phuket": {
+        "region": "泰国海滩和岛屿",
+        "name": "Phuket"
+      },
+      "maldives_resorts": {
+        "region": "印度洋海滩和岛屿",
+        "name": "Maldives Resorts"
+      },
+      "mykonos": {
+        "region": "希腊海滩和岛屿",
+        "name": "Mykonos"
+      },
+      "mauritius": {
+        "region": "印度洋海滩和岛屿",
+        "name": "Mauritius"
+      },
+      "fiji": {
+        "region": "南太平洋海滩和岛屿",
+        "name": "Fiji"
+      },
+      "zanzibar": {
+        "region": "东非海滩和岛屿",
+        "name": "Zanzibar"
+      },
+      "serengeti_plains": {
+        "region": "坦桑尼亚野生动物园和荒野",
+        "name": "Serengeti Plains"
+      },
+      "masai_mara_savanna": {
+        "region": "肯尼亚野生动物园和荒野",
+        "name": "Masai Mara Savanna"
+      },
+      "okavango_delta": {
+        "region": "博茨瓦纳野生动物园和荒野",
+        "name": "Okavango Delta"
+      },
+      "cape_town": {
+        "region": "南非野生动物园和荒野",
+        "name": "Cape Town"
+      },
+      "victoria_falls": {
+        "region": "津巴布韦/赞比亚野生动物园和荒野",
+        "name": "Victoria Falls"
+      },
+      "namib_desert": {
+        "region": "纳米比亚野生动物园和荒野",
+        "name": "Namib Desert"
+      },
+      "kyoto": {
+        "region": "日本文化与历史",
+        "name": "Kyoto"
+      },
+      "rome": {
+        "region": "意大利文化与历史",
+        "name": "Rome"
+      },
+      "paris": {
+        "region": "法国文化与历史",
+        "name": "Paris"
+      },
+      "marrakech": {
+        "region": "摩洛哥文化与历史",
+        "name": "Marrakech"
+      },
+      "petra": {
+        "region": "约旦文化与历史",
+        "name": "Petra"
+      },
+      "machu_picchu": {
+        "region": "秘鲁文化与历史",
+        "name": "Machu Picchu"
+      },
+      "angkor_wat": {
+        "region": "柬埔寨文化与历史",
+        "name": "Angkor Wat"
+      },
+      "istanbul": {
+        "region": "土耳其文化与历史",
+        "name": "Istanbul"
+      },
+      "cairo_pyramids": {
+        "region": "埃及文化与历史",
+        "name": "Cairo & Pyramids"
+      },
+      "athens": {
+        "region": "希腊文化与历史",
+        "name": "Athens"
+      },
+      "barcelona": {
+        "region": "西班牙文化与历史",
+        "name": "Barcelona"
+      },
+      "prague": {
+        "region": "捷克共和国文化与历史",
+        "name": "Prague"
+      },
+      "lisbon": {
+        "region": "葡萄牙文化与历史",
+        "name": "Lisbon"
+      },
+      "budapest": {
+        "region": "匈牙利文化与历史",
+        "name": "Budapest"
+      },
+      "iceland": {
+        "region": "北大西洋探险",
+        "name": "Iceland"
+      },
+      "patagonia": {
+        "region": "智利/阿根廷探险",
+        "name": "Patagonia"
+      },
+      "swiss_alps": {
+        "region": "瑞士探险",
+        "name": "Swiss Alps"
+      },
+      "norwegian_fjords": {
+        "region": "挪威探险",
+        "name": "Norwegian Fjords"
+      },
+      "nepal": {
+        "region": "南亚探险",
+        "name": "Nepal"
+      },
+      "new_zealand": {
+        "region": "南太平洋探险",
+        "name": "New Zealand"
+      },
+      "canadian_rockies": {
+        "region": "加拿大探险",
+        "name": "Canadian Rockies"
+      },
+      "lofoten_islands": {
+        "region": "挪威探险",
+        "name": "Lofoten Islands"
+      },
+      "dolomites": {
+        "region": "意大利冒险",
+        "name": "Dolomites"
+      },
+      "gal_pagos_islands": {
+        "region": "厄瓜多尔探险",
+        "name": "Galápagos Islands"
+      },
+      "tuscany": {
+        "region": "意大利美食与美酒",
+        "name": "Tuscany"
+      },
+      "osaka_kyoto": {
+        "region": "日本美食与美酒",
+        "name": "Osaka & Kyoto"
+      },
+      "san_sebasti_n": {
+        "region": "西班牙美食与美酒",
+        "name": "San Sebastián"
+      },
+      "singapore": {
+        "region": "东南亚美食美酒",
+        "name": "Singapore"
+      },
+      "bangkok": {
+        "region": "泰国美食美酒",
+        "name": "Bangkok"
+      },
+      "copenhagen": {
+        "region": "丹麦美食美酒",
+        "name": "Copenhagen"
+      },
+      "new_york": {
+        "region": "美国城市休闲",
+        "name": "New York"
+      },
+      "london": {
+        "region": "英国城市休闲",
+        "name": "London"
+      },
+      "dubai": {
+        "region": "阿联酋城市休闲",
+        "name": "Dubai"
+      },
+      "tokyo": {
+        "region": "日本城市休闲",
+        "name": "Tokyo"
+      },
+      "sydney": {
+        "region": "澳大利亚城市休闲",
+        "name": "Sydney"
+      },
+      "amsterdam": {
+        "region": "荷兰城市休闲",
+        "name": "Amsterdam"
+      },
+      "vienna": {
+        "region": "奥地利城市休闲",
+        "name": "Vienna"
+      },
+      "rio_de_janeiro": {
+        "region": "巴西城市休闲",
+        "name": "Rio de Janeiro"
+      },
+      "mexico_city": {
+        "region": "墨西哥城休息",
+        "name": "Mexico City"
+      }
+    }
+  },
+  "packages": {
+    "heroEyebrow": "旅游套餐",
+    "heroTitle1": "选择您的",
+    "heroTitleEm": "完美旅程",
+    "heroTitleHtml": "选择您的<br><em>完美旅程</em>",
+    "heroSub": "精心设计的套餐适合各种旅行方式——从亲密的度假到盛大的探险。",
+    "tag": "我们的套餐",
+    "title": "找到合适的人",
+    "titleEm": "包裹",
+    "titleHtml": "找到正确的 <em>Package</em>",
+    "tier1": "第一级",
+    "essentialName": "基本浏览器",
+    "essentialSub": "世界旅行的完美介绍",
+    "tier2": "第二级",
+    "signatureName": "签名之旅",
+    "signatureSub": "我们的优质旅行体验",
+    "tier3": "第三级",
+    "ultraName": "超豪华",
+    "ultraSub": "世界旅行的巅峰",
+    "mostPopular": "最受欢迎",
+    "featReturnFlights": "包含往返航班",
+    "feat3Star": "三星级住宿",
+    "featAirportXfer": "机场接送",
+    "featBreakfast": "每日早餐",
+    "featConcierge": "专属礼宾服务",
+    "featPrivateGuides": "私人导游",
+    "featBusinessClass": "商务舱航班",
+    "feat5Star": "五星级住宿",
+    "featPrivateXfer": "私人接送",
+    "featAllMeals": "包含所有餐食",
+    "featPersonalConcierge": "私人礼宾服务",
+    "featPrivateJet": "提供私人飞机",
+    "featVillas": "专属私人别墅",
+    "featHeli": "直升机接送",
+    "featGourmet": "全包美食",
+    "featButler": "24/7 私人管家",
+    "featUnlimited": "无限体验",
+    "getStarted": "开始使用",
+    "bookSignature": "书籍签名",
+    "requestQuote": "请求报价",
+    "enhanceTag": "增强功能",
+    "enhanceTitle": "提升您的",
+    "enhanceEm": "经验",
+    "enhanceTitleHtml": "提升您的<em>体验</em>",
+    "addDining": "精致餐饮升级",
+    "addDiningDesc": "预订并确认您目的地的米其林星级餐厅。",
+    "addWellness": "健康与水疗",
+    "addWellnessDesc": "在世界一流的设施中享受每日水疗护理、瑜伽课程和健康体验。",
+    "addPhoto": "私人摄影师",
+    "addPhotoDesc": "专业的旅行摄影师用令人惊叹、持久的图像记录您的旅程。",
+    "addHeli": "直升机之旅",
+    "addHeliDesc": "私人直升机体验标志性景观——峡湾、火山和冰川。"
+  },
+  "about": {
+    "storyTag": "我们的故事",
+    "storyTitle1": "不仅仅是一次旅行",
+    "storyTitle2": "机构。",
+    "storyTitleEm": "愿景。",
+    "storyTitleHtml": "不仅仅是一家旅行社<br>机构。 <em>愿景.</em>",
+    "storyBody": "我们坚信每位旅行者都应该获得真正的个性化体验——不是套餐，不是模板，而是完全围绕您打造的旅程。",
+    "planJourney": "计划你的旅程",
+    "whoTag": "我们是谁",
+    "whoTitle1": "对旅行的热情",
+    "whoTitleEm": "在我们的 DNA 中",
+    "whoTitleHtml": "对旅行的热情<br><em> 融入我们的 DNA</em>",
+    "whoP1": "马丁斯环球旅行 (Martins Global Travels) 诞生于一个信念：只要做得正确，旅行就能改变生活。我们的创始人马丁斯花了数年时间探索世界上最伟大的目的地，并建立了这家机构来分享这种奇妙的感觉 - 以及现代旅行者应得的舒适和精确。",
+    "whoP2": "我们的专业旅行设计师团队对我们提供的每个目的地都充满热情。每个人都会亲自探索他们推荐的地方——我们绝不会推荐我们没有亲身经历过的地方。",
+    "whoP3": "从精心挑选完美的酒店到在您旅途中提供实时支持 — 我们所做的一切都围绕着一个问题：什么会让这成为您一生中最非凡的旅行？",
+    "pillarVision": "想象",
+    "pillarVisionT": "您的旅程，我们的激情",
+    "pillarVisionD": "每一次旅行都体现了我们对旅行的热爱以及我们致力于让您获得真正非凡的体验。",
+    "pillarApproach": "方法",
+    "pillarApproachT": "手工制作，而非自动化",
+    "pillarApproachD": "没有算法，没有通用模板。每条行程都是由亲自去过那里的专家制定的。",
+    "pillarReach": "抵达",
+    "pillarReachT": "全球 120 多个目的地",
+    "pillarReachD": "从隐秘的热带海湾到热闹的文化之都——我们的网络遍及各大洲。",
+    "pillarPromise": "承诺",
+    "pillarPromiseT": "永远为您服务",
+    "pillarPromiseD": "旅行之前、期间和之后提供 24/7 支持。预订后我们不会消失。",
+    "valuesTag": "我们的价值观",
+    "valuesTitle1": "原则",
+    "valuesTitleEm": "指导一切",
+    "valuesTitleHtml": "原则<br>指南<em>Everything</em>",
+    "val1t": "真实性第一",
+    "val1d": "我们设计的体验将您与真实的文化、真实的人和真实的时刻联系起来——超越了游客的复选框。",
+    "val2t": "不懈的卓越",
+    "val2d": "在我们将其推荐给单个客户之前，我们检查了每家酒店，培训了每位导游，对每条行程进行了压力测试。",
+    "val3t": "负责任的旅行",
+    "val3d": "我们精心挑选负责任的运营商，并致力于在每个目的地实行可持续、道德的旅行实践。",
+    "val4t": "完全透明",
+    "val4d": "没有隐藏费用，没有惊喜。所见即所得——始终预先明确说明。",
+    "val5t": "人际关系",
+    "val5d": "真正的专家，真正的对话——您将始终与真正关心您的旅行的人交谈。",
+    "val6t": "你的旅程，永远",
+    "val6d": "我们完全围绕您打造每一次旅行——您的喜好、您的节奏、您的预算、您的梦想。",
+    "commitTag": "我们的承诺",
+    "commitTitle1": "你总是可以做什么",
+    "commitTitleEm": "对我们的期望",
+    "commitTitleHtml": "您始终可以<em>对我们有什么期望</em>",
+    "commitLead": "这些不是奖项——而是承诺。每一次旅行，每一次。",
+    "c1t": "完全保险并获得许可",
+    "c1d": "我们是一家获得完全许可的美国旅行社，承保职业责任保险。您的预订和资金在每一步都受到保护。",
+    "c2t": "24/7 真人支持",
+    "c2d": "不是聊天机器人。不是呼叫中心。真正的专家了解您的旅行，在旅行前和旅行期间全天候为您服务。",
+    "c3t": "仅个人推荐",
+    "c3d": "我们绝不会推荐我们没有亲自去过的酒店、导游或体验。如果我们不派自己的家人去那里，我们也不会派你去。",
+    "c4t": "最优惠价格保证",
+    "c4d": "在其他地方找到更便宜的相同行程，我们会匹配。我们支持我们制定的每条行程的价值。",
+    "c5t": "完全定制，始终如一",
+    "c5d": "没有两次旅行是相同的。每条行程都是围绕您从头开始制定的——您的节奏、您的兴趣、您的预算。",
+    "c6t": "负责任的旅行",
+    "c6d": "我们精心挑选负责任的运营商，并致力于回馈我们服务目的地的社区。"
+  },
+  "contact": {
+    "heroEyebrow": "联系我们",
+    "heroTitle1": "让我们计划您的",
+    "heroTitleEm": "梦想之旅",
+    "heroTitleHtml": "让我们计划您的<br><em>梦想之旅</em>",
+    "infoTitle1": "我们在这里",
+    "infoTitleEm": "为你",
+    "infoTitleHtml": "我们在这里<br><em>为您</em>",
+    "heroSub": "告诉我们您想去哪里，专家将在 24 小时内与您联系。",
+    "infoTag": "联系方式",
+    "phone": "电话",
+    "email": "电子邮件",
+    "office": "办公室",
+    "officeAddr": "贝尔蒙特街 1350 号，114 室\n马萨诸塞州布罗克顿",
+    "hoursTitle": "办公时间",
+    "monFri": "周一至周五",
+    "monFriTime": "上午 8:00 – 晚上 8:00",
+    "sat": "周六",
+    "satTime": "上午 9:00 – 下午 6:00",
+    "sun": "星期日",
+    "sunTime": "上午 10:00 – 下午 4:00",
+    "emergency": "紧急情况",
+    "emergencyTime": "24/7 始终",
+    "destMaldives": "马尔代夫/印度洋",
+    "destAfrica": "非洲 / 野生动物园",
+    "destJapan": "日本/亚太地区",
+    "destEurope": "欧洲/地中海",
+    "destCaribbean": "加勒比海",
+    "destSa": "南美洲",
+    "destUnsure": "还不确定",
+    "pkgEssential": "基本浏览器",
+    "pkgSignature": "签名之旅",
+    "pkgUltra": "超豪华",
+    "pkgHoneymoon": "蜜月",
+    "pkgFamily": "家庭度假",
+    "pkgGroup": "团体旅游",
+    "travel1": "1 人",
+    "travel2": "2人",
+    "travel34": "3–4 人",
+    "travel58": "5–8 人",
+    "travel9": "9+组"
+  },
+  "faq": {
+    "heroEyebrow": "帮助和信息",
+    "heroTitle1": "常见问题",
+    "heroTitleEm": "问题",
+    "heroTitleHtml": "常见问题<br><em>问题</em>",
+    "heroSub": "关于通过 Martins Global Travels 预订和旅行所需的一切信息。",
+    "g1": "预订与规划",
+    "q1": "我如何开始计划旅行？",
+    "a1": "前往我们的联系页面并发送包含您的目的地、日期和团体人数的查询。我们的一位旅行专家将在 24 小时内与您联系，从头开始制定您的行程。",
+    "q2": "我应该提前多久预订？",
+    "a2": "对于大多数目的地，我们建议 3-6 个月，而对于非洲野生动物园、日本樱花或欧洲夏季高峰期等热门季节，我们建议 6-12 个月。我们也可以提供最后一刻的预订——只需询问即可。",
+    "q3": "我可以完全定制我的套餐吗？",
+    "a3": "我们打造的每一次旅行都是完全定制的。我们的套餐是一个起点——我们根据您的需求量身定制住宿、活动、节奏、饮食需求以及每一个细节。一切皆有可能。",
+    "q4": "你们组织团体旅行吗？",
+    "a4": "是的——从亲密的家庭旅行到大型企业务虚会。我们接待 5 至 50 人以上的团体。请联系我们并告知您的团体规模，我们将制定量身定制的提案。",
+    "q5": "您可以安排蜜月或特殊场合吗？",
+    "a5": "绝对地。蜜月和特殊场合是我们最要求的旅行之一。我们与世界各地的酒店和度假村合作，安排私人晚餐、客房升级、惊喜体验和定制服务，让这一刻真正令人难忘。",
+    "g2": "定价与付款",
+    "q6": "为什么不在网站上显示价格？",
+    "a6": "每次旅行都是完全定制的，因此价格根据目的地、季节、住宿、持续时间和团体规模而有所不同。我们更愿意根据您的需求为您提供准确的报价，而不是提供不能反映您的行程的通用数字。",
+    "q7": "有咨询费吗？",
+    "a7": "不需要。初步咨询和报价是完全免费的。我们仅在您决定继续预订时收取费用，此时您需要支付押金以确保您的安排。",
+    "q8": "你们接受什么付款方式？",
+    "a8": "我们接受所有主要信用卡和借记卡、银行转账，并选择数字支付方式。预订时需支付押金，并在出发前 60-90 天付清余款。您的预订协议中概述了全额付款条款。",
+    "q9": "你们提供最优惠的价格保证吗？",
+    "a9": "是的。如果您在其他地方发现价格更低的相同行程（相同的酒店、航班和日期），我们将予以匹配。我们对我们提供的价值充满信心，特别是考虑到所包含的个性化和支持水平。",
+    "g3": "防护与安全",
+    "q10": "我的预订是否受到经济保护？",
+    "a10": "是的，完全如此。 Martins Global Travels 是一家获得完全许可的美国旅行社，提供专业责任保险。我们专门与全球财务稳定、经过审查的供应商合作，每次预订都包含一份详细的书面协议，概述您的保护措施。",
+    "q11": "你们的取消政策是什么？",
+    "a11": "特色之旅和超豪华预订可在出发前 60 天免费取消。 Essential Explorer 预订需支付小额取消费。我们强烈推荐全面的旅行保险，让您高枕无忧。",
+    "q12": "我需要旅行保险吗？",
+    "a12": "我们强烈推荐它用于所有旅行。旅行保险可以保护您免受医疗紧急情况、旅行中断、行李丢失和意外情况的影响。如果您需要帮助选择正确的政策，我们可以推荐值得信赖的提供商。",
+    "g4": "在您的旅行期间",
+    "q13": "我在旅行时可以获得哪些支持？",
+    "a13": "所有预订均包括整个旅程中的 24/7 紧急支持。 Signature Journey 和 Ultra Luxury 客户还可以随时联系专门的个人礼宾人员，为您提供从餐厅推荐到紧急重新预订等各种服务。",
+    "q14": "我会有当地导游吗？",
+    "a14": "特色之旅和超豪华套餐包括每个目的地的专业私人导游。基本的探索者之旅包括游览的团体指南。所有导游都经过仔细审查，会说英语，并且对目的地充满热情。",
+    "q15": "你们提供可持续的旅行选择吗？",
+    "a15": "是的。我们在每个目的地都精心挑选负责任的本地投资运营商，并致力于可持续的旅行实践。当您询问时，请向我们询问我们负责任的旅行选择。",
+    "q16": "如果我的旅行出了问题怎么办？",
+    "a16": "立即联系我们 — 我们的 24/7 紧急热线始终畅通。我们在每个目的地都有当地联系人和合作伙伴，通常可以快速解决问题。我们的目标始终是确保任何干扰对您的体验的影响最小。",
+    "ctaTag": "还有疑问吗？",
+    "ctaTitle1": "我们很高兴",
+    "ctaTitleEm": "帮助",
+    "ctaTitleHtml": "我们很高兴<em style=\"font-style:italic;color:var(--gold)\">Help</em>",
+    "ctaBody": "随时联系 — 我们通常会在一个工作日内回复。"
+  },
+  "privacy": {
+    "heroEyebrow": "您的数据",
+    "heroTitle1": "隐私",
+    "heroTitleEm": "政策",
+    "heroTitleHtml": "隐私<br><em>政策</em>",
+    "heroSub": "Martins Global Travels 如何收集、使用和保护您的个人信息。",
+    "updated": "最后更新时间：2026 年 3 月 27 日",
+    "note": "本政策仅供一般信息参考。它不构成法律建议。请合格的律师针对您的业务、司法管辖区和实践进行审查。",
+    "introH": "介绍",
+    "introP1": "Martins Global Travels（“我们”或“我们的”）尊重您的隐私。本隐私政策描述了当您访问我们的网站、联系我们、订阅更新或使用我们的旅行计划和预订服务时，我们如何收集、使用、披露和保护个人信息。",
+    "introP2": "通过使用我们的网站或向我们提供信息，即表示您同意本政策。如果您不同意，请不要使用我们的服务。",
+    "collectH": "我们收集的信息",
+    "collectP": "根据您与我们互动的方式，我们可能会收集：",
+    "collectL1": "联系方式和身份数据：您在表格或信件中提供的姓名、电子邮件地址、电话号码、邮寄地址以及类似详细信息。",
+    "collectL2": "旅行和偏好数据：目的地、日期、预算、旅行方式、饮食或无障碍需求、忠诚度计划编号以及计划或安排旅行所需的其他信息。",
+    "collectL3": "支付相关数据：处理交易所需的有限支付信息。卡数据可由支付处理器直接处理；除非特定交易需要且法律允许，否则我们不会在服务器上存储完整的卡号。",
+    "collectL4": "通讯：电子邮件、消息、通话记录以及您发送给我们的反馈。",
+    "collectL5": "技术和使用数据：IP 地址、浏览器类型、设备信息、从 IP 得出的​​一般位置、查看的页面以及通过 Cookie 和类似技术收集的类似数据（请参阅下面的 Cookie 部分）。",
+    "useH": "我们如何使用信息",
+    "useP": "我们使用个人信息来：",
+    "useL1": "回复询问并提供旅行咨询；",
+    "useL2": "与供应商（航空公司、酒店、旅行社、保险公司等）研究、计划、定价、预订和管理旅行安排；",
+    "useL3": "处理付款并发送相关通知；",
+    "useL4": "发送与服务相关的消息，并在允许的情况下发送营销通讯（您可以随时选择退出营销）；",
+    "useL5": "改进我们的网站、服务和客户体验；",
+    "useL6": "遵守法律义务、执行我们的条款并保护权利、安全和保障。",
+    "legalH": "法律依据（如适用）",
+    "legalP": "如果适用法律要求处理有“法律依据”（例如在欧洲经济区或英国），我们依赖以下一项或多项：合同的履行、合法利益（例如运营我们的业务和保护我们的系统）、必要时的同意以及法律义务。",
+    "shareH": "信息共享",
+    "shareP": "我们可能会与以下人员共享个人信息：",
+    "shareL1": "履行或支持您旅行的供应商和合作伙伴（例如酒店、航空公司、地面运营商、保险公司）；",
+    "shareL2": "为我们提供帮助的服务提供商（例如托管、电子邮件发送、分析、支付处理、客户关系工具）；",
+    "shareL3": "需要时的专业顾问（例如律师、会计师）；",
+    "shareL4": "当法律、法院命令有要求或为了保护切身利益时，当局应采取行动。",
+    "shareP2": "我们不会出于金钱考虑而出售您的个人信息，因为该术语在美国各州隐私法中通常被理解。我们可能会使用涉及 Cookie 或类似技术的分析或广告工具，如下所述。",
+    "cookiesH": "Cookie 和类似技术",
+    "cookiesP": "我们和我们的合作伙伴可能会使用 cookie、像素和类似技术来运营网站、记住偏好、测量流量以及（如果适用）提供相关内容。您可以通过浏览器设置来控制 cookie。阻止某些 cookie 可能会影响网站功能。",
+    "retentionH": "保留",
+    "retentionP": "我们仅在本政策所述目的（包括法律、会计或报告要求）所需的时间内保留个人信息，除非法律要求或允许更长的期限。",
+    "securityH": "安全",
+    "securityP": "我们实施合理的管理、技术和组织措施来保护个人信息。没有一种互联网传输方法是完全安全的；我们不能保证绝对安全。",
+    "rightsH": "您的选择和权利",
+    "rightsP": "根据您居住的地方，您可能有权访问、更正、删除或限制对您的个人信息的处理，或反对某些处理或数据可移植性。您可能还有权向监管机构提出投诉。要行使适用的权利，请使用以下详细信息与我们联系。在回复之前我们可能需要验证您的身份。",
+    "intlH": "国际转账",
+    "intlP": "如果您位于美国境外，您的信息可能会被传输到美国或我们或我们的供应商运营的其他国家并在其中进行处理。我们采取旨在确保法律要求的适当保障措施的措施。",
+    "childrenH": "孩子们",
+    "childrenP": "我们的服务不针对 16 岁以下的儿童，并且我们不会故意收集儿童的个人信息。如果您认为我们收集了儿童的信息，请联系我们，我们将采取适当的措施将其删除。",
+    "changesH": "本政策的变更",
+    "changesP": "我们可能会不时更新本隐私政策。我们将在此页面上发布修订后的政策并更新“最后更新”日期。重大变更可以在适当的情况下通过附加通知进行传达。",
+    "contactH": "联系我们",
+    "contactP": "对于与隐私相关的问题或请求，请使用我们的联系页面上的详细信息联系 Martins Global Travels。",
+    "contactLink": "接触"
+  },
+  "terms": {
+    "heroEyebrow": "合法的",
+    "heroTitle1": "条款",
+    "heroTitleEm": "服务",
+    "heroTitleHtml": "<br><em>服务条款</em>",
+    "heroSub": "在使用我们的网站或服务之前，请仔细阅读这些条款。",
+    "updated": "最后更新时间：2026 年 3 月 27 日",
+    "note": "这些术语是通用模板。它们不是法律建议。由合格的律师针对您的业务、司法管辖区和风险状况进行审查和定制。",
+    "agreeH": "同意条款",
+    "agreeP": "这些服务条款（“条款”）管辖您对 Martins Global Travels（统称“我们”或“我们的”）网站和服务的访问和使用。通过访问我们的网站、提交查询或使用我们的服务，即表示您同意这些条款。如果您不同意，请勿使用我们的服务。",
+    "roleH": "我们的角色",
+    "roleP": "马丁斯环球旅行是一家旅行社。我们协助研究、规划和安排第三方供应商（例如航空公司、酒店、游轮公司、旅行社和保险公司）提供的旅行相关产品和服务。除非我们在签署的协议中另有明确规定，否则我们将充当您和这些供应商之间的中间人。",
+    "eligH": "合格",
+    "eligP": "您声明您已年满 18 岁并且具有签署这些条款的法律行为能力。如果您代表公司或其他实体使用我们的服务，则您声明您有权约束该实体。",
+    "bookH": "预订、供应商和您的合同",
+    "bookP": "预订旅行时，每个供应商适用单独的条款和条件（票价规则、取消政策、健康要求等）。这些供应商条款构成您的相关服务协议的一部分。您负责审查供应商条款、护照、签证、健康要求和旅行建议。除非适用法律要求或您与我们之间的书面协议明确规定，否则我们不对供应商的行为、疏忽、故障或变更负责。",
+    "feesH": "费用和付款",
+    "feesP": "除非以书面形式确认，否则报价均为估计值。在收到押金或全额付款并发出门票或预订之前，价格可能会发生变化，具体取决于供应商的规定。您同意在到期时支付所有款项，包括我们披露的专业费用或服务费用。根据供应商规则，逾期付款可能会导致取消或罚款。",
+    "cancelH": "取消、变更和退款",
+    "cancelP": "取消、变更和退款规则取决于供应商条款、票价等级、时间安排和保险范围。费用可能不予退还。我们将尽合理努力，在供应商允许的情况下协助更改或取消；我们不保证退款或豁免。",
+    "insH": "旅行保险",
+    "insP": "我们强烈推荐全面的旅行保险。保险须遵守保险公司的保单条款。您有责任确定承保范围是否满足您的需求。",
+    "discH": "免责声明",
+    "discP": "我们网站上的信息（包括行程示例、描述和照片）仅供一般指导，可能会发生变化。我们不保证所有信息都是完整的、最新的或没有错误的。旅行涉及固有风险；我们不保证安全、满意或不间断的旅行。",
+    "liabH": "责任限制",
+    "liabP": "在适用法律允许的最大范围内，Martins Global Travels 以及我们的管理人员、员工和代理不对因您使用我们的服务或旅行安排而产生的任何间接、附带、特殊、后果性或惩罚性损害，或利润、商誉或数据损失承担责任。对于由这些条款或我们的服务引起的或与之相关的任何索赔，我们的总体责任仅限于您在索赔发生前六 (6) 个月内为引起索赔的特定预订或服务向我们支付的费用，法律禁止的情况除外。某些司法管辖区不允许某些限制；在这些情况下，我们的责任仅限于允许的最大范围。",
+    "indemH": "赔款",
+    "indemP": "您同意赔偿 Martins Global Travels 及我们的附属公司、管理人员、员工和代理人，使其免受因您违反这些条款、您的旅行或违反法律或第三方权利而引起的索赔、损失、损害和费用（包括合理的律师费），但由于我们的重大过失或故意不当行为造成的情况除外。",
+    "ipH": "知识产权",
+    "ipP": "本网站上的内容（包括文本、图形、徽标和设计）归 Martins Global Travels 或我们的许可方所有，并受知识产权法保护。未经我们事先书面同意，您不得复制、修改、分发或创建衍生作品，有限的个人、非商业观看除外。",
+    "govH": "适用法律和争议",
+    "govP": "这些条款受 Martins Global Travels 主要营业地所在州的法律管辖，不考虑法律冲突原则，除非您所在司法管辖区适用强制性消费者保护法。您同意位于该州的州法院和联邦法院对争议拥有专属管辖权和审判地，但须遵守适用法律下您不能放弃的任何权利。",
+    "chgH": "变化",
+    "chgP": "我们可能随时修改这些条款。更新后的条款将发布在此页面上，并附有修订后的“最后更新”日期。更改后继续使用即表示接受修订后的条款，除非适用法律要求额外通知或同意。",
+    "contactH": "接触",
+    "contactP": "如果对这些条款有疑问，请通过我们的联系页面与我们联系。",
+    "contactLink": "接触"
+  },
+  "bookNav": {
+    "bookFlights": "预订航班",
+    "portalSub": "客户门户",
+    "explore": "探索",
+    "legal": "合法的",
+    "support": "支持",
+    "bookTravel": "预订旅行",
+    "contactUs": "联系我们"
+  }
+}

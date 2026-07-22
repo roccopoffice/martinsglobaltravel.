@@ -6,9 +6,12 @@ import json
 import re
 from pathlib import Path
 
+# Manual overrides merged on top of auto-generated locale files (i18n/generated/*.json).
+
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = ROOT / "index.html"
 OUT = ROOT / "i18n" / "translations.js"
+GENERATED_DIR = ROOT / "i18n" / "generated"
 
 LANG_LABELS = {
     "en": "English",
@@ -423,21 +426,41 @@ def translate_dict(en: dict, lang: str) -> dict:
 
     if lang == "en":
         return en
+
+    generated_path = GENERATED_DIR / f"{lang}.json"
+    if generated_path.exists():
+        generated = json.loads(generated_path.read_text(encoding="utf-8"))
+        return merge(generated, overrides.get(lang, {}))
+
     patch = overrides.get(lang, {})
     return merge(en, patch)
 
 
-def build_en() -> dict:
-    html = INDEX.read_text(encoding="utf-8")
+def extract_dest_cards(html: str) -> dict:
+    """Read destination card labels from data-i18n attributes in index.html."""
+    dest_cards = {}
+    pattern = (
+        r'data-i18n="dest\.cards\.([^.]+)\.region">([^<]+)</div>\s*'
+        r'<div class="dpc-name" data-i18n="dest\.cards\.\1\.name">([^<]+)</div>'
+    )
+    for key, region, name in re.findall(pattern, html, re.S):
+        dest_cards[key] = {"region": region.strip(), "name": name.strip()}
+    if dest_cards:
+        return dest_cards
+    # Fallback for unpatch HTML
     cards = re.findall(
         r'<div class="dpc"[^>]*>.*?<div class="dpc-region">([^<]+)</div>\s*<div class="dpc-name">([^<]+)</div>',
         html,
         re.S,
     )
-    dest_cards = {}
     for region, name in cards:
-        key = slugify(name)
-        dest_cards[key] = {"region": region.strip(), "name": name.strip()}
+        dest_cards[slugify(name)] = {"region": region.strip(), "name": name.strip()}
+    return dest_cards
+
+
+def build_en() -> dict:
+    html = INDEX.read_text(encoding="utf-8")
+    dest_cards = extract_dest_cards(html)
 
     en = {
         "meta": {"title": "Martins Global Travels"},
@@ -1122,20 +1145,21 @@ def patch_index():
         '<button class="dpc-btn" onclick="go(\'contact\')" data-i18n="common.enquire">Enquire</button>',
     )
 
-    # Move scripts to end + add i18n includes
+    # Ensure inline SPA script + i18n includes exist before </body>
     script_block = re.search(r"<script>\n// World Cup home popup", html)
-    if script_block:
-        end_body = html.rfind("</body>")
+    end_body = html.rfind("</body>")
+    i18n_tail = (
+        '\n<script src="i18n/translations.js"></script>\n'
+        '<script src="i18n.js"></script>\n'
+        '<script src="js/contact-form.js"></script>\n'
+    )
+    if script_block and "function go(id)" not in html:
         script_end = html.find("</script>", script_block.start()) + len("</script>")
         inline_script = html[script_block.start() : script_end]
         html = html[: script_block.start()] + html[script_end:]
-        # remove duplicate if already at end
-        if "i18n/translations.js" not in html:
-            inserts = (
-                inline_script
-                + '\n<script src="i18n/translations.js"></script>\n<script src="i18n.js"></script>\n<script src="js/contact-form.js"></script>\n'
-            )
-            html = html[:end_body] + inserts + html[end_body:]
+        html = html[:end_body] + "\n" + inline_script + i18n_tail + html[end_body:]
+    elif "i18n/translations.js" not in html:
+        html = html[:end_body] + i18n_tail + html[end_body:]
 
     # Update filterDest in script for i18n
     html = html.replace(

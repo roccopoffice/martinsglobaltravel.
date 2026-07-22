@@ -1,0 +1,769 @@
+{
+  "meta": {
+    "title": "Martins Global Travels"
+  },
+  "nav": {
+    "home": "Hogar",
+    "destinations": "Destinos",
+    "packages": "Paquetes",
+    "faq": "FAQ",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "portal": "Portal del cliente",
+    "bookNow": "Reserva ahora"
+  },
+  "brand": {
+    "name": "Martins Global Travels",
+    "tagline": "Donde el lujo se encuentra con el mundo"
+  },
+  "a11y": {
+    "langSwitcher": "Seleccionar idioma",
+    "brandAlt": "Martins Global Travels: logotipo de sello dorado con monograma MGT y globo terráqueo",
+    "wcPopup": "Paquetes de viaje para el Mundial 2026",
+    "close": "Cerca"
+  },
+  "theme": {
+    "appearance": "Apariencia",
+    "light": "Luz",
+    "darkMode": "Cambiar al modo oscuro"
+  },
+  "form": {
+    "sendEnquiry": "Enviar consulta",
+    "sending": "Envío…",
+    "success": "¡Consulta enviada! Jeanie se pondrá en contacto dentro de las 24 horas.",
+    "error": "No se pudo enviar; llame al (508) 232-3003 o envíe un correo electrónico a Jeanie@MartinsGlobalTravels.com.",
+    "title": "Enviar una consulta",
+    "subtitle": "Complete el formulario y Jeanie le responderá dentro de las 24 horas.",
+    "firstName": "Nombre de pila",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "destination": "Destino",
+    "package": "Paquete",
+    "departureDate": "Fecha de salida",
+    "travelers": "Viajeros",
+    "message": "Cuéntanos sobre el viaje de tus sueños",
+    "messagePlaceholder": "Comparta cualquier solicitud especial, interés o experiencia imprescindible...",
+    "selectRegion": "Seleccionar región...",
+    "selectPackage": "Seleccionar paquete...",
+    "note": "Su información está segura y nunca será compartida con terceros.",
+    "placeholderFirst": "John",
+    "placeholderLast": "Smith",
+    "placeholderEmail": "john@email.com",
+    "placeholderPhone": "(508) 555-1234"
+  },
+  "toast": {
+    "subscribed": "¡Suscrito! Bienvenido a bordo.",
+    "blogSoon": "¡Blog próximamente!",
+    "careersSoon": "¡Pronto habrá carreras!"
+  },
+  "common": {
+    "enquire": "Preguntar",
+    "explore": "Explorar",
+    "scrollExplore": "Desplázate para explorar",
+    "scrollMore": "Desplázate para ver más",
+    "allDestinations": "Todos los destinos",
+    "viewAllDestinations": "Ver todos los destinos",
+    "enquireNow": "Preguntar ahora",
+    "contactUs": "Contáctenos",
+    "planMyTrip": "Planificar mi viaje",
+    "subscribe": "Suscribir",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "cookies": "Cookies",
+    "days": "Días",
+    "showingAll": "Mostrando todos los {n} destinos",
+    "showingCat": "Mostrando {n} {cat} destino",
+    "showingCats": "Mostrando {n} {cat} destinos"
+  },
+  "footer": {
+    "quote": "\"El mundo es un libro, y quien no viaja lee sólo una página\".",
+    "destinations": "Destinos",
+    "packages": "Paquetes",
+    "company": "Compañía",
+    "contact": "Contacto",
+    "aboutUs": "Sobre nosotros",
+    "ourTeam": "Nuestro equipo",
+    "travelBlog": "Blog de viajes",
+    "careers": "Carreras",
+    "licensed": "Agencia de viajes con licencia de EE. UU.",
+    "copyright": "© 2026 Martins Viajes Globales. Reservados todos los derechos.",
+    "noSpam": "Nada de spam, nunca. Darse de baja en cualquier momento.",
+    "maldives": "Maldivas",
+    "africaSafaris": "Safaris en África",
+    "japanAsia": "Japón y Asia",
+    "europe": "Europa",
+    "caribbean": "caribe",
+    "southAmerica": "Sudamerica",
+    "honeymoons": "Lunas de miel",
+    "familyHolidays": "Vacaciones familiares",
+    "adventureTours": "Tours de Aventura",
+    "luxuryEscapes": "Escapadas de lujo",
+    "cruises": "Cruceros"
+  },
+  "wc": {
+    "continue": "Continuar navegando",
+    "book": "Reserva tu experiencia",
+    "imgAlt": "Paquetes de viaje para la Copa Mundial 2026: vuelos, hoteles, transporte y asistencia para comprar boletos de Martins Global Travels."
+  },
+  "home": {
+    "heroLine1": "el mundo",
+    "heroLine2": "Lo más extraordinario",
+    "heroLine2html": "Más <em>Extraordinario</em>",
+    "heroLine3": "Destinos",
+    "heroDesc": "Viajes hechos a medida, creados exclusivamente para usted, desde villas sobre el agua hasta safaris en la naturaleza y todo lo demás.",
+    "exploreDestinations": "Explorar destinos",
+    "viewPackages": "Ver paquetes",
+    "statDestinations": "Destinos",
+    "statContinents": "Continentes",
+    "topDestinations": "Principales destinos",
+    "whereNext": "¿Dónde estarás?",
+    "whereNextEm": "¿Ir a continuación?",
+    "whereNextHtml": "¿Adónde irás<br><em> a continuación?</em>",
+    "signatureFoot": "Nuestros cinco países emblemáticos, seleccionados cuidadosamente para viajes personalizados por todo el mundo.",
+    "aboutTag": "Acerca de Martins Global Travels",
+    "aboutTitle": "Una agencia de viajes construida",
+    "aboutTitleEm": "A tu alrededor",
+    "aboutTitleHtml": "Una agencia de viajes construida<br>alrededor de <em>Tú</em>",
+    "aboutBody": "Martins Global Travels se creó sobre la base de una creencia: cada viajero merece un viaje elaborado exclusivamente en torno a él. Nuestros especialistas exploran personalmente cada destino que recomiendan. Sin plantillas, sin conjeturas.",
+    "pill1": "Más de 120 destinos",
+    "pill2": "6 continentes",
+    "pill3": "Soporte 24 horas al día, 7 días a la semana",
+    "pill4": "100% a medida",
+    "ourStory": "Nuestra historia",
+    "featuredJourneys": "Viajes destacados",
+    "curatedItineraries": "Nuestro curado",
+    "curatedEm": "Itinerarios",
+    "curatedHtml": "Nuestros <em>Itinerarios</em> seleccionados",
+    "allPackages": "Todos los paquetes",
+    "whyTag": "Por qué Martins Global Travels",
+    "whyTitle": "Viaje construido",
+    "whyEm": "Diferentemente",
+    "whyTitleHtml": "Viaje construido <em>Diferentemente</em>",
+    "whyLead": "Nos encargamos de cada detalle para que puedas concentrarte completamente en la experiencia.",
+    "readyTag": "¿Listo para viajar?",
+    "readyTitle": "El viaje de tus sueños",
+    "readyEm": "Comienza aquí",
+    "readyTitleHtml": "El viaje de tus sueños<br><em>Comienza aquí</em>",
+    "readyBody": "Cuéntanos adónde quieres ir. Nuestros especialistas elaborarán cada detalle de su viaje perfecto; todo lo que tiene que hacer es presentarse.",
+    "nlTag": "Mantente inspirado",
+    "nlTitle": "Sea el primero en",
+    "nlEm": "Descubrir",
+    "nlTitle2": "Nuestras ofertas exclusivas",
+    "nlTitleHtml": "Sea el primero en <em>Descubrir</em><br>Nuestras ofertas exclusivas",
+    "nlBody": "Ofertas exclusivas, guías de destinos e inspiración para viajes de la mano de nuestros especialistas.",
+    "nlPlaceholder": "Su dirección de correo electrónico...",
+    "why1t": "Curado personalmente",
+    "why1d": "Cada hotel, guía y experiencia se examina personalmente. Solo recomendamos lugares donde nuestro equipo ha estado.",
+    "why2t": "Totalmente protegido",
+    "why2d": "La inversión de su viaje está totalmente asegurada. Trabajamos únicamente con proveedores confiables y examinados y contamos con un seguro completo de responsabilidad para agentes de viajes.",
+    "why3t": "Red mundial",
+    "why3d": "Una red cuidadosamente seleccionada de expertos locales confiables en cada destino que ofrecemos, que le brinda acceso a experiencias que no están disponibles en ningún otro lugar.",
+    "why4t": "Soporte 24 horas al día, 7 días a la semana",
+    "why4d": "Servicio de conserjería las 24 horas. Estés donde estés en el mundo, nuestro equipo siempre está a solo una llamada de distancia.",
+    "tdItalyRegion": "Europa",
+    "tdItalyTitle": "Italia",
+    "tdItalyDesc": "Desde canales venecianos hasta colinas toscanas: arte, cocina y la dolce vita adaptada a su ritmo.",
+    "tdItalyBtn": "Explorar Italia",
+    "tdChinaRegion": "Asia Oriental",
+    "tdChinaTitle": "Porcelana",
+    "tdChinaDesc": "Maravillas antiguas y ciudades ultramodernas: los guías privados descubren la historia, el sabor y el espectáculo.",
+    "tdChinaBtn": "Explorar China",
+    "tdPortugalRegion": "Europa",
+    "tdPortugalTitle": "Portugal",
+    "tdPortugalDesc": "Luz del Atlántico, azulejos y fado conmovedor: Lisboa, Oporto y el Algarve a su gusto.",
+    "tdPortugalBtn": "Explora Portugal",
+    "tdSpainRegion": "Europa",
+    "tdSpainTitle": "España",
+    "tdSpainDesc": "Palacios árabes, la Barcelona de Gaudí y costas bañadas por el sol: ritmo, tapas y pura pasión.",
+    "tdSpainBtn": "Explora España",
+    "tdSaRegion": "África",
+    "tdSaTitle": "Sudáfrica",
+    "tdSaDesc": "La elegancia del Cabo se encuentra con el safari de los Cinco Grandes: rutas del vino, una costa espectacular y una vida salvaje inolvidable.",
+    "tdSaBtn": "Explorar Sudáfrica",
+    "mqItaly": "Italy",
+    "mqChina": "China",
+    "mqPortugal": "Portugal",
+    "mqSpain": "España",
+    "mqSa": "Sudáfrica",
+    "tour1Cat": "Playa y lujo",
+    "tour1Days": "10 dias",
+    "tour1Loc": "Maldivas, Océano Índico",
+    "tour1Name": "Escape sobre el agua de Maldivas",
+    "tour1Desc": "Villas privadas sobre el agua, buceo en arrecifes de coral y cruceros al atardecer en las aguas más cristalinas del mundo.",
+    "tour2Cat": "Safari",
+    "tour2Days": "14 dias",
+    "tour2Loc": "Tanzania, África Oriental",
+    "tour2Name": "Gran Safari Migratorio",
+    "tour2Desc": "Sea testigo de cómo 1,5 millones de ñus cruzan el Serengeti, uno de los mayores espectáculos de la naturaleza.",
+    "tour3Cat": "Cultural",
+    "tour3Days": "12 dias",
+    "tour3Loc": "Japón, Asia Oriental",
+    "tour3Name": "Flor de cerezo de Japón",
+    "tour3Desc": "Tokio, Kioto y Osaka durante la temporada de sakura: una inmersión cultural inolvidable.",
+    "tour4Cat": "Lujo",
+    "tour4Days": "8 dias",
+    "tour4Loc": "Grecia, Mediterráneo",
+    "tour4Name": "Alquiler de yates en las islas griegas",
+    "tour4Desc": "Yate privado que recorre Santorini, Mykonos y Creta con su tripulación personal.",
+    "tour5Cat": "Aventura",
+    "tour5Days": "9 dias",
+    "tour5Loc": "Islandia, Atlántico Norte",
+    "tour5Name": "Aurora Boreal Islandia",
+    "tour5Desc": "Persiga la aurora boreal y sumérjase en piscinas geotérmicas bajo un cielo pintado.",
+    "tour6Cat": "Aventura",
+    "tour6Days": "16 dias",
+    "tour6Loc": "Patagonia, Sudamérica",
+    "tour6Name": "Caminata por el desierto de la Patagonia",
+    "tour6Desc": "Trekking por glaciares, avistamientos de cóndores y fiordos del fin del mundo en Argentina y Chile."
+  },
+  "dest": {
+    "heroEyebrow": "57 destinos principales",
+    "heroTitle1": "Explora el mundo",
+    "heroTitleEm": "Sin límites",
+    "heroTitleHtml": "Explora el mundo<br><em>Sin límites</em>",
+    "heroSub": "Desde escondites en islas aisladas hasta capitales cosmopolitas: todos los rincones del mundo están a su alcance.",
+    "filterAll": "Todos (57)",
+    "filterBeach": "Playa e islas",
+    "filterSafari": "Safaris y naturaleza",
+    "filterCulture": "Cultura e Historia",
+    "filterAdventure": "Aventura",
+    "filterFood": "comida y vino",
+    "filterCity": "escapadas a la ciudad",
+    "countDefault": "Mostrando los 57 destinos",
+    "cards": {
+      "maldives": {
+        "region": "Playas e islas del Océano Índico",
+        "name": "Maldives"
+      },
+      "bora_bora": {
+        "region": "Playas e islas de la Polinesia Francesa",
+        "name": "Bora Bora"
+      },
+      "santorini": {
+        "region": "Grecia Playas e Islas",
+        "name": "Santorini"
+      },
+      "amalfi_coast": {
+        "region": "Italia Playas e Islas",
+        "name": "Amalfi Coast"
+      },
+      "seychelles": {
+        "region": "Playas e islas de África Oriental",
+        "name": "Seychelles"
+      },
+      "bali": {
+        "region": "Playas e islas de Indonesia",
+        "name": "Bali"
+      },
+      "phuket": {
+        "region": "Playas e islas de Tailandia",
+        "name": "Phuket"
+      },
+      "maldives_resorts": {
+        "region": "Playas e islas del Océano Índico",
+        "name": "Maldives Resorts"
+      },
+      "mykonos": {
+        "region": "Grecia Playas e Islas",
+        "name": "Mykonos"
+      },
+      "mauritius": {
+        "region": "Playas e islas del Océano Índico",
+        "name": "Mauritius"
+      },
+      "fiji": {
+        "region": "Playas e islas del Pacífico Sur",
+        "name": "Fiji"
+      },
+      "zanzibar": {
+        "region": "Playas e islas de África Oriental",
+        "name": "Zanzibar"
+      },
+      "serengeti_plains": {
+        "region": "Safari y naturaleza en Tanzania",
+        "name": "Serengeti Plains"
+      },
+      "masai_mara_savanna": {
+        "region": "Safari y naturaleza en Kenia",
+        "name": "Masai Mara Savanna"
+      },
+      "okavango_delta": {
+        "region": "Safari y naturaleza en Botswana",
+        "name": "Okavango Delta"
+      },
+      "cape_town": {
+        "region": "Safari y naturaleza en Sudáfrica",
+        "name": "Cape Town"
+      },
+      "victoria_falls": {
+        "region": "Zimbabwe/Zambia Safari y naturaleza",
+        "name": "Victoria Falls"
+      },
+      "namib_desert": {
+        "region": "Safari y naturaleza en Namibia",
+        "name": "Namib Desert"
+      },
+      "kyoto": {
+        "region": "Cultura e historia de Japón",
+        "name": "Kyoto"
+      },
+      "rome": {
+        "region": "Italia Cultura e Historia",
+        "name": "Rome"
+      },
+      "paris": {
+        "region": "Francia Cultura e Historia",
+        "name": "Paris"
+      },
+      "marrakech": {
+        "region": "Marruecos Cultura e Historia",
+        "name": "Marrakech"
+      },
+      "petra": {
+        "region": "Cultura e historia de Jordania",
+        "name": "Petra"
+      },
+      "machu_picchu": {
+        "region": "Perú Cultura e Historia",
+        "name": "Machu Picchu"
+      },
+      "angkor_wat": {
+        "region": "Cultura e historia de Camboya",
+        "name": "Angkor Wat"
+      },
+      "istanbul": {
+        "region": "Cultura e historia de Turquía",
+        "name": "Istanbul"
+      },
+      "cairo_pyramids": {
+        "region": "Cultura e Historia de Egipto",
+        "name": "Cairo & Pyramids"
+      },
+      "athens": {
+        "region": "Grecia Cultura e Historia",
+        "name": "Athens"
+      },
+      "barcelona": {
+        "region": "España Cultura e Historia",
+        "name": "Barcelona"
+      },
+      "prague": {
+        "region": "República Checa Cultura e Historia",
+        "name": "Prague"
+      },
+      "lisbon": {
+        "region": "Portugal Cultura e Historia",
+        "name": "Lisbon"
+      },
+      "budapest": {
+        "region": "Hungría Cultura e Historia",
+        "name": "Budapest"
+      },
+      "iceland": {
+        "region": "Aventura en el Atlántico Norte",
+        "name": "Iceland"
+      },
+      "patagonia": {
+        "region": "Aventura Chile/Argentina",
+        "name": "Patagonia"
+      },
+      "swiss_alps": {
+        "region": "Aventura en Suiza",
+        "name": "Swiss Alps"
+      },
+      "norwegian_fjords": {
+        "region": "Aventura en Noruega",
+        "name": "Norwegian Fjords"
+      },
+      "nepal": {
+        "region": "Aventura en el sur de Asia",
+        "name": "Nepal"
+      },
+      "new_zealand": {
+        "region": "Aventura en el Pacífico Sur",
+        "name": "New Zealand"
+      },
+      "canadian_rockies": {
+        "region": "Aventura en Canadá",
+        "name": "Canadian Rockies"
+      },
+      "lofoten_islands": {
+        "region": "Aventura en Noruega",
+        "name": "Lofoten Islands"
+      },
+      "dolomites": {
+        "region": "Italia Aventura",
+        "name": "Dolomites"
+      },
+      "gal_pagos_islands": {
+        "region": "Aventura en Ecuador",
+        "name": "Galápagos Islands"
+      },
+      "tuscany": {
+        "region": "Italia comida y vino",
+        "name": "Tuscany"
+      },
+      "osaka_kyoto": {
+        "region": "Comida y vino de Japón",
+        "name": "Osaka & Kyoto"
+      },
+      "san_sebasti_n": {
+        "region": "España comida y vino",
+        "name": "San Sebastián"
+      },
+      "singapore": {
+        "region": "Comida y vino del sudeste asiático",
+        "name": "Singapore"
+      },
+      "bangkok": {
+        "region": "Comida y vino de Tailandia",
+        "name": "Bangkok"
+      },
+      "copenhagen": {
+        "region": "Dinamarca comida y vino",
+        "name": "Copenhagen"
+      },
+      "new_york": {
+        "region": "Escapadas a ciudades de EE. UU.",
+        "name": "New York"
+      },
+      "london": {
+        "region": "Escapadas a ciudades del Reino Unido",
+        "name": "London"
+      },
+      "dubai": {
+        "region": "Escapadas urbanas en los EAU",
+        "name": "Dubai"
+      },
+      "tokyo": {
+        "region": "Escapadas urbanas en Japón",
+        "name": "Tokyo"
+      },
+      "sydney": {
+        "region": "Escapadas urbanas en Australia",
+        "name": "Sydney"
+      },
+      "amsterdam": {
+        "region": "Escapadas urbanas en Países Bajos",
+        "name": "Amsterdam"
+      },
+      "vienna": {
+        "region": "Escapadas urbanas en Austria",
+        "name": "Vienna"
+      },
+      "rio_de_janeiro": {
+        "region": "Escapadas urbanas en Brasil",
+        "name": "Rio de Janeiro"
+      },
+      "mexico_city": {
+        "region": "Escapadas a la Ciudad de México",
+        "name": "Mexico City"
+      }
+    }
+  },
+  "packages": {
+    "heroEyebrow": "Paquetes de viaje",
+    "heroTitle1": "Elige tu",
+    "heroTitleEm": "Viaje perfecto",
+    "heroTitleHtml": "Elija su<br><em>Viaje perfecto</em>",
+    "heroSub": "Paquetes cuidadosamente estructurados para cada estilo de viaje, desde escapadas íntimas hasta grandes expediciones.",
+    "tag": "Nuestros Paquetes",
+    "title": "Encuentra lo correcto",
+    "titleEm": "Paquete",
+    "titleHtml": "Encuentre el <em>Paquete</em> correcto",
+    "tier1": "Nivel uno",
+    "essentialName": "Explorador esencial",
+    "essentialSub": "La introducción perfecta a los viajes por el mundo.",
+    "tier2": "Nivel dos",
+    "signatureName": "Viaje exclusivo",
+    "signatureSub": "Nuestra experiencia de viaje premium",
+    "tier3": "Nivel tres",
+    "ultraName": "Ultralujo",
+    "ultraSub": "La cima de los viajes mundiales",
+    "mostPopular": "Más Popular",
+    "featReturnFlights": "Vuelos de regreso incluidos",
+    "feat3Star": "Alojamiento de 3 estrellas",
+    "featAirportXfer": "Traslados al aeropuerto",
+    "featBreakfast": "Desayuno diario",
+    "featConcierge": "Conserje dedicado",
+    "featPrivateGuides": "Guías privados",
+    "featBusinessClass": "Vuelos en clase ejecutiva",
+    "feat5Star": "Alojamiento de 5 estrellas",
+    "featPrivateXfer": "Traslados privados",
+    "featAllMeals": "Todas las comidas incluidas",
+    "featPersonalConcierge": "Conserje personal",
+    "featPrivateJet": "Jet privado disponible",
+    "featVillas": "Exclusivas villas privadas",
+    "featHeli": "Traslados en helicóptero",
+    "featGourmet": "Cenas gourmet todo incluido",
+    "featButler": "Mayordomo personal 24 horas al día, 7 días a la semana",
+    "featUnlimited": "Experiencias ilimitadas",
+    "getStarted": "Empezar",
+    "bookSignature": "Firma del libro",
+    "requestQuote": "Solicitar Cotización",
+    "enhanceTag": "Mejoras",
+    "enhanceTitle": "Eleva tu",
+    "enhanceEm": "Experiencia",
+    "enhanceTitleHtml": "Eleve su <em>Experiencia</em>",
+    "addDining": "Mejora gastronómica elegante",
+    "addDiningDesc": "Reservas de restaurantes con estrella Michelin en tus destinos, reservadas con antelación y confirmadas.",
+    "addWellness": "Bienestar y Spa",
+    "addWellnessDesc": "Tratamientos de spa diarios, sesiones de yoga y experiencias de bienestar en instalaciones de clase mundial.",
+    "addPhoto": "Fotógrafo privado",
+    "addPhotoDesc": "Un fotógrafo de viajes profesional documenta su viaje con imágenes impresionantes y duraderas.",
+    "addHeli": "Tours en helicóptero",
+    "addHeliDesc": "Experiencias privadas en helicóptero sobre paisajes emblemáticos: fiordos, volcanes y glaciares."
+  },
+  "about": {
+    "storyTag": "Nuestra historia",
+    "storyTitle1": "Más que un viaje",
+    "storyTitle2": "Agencia.",
+    "storyTitleEm": "Una visión.",
+    "storyTitleHtml": "Más que una agencia de viajes<br>. <em>A Visión.</em>",
+    "storyBody": "Basado en la creencia de que cada viajero merece una experiencia verdaderamente personal: no un paquete, no una plantilla, sino un viaje diseñado completamente en torno a usted.",
+    "planJourney": "Planifica tu viaje",
+    "whoTag": "Quienes somos",
+    "whoTitle1": "Pasión por viajar",
+    "whoTitleEm": "en Nuestro ADN",
+    "whoTitleHtml": "Pasión por viajar<br><em>en nuestro ADN</em>",
+    "whoP1": "Martins Global Travels nació de una única creencia: que viajar, bien hecho, tiene el poder de cambiar vidas. Nuestro fundador, Martins, pasó años explorando los mejores destinos del mundo y creó esta agencia para compartir esa sensación de asombro, con la comodidad y precisión que merecen los viajeros modernos.",
+    "whoP2": "Nuestro equipo de diseñadores de viajes especializados siente pasión por cada destino que ofrecemos. Cada persona explora personalmente los lugares que recomienda; nunca sugerimos ningún lugar que no hayamos experimentado de primera mano.",
+    "whoP3": "Desde seleccionar meticulosamente el hotel perfecto hasta brindarle asistencia en tiempo real mientras está de viaje, todo lo que hacemos está guiado por una pregunta: ¿qué haría de este el viaje más extraordinario de su vida?",
+    "pillarVision": "Visión",
+    "pillarVisionT": "Tu viaje, nuestra pasión",
+    "pillarVisionD": "Cada viaje refleja nuestro profundo amor por viajar y nuestro compromiso de hacer que su experiencia sea realmente extraordinaria.",
+    "pillarApproach": "Acercarse",
+    "pillarApproachT": "Hecho a mano, no automatizado",
+    "pillarApproachD": "Sin algoritmos, sin plantillas genéricas. Cada itinerario está elaborado por un especialista que ha estado allí.",
+    "pillarReach": "Alcanzar",
+    "pillarReachT": "Más de 120 destinos en todo el mundo",
+    "pillarReachD": "Desde calas tropicales escondidas hasta vibrantes capitales culturales: nuestra red abarca todos los continentes.",
+    "pillarPromise": "Promesa",
+    "pillarPromiseT": "Siempre ahí para ti",
+    "pillarPromiseD": "Soporte 24 horas al día, 7 días a la semana antes, durante y después de su viaje. No desaparecemos una vez realizada la reserva.",
+    "valuesTag": "Nuestros Valores",
+    "valuesTitle1": "Principios que",
+    "valuesTitleEm": "Guía todo",
+    "valuesTitleHtml": "Principios que<br>Guía <em>Todo</em>",
+    "val1t": "La autenticidad primero",
+    "val1d": "Diseñamos experiencias que lo conectan con cultura real, personas reales y momentos reales, más allá de las casillas turísticas.",
+    "val2t": "Excelencia implacable",
+    "val2d": "Cada hotel inspeccionado, cada guía capacitado, cada itinerario sometido a pruebas de estrés antes de recomendarlo a un solo cliente.",
+    "val3t": "Viaje responsable",
+    "val3d": "Seleccionamos cuidadosamente operadores responsables y estamos comprometidos con prácticas de viaje éticas y sostenibles en cada destino.",
+    "val4t": "Transparencia total",
+    "val4d": "Sin cargos ocultos, sin sorpresas. Lo que ves es exactamente lo que obtienes, siempre indicado claramente desde el principio.",
+    "val5t": "Conexión humana",
+    "val5d": "Verdaderos especialistas, conversaciones reales: siempre hablará con un ser humano que realmente se preocupa por su viaje.",
+    "val6t": "Tu viaje, siempre",
+    "val6d": "Construimos cada viaje enteramente en torno a usted: sus preferencias, su ritmo, su presupuesto, su sueño.",
+    "commitTag": "Nuestros compromisos",
+    "commitTitle1": "Lo que siempre puedes",
+    "commitTitleEm": "Espere de nosotros",
+    "commitTitleHtml": "Lo que siempre puedes <em>esperar de nosotros</em>",
+    "commitLead": "Estos no son premios, son promesas. Cada viaje, cada vez.",
+    "c1t": "Totalmente asegurado y con licencia",
+    "c1d": "Somos una agencia de viajes de EE. UU. con licencia completa y que cuenta con seguro de responsabilidad profesional. Su reserva y su dinero están protegidos en cada paso del camino.",
+    "c2t": "Soporte humano real 24 horas al día, 7 días a la semana",
+    "c2d": "No es un chatbot. No es un centro de llamadas. Un verdadero especialista que conoce su viaje, disponible las 24 horas antes y durante el viaje.",
+    "c3t": "Solo recomendado personalmente",
+    "c3d": "Nunca recomendamos un hotel, guía o experiencia que no hayamos visitado personalmente. Si no enviamos a nuestra propia familia allí, no te enviaremos a ti.",
+    "c4t": "Mejor Precio Garantizado",
+    "c4d": "Encuentra el mismo viaje más barato en otro lugar y te lo igualamos. Respaldamos el valor de cada itinerario que construimos.",
+    "c5t": "Totalmente a medida, siempre",
+    "c5d": "No hay dos viajes iguales. Cada itinerario se construye desde cero teniendo en cuenta usted: su ritmo, sus intereses, su presupuesto.",
+    "c6t": "Viaje responsable",
+    "c6d": "Seleccionamos cuidadosamente operadores responsables y estamos comprometidos a retribuir a las comunidades en los destinos a los que servimos."
+  },
+  "contact": {
+    "heroEyebrow": "Ponte en contacto",
+    "heroTitle1": "Planifiquemos tu",
+    "heroTitleEm": "Viaje de ensueño",
+    "heroTitleHtml": "Planifiquemos el viaje de tus sueños<br><em></em>",
+    "infoTitle1": "Estamos aquí",
+    "infoTitleEm": "Para ti",
+    "infoTitleHtml": "Estamos aquí<br><em>Para ti</em>",
+    "heroSub": "Díganos a dónde quiere ir y un especialista se comunicará con usted dentro de las 24 horas.",
+    "infoTag": "Información de contacto",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "office": "Oficina",
+    "officeAddr": "1350 Belmont St, Suite 114\nBrockton, Massachusetts, EE.UU.",
+    "hoursTitle": "Horario de oficina",
+    "monFri": "Lunes – Viernes",
+    "monFriTime": "8:00 a. m. – 8:00 p. m.",
+    "sat": "Sábado",
+    "satTime": "9:00 a. m. a 6:00 p. m.",
+    "sun": "Domingo",
+    "sunTime": "10:00 a. m. a 4:00 p. m.",
+    "emergency": "Emergencia",
+    "emergencyTime": "24/7 siempre",
+    "destMaldives": "Maldivas / Océano Índico",
+    "destAfrica": "África / Safari",
+    "destJapan": "Japón / Asia Pacífico",
+    "destEurope": "Europa / Mediterráneo",
+    "destCaribbean": "caribe",
+    "destSa": "Sudamerica",
+    "destUnsure": "No estoy seguro todavía",
+    "pkgEssential": "Explorador esencial",
+    "pkgSignature": "Viaje exclusivo",
+    "pkgUltra": "Ultralujo",
+    "pkgHoneymoon": "Luna de miel",
+    "pkgFamily": "Vacaciones familiares",
+    "pkgGroup": "Viajes en grupo",
+    "travel1": "1 persona",
+    "travel2": "2 personas",
+    "travel34": "3–4 personas",
+    "travel58": "5 a 8 personas",
+    "travel9": "Grupo 9+"
+  },
+  "faq": {
+    "heroEyebrow": "Ayuda e información",
+    "heroTitle1": "Preguntas frecuentes",
+    "heroTitleEm": "Preguntas",
+    "heroTitleHtml": "Preguntas frecuentes<br><em>Preguntas</em>",
+    "heroSub": "Todo lo que necesita saber sobre reservar y viajar con Martins Global Travels.",
+    "g1": "Reserva y planificación",
+    "q1": "¿Cómo empiezo a planificar un viaje?",
+    "a1": "Dirígete a nuestra página de Contacto y envía una consulta con tu destino, fechas y tamaño del grupo. Uno de nuestros especialistas en viajes se comunicará con usted dentro de las 24 horas para comenzar a diseñar su itinerario desde cero.",
+    "q2": "¿Con cuánta antelación debo reservar?",
+    "a2": "Recomendamos de 3 a 6 meses para la mayoría de los destinos y de 6 a 12 meses para temporadas populares como los safaris africanos, los cerezos en flor en Japón o el pico del verano europeo. También podemos aceptar reservas de última hora, solo pregúntanos.",
+    "q3": "¿Puedo personalizar completamente mi paquete?",
+    "a3": "Cada viaje que construimos es completamente personalizado. Nuestros paquetes son un punto de partida: adaptamos el alojamiento, las actividades, el ritmo, las necesidades dietéticas y cada detalle exactamente a lo que usted desea. No hay nada descartado.",
+    "q4": "¿Organizais viajes en grupo?",
+    "a4": "Sí, desde viajes familiares íntimos hasta grandes retiros corporativos. Manejamos grupos desde 5 hasta 50+ personas. Contáctanos con el tamaño de tu grupo y elaboraremos una propuesta a medida.",
+    "q5": "¿Pueden organizar lunas de miel u ocasiones especiales?",
+    "a5": "Absolutamente. Lunas de miel y ocasiones especiales son algunos de nuestros viajes más solicitados. Nos asociamos con hoteles y resorts de todo el mundo para organizar cenas privadas, mejoras de habitación, experiencias sorpresa y toques personalizados que hacen que el momento sea realmente inolvidable.",
+    "g2": "Precios y pago",
+    "q6": "¿Por qué no muestran los precios en el sitio web?",
+    "a6": "Cada viaje es completamente personalizado, por lo que los precios varían según el destino, la temporada, el alojamiento, la duración y el tamaño del grupo. Preferimos brindarle una cotización precisa basada exactamente en lo que desea, en lugar de un número genérico que no refleje su viaje.",
+    "q7": "¿Hay una tarifa de consulta?",
+    "a7": "No. Las consultas iniciales y cotizaciones son completamente gratuitas. Solo cobramos una vez que usted decide continuar con la reserva, momento en el cual un depósito garantiza sus arreglos.",
+    "q8": "¿Qué métodos de pago aceptan?",
+    "a8": "Aceptamos todas las principales tarjetas de crédito y débito, transferencias bancarias y métodos de pago digitales seleccionados. Se requiere un depósito al realizar la reserva y el saldo se debe pagar entre 60 y 90 días antes de la salida. Los términos de pago completos se describen en su acuerdo de reserva.",
+    "q9": "¿Ofrecen una garantía de mejor precio?",
+    "a9": "Sí. Si encuentra el mismo itinerario a un precio más bajo en otro lugar (los mismos hoteles, vuelos y fechas), lo igualaremos. Confiamos en el valor que brindamos, especialmente dado el nivel de personalización y soporte incluido.",
+    "g3": "Protección y seguridad",
+    "q10": "¿Mis reservas están protegidas financieramente?",
+    "a10": "Sí, completamente. Martins Global Travels es una agencia de viajes estadounidense con licencia completa que ofrece seguro de responsabilidad profesional. Trabajamos exclusivamente con proveedores examinados y financieramente estables en todo el mundo, y cada reserva incluye un acuerdo escrito detallado que describe sus protecciones.",
+    "q11": "¿Cuál es su política de cancelación?",
+    "a11": "Las reservas Signature Journey y Ultra Luxury incluyen cancelación gratuita hasta 60 días antes de la salida. Las reservas de Essential Explorer conllevan una pequeña tarifa de cancelación. Recomendamos encarecidamente un seguro de viaje a todo riesgo para su total tranquilidad.",
+    "q12": "¿Necesito un seguro de viaje?",
+    "a12": "Lo recomendamos encarecidamente para todos los viajes. El seguro de viaje lo protege contra emergencias médicas, interrupciones del viaje, pérdida de equipaje y imprevistos. Podemos recomendar proveedores confiables si necesita ayuda para elegir la póliza adecuada.",
+    "g4": "Durante su viaje",
+    "q13": "¿Qué apoyo recibo mientras viajo?",
+    "a13": "Todas las reservas incluyen soporte de emergencia 24 horas al día, 7 días a la semana durante todo su viaje. Los clientes de Signature Journey y Ultra Luxury también tienen un conserje personal exclusivo al que se puede contactar a cualquier hora para cualquier cosa, desde recomendaciones de restaurantes hasta cambios urgentes de reserva.",
+    "q14": "¿Tendré un guía local?",
+    "a14": "Los paquetes Signature Journey y Ultra Luxury incluyen guías privados expertos en cada destino. Los viajes Essential Explorer incluyen guías grupales para las excursiones incluidas. Todos los guías son cuidadosamente examinados, hablan inglés y son apasionados de sus destinos.",
+    "q15": "¿Ofrecen opciones de viajes sostenibles?",
+    "a15": "Sí. Seleccionamos cuidadosamente operadores responsables con inversión local en cada destino y estamos comprometidos con prácticas de viaje sostenibles. Consúltenos sobre nuestras opciones de viaje responsable cuando lo desee.",
+    "q16": "¿Qué pasa si algo sale mal en mi viaje?",
+    "a16": "Comuníquese con nosotros de inmediato: nuestra línea de emergencia 24 horas al día, 7 días a la semana, siempre está abierta. Contamos con contactos y socios locales en cada destino y, por lo general, podemos resolver los problemas rápidamente. Nuestro objetivo siempre es garantizar que cualquier interrupción tenga un impacto mínimo en su experiencia.",
+    "ctaTag": "¿Aún tienes preguntas?",
+    "ctaTitle1": "Estamos felices de",
+    "ctaTitleEm": "Ayuda",
+    "ctaTitleHtml": "Estamos felices de <em style=\"font-style:italic;color:var(--gold)\">Ayuda</em>",
+    "ctaBody": "Comuníquese en cualquier momento; generalmente respondemos dentro de un día hábil."
+  },
+  "privacy": {
+    "heroEyebrow": "Tus datos",
+    "heroTitle1": "Privacidad",
+    "heroTitleEm": "Política",
+    "heroTitleHtml": "Privacidad<br><em>Política</em>",
+    "heroSub": "Cómo Martins Global Travels recopila, utiliza y protege su información personal.",
+    "updated": "Última actualización: 27 de marzo de 2026",
+    "note": "Esta política se proporciona para información general. No constituye asesoramiento legal. Haga que un abogado calificado lo revise para su negocio, jurisdicción y prácticas.",
+    "introH": "Introducción",
+    "introP1": "Martins Global Travels (\"nosotros\", \"nos\" o \"nuestro\") respeta su privacidad. Esta Política de Privacidad describe cómo recopilamos, usamos, divulgamos y salvaguardamos información personal cuando visita nuestro sitio web, se comunica con nosotros, se suscribe a actualizaciones o utiliza nuestros servicios de reserva y planificación de viajes.",
+    "introP2": "Al utilizar nuestro sitio web o proporcionarnos información, usted acepta esta política. Si no está de acuerdo, no utilice nuestros servicios.",
+    "collectH": "Información que recopilamos",
+    "collectP": "Dependiendo de cómo interactúa con nosotros, podemos recopilar:",
+    "collectL1": "Datos de contacto e identidad: nombre, dirección de correo electrónico, número de teléfono, dirección postal y detalles similares que proporcione en formularios o correspondencia.",
+    "collectL2": "Datos de viaje y preferencias: destinos, fechas, presupuesto, estilo de viaje, necesidades dietéticas o de accesibilidad, números del programa de fidelización y otra información necesaria para planificar u organizar el viaje.",
+    "collectL3": "Datos relacionados con pagos: información de pago limitada según sea necesario para procesar transacciones. Los procesadores de pagos pueden manejar los datos de la tarjeta directamente; No almacenamos números de tarjetas completos en nuestros servidores a menos que sea necesario para una transacción específica y lo permita la ley.",
+    "collectL4": "Comunicaciones: correos electrónicos, mensajes, notas de llamadas y comentarios que nos envíe.",
+    "collectL5": "Datos técnicos y de uso: dirección IP, tipo de navegador, información del dispositivo, ubicación general derivada de la IP, páginas visitadas y datos similares recopilados a través de cookies y tecnologías similares (consulte la sección Cookies a continuación).",
+    "useH": "Cómo utilizamos la información",
+    "useP": "Utilizamos información personal para:",
+    "useL1": "Responder a consultas y brindar consultas de viajes;",
+    "useL2": "Investigar, planificar, fijar precios, reservar y gestionar arreglos de viajes con proveedores (aerolíneas, hoteles, operadores turísticos, aseguradoras, etc.);",
+    "useL3": "Procesar pagos y enviar avisos relacionados;",
+    "useL4": "Enviar mensajes relacionados con el servicio y, cuando esté permitido, comunicaciones de marketing (puede optar por no recibir marketing en cualquier momento);",
+    "useL5": "Mejorar nuestro sitio web, servicios y experiencia del cliente;",
+    "useL6": "Cumplir con las obligaciones legales, hacer cumplir nuestros términos y proteger los derechos y la seguridad.",
+    "legalH": "Bases legales (cuando corresponda)",
+    "legalP": "Si la ley aplicable requiere una \"base legal\" para el procesamiento (por ejemplo, en el Espacio Económico Europeo o el Reino Unido), nos basamos en uno o más de los siguientes: ejecución de un contrato, intereses legítimos (como operar nuestro negocio y proteger nuestros sistemas), consentimiento cuando sea necesario y obligación legal.",
+    "shareH": "Compartir información",
+    "shareP": "Podemos compartir información personal con:",
+    "shareL1": "Proveedores y socios que realizan o respaldan su viaje (por ejemplo, hoteles, aerolíneas, operadores terrestres, aseguradoras);",
+    "shareL2": "Proveedores de servicios que nos ayudan (por ejemplo, alojamiento, entrega de correo electrónico, análisis, procesamiento de pagos, herramientas de relación con el cliente);",
+    "shareL3": "Asesores profesionales cuando sea necesario (por ejemplo, abogados, contadores);",
+    "shareL4": "Autoridades cuando así lo requiera la ley, orden judicial o para proteger intereses vitales.",
+    "shareP2": "No vendemos su información personal a cambio de una contraprestación monetaria, tal como ese término se entiende comúnmente en las leyes de privacidad estatales de EE. UU. Podemos utilizar herramientas de análisis o publicidad que involucran cookies o tecnologías similares como se describe a continuación.",
+    "cookiesH": "Cookies y tecnologías similares",
+    "cookiesP": "Nosotros y nuestros socios podemos utilizar cookies, píxeles y tecnologías similares para operar el sitio, recordar preferencias, medir el tráfico y (cuando corresponda) ofrecer contenido relevante. Puede controlar las cookies a través de la configuración de su navegador. El bloqueo de ciertas cookies puede afectar la funcionalidad del sitio.",
+    "retentionH": "Retención",
+    "retentionP": "Conservamos información personal solo durante el tiempo necesario para los fines descritos en esta política, incluidos los requisitos legales, contables o de informes, a menos que la ley requiera o permita un período más largo.",
+    "securityH": "Seguridad",
+    "securityP": "Implementamos medidas administrativas, técnicas y organizativas razonables diseñadas para proteger la información personal. Ningún método de transmisión por Internet es completamente seguro; No podemos garantizar una seguridad absoluta.",
+    "rightsH": "Tus elecciones y derechos",
+    "rightsP": "Dependiendo de dónde viva, puede tener derechos para acceder, corregir, eliminar o restringir el procesamiento de su información personal, o para oponerse a cierto procesamiento o a la portabilidad de los datos. También puede tener derecho a presentar una queja ante una autoridad supervisora. Para ejercer los derechos aplicables, contáctenos utilizando los detalles a continuación. Es posible que necesitemos verificar su identidad antes de responder.",
+    "intlH": "Transferencias internacionales",
+    "intlP": "Si se encuentra fuera de los Estados Unidos, su información puede transferirse y procesarse en los Estados Unidos u otros países donde operamos nosotros o nuestros proveedores. Tomamos medidas diseñadas para garantizar las salvaguardias adecuadas cuando lo exige la ley.",
+    "childrenH": "Niños",
+    "childrenP": "Nuestros servicios no están dirigidos a niños menores de 16 años y no recopilamos intencionalmente información personal de niños. Si cree que hemos recopilado información de un niño, comuníquese con nosotros y tomaremos las medidas adecuadas para eliminarla.",
+    "changesH": "Cambios a esta política",
+    "changesP": "Podemos actualizar esta Política de Privacidad de vez en cuando. Publicaremos la política revisada en esta página y actualizaremos la fecha de \"Última actualización\". Los cambios materiales podrán comunicarse mediante notificación adicional cuando corresponda.",
+    "contactH": "Contáctenos",
+    "contactP": "Si tiene preguntas o solicitudes relacionadas con la privacidad, comuníquese con Martins Global Travels utilizando los detalles en nuestra página de Contacto.",
+    "contactLink": "Contacto"
+  },
+  "terms": {
+    "heroEyebrow": "Legal",
+    "heroTitle1": "Términos de",
+    "heroTitleEm": "Servicio",
+    "heroTitleHtml": "Términos de<br><em>Servicio</em>",
+    "heroSub": "Lea estos términos detenidamente antes de utilizar nuestro sitio web o nuestros servicios.",
+    "updated": "Última actualización: 27 de marzo de 2026",
+    "note": "Estos términos son una plantilla general. No son consejos legales. Haga que un abogado calificado los revise y personalice para su negocio, jurisdicción y perfil de riesgo.",
+    "agreeH": "Acuerdo de términos",
+    "agreeP": "Estos Términos de servicio (\"Términos\") rigen su acceso y uso del sitio web y los servicios de Martins Global Travels (colectivamente, \"nosotros\", \"nos\" o \"nuestro\"). Al acceder a nuestro sitio web, enviar una consulta o utilizar nuestros servicios, acepta estos Términos. Si no está de acuerdo, no utilice nuestros servicios.",
+    "roleH": "Nuestro papel",
+    "roleP": "Martins Global Travels es una agencia de viajes. Ayudamos a investigar, planificar y organizar productos y servicios relacionados con viajes proporcionados por proveedores externos (como aerolíneas, hoteles, líneas de cruceros, operadores turísticos y aseguradoras). A menos que indiquemos expresamente lo contrario en un acuerdo firmado, actuamos como intermediario entre usted y esos proveedores.",
+    "eligH": "Elegibilidad",
+    "eligP": "Usted declara que tiene al menos 18 años y tiene la capacidad legal para celebrar estos Términos. Si utiliza nuestros servicios en nombre de una empresa u otra entidad, declara que tiene autoridad para vincular a esa entidad.",
+    "bookH": "Reservas, proveedores y tu contrato",
+    "bookP": "Cuando se reserva un viaje, se aplican términos y condiciones separados de cada proveedor (reglas de tarifas, políticas de cancelación, requisitos de salud, etc.). Esos términos del proveedor forman parte de su acuerdo para los servicios relevantes. Usted es responsable de revisar los términos de los proveedores, pasaportes, visas, requisitos de salud y avisos de viaje. No somos responsables de los actos, omisiones, fallas o cambios de los proveedores, excepto según lo exija la ley aplicable o lo establecido expresamente en un acuerdo escrito entre usted y nosotros.",
+    "feesH": "Tarifas y pago",
+    "feesP": "Las cotizaciones son estimaciones a menos que se confirmen por escrito. Los precios pueden cambiar hasta que se reciba el depósito o el pago completo y se emitan los boletos o las reservas, sujeto a las reglas del proveedor. Usted acepta pagar todos los montos a su vencimiento, incluidos nuestros honorarios profesionales o de servicio cuando se revelen. Los pagos atrasados ​​pueden resultar en cancelación o sanciones según las reglas del proveedor.",
+    "cancelH": "Cancelaciones, cambios y reembolsos",
+    "cancelP": "Las reglas de cancelación, cambio y reembolso dependen de los términos del proveedor, la clase de tarifa, el horario y la cobertura del seguro. Las tarifas pueden no ser reembolsables. Haremos todos los esfuerzos razonables para ayudar con los cambios o cancelaciones según lo permitan los proveedores; No garantizamos reembolsos ni exenciones.",
+    "insH": "Seguro de viaje",
+    "insP": "Recomendamos encarecidamente un seguro de viaje a todo riesgo. El seguro está sujeto a los términos de la póliza del asegurador. Usted es responsable de determinar si la cobertura satisface sus necesidades.",
+    "discH": "Descargos de responsabilidad",
+    "discP": "La información contenida en nuestro sitio web (incluidos itinerarios de muestra, descripciones y fotografías) es una orientación general y puede cambiar. No garantizamos que toda la información esté completa, actualizada o libre de errores. Los viajes implican riesgos inherentes; No garantizamos seguridad, satisfacción o viajes ininterrumpidos.",
+    "liabH": "Limitación de responsabilidad",
+    "liabP": "En la máxima medida permitida por la ley aplicable, Martins Global Travels y nuestros funcionarios, empleados y agentes no serán responsables de ningún daño indirecto, incidental, especial, consecuente o punitivo, ni de la pérdida de ganancias, buena voluntad o datos, que surjan de su uso de nuestros servicios o arreglos de viaje. Nuestra responsabilidad total por cualquier reclamo que surja de estos Términos o nuestros servicios o se relacione con ellos se limita a las tarifas que usted nos pagó por la reserva o servicio específico que dio lugar al reclamo durante los seis (6) meses anteriores a que surgiera el reclamo, excepto donde lo prohíba la ley. Algunas jurisdicciones no permiten ciertas limitaciones; en esos casos, nuestra responsabilidad se limita al máximo permitido.",
+    "indemH": "Indemnidad",
+    "indemP": "Usted acepta indemnizar y eximir de responsabilidad a Martins Global Travels y a nuestros afiliados, funcionarios, empleados y agentes por reclamos, pérdidas, daños y gastos (incluidos los honorarios razonables de abogados) que surjan de su incumplimiento de estos Términos, su viaje o su violación de la ley o los derechos de terceros, excepto en la medida en que sea causado por nuestra negligencia grave o mala conducta intencional.",
+    "ipH": "Propiedad intelectual",
+    "ipP": "El contenido de este sitio web (incluidos textos, gráficos, logotipos y diseño) es propiedad de Martins Global Travels o de nuestros licenciantes y está protegido por las leyes de propiedad intelectual. No puede copiar, modificar, distribuir ni crear trabajos derivados sin nuestro consentimiento previo por escrito, excepto para visualización personal limitada y no comercial.",
+    "govH": "Ley aplicable y disputas",
+    "govP": "Estos Términos se rigen por las leyes del Estado en el que Martins Global Travels mantiene su sede principal de negocios, sin tener en cuenta los principios de conflicto de leyes, excepto cuando se apliquen las leyes obligatorias de protección al consumidor de su jurisdicción. Usted acepta la jurisdicción y competencia exclusivas de los tribunales estatales y federales ubicados en ese estado para las disputas, sujeto a cualquier derecho al que no pueda renunciar según la ley aplicable.",
+    "chgH": "Cambios",
+    "chgP": "Podemos modificar estos Términos en cualquier momento. Los Términos actualizados se publicarán en esta página con una fecha revisada de \"Última actualización\". El uso continuado después de los cambios constituye la aceptación de los Términos revisados, excepto cuando la ley aplicable requiera un aviso o consentimiento adicional.",
+    "contactH": "Contacto",
+    "contactP": "Si tiene preguntas sobre estos Términos, contáctenos a través de nuestra página de Contacto.",
+    "contactLink": "Contacto"
+  },
+  "bookNav": {
+    "bookFlights": "Reservar vuelos",
+    "portalSub": "Portal del cliente",
+    "explore": "Explorar",
+    "legal": "Legal",
+    "support": "Apoyo",
+    "bookTravel": "Reservar viajes",
+    "contactUs": "Contáctenos"
+  }
+}
