@@ -499,7 +499,7 @@ footer{background:var(--ink2);border-top:1px solid var(--border);padding:72px 52
   .dest-row{grid-template-columns:1fr 1fr;height:auto}
   .dcard{height:320px}
   .dest-row.two{grid-template-columns:1fr}
-  .sec,.sec-sm,.why-sec,.pkg-sec,.gal-sec,.nl-sec,.cta-sec .cta-body,.legal-sec{padding-left:28px;padding-right:28px}
+  .sec,.sec-sm,.why-sec,.pkg-sec,.gal-sec,.nl-sec,.cta-sec .cta-body,.legal-sec,.faq-sec{padding-left:28px;padding-right:28px}
   .tours-hd,.tours-scroll,.tours-track-wrap,.gal-hd,.fbar{padding-left:28px;padding-right:28px}
   .about-strip{grid-template-columns:1fr}
   .about-strip-img{height:320px}
@@ -542,53 +542,51 @@ footer{background:var(--ink2);border-top:1px solid var(--border);padding:72px 52
 }
 
 /* FAQ */
-.faq-group{margin-bottom:56px}
+.faq-sec{background:var(--ink2);padding:80px 52px;color:#fff}
+.faq-inner{max-width:860px;margin:0 auto}
+.faq-group{margin-bottom:52px}
 .faq-group-title{
-  font-family:'DM Serif Display',serif;font-size:22px;
-  color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:16px;
-  padding-bottom:16px;border-bottom:1px solid var(--border);
+  font-family:'DM Serif Display',serif;font-size:20px;color:inherit;
+  margin-bottom:18px;display:flex;align-items:center;gap:14px;
+  padding-bottom:14px;border-bottom:1px solid var(--border);
 }
 .faq-group-icon{
-  font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;
-  color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);
-  padding:5px 12px;
+  font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;
+  color:var(--gold);background:var(--gold3);border:1px solid rgba(201,168,76,.2);
+  padding:4px 12px;
 }
-.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-list{display:flex;flex-direction:column}
 .faq-item{
-  border-bottom:1px solid var(--border);
-  overflow:hidden;transition:background .25s;cursor:pointer;
+  border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .25s;background:transparent;
 }
 .faq-item:hover{background:var(--ink3)}
 .faq-q{
   display:flex;justify-content:space-between;align-items:center;gap:20px;
-  padding:20px 0;font-size:15px;font-weight:500;color:rgba(255,255,255,.85);
-  line-height:1.5;
+  padding:18px 0;font-size:15px;font-weight:500;color:rgba(255,255,255,.88);
+  line-height:1.5;user-select:none;
 }
 .faq-arrow{
   flex-shrink:0;width:28px;height:28px;border:1px solid var(--border);
-  display:grid;place-items:center;font-size:15px;color:var(--gold);
+  display:grid;place-items:center;font-size:14px;color:var(--gold);
   transition:transform .35s var(--ease),background .25s;
 }
 .faq-item.open .faq-arrow{transform:rotate(180deg);background:var(--gold);color:var(--ink)}
 .faq-a{
   max-height:0;overflow:hidden;
   transition:max-height .45s var(--ease),padding .35s;
-  font-size:14px;color:var(--dim);line-height:1.85;font-weight:300;padding:0;
+  font-size:14px;color:var(--dim);line-height:1.85;font-weight:300;padding-bottom:0;
 }
-.faq-item.open .faq-a{max-height:400px;padding:0 0 22px}
-
-/* ── FAQ ── */
-.faq-group{margin-bottom:52px}
-.faq-group-title{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin-bottom:18px;display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.faq-group-icon{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);padding:4px 12px}
-.faq-list{display:flex;flex-direction:column}
-.faq-item{border-bottom:1px solid var(--border);cursor:pointer;transition:background .25s}
-.faq-item:hover{background:var(--ink3)}
-.faq-q{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0;font-size:15px;font-weight:500;color:rgba(255,255,255,.85);line-height:1.5;user-select:none}
-.faq-arrow{flex-shrink:0;width:28px;height:28px;border:1px solid var(--border);display:grid;place-items:center;font-size:14px;color:var(--gold);transition:transform .35s var(--ease),background .25s}
-.faq-item.open .faq-arrow{transform:rotate(180deg);background:var(--gold);color:var(--ink)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease),padding .35s;font-size:14px;color:var(--dim);line-height:1.85;font-weight:300;padding-bottom:0}
 .faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
+.faq-cta{
+  margin-top:64px;padding:48px;background:var(--ink3);
+  border:1px solid var(--border);text-align:center;
+}
+.faq-cta .tag{justify-content:center;margin-bottom:14px}
+.faq-cta h3{
+  font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px;color:inherit;
+}
+.faq-cta .body{max-width:520px;margin:0 auto 28px;font-size:15px}
 
 /* Commitments */
 .commit-card{background:var(--ink2);padding:40px 36px;transition:background .3s;border:1px solid transparent}
@@ -1804,8 +1802,8 @@ body.wc-popup-open{overflow:hidden}
       <p class="ph-s" data-i18n="faq.heroSub">Everything you need to know about booking and traveling with Martins Global Travels.</p>
     </div>
   </div>
-  <section style="background:var(--ink);padding:80px 52px">
-    <div style="max-width:860px;margin:0 auto">
+  <section class="faq-sec">
+    <div class="faq-inner">
 
       <div class="faq-group">
         <div class="faq-group-title"><span class="faq-group-icon">01</span><span data-i18n="faq.g1">Booking &amp; Planning</span></div>
@@ -1896,10 +1894,10 @@ body.wc-popup-open{overflow:hidden}
       </div>
 
       <!-- CTA -->
-      <div style="margin-top:64px;padding:48px;background:var(--ink3);border:1px solid var(--border);text-align:center">
-        <div class="tag" style="justify-content:center;margin-bottom:14px" data-i18n="faq.ctaTag">Still have questions?</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px" data-i18n-html="faq.ctaTitleHtml">We're Happy to <em style="font-style:italic;color:var(--gold)">Help</em></h3>
-        <p class="body" style="max-width:520px;margin:0 auto 28px;font-size:15px" data-i18n="faq.ctaBody">Reach out anytime — we typically respond within one business day.</p>
+      <div class="faq-cta">
+        <div class="tag" data-i18n="faq.ctaTag">Still have questions?</div>
+        <h3 data-i18n-html="faq.ctaTitleHtml">We're Happy to <em style="font-style:italic;color:var(--gold)">Help</em></h3>
+        <p class="body" data-i18n="faq.ctaBody">Reach out anytime — we typically respond within one business day.</p>
         <button class="btn-primary" onclick="go('contact')" data-i18n="common.contactUs">
           Contact Us
           <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:none;stroke:var(--ink);stroke-width:2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

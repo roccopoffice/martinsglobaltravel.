@@ -256,7 +256,6 @@ html[data-theme='light'] .abl,
 html[data-theme='light'] .abr,
 html[data-theme='light'] .cl,
 html[data-theme='light'] .cr,
-html[data-theme='light'] .faq-item,
 html[data-theme='light'] .commit-card,
 html[data-theme='light'] .portal-card,
 html[data-theme='light'] .card,
@@ -410,6 +409,48 @@ html[data-theme='light'] .cta-inner h2 {
 
 html[data-theme='light'] .cta-inner p {
   color: rgba(26, 26, 26, 0.72) !important;
+}
+
+/* FAQ page — clean accordion on white (not gray cards on dark) */
+html[data-theme='light'] .faq-sec {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .faq-group-title,
+html[data-theme='light'] .faq-q,
+html[data-theme='light'] .faq-cta h3 {
+  color: #1a1a1a !important;
+}
+
+html[data-theme='light'] .faq-item {
+  background: transparent !important;
+}
+
+html[data-theme='light'] .faq-item:hover {
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+html[data-theme='light'] .faq-item.open {
+  background: rgba(154, 114, 9, 0.04) !important;
+}
+
+html[data-theme='light'] .faq-cta {
+  background: #f6f6f6 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme='light'] .faq-group-icon {
+  background: rgba(154, 114, 9, 0.1) !important;
+  border-color: rgba(154, 114, 9, 0.22) !important;
+}
+
+html[data-theme='light'] .faq-arrow {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme='light'] .faq-item.open .faq-arrow {
+  color: #ffffff !important;
 }
 
 /* Hero & photo sections keep cinematic overlays + light text */
