@@ -259,8 +259,7 @@ html[data-theme='light'] .cr,
 html[data-theme='light'] .commit-card,
 html[data-theme='light'] .portal-card,
 html[data-theme='light'] .card,
-html[data-theme='light'] .stat-box,
-html[data-theme='light'] .wc-popup-dialog {
+html[data-theme='light'] .stat-box {
   background: #f6f6f6 !important;
   color: #1a1a1a !important;
 }

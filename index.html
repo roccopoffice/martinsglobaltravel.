@@ -610,87 +610,6 @@ footer{background:var(--ink2);border-top:1px solid var(--border);padding:72px 52
 .legal-prose a:hover{text-decoration:underline}
 .legal-note{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:16px 20px;margin-bottom:32px;font-size:13px;color:var(--dim);line-height:1.65}
 
-/* World Cup home popup */
-.wc-popup{
-  position:fixed;inset:0;z-index:20000;
-  display:flex;align-items:center;justify-content:center;
-  padding:calc(var(--nav-offset) + 12px) 20px 24px;
-  opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity .45s var(--ease),visibility .45s;
-}
-.wc-popup.is-open{opacity:1;visibility:visible;pointer-events:auto}
-.wc-popup-backdrop{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(5,5,5,.88) 0%,rgba(5,5,5,.94) 100%);
-  backdrop-filter:blur(14px);
-  opacity:0;transition:opacity .45s var(--ease);
-}
-.wc-popup.is-open .wc-popup-backdrop{opacity:1}
-.wc-popup-dialog{
-  position:relative;z-index:1;width:100%;max-width:min(920px,100%);
-  max-height:calc(100vh - var(--nav-offset) - 36px);
-  display:flex;flex-direction:column;
-  background:var(--ink2);border:1px solid var(--border);
-  box-shadow:0 32px 100px rgba(0,0,0,.65),0 0 0 1px rgba(201,168,76,.06) inset;
-  transform:translateY(20px) scale(.97);opacity:0;
-  transition:transform .5s var(--ease),opacity .5s var(--ease);
-  overflow:hidden;
-}
-.wc-popup.is-open .wc-popup-dialog{transform:none;opacity:1}
-.wc-popup-dialog::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:2;
-}
-.wc-popup-art-inner{
-  position:relative;
-  border:1px solid rgba(201,168,76,.12);
-  box-shadow:0 8px 32px rgba(0,0,0,.35);
-  line-height:0;background:#f5f0e6;
-}
-.wc-popup-img-close{
-  position:absolute;top:1.6%;right:2.1%;
-  width:5.2%;aspect-ratio:1;
-  min-width:44px;min-height:44px;
-  max-width:56px;max-height:56px;
-  padding:0;border:none;background:transparent;
-  cursor:pointer;z-index:2;
-}
-.wc-popup-art{
-  flex:1;min-height:0;overflow:auto;
-  padding:12px 14px 14px;background:var(--ink3);
-  -webkit-overflow-scrolling:touch;
-}
-.wc-popup-art img{
-  width:100%;height:auto;display:block;
-  max-height:min(62vh,682px);
-  object-fit:contain;object-position:center;
-}
-.wc-popup-foot{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;
-  padding:16px 20px 20px;border-top:1px solid var(--border);flex-shrink:0;
-}
-.wc-popup-continue{
-  padding:12px 22px;font-size:10px;font-weight:600;letter-spacing:2px;
-  text-transform:uppercase;color:var(--dim);background:transparent;
-  border:1px solid var(--border);transition:all .3s;
-}
-.wc-popup-continue:hover{border-color:rgba(255,255,255,.2);color:#fff}
-.wc-popup-cta{
-  padding:12px 26px;font-size:10px;font-weight:700;letter-spacing:2.5px;
-  text-transform:uppercase;background:var(--gold);color:var(--ink);border:none;
-  transition:all .3s;display:inline-flex;align-items:center;gap:8px;
-}
-.wc-popup-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-body.wc-popup-open{overflow:hidden}
-@media(max-width:700px){
-  .wc-popup{padding:calc(var(--nav-offset) + 8px) 12px 16px}
-  .wc-popup-art{padding:8px 10px 10px}
-  .wc-popup-img-close{top:1.2%;right:1.6%;min-width:40px;min-height:40px}
-  .wc-popup-foot{flex-direction:column;padding:14px 16px 18px}
-  .wc-popup-continue,.wc-popup-cta{width:100%;justify-content:center;text-align:center}
-  .wc-popup-art img{max-height:min(52vh,682px)}
-}
-
 .lang-switcher{display:flex;align-items:center;flex-shrink:0}
 .lang-select{appearance:none;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dim);background:var(--ink3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center/10px;border:1px solid var(--border);padding:8px 26px 8px 12px;cursor:pointer;transition:border-color .25s,color .25s}
 .lang-select:hover{border-color:rgba(201,168,76,.35);color:#fff}
@@ -775,31 +694,6 @@ body.wc-popup-open{overflow:hidden}
 </div>
 
 <div class="toast" id="toast"></div>
-
-<!-- World Cup promo (home) -->
-<div id="wc-popup" class="wc-popup" role="dialog" aria-modal="true" aria-label="World Cup 2026 travel packages" data-i18n-aria="a11y.wcPopup" data-i18n-aria="a11y.wcPopup" hidden>
-  <div class="wc-popup-backdrop" onclick="closeWcPopup()" aria-hidden="true"></div>
-  <div class="wc-popup-dialog">
-    <div class="wc-popup-art">
-      <div class="wc-popup-art-inner">
-        <img
-          src="assets/world-cup-popup.png?v=2"
-          srcset="assets/world-cup-popup.png?v=2 1024w"
-          sizes="(max-width: 920px) 92vw, 920px"
-          alt="World Cup 2026 travel packages — flights, hotels, transportation, and ticket assistance from Martins Global Travels." data-i18n-alt="wc.imgAlt" data-i18n-alt="wc.imgAlt"
-          width="1024"
-          height="682"
-          fetchpriority="high"
-          decoding="async">
-        <button type="button" class="wc-popup-img-close" aria-label="Close" data-i18n-aria="a11y.close" onclick="closeWcPopup()"></button>
-      </div>
-    </div>
-    <div class="wc-popup-foot">
-      <button type="button" class="wc-popup-continue" onclick="closeWcPopup()" data-i18n="wc.continue">Continue browsing</button>
-      <button type="button" class="wc-popup-cta" onclick="wcPopupBook()" data-i18n="wc.book">Book your experience</button>
-    </div>
-  </div>
-</div>
 
 <!-- ══════════════ HOME ══════════════ -->
 <div class="page active" id="page-home">
@@ -2054,40 +1948,6 @@ body.wc-popup-open{overflow:hidden}
 
 
 <script>
-// World Cup home popup
-var WC_POPUP_KEY='mgt_wc_popup_closed';
-function closeWcPopup(){
-  var el=document.getElementById('wc-popup');
-  if(!el)return;
-  el.classList.remove('is-open');
-  document.body.classList.remove('wc-popup-open');
-  try{sessionStorage.setItem(WC_POPUP_KEY,'1');}catch(e){}
-  setTimeout(function(){el.hidden=true;},480);
-}
-function openWcPopup(){
-  var el=document.getElementById('wc-popup');
-  if(!el)return;
-  try{if(sessionStorage.getItem(WC_POPUP_KEY)==='1')return;}catch(e){}
-  var img=el.querySelector('.wc-popup-art img');
-  if(img&&!img.complete)img.loading='eager';
-  el.hidden=false;
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){el.classList.add('is-open');});
-  });
-  document.body.classList.add('wc-popup-open');
-}
-function wcPopupBook(){
-  closeWcPopup();
-  setTimeout(function(){window.location.href='book.html';},200);
-}
-function maybeShowWcPopup(){
-  var home=document.getElementById('page-home');
-  if(home&&home.classList.contains('active'))openWcPopup();
-}
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape')closeWcPopup();
-});
-
 // Page routing
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -2191,7 +2051,6 @@ function toggleFaq(el){
   io.observe(grid);
 })();
 document.addEventListener('DOMContentLoaded',function(){
-  maybeShowWcPopup();
   var pageHash=location.hash.replace(/^#/,'');
   if(pageHash&&document.getElementById('page-'+pageHash))go(pageHash);
   function candidates(base){
