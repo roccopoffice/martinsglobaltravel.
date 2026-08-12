@@ -152,6 +152,14 @@ nav#nav{
 .portal-foot a{color:var(--gold)}
 .portal-link-btn{background:none;border:none;color:var(--gold);font-size:12px;padding:0;margin-top:8px;text-decoration:underline;cursor:pointer}
 .portal-link-btn:hover{color:var(--gold2)}
+.wallet-history{margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
+.wallet-history-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
+.wallet-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.wallet-row:last-child{border-bottom:none}
+.wallet-row-note{color:var(--dim);line-height:1.4}
+.wallet-row-date{font-size:11px;color:var(--dimmer)}
+.wallet-row-amt{font-variant-numeric:tabular-nums;white-space:nowrap;color:#fff}
+.wallet-row-amt.plus{color:var(--gold2)}
 #forgot-panel{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
 #forgot-panel[hidden]{display:none}
 .pw-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(5,5,5,.88);backdrop-filter:blur(8px)}
@@ -269,7 +277,7 @@ nav#nav{
   <section id="portal-dashboard" hidden>
     <div class="portal-ey">Welcome back</div>
     <h1 class="portal-h1">Hello, <span id="welcome-name">Client</span></h1>
-    <p class="portal-lead">This is the only information shown in your portal — your current balance owed.</p>
+    <p class="portal-lead">Your current balance owed and any travel credit we've sent you.</p>
     <div class="portal-card">
       <div class="portal-lbl">Balance owed</div>
       <div id="balance-amount" class="balance-display">—</div>
@@ -277,6 +285,18 @@ nav#nav{
       <button type="button" class="portal-btn" id="pay-btn" disabled>Pay balance with card</button>
       <button type="button" class="portal-btn portal-btn-outline" id="change-pw-btn">Change password</button>
       <button type="button" class="portal-btn portal-btn-outline" id="logout-btn">Sign out</button>
+    </div>
+    <div class="portal-card" id="wallet-card">
+      <div class="portal-lbl">Travel credit</div>
+      <div id="credit-amount" class="balance-display">—</div>
+      <p id="credit-note" class="balance-note">Loading…</p>
+      <button type="button" class="portal-btn" id="setup-bank-btn" hidden>Set up bank account</button>
+      <div id="withdraw-panel" hidden>
+        <label class="portal-lbl" for="withdraw-amount" style="margin-top:16px;display:block">Amount to withdraw ($)</label>
+        <input class="portal-inp" id="withdraw-amount" type="text" inputmode="decimal" placeholder="250.00">
+        <button type="button" class="portal-btn" id="withdraw-btn">Withdraw to my bank</button>
+      </div>
+      <div id="wallet-history" class="wallet-history" hidden></div>
     </div>
     <p class="portal-foot">Questions about your trip? <a href="index.html" onclick="if(window.go){return true}">Contact us</a> or call <a href="tel:+15082323003">(508) 232-3003</a>.</p>
   </section>

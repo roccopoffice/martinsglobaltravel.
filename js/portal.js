@@ -10,6 +10,13 @@
   const balanceEl = $('balance-amount');
   const balanceNote = $('balance-note');
   const payBtn = $('pay-btn');
+  const creditEl = $('credit-amount');
+  const creditNote = $('credit-note');
+  const setupBankBtn = $('setup-bank-btn');
+  const withdrawPanel = $('withdraw-panel');
+  const withdrawBtn = $('withdraw-btn');
+  const withdrawInput = $('withdraw-amount');
+  const walletHistory = $('wallet-history');
   const logoutBtn = $('logout-btn');
   const changePwBtn = $('change-pw-btn');
   const welcomeEl = $('welcome-name');
@@ -135,6 +142,86 @@
     });
   }
 
+  function formatShortDate(iso) {
+    try {
+      return new Date(iso.includes('T') ? iso : iso.replace(' ', 'T') + 'Z').toLocaleDateString(
+        'en-US',
+        { month: 'short', day: 'numeric', year: 'numeric' }
+      );
+    } catch {
+      return '';
+    }
+  }
+
+  function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s ?? '';
+    return d.innerHTML;
+  }
+
+  function renderWalletHistory(transactions) {
+    if (!walletHistory) return;
+    if (!transactions?.length) {
+      walletHistory.hidden = true;
+      walletHistory.innerHTML = '';
+      return;
+    }
+    const rows = transactions
+      .map((t) => {
+        const isGrant = t.type === 'grant';
+        const sign = isGrant ? '+' : '−';
+        return `<div class="wallet-row">
+          <div>
+            <div class="wallet-row-note">${escapeHtml(t.note || (isGrant ? 'Credit added' : 'Withdrawal'))}</div>
+            <div class="wallet-row-date">${escapeHtml(formatShortDate(t.created_at))}</div>
+          </div>
+          <div class="wallet-row-amt ${isGrant ? 'plus' : ''}">${sign}${formatMoney(t.amount_cents, 'usd')}</div>
+        </div>`;
+      })
+      .join('');
+    walletHistory.innerHTML = '<div class="wallet-history-title">Credit activity</div>' + rows;
+    walletHistory.hidden = false;
+  }
+
+  async function loadWallet() {
+    if (!creditEl) return;
+    const res = await fetch(API + 'wallet', { headers: authHeaders() });
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      creditEl.textContent = '—';
+      creditNote.textContent = json.error || 'Could not load your credit right now.';
+      setupBankBtn.hidden = true;
+      withdrawPanel.hidden = true;
+      return;
+    }
+
+    const credit = json.creditCents || 0;
+    const payout = json.payout || {};
+    creditEl.textContent = formatMoney(credit, json.currency);
+
+    if (credit <= 0) {
+      creditNote.textContent = payout.payoutsEnabled
+        ? 'No credit right now. Your bank account is connected for future withdrawals.'
+        : 'No credit right now. Credit sent to you by Martins Global Travels will appear here.';
+      setupBankBtn.hidden = true;
+      withdrawPanel.hidden = true;
+    } else if (payout.payoutsEnabled) {
+      creditNote.textContent = 'Withdraw any amount of your credit straight to your bank.';
+      setupBankBtn.hidden = true;
+      withdrawPanel.hidden = false;
+    } else {
+      creditNote.textContent = payout.connected
+        ? 'Finish setting up your bank account to withdraw this credit.'
+        : 'Connect your bank account to withdraw this credit. Secure setup powered by Stripe.';
+      setupBankBtn.textContent = payout.connected ? 'Finish bank setup' : 'Set up bank account';
+      setupBankBtn.hidden = false;
+      withdrawPanel.hidden = true;
+    }
+
+    renderWalletHistory(json.transactions);
+  }
+
   function showDashboard() {
     loginView.hidden = true;
     dashView.hidden = false;
@@ -156,7 +243,7 @@
       showPasswordModal({ required: true });
       return;
     }
-    await loadBalance();
+    await Promise.all([loadBalance(), loadWallet()]);
   }
 
   async function restoreSession() {
@@ -217,7 +304,7 @@
     document.body.style.overflow = '';
     if (currentUser) currentUser.must_change_password = false;
     showBanner('Password updated successfully.', 'success');
-    await loadBalance();
+    await Promise.all([loadBalance(), loadWallet()]);
   }
 
   loginForm?.addEventListener('submit', async (e) => {
@@ -300,12 +387,61 @@
     }
   });
 
+  setupBankBtn?.addEventListener('click', async () => {
+    setupBankBtn.disabled = true;
+    const original = setupBankBtn.textContent;
+    setupBankBtn.textContent = 'Opening secure setup…';
+    try {
+      const res = await fetch(API + 'wallet/connect', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: '{}',
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Could not start bank setup.');
+      if (json.url) window.location.href = json.url;
+      else throw new Error('Could not start bank setup.');
+    } catch (err) {
+      showBanner(err.message, 'error');
+      setupBankBtn.disabled = false;
+      setupBankBtn.textContent = original;
+    }
+  });
+
+  withdrawBtn?.addEventListener('click', async () => {
+    const amount = withdrawInput.value.trim();
+    if (!amount) {
+      showBanner('Enter the amount you want to withdraw.', 'warn');
+      return;
+    }
+    withdrawBtn.disabled = true;
+    withdrawBtn.textContent = 'Sending to your bank…';
+    try {
+      const res = await fetch(API + 'wallet/withdraw', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({ amountDollars: amount }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Withdrawal failed.');
+      withdrawInput.value = '';
+      showBanner(json.message || 'Withdrawal sent to your bank.', 'success');
+      await loadWallet();
+    } catch (err) {
+      showBanner(err.message, 'error');
+    } finally {
+      withdrawBtn.disabled = false;
+      withdrawBtn.textContent = 'Withdraw to my bank';
+    }
+  });
+
   const params = new URLSearchParams(window.location.search);
   const paidReturn = params.get('paid') === '1';
   const sessionId = params.get('session_id');
   const canceledReturn = params.get('canceled') === '1';
+  const connectReturn = params.get('connect');
 
-  if (paidReturn || canceledReturn) {
+  if (paidReturn || canceledReturn || connectReturn) {
     history.replaceState({}, '', 'portal.html');
   }
 
@@ -341,5 +477,13 @@
   restoreSession().then(() => {
     if (paidReturn && getToken()) confirmPaidSession();
     else if (canceledReturn) showBanner('Payment canceled. Your balance is unchanged.', 'warn');
+    else if (connectReturn === 'done' && getToken()) {
+      showBanner(
+        'Bank setup complete! Once Stripe verifies your details you can withdraw your credit below.',
+        'success'
+      );
+    } else if (connectReturn === 'refresh' && getToken()) {
+      showBanner('Bank setup was not finished. Click "Set up bank account" to continue.', 'warn');
+    }
   });
 })();

@@ -54,6 +54,7 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
 .client-table td{padding:14px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 .client-table tr:last-child td{border-bottom:none}
 .client-table .bal{font-family:'DM Serif Display',serif;color:var(--gold);font-size:18px;white-space:nowrap}
+.client-table .bal.credit{color:#7ecf8b}
 .client-table .email{color:var(--dim);font-size:12px;word-break:break-all}
 .client-table tbody tr.client-row{cursor:pointer;transition:background .2s}
 .client-table tbody tr.client-row:hover{background:rgba(201,168,76,.06)}
@@ -139,6 +140,7 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
       <button type="button" class="tab active" data-tab="add">Add client</button>
       <button type="button" class="tab" data-tab="list">Client list</button>
       <button type="button" class="tab" data-tab="balance">Update balance</button>
+      <button type="button" class="tab" data-tab="credits">Send money</button>
       <button type="button" class="tab" data-tab="analytics">Analytics</button>
     </div>
 
@@ -191,6 +193,23 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
       <label class="lbl" for="u-balance">New balance owed ($)</label>
       <input class="inp" id="u-balance" type="text" inputmode="decimal" placeholder="1500.00" required>
       <button type="button" class="btn" id="update-btn">Update balance</button>
+    </div>
+
+    <div id="panel-credits" class="panel card" hidden>
+      <h2>Send money / credit</h2>
+      <p class="hint">Adds credit to the client's portal wallet. They can withdraw it to their own bank account (secure setup through Stripe). This is separate from the balance they owe.</p>
+      <label class="lbl" for="cr-email">Client email</label>
+      <input class="inp" id="cr-email" type="email" required>
+      <label class="lbl" for="cr-amount">Amount ($)</label>
+      <input class="inp" id="cr-amount" type="text" inputmode="decimal" placeholder="250.00" required>
+      <label class="lbl" for="cr-note">Note (optional — the client sees this)</label>
+      <input class="inp" id="cr-note" type="text" placeholder="Referral reward, refund, thank-you…">
+      <label class="lbl" for="cr-action">Action</label>
+      <select class="inp" id="cr-action">
+        <option value="add">Add credit (send money)</option>
+        <option value="remove">Remove credit (fix a mistake)</option>
+      </select>
+      <button type="button" class="btn" id="send-credit-btn">Send credit</button>
     </div>
 
     <button type="button" class="btn btn-outline" id="logout-btn">Sign out</button>

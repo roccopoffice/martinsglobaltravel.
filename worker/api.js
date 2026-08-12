@@ -113,6 +113,193 @@ async function authChangePassword(request, env) {
   return json(200, { ok: true });
 }
 
+const MIN_WITHDRAWAL_CENTS = 100;
+
+async function getWalletAccount(env, userId) {
+  return env.DB.prepare(
+    `SELECT id, email, first_name, last_name, full_name, credit_cents, currency, stripe_connect_id
+     FROM client_accounts WHERE id = ? LIMIT 1`
+  )
+    .bind(userId)
+    .first();
+}
+
+async function walletInfo(request, env) {
+  const auth = await requireUser(request, env);
+  if (auth.error) return json(401, { error: auth.error });
+
+  const account = await getWalletAccount(env, auth.userId);
+  if (!account) return json(404, { error: 'Account not found' });
+
+  const stripe = stripeClient(env);
+  let payout = { connected: false, payoutsEnabled: false, onboardingComplete: false };
+  if (account.stripe_connect_id && stripe) {
+    try {
+      const acct = await stripe.accounts.retrieve(account.stripe_connect_id);
+      payout = {
+        connected: true,
+        payoutsEnabled: !!acct.payouts_enabled,
+        onboardingComplete: !!acct.details_submitted,
+      };
+    } catch (err) {
+      console.error('wallet account retrieve', err);
+      payout.connected = true;
+    }
+  }
+
+  const { results } = await env.DB.prepare(
+    `SELECT type, amount_cents, status, note, created_at
+     FROM credit_transactions WHERE user_id = ?
+     ORDER BY created_at DESC, rowid DESC LIMIT 20`
+  )
+    .bind(auth.userId)
+    .all();
+
+  return json(200, {
+    creditCents: account.credit_cents || 0,
+    currency: account.currency || 'usd',
+    payout,
+    payoutsConfigured: !!stripe,
+    transactions: results || [],
+  });
+}
+
+async function walletConnectOnboarding(request, env) {
+  const stripe = stripeClient(env);
+  if (!stripe) {
+    return json(503, { error: 'Bank withdrawals are not set up yet. Call (508) 232-3003 for help.' });
+  }
+
+  const auth = await requireUser(request, env);
+  if (auth.error) return json(401, { error: auth.error });
+
+  const account = await getWalletAccount(env, auth.userId);
+  if (!account) return json(404, { error: 'Account not found' });
+
+  try {
+    let connectId = account.stripe_connect_id;
+    if (!connectId) {
+      const created = await stripe.accounts.create({
+        type: 'express',
+        email: account.email || auth.email,
+        business_type: 'individual',
+        capabilities: { transfers: { requested: true } },
+        metadata: { user_id: auth.userId },
+      });
+      connectId = created.id;
+      await env.DB.prepare(
+        `UPDATE client_accounts SET stripe_connect_id = ?, updated_at = datetime('now') WHERE id = ?`
+      )
+        .bind(connectId, auth.userId)
+        .run();
+    }
+
+    const base = siteUrl(request, env);
+    const link = await stripe.accountLinks.create({
+      account: connectId,
+      refresh_url: `${base}/portal.html?connect=refresh`,
+      return_url: `${base}/portal.html?connect=done`,
+      type: 'account_onboarding',
+    });
+
+    return json(200, { url: link.url });
+  } catch (err) {
+    console.error('wallet connect', err);
+    return json(502, {
+      error:
+        'Bank setup could not start. Please try again in a moment or call (508) 232-3003.',
+    });
+  }
+}
+
+async function walletWithdraw(request, env) {
+  const stripe = stripeClient(env);
+  if (!stripe) {
+    return json(503, { error: 'Bank withdrawals are not set up yet. Call (508) 232-3003 for help.' });
+  }
+
+  const auth = await requireUser(request, env);
+  if (auth.error) return json(401, { error: auth.error });
+
+  const body = await readJson(request);
+  const amountCents = dollarsToCents(body?.amountDollars);
+  if (amountCents === null || amountCents < MIN_WITHDRAWAL_CENTS) {
+    return json(400, { error: 'Enter an amount of at least $1.00.' });
+  }
+
+  const account = await getWalletAccount(env, auth.userId);
+  if (!account) return json(404, { error: 'Account not found' });
+  if ((account.credit_cents || 0) < amountCents) {
+    return json(400, { error: 'That is more than your available credit.' });
+  }
+  if (!account.stripe_connect_id) {
+    return json(400, { error: 'Set up your bank account first.' });
+  }
+
+  let connectAccount;
+  try {
+    connectAccount = await stripe.accounts.retrieve(account.stripe_connect_id);
+  } catch (err) {
+    console.error('wallet withdraw retrieve', err);
+    return json(502, { error: 'Could not verify your bank setup. Please try again.' });
+  }
+  if (!connectAccount.payouts_enabled) {
+    return json(400, {
+      error: 'Your bank setup is not finished yet. Use "Set up bank account" to complete it.',
+    });
+  }
+
+  // Reserve the credit first so the same dollars can't be withdrawn twice.
+  const hold = await env.DB.prepare(
+    `UPDATE client_accounts SET credit_cents = credit_cents - ?, updated_at = datetime('now')
+     WHERE id = ? AND credit_cents >= ?`
+  )
+    .bind(amountCents, auth.userId, amountCents)
+    .run();
+  if ((hold.meta?.changes ?? 1) !== 1) {
+    return json(400, { error: 'That is more than your available credit.' });
+  }
+
+  let transfer;
+  try {
+    transfer = await stripe.transfers.create({
+      amount: amountCents,
+      currency: (account.currency || 'usd').toLowerCase(),
+      destination: account.stripe_connect_id,
+      description: 'Martins Global Travels credit withdrawal',
+      metadata: { user_id: auth.userId },
+    });
+  } catch (err) {
+    // Give the credit back if the money never moved.
+    await env.DB.prepare(`UPDATE client_accounts SET credit_cents = credit_cents + ? WHERE id = ?`)
+      .bind(amountCents, auth.userId)
+      .run();
+    console.error('wallet withdraw transfer', err);
+    const msg = String(err?.raw?.message || err?.message || '').toLowerCase();
+    if (msg.includes('insufficient')) {
+      return json(503, {
+        error:
+          'Withdrawals are temporarily unavailable. Please try again later or call (508) 232-3003.',
+      });
+    }
+    return json(502, { error: 'The withdrawal could not be completed. Please try again or contact us.' });
+  }
+
+  await env.DB.prepare(
+    `INSERT INTO credit_transactions (id, user_id, type, amount_cents, status, note, stripe_transfer_id)
+     VALUES (?, ?, 'withdrawal', ?, 'completed', 'Withdrawal to your bank', ?)`
+  )
+    .bind(crypto.randomUUID(), auth.userId, amountCents, transfer.id)
+    .run();
+
+  const updated = await getWalletAccount(env, auth.userId);
+  return json(200, {
+    ok: true,
+    creditCents: updated?.credit_cents || 0,
+    message: `$${(amountCents / 100).toFixed(2)} is on its way to your bank. It usually arrives within 1–2 business days.`,
+  });
+}
+
 async function createCheckout(request, env) {
   const stripe = stripeClient(env);
   if (!stripe) {
@@ -226,7 +413,7 @@ async function adminListClients(request, env) {
   if (!auth.ok) return json(401, { error: auth.error });
 
   const { results } = await env.DB.prepare(
-    `SELECT id, first_name, last_name, full_name, email, balance_cents, notes, updated_at
+    `SELECT id, first_name, last_name, full_name, email, balance_cents, credit_cents, notes, updated_at
      FROM client_accounts
      ORDER BY last_name ASC, first_name ASC`
   ).all();
@@ -242,6 +429,8 @@ async function adminListClients(request, env) {
       email: row.email,
       balanceCents: row.balance_cents,
       balanceDollars: ((row.balance_cents || 0) / 100).toFixed(2),
+      creditCents: row.credit_cents || 0,
+      creditDollars: ((row.credit_cents || 0) / 100).toFixed(2),
       notes: row.notes || '',
       updatedAt: row.updated_at,
     };
@@ -336,6 +525,67 @@ async function adminUpdateBalance(request, env) {
   return json(200, {
     ok: true,
     message: `Balance for ${name} is now $${(balanceCents / 100).toFixed(2)}.`,
+  });
+}
+
+async function adminSendCredit(request, env) {
+  const body = await readJson(request);
+  if (!body) return json(400, { error: 'Invalid request' });
+  const auth = verifyAdmin(body, env);
+  if (!auth.ok) return json(401, { error: auth.error });
+
+  const email = String(body.email || '').trim().toLowerCase();
+  const amountCents = dollarsToCents(body.amountDollars);
+  const note = String(body.note || '').trim().slice(0, 300);
+  const remove = body.action === 'remove';
+
+  if (!email || !email.includes('@')) return json(400, { error: 'A valid email is required.' });
+  if (amountCents === null || amountCents <= 0) return json(400, { error: 'Enter a valid amount.' });
+
+  const account = await env.DB.prepare(
+    `SELECT id, email, first_name, last_name, full_name, credit_cents
+     FROM client_accounts WHERE email = ? LIMIT 1`
+  )
+    .bind(email)
+    .first();
+  if (!account) return json(404, { error: 'No client found with that email. Add them first.' });
+
+  const currentCredit = account.credit_cents || 0;
+  if (remove && currentCredit < amountCents) {
+    return json(400, {
+      error: `They only have $${(currentCredit / 100).toFixed(2)} in credit — you can't remove more than that.`,
+    });
+  }
+
+  const delta = remove ? -amountCents : amountCents;
+  const defaultNote = remove ? 'Credit adjustment' : 'Credit from Martins Global Travels';
+
+  await env.DB.batch([
+    env.DB.prepare(
+      `UPDATE client_accounts SET credit_cents = credit_cents + ?, updated_at = datetime('now') WHERE id = ?`
+    ).bind(delta, account.id),
+    env.DB.prepare(
+      `INSERT INTO credit_transactions (id, user_id, type, amount_cents, status, note)
+       VALUES (?, ?, ?, ?, 'completed', ?)`
+    ).bind(
+      crypto.randomUUID(),
+      account.id,
+      remove ? 'adjustment' : 'grant',
+      amountCents,
+      note || defaultNote
+    ),
+  ]);
+
+  const name =
+    [account.first_name, account.last_name].filter(Boolean).join(' ').trim() ||
+    account.full_name ||
+    account.email;
+  const newCredit = currentCredit + delta;
+  return json(200, {
+    ok: true,
+    message: remove
+      ? `Removed $${(amountCents / 100).toFixed(2)} — ${name} now has $${(newCredit / 100).toFixed(2)} in credit.`
+      : `Sent $${(amountCents / 100).toFixed(2)} to ${name}. They now have $${(newCredit / 100).toFixed(2)} in credit to withdraw from their portal.`,
   });
 }
 
@@ -725,10 +975,13 @@ const POST_ROUTES = {
   'create-checkout': createCheckout,
   'confirm-payment': confirmPayment,
   'stripe-webhook': stripeWebhook,
+  'wallet/connect': walletConnectOnboarding,
+  'wallet/withdraw': walletWithdraw,
   'admin-verify': adminVerify,
   'admin-list-clients': adminListClients,
   'admin-create-client': adminCreateClient,
   'admin-update-balance': adminUpdateBalance,
+  'admin-send-credit': adminSendCredit,
   'admin-update-notes': adminUpdateNotes,
   'admin-delete-client': adminDeleteClient,
   'admin-get-analytics': adminGetAnalytics,
@@ -740,6 +993,7 @@ const POST_ROUTES = {
 const GET_ROUTES = {
   'auth/session': authSession,
   'auth/balance': authBalance,
+  'wallet': walletInfo,
   'airport-search': airportSearch,
 };
 

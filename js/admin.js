@@ -48,6 +48,7 @@
     $('panel-add').hidden = tabId !== 'add';
     $('panel-list').hidden = tabId !== 'list';
     $('panel-balance').hidden = tabId !== 'balance';
+    $('panel-credits').hidden = tabId !== 'credits';
     $('panel-analytics').hidden = tabId !== 'analytics';
     mainEl?.classList.toggle('wide', tabId === 'list' || tabId === 'analytics');
     if (tabId === 'list') loadClientList();
@@ -253,6 +254,14 @@
     showMsg('Update the balance below, then click Update balance.', true);
   }
 
+  function openCreditsTab(email) {
+    $('cr-email').value = email;
+    $('cr-amount').value = '';
+    $('cr-action').value = 'add';
+    switchTab('credits');
+    showMsg('Enter the amount to send, then click Send credit.', true);
+  }
+
   async function deleteClient(email, name, btn) {
     const label = name || email;
     const ok = window.confirm(
@@ -306,15 +315,17 @@
           <td data-label="Name">${escapeHtml(c.name)}<span class="chev">▸</span></td>
           <td data-label="Email" class="email">${emailAttr}</td>
           <td data-label="Balance" class="bal">${escapeHtml(formatMoney(c.balanceDollars))}</td>
+          <td data-label="Credit" class="bal credit">${escapeHtml(formatMoney(c.creditDollars))}</td>
         </tr>
         <tr class="client-detail" data-email="${emailAttr}" hidden>
-          <td colspan="3">
+          <td colspan="4">
             <div class="client-detail-panel">
               <label class="lbl">Staff notes (private — clients never see this)</label>
               <textarea class="inp notes-area" data-notes-for="${emailAttr}" placeholder="Trip details, preferences, payment reminders…">${escapeHtml(c.notes)}</textarea>
               <div class="detail-actions">
                 <button type="button" class="btn btn-sm save-notes-btn" data-email="${emailAttr}">Save notes</button>
                 <button type="button" class="btn btn-outline btn-sm balance-btn" data-email="${emailAttr}" data-balance="${escapeHtml(c.balanceDollars)}">Update balance</button>
+                <button type="button" class="btn btn-outline btn-sm credit-btn" data-email="${emailAttr}">Send credit</button>
                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-email="${emailAttr}" data-name="${escapeHtml(c.name)}">Remove client</button>
               </div>
             </div>
@@ -331,6 +342,7 @@
               <th>Name</th>
               <th>Email</th>
               <th>Balance owed</th>
+              <th>Credit</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
@@ -353,6 +365,13 @@
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
           openBalanceTab(btn.dataset.email, btn.dataset.balance);
+        });
+      });
+
+      body.querySelectorAll('.credit-btn').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openCreditsTab(btn.dataset.email);
         });
       });
 
@@ -444,6 +463,40 @@
       showMsg(e.message, false);
     } finally {
       setBusy(btn, false, 'Update balance');
+    }
+  });
+
+  $('send-credit-btn')?.addEventListener('click', async () => {
+    const btn = $('send-credit-btn');
+    const remove = $('cr-action').value === 'remove';
+    const amount = $('cr-amount').value.trim();
+    const email = $('cr-email').value.trim();
+
+    if (!remove) {
+      const ok = window.confirm(
+        `Send ${formatMoney(amount)} in credit to ${email}?\n\nThey will be able to withdraw this to their bank account.`
+      );
+      if (!ok) return;
+    }
+
+    setBusy(btn, true, 'Send credit');
+    showMsg('');
+    try {
+      const json = await api('admin-send-credit', {
+        adminPassword,
+        email,
+        amountDollars: amount,
+        note: $('cr-note').value,
+        action: remove ? 'remove' : 'add',
+      });
+      showMsg(json.message, true);
+      $('cr-amount').value = '';
+      $('cr-note').value = '';
+      loadClientList();
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Send credit');
     }
   });
 
