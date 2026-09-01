@@ -17,9 +17,12 @@ export default {
     }
 
     if (/^\/send\/[A-Za-z0-9_-]{8,64}\/?$/.test(url.pathname)) {
-      return env.ASSETS.fetch(new Request(new URL('/send.html', request.url), request));
+      let asset = await env.ASSETS.fetch(new Request(new URL('/send-money.html', request.url)));
+      if (asset.status >= 300 && asset.status < 400 && asset.headers.get('Location')) {
+        asset = await env.ASSETS.fetch(new Request(new URL(asset.headers.get('Location'), request.url)));
+      }
+      return asset;
     }
-
 
     if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/.netlify/functions/')) {
       return handleApiRequest(request, env);

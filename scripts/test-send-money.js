@@ -176,11 +176,19 @@ async function main() {
     pass('Public info does not leak client data', 'no email/balance/id');
   } else fail('Public info leak check', JSON.stringify(info.json));
 
-  const page = await fetch(`${BASE}/send/${pathToken}`);
-  const html = await page.text();
-  if (page.ok && html.includes('Send Money') && html.includes('js/send-money.js')) {
+  const page = await fetch(`${BASE}/send/${pathToken}`, { redirect: 'manual' });
+  const html = page.status === 200 ? await page.text() : '';
+  if (page.status === 200 && html.includes('Send Money') && html.includes('js/send-money.js')) {
     pass('GET /send/{token} page', String(page.status));
-  } else fail('GET /send/{token} page', String(page.status));
+  } else fail('GET /send/{token} page', `status ${page.status} location ${page.headers.get('location')}`);
+
+  const sequential = await fetch(`${BASE}/send/123`, { redirect: 'manual' });
+  if (sequential.status === 404 || sequential.status === 307) {
+    /* 307 to /send is asset pretty-URL; sequential IDs are not worker routes */
+  }
+  const seqInfo = await req('GET', '/api/send-money/info?token=123');
+  if (seqInfo.status === 404) pass('Sequential /send/123 is not a valid link', String(seqInfo.status));
+  else fail('Sequential /send/123 is not a valid link', String(seqInfo.status));
 
   const navHome = await (await fetch(`${BASE}/`)).text();
   if (!navHome.includes('/send/') || navHome.includes('send-money')) {
