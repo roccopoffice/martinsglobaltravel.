@@ -141,6 +141,7 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
       <button type="button" class="tab" data-tab="list">Client list</button>
       <button type="button" class="tab" data-tab="balance">Update balance</button>
       <button type="button" class="tab" data-tab="credits">Send money</button>
+      <button type="button" class="tab" data-tab="giftcards">Gift cards</button>
       <button type="button" class="tab" data-tab="analytics">Analytics</button>
     </div>
 
@@ -210,6 +211,51 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
         <option value="remove">Remove credit (fix a mistake)</option>
       </select>
       <button type="button" class="btn" id="send-credit-btn">Send credit</button>
+    </div>
+
+    <div id="panel-giftcards" class="panel card" hidden>
+      <h2 id="gift-cards">E-gift cards &amp; travel credits</h2>
+      <p class="hint">Purchased cards are created only after Stripe confirms payment. Promotional credits can be issued here without a customer payment. This is separate from withdrawable wallet credit.</p>
+      <div class="list-toolbar">
+        <input class="inp" id="gc-q" placeholder="Search name, email, last 4, or id" style="margin:0;max-width:280px">
+        <button type="button" class="btn btn-sm" id="gc-search-btn">Search</button>
+        <button type="button" class="btn btn-sm btn-outline" id="gc-export-btn">Export CSV</button>
+      </div>
+      <div id="gc-list-body" class="list-loading">Sign in to load gift cards.</div>
+      <div id="gc-detail-body" hidden style="margin-top:20px"></div>
+
+      <h2 style="margin-top:28px">Issue promotional credit</h2>
+      <div class="row row-wrap">
+        <div>
+          <label class="lbl" for="gc-issue-name">Recipient name</label>
+          <input class="inp" id="gc-issue-name">
+        </div>
+        <div>
+          <label class="lbl" for="gc-issue-email">Recipient email</label>
+          <input class="inp" id="gc-issue-email" type="email">
+        </div>
+      </div>
+      <label class="lbl" for="gc-issue-amount">Amount ($)</label>
+      <input class="inp" id="gc-issue-amount" inputmode="decimal" placeholder="500.00">
+      <label class="lbl" for="gc-issue-msg">Message / reason</label>
+      <input class="inp" id="gc-issue-msg" placeholder="Congratulations — $500 travel credit">
+      <button type="button" class="btn" id="gc-issue-btn">Issue promotional credit</button>
+      <p class="hint" id="gc-issue-code" hidden></p>
+
+      <h2 style="margin-top:28px">Policy</h2>
+      <div class="row row-wrap">
+        <div>
+          <label class="lbl" for="gc-min">Minimum purchase ($)</label>
+          <input class="inp" id="gc-min" inputmode="decimal">
+        </div>
+        <div>
+          <label class="lbl" for="gc-max">Maximum purchase ($)</label>
+          <input class="inp" id="gc-max" inputmode="decimal">
+        </div>
+      </div>
+      <label class="check" style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" id="gc-combine"> Allow combining multiple credits on one trip</label>
+      <label class="check" style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" id="gc-transfer"> Codes are transferable (anyone with the code may redeem)</label>
+      <button type="button" class="btn btn-outline" id="gc-save-settings">Save policy</button>
     </div>
 
     <button type="button" class="btn btn-outline" id="logout-btn">Sign out</button>
