@@ -1,4 +1,5 @@
 import { handleApiRequest } from './worker/api.js';
+import { deliverDueCards } from './worker/lib/gift-cards.js';
 
 const CONTACT_TO = 'Jeanie@MartinsGlobalTravels.com';
 const CONTACT_FROM = 'website@martinsglobaltravels.com';
@@ -16,10 +17,20 @@ export default {
       }
     }
 
+    if (url.pathname === '/admin/gift-cards' || url.pathname === '/admin/gift-cards/') {
+      return Response.redirect(new URL('/admin.html#gift-cards', request.url), 302);
+    }
+    if (url.pathname === '/gift-cards' || url.pathname === '/gift-cards/') {
+      return env.ASSETS.fetch(new Request(new URL('/gift-cards.html', request.url), request));
+    }
+
     if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/.netlify/functions/')) {
       return handleApiRequest(request, env);
     }
     return env.ASSETS.fetch(request);
+  },
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(deliverDueCards(env));
   },
 };
 

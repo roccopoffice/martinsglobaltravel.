@@ -110,10 +110,12 @@
       balanceNote.textContent = 'You have no outstanding balance. Thank you!';
       payBtn.disabled = true;
       payBtn.textContent = 'Nothing due';
+      if ($('credit-apply-box')) $('credit-apply-box').hidden = true;
     } else {
       balanceNote.textContent = 'Secure payment powered by Stripe.';
       payBtn.disabled = false;
-      payBtn.textContent = 'Pay balance with card';
+      payBtn.textContent = 'Pay remaining balance with card';
+      if ($('credit-apply-box')) $('credit-apply-box').hidden = false;
     }
   }
 
@@ -243,7 +245,7 @@
       showPasswordModal({ required: true });
       return;
     }
-    await Promise.all([loadBalance(), loadWallet()]);
+    await Promise.all([loadBalance(), loadWallet(), loadGiftCards()]);
   }
 
   async function restoreSession() {
@@ -304,7 +306,7 @@
     document.body.style.overflow = '';
     if (currentUser) currentUser.must_change_password = false;
     showBanner('Password updated successfully.', 'success');
-    await Promise.all([loadBalance(), loadWallet()]);
+    await Promise.all([loadBalance(), loadWallet(), loadGiftCards()]);
   }
 
   loginForm?.addEventListener('submit', async (e) => {
@@ -433,6 +435,128 @@
       withdrawBtn.disabled = false;
       withdrawBtn.textContent = 'Withdraw to my bank';
     }
+  });
+
+  async function loadGiftCards() {
+    const totalEl = $('gc-total');
+    const emptyEl = $('gc-empty');
+    const listEl = $('gc-list');
+    const giveBtn = $('gc-give-btn');
+    if (!totalEl) return;
+
+    const res = await fetch(API + 'gift-cards/my', { headers: authHeaders() });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      totalEl.textContent = '—';
+      emptyEl.textContent = json.error || 'Could not load travel credits.';
+      emptyEl.hidden = false;
+      if (listEl) listEl.hidden = true;
+      return;
+    }
+
+    const cards = json.cards || [];
+    const available = json.availableCents || 0;
+    totalEl.textContent = formatMoney(available, 'usd');
+
+    if (!cards.length) {
+      emptyEl.hidden = false;
+      emptyEl.textContent = "You don't have any travel credits yet.";
+      if (giveBtn) giveBtn.hidden = false;
+      if (listEl) {
+        listEl.hidden = true;
+        listEl.innerHTML = '';
+      }
+      return;
+    }
+
+    emptyEl.hidden = true;
+    if (giveBtn) giveBtn.hidden = true;
+    const rows = cards
+      .map((c) => {
+        const used = formatMoney(c.usedAmountCents || 0, c.currency);
+        const orig = formatMoney(c.originalAmountCents || 0, c.currency);
+        const rem = formatMoney(c.currentBalanceCents || 0, c.currency);
+        const exp = c.expiresAt ? formatShortDate(c.expiresAt) : 'No expiration';
+        return `<div class="wallet-row">
+          <div>
+            <div class="wallet-row-note">${escapeHtml(c.type === 'PROMOTIONAL_CREDIT' ? 'Promotional credit' : 'Gift card')} · ••••${escapeHtml(c.codeLastFour || '')}</div>
+            <div class="wallet-row-date">${escapeHtml(c.status)} · Original ${orig} · Used ${used} · ${escapeHtml(exp)}</div>
+            <button type="button" class="portal-link-btn gc-history" data-id="${escapeHtml(c.id)}">Transaction history</button>
+          </div>
+          <div class="wallet-row-amt plus">${rem}</div>
+        </div>`;
+      })
+      .join('');
+    listEl.innerHTML =
+      '<div class="wallet-history-title">Total available travel credit</div>' + rows;
+    listEl.hidden = false;
+    listEl.querySelectorAll('.gc-history').forEach((btn) => {
+      btn.addEventListener('click', () => showGiftHistory(btn.dataset.id));
+    });
+  }
+
+  async function showGiftHistory(id) {
+    const detail = $('gc-detail');
+    if (!detail) return;
+    const res = await fetch(API + 'gift-cards/transactions?id=' + encodeURIComponent(id), {
+      headers: authHeaders(),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      detail.hidden = false;
+      detail.textContent = json.error || 'Could not load history.';
+      return;
+    }
+    const rows = (json.transactions || [])
+      .map((t) => {
+        const sign = t.amount_cents >= 0 ? '+' : '−';
+        return `<div class="wallet-row">
+          <div>
+            <div class="wallet-row-note">${escapeHtml(t.reason || t.transaction_type)}</div>
+            <div class="wallet-row-date">${escapeHtml(formatShortDate(t.created_at))}</div>
+          </div>
+          <div class="wallet-row-amt ${t.amount_cents >= 0 ? 'plus' : ''}">${sign}${formatMoney(Math.abs(t.amount_cents), 'usd')}</div>
+        </div>`;
+      })
+      .join('');
+    detail.innerHTML =
+      '<div class="wallet-history-title">Transaction history</div>' +
+      (rows || '<p class="balance-note">No activity yet.</p>');
+    detail.hidden = false;
+  }
+
+  async function applyGift(payload) {
+    const quoteEl = $('trip-quote');
+    const res = await fetch(API + 'gift-cards/apply', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify(payload),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      showBanner(json.error || 'Could not apply credit.', 'error');
+      return;
+    }
+    const q = json.quote || {};
+    if (quoteEl) {
+      quoteEl.hidden = false;
+      quoteEl.innerHTML = `Trip total: ${formatMoney(q.tripTotalCents, 'usd')}<br>Travel credit: −${formatMoney(q.creditAppliedCents, 'usd')}<br><strong>Remaining balance: ${formatMoney(q.remainingBalanceCents, 'usd')}</strong>`;
+    }
+    showBanner(json.message || 'Travel credit applied.', 'success');
+    await Promise.all([loadBalance(), loadGiftCards()]);
+  }
+
+  $('apply-code-btn')?.addEventListener('click', async () => {
+    const code = $('gift-code')?.value.trim();
+    if (!code) {
+      showBanner('Enter your gift card code.', 'warn');
+      return;
+    }
+    await applyGift({ code });
+  });
+
+  $('apply-available-btn')?.addEventListener('click', async () => {
+    await applyGift({ applyAvailable: true });
   });
 
   const params = new URLSearchParams(window.location.search);

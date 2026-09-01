@@ -22,6 +22,9 @@
     "SITE_URL": "https://martinsglobaltravel.com",
     "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V"
   },
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
   "send_email": [
     {
       "name": "EMAIL",

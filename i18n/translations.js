@@ -16,6 +16,7 @@
     about: "About",
     contact: "Contact",
     portal: "Client Portal",
+    giftCards: "Gift Cards",
     bookNow: "Book Now",
   },
   brand: {
@@ -785,6 +786,7 @@
     about: "Nosotros",
     contact: "Contacto",
     portal: "Portal del cliente",
+    giftCards: "Tarjetas regalo",
     bookNow: "Reservar",
   },
   brand: {
@@ -1554,6 +1556,7 @@
     about: "Sobre",
     contact: "Contacto",
     portal: "Portal do cliente",
+    giftCards: "Cartões presente",
     bookNow: "Reservar",
   },
   brand: {
@@ -2323,6 +2326,7 @@
     about: "Sou nou",
     contact: "Kontak",
     portal: "Pòtal kliyan",
+    giftCards: "Kat kado",
     bookNow: "Rezève",
   },
   brand: {
@@ -3092,6 +3096,7 @@
     about: "Sobre nós",
     contact: "Kontaktu",
     portal: "Portal di klienti",
+    giftCards: "Karta di presente",
     bookNow: "Reserva",
   },
   brand: {
@@ -3861,6 +3866,7 @@
     about: "À propos",
     contact: "Contact",
     portal: "Portail client",
+    giftCards: "Cartes cadeaux",
     bookNow: "Réserver",
   },
   brand: {
@@ -4630,6 +4636,7 @@
     about: "关于我们",
     contact: "联系我们",
     portal: "客户门户",
+    giftCards: "礼品卡",
     bookNow: "立即预订",
   },
   brand: {

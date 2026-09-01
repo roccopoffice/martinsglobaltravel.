@@ -1,8 +1,17 @@
 {
   "name": "martins-global-travels",
   "private": true,
+  "scripts": {
+    "dev": "wrangler dev --port 8787 --persist-to /tmp/mgt-wrangler-state",
+    "db:migrate:local": "wrangler d1 migrations apply martinsglobaltravel-db --local --persist-to /tmp/mgt-wrangler-state",
+    "test:backend": "node scripts/test-backend.js",
+    "test:gift-cards": "node scripts/test-gift-cards.js"
+  },
   "dependencies": {
     "@google-analytics/data": "^4.12.0",
     "stripe": "^17.7.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.128.0"
   }
 }

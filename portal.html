@@ -202,6 +202,7 @@ nav#nav{
       <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
       <a href="index.html#about" data-i18n="nav.about">About</a>
       <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      <a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a>
       <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
     </div>
     <div class="lang-switcher">
@@ -232,6 +233,7 @@ nav#nav{
   <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
   <a href="index.html#about" data-i18n="nav.about">About</a>
   <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+  <a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a>
   <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
     <div class="mob-theme">
     <span data-i18n="theme.appearance">Appearance</span>
@@ -282,12 +284,19 @@ nav#nav{
       <div class="portal-lbl">Balance owed</div>
       <div id="balance-amount" class="balance-display">—</div>
       <p id="balance-note" class="balance-note">Loading…</p>
+      <div id="credit-apply-box" hidden style="margin:18px 0;padding-top:16px;border-top:1px solid var(--border)">
+        <div class="portal-lbl">Have a Gift Card or Travel Credit?</div>
+        <p id="trip-quote" class="balance-note" hidden></p>
+        <input class="portal-inp" id="gift-code" type="text" autocomplete="off" placeholder="TRVL-8K4P-X92M" style="text-transform:uppercase">
+        <button type="button" class="portal-btn" id="apply-code-btn">Apply Credit</button>
+        <button type="button" class="portal-btn portal-btn-outline" id="apply-available-btn">Apply available travel credit</button>
+      </div>
       <button type="button" class="portal-btn" id="pay-btn" disabled>Pay balance with card</button>
       <button type="button" class="portal-btn portal-btn-outline" id="change-pw-btn">Change password</button>
       <button type="button" class="portal-btn portal-btn-outline" id="logout-btn">Sign out</button>
     </div>
     <div class="portal-card" id="wallet-card">
-      <div class="portal-lbl">Travel credit</div>
+      <div class="portal-lbl">Wallet credit (withdrawable)</div>
       <div id="credit-amount" class="balance-display">—</div>
       <p id="credit-note" class="balance-note">Loading…</p>
       <button type="button" class="portal-btn" id="setup-bank-btn" hidden>Set up bank account</button>
@@ -297,6 +306,14 @@ nav#nav{
         <button type="button" class="portal-btn" id="withdraw-btn">Withdraw to my bank</button>
       </div>
       <div id="wallet-history" class="wallet-history" hidden></div>
+    </div>
+    <div class="portal-card" id="travel-credits-card">
+      <div class="portal-lbl">My Travel Credits</div>
+      <div id="gc-total" class="balance-display">—</div>
+      <p id="gc-empty" class="balance-note">You don't have any travel credits yet.</p>
+      <a class="portal-btn" id="gc-give-btn" href="gift-cards.html" style="display:block;text-align:center">Give a Gift Card</a>
+      <div id="gc-list" class="wallet-history" hidden></div>
+      <div id="gc-detail" class="wallet-history" hidden></div>
     </div>
     <p class="portal-foot">Questions about your trip? <a href="index.html" onclick="if(window.go){return true}">Contact us</a> or call <a href="tel:+15082323003">(508) 232-3003</a>.</p>
   </section>
@@ -320,6 +337,7 @@ nav#nav{
         <li><a href="index.html#destinations" data-i18n="nav.destinations">Destinations</a></li>
         <li><a href="index.html#packages" data-i18n="nav.packages">Packages</a></li>
         <li><a href="book.html" data-i18n="bookNav.bookTravel">Book Travel</a></li>
+        <li><a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a></li>
         <li><a href="portal.html" data-i18n="nav.portal">Client Portal</a></li>
       </ul>
     </div>
