@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('mgt_theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light')}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/mgt-logo.png">
+<title>E-Gift Cards — Martins Global Travels</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#050505;--ink2:#0d0d0d;--ink3:#141414;
+  --gold:#c9a84c;--gold2:#dfc06e;--gold3:rgba(201,168,76,.12);
+  --dim:rgba(255,255,255,.5);--dimmer:rgba(255,255,255,.25);
+  --border:rgba(255,255,255,.07);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:#fff;min-height:100vh}
+a,button{font-family:inherit;cursor:pointer;text-decoration:none;color:inherit}
+nav#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  min-height:76px;padding:10px 52px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:rgba(5,5,5,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-logo img{height:48px;width:48px;object-fit:contain}
+.nav-name{font-family:'DM Serif Display',serif;font-size:15px}
+.nav-sub{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0;overflow:hidden}
+.nav-links{display:flex;flex-wrap:nowrap;align-items:center;gap:0;min-width:0}
+.nav-links a{
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
+  color:rgba(255,255,255,.52);padding:10px 12px;position:relative;transition:color .25s;white-space:nowrap;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:4px;left:12px;right:12px;height:1px;
+  background:var(--gold);transform:scaleX(0);transition:transform .3s var(--ease);transform-origin:left;
+}
+.nav-links a:hover,.nav-links a.act{color:#fff}
+.nav-links a:hover::after,.nav-links a.act::after{transform:scaleX(1)}
+.nav-cta{
+  padding:10px 18px;background:var(--gold);color:#050505;border:none;border-radius:4px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .3s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;background:transparent;border:1px solid var(--border);border-radius:4px}
+.ham span{display:block;height:1px;background:#fff;transition:all .3s}
+.mob{
+  position:fixed;inset:0;z-index:99;background:rgba(5,5,5,.98);
+  padding:calc(100px + env(safe-area-inset-top)) 28px 40px;display:flex;flex-direction:column;gap:4px;
+  transform:translateX(100%);transition:transform .4s var(--ease);pointer-events:none;
+}
+.mob.open{transform:translateX(0);pointer-events:auto}
+.mob a{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hero{
+  position:relative;padding:calc(120px + env(safe-area-inset-top)) 52px 72px;
+  overflow:hidden;min-height:88vh;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(201,168,76,.18), transparent 50%),
+    url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1800&q=80') center/cover;
+  opacity:.28;pointer-events:none;
+}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#050505 12%,rgba(5,5,5,.72) 48%,rgba(5,5,5,.35));pointer-events:none}
+.hero-copy,.hero-visual{position:relative;z-index:1}
+.ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,68px);line-height:1.05;font-weight:400}
+h1 em{font-style:italic;color:var(--gold)}
+.lead{font-size:18px;color:var(--dim);font-weight:300;line-height:1.7;margin-top:18px;max-width:520px}
+.egift{
+  width:min(100%,460px);aspect-ratio:1.586;border-radius:22px;position:relative;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.08),transparent 40%),
+    linear-gradient(135deg,#14100a 0%,#3a2c14 42%,#c9a84c 160%);
+  border:1px solid rgba(223,192,110,.45);
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18);
+  padding:28px 28px 24px;display:flex;flex-direction:column;justify-content:space-between;
+  transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);
+  transition:transform .5s var(--ease), box-shadow .5s;
+  overflow:hidden;
+}
+.egift:hover{transform:perspective(1200px) rotateY(-2deg) rotateX(1deg) translateY(-6px);box-shadow:0 40px 90px rgba(201,168,76,.18)}
+.egift::before{
+  content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.16),transparent 36%);
+  animation:shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer{0%,100%{transform:translateX(0)}50%{transform:translateX(12%)}}
+.egift-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+.egift-logo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+.egift-kicker{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:#f3e2b0;font-weight:600}
+.egift-to{font-size:13px;color:rgba(255,255,255,.7);margin-top:18px;position:relative;z-index:1}
+.egift-name{font-family:'DM Serif Display',serif;font-size:26px;margin-top:2px}
+.egift-amt{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,52px);letter-spacing:.5px;position:relative;z-index:1}
+.egift-bot{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1;gap:12px}
+.egift-code{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:2px;color:#f3e2b0}
+.egift-for{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#dfc06e}
+.buy{padding:0 52px 88px;max-width:1240px;margin:0 auto}
+.buy-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
+.card{background:var(--ink2);border:1px solid var(--border);padding:32px 28px}
+.lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;display:block}
+.inp,select.inp,textarea.inp{
+  width:100%;padding:14px 16px;background:var(--ink3);border:1px solid var(--border);
+  color:#fff;font-size:14px;margin-bottom:16px;outline:none;font-family:inherit;
+}
+textarea.inp{min-height:90px;resize:vertical}
+.inp:focus{border-color:rgba(201,168,76,.45)}
+.amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.amt-btn{
+  padding:14px 8px;border:1px solid var(--border);background:transparent;color:#fff;
+  font-size:14px;letter-spacing:.5px;transition:all .25s;
+}
+.amt-btn.on,.amt-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold3)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{
+  width:100%;padding:16px;background:var(--gold);color:var(--ink);border:none;
+  font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:8px;transition:all .3s;
+}
+.btn:hover:not(:disabled){background:var(--gold2);transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.err{font-size:13px;color:#e88;margin-top:10px}
+.err[hidden],.ok[hidden],.success[hidden]{display:none}
+.ok{font-size:13px;color:var(--gold2);margin-top:10px}
+.check{display:flex;align-items:center;gap:10px;margin:4px 0 16px;font-size:13px;color:var(--dim)}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.how-item{padding:22px;border:1px solid var(--border);background:rgba(255,255,255,.02)}
+.how-n{font-family:'DM Serif Display',serif;color:var(--gold);font-size:24px;margin-bottom:8px}
+.fine{font-size:12px;color:var(--dimmer);line-height:1.6;margin-top:18px}
+.success{
+  position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.92);display:flex;align-items:center;justify-content:center;padding:24px;
+}
+.success-card{max-width:520px;width:100%;background:var(--ink2);border:1px solid var(--border);padding:36px 28px;text-align:center}
+.success-card h2{font-family:'DM Serif Display',serif;font-size:32px;margin-bottom:10px}
+.success-dl{text-align:left;margin:22px 0;font-size:14px;color:var(--dim)}
+.success-dl div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
+.site-footer{background:#050505;border-top:1px solid var(--border);padding:72px 52px 36px;margin-top:48px}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1.2fr;gap:48px;max-width:1240px;margin:0 auto;padding-bottom:48px;border-bottom:1px solid var(--border)}
+.ft-tag{font-size:13px;color:var(--dimmer);line-height:1.8;margin:16px 0 0;font-style:italic;font-weight:300;max-width:260px;font-family:'DM Serif Display',serif}
+.ft-ch{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-links a{font-size:13px;color:var(--dimmer);font-weight:300}
+.ft-links a:hover{color:var(--gold)}
+.ft-ci{display:flex;gap:10px;margin-bottom:12px}
+.ft-dot{width:3px;height:3px;background:var(--gold);border-radius:50%;margin-top:9px;flex-shrink:0}
+.ft-cv{font-size:13px;color:var(--dimmer);line-height:1.6;font-weight:300}
+.ft-bot{max-width:1240px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.18)}
+.lang-switcher{display:flex;align-items:center}
+.lang-select{appearance:none;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dim);background:rgba(255,255,255,.06);border:1px solid var(--border);padding:8px 12px;cursor:pointer}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.ft-logo-text{padding-left:14px;border-left:1px solid rgba(201,168,76,.28)}
+@media(max-width:1320px){
+  nav#nav{padding-left:28px;padding-right:28px}
+  .nav-right{display:none}
+  .ham{display:flex}
+}
+@media(max-width:1024px){
+  nav#nav,.hero,.buy,.site-footer{padding-left:28px;padding-right:28px}
+  .hero,.buy-grid,.how,.ft-grid{grid-template-columns:1fr}
+  .nav-right{display:none}
+  .ham{display:flex}
+  .egift{transform:none;margin:0 auto}
+}
+@media(max-width:700px){
+  .row,.amounts{grid-template-columns:1fr 1fr}
+  .hero{padding-top:110px}
+}
+</style>
+<link rel="stylesheet" href="css/readable.css">
+<link rel="stylesheet" href="css/theme.css">
+<script src="js/theme.js" defer></script>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/mgt-logo.png" alt="" width="96" height="96">
+    <div class="ft-logo-text">
+      <div class="nav-name" data-i18n="brand.name">Martins Global Travels</div>
+      <div class="nav-sub">E-gift cards</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+      <a href="gift-cards.html" class="act" data-i18n="nav.giftCards">Gift Cards</a>
+      <a href="index.html#packages" data-i18n="nav.packages">Packages</a>
+      <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
+    </div>
+    <div class="lang-switcher">
+      <label class="visually-hidden" for="lang-select-desktop">Select language</label>
+      <select id="lang-select-desktop" class="lang-select"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="ht">Kreyòl</option><option value="kea">Kabuverdianu</option><option value="fr">Français</option><option value="zh">中文</option></select>
+    </div>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+      <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-icon theme-icon-sun">☀</span>
+        <span class="theme-icon theme-icon-moon">☽</span>
+        <span class="theme-toggle-thumb"></span>
+      </span>
+      <span class="theme-toggle-label">Light</span>
+    </button>
+    <a href="#buy" class="nav-cta">Buy a gift card</a>
+  </div>
+  <button type="button" class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob" id="mob" aria-hidden="true">
+  <a href="index.html">Home</a>
+  <a href="gift-cards.html">Gift Cards</a>
+  <a href="portal.html">Client Portal</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="ey">Martins Global Travels</div>
+    <h1>Give the Gift<br>of <em>Travel</em></h1>
+    <p class="lead">Give someone the freedom to choose their next adventure with a Martins Global Travels e-Gift Card.</p>
+  </div>
+  <div class="hero-visual">
+    <div class="egift" id="preview-card" aria-hidden="true">
+      <div class="egift-top">
+        <img class="egift-logo" src="assets/mgt-logo.png" alt="">
+        <div class="egift-kicker">E-Gift Card</div>
+      </div>
+      <div>
+        <div class="egift-to">To</div>
+        <div class="egift-name" id="preview-name">Someone special</div>
+      </div>
+      <div class="egift-amt" id="preview-amount">$250</div>
+      <div class="egift-bot">
+        <div>
+          <div class="egift-for">For Travel</div>
+          <div class="egift-code">TRVL-••••-GIFT</div>
+        </div>
+        <div class="egift-for" id="preview-from">From Jeanie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="buy" id="buy">
+  <div class="buy-grid">
+    <form class="card" id="gift-form">
+      <div class="ey">Buy an e-gift card</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:32px;margin-bottom:18px">Choose an <em style="color:var(--gold);font-style:italic">amount</em></h2>
+      <div class="amounts" id="amount-presets"></div>
+      <label class="lbl" for="custom-amount">Custom amount ($)</label>
+      <input class="inp" id="custom-amount" type="text" inputmode="decimal" placeholder="750.00">
+      <label class="check"><input type="checkbox" id="for-self"> I’m buying this for myself</label>
+      <div class="row">
+        <div>
+          <label class="lbl" for="purchaser-name">Purchaser name</label>
+          <input class="inp" id="purchaser-name" required>
+        </div>
+        <div>
+          <label class="lbl" for="purchaser-email">Purchaser email</label>
+          <input class="inp" id="purchaser-email" type="email">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label class="lbl" for="recipient-name">Recipient name</label>
+          <input class="inp" id="recipient-name" required>
+        </div>
+        <div>
+          <label class="lbl" for="recipient-email">Recipient email</label>
+          <input class="inp" id="recipient-email" type="email" required>
+        </div>
+      </div>
+      <label class="lbl" for="gift-message">Gift message (optional)</label>
+      <textarea class="inp" id="gift-message" placeholder="Happy birthday — here’s to your next adventure!"></textarea>
+      <label class="lbl" for="delivery-date">Delivery date</label>
+      <input class="inp" id="delivery-date" type="date">
+      <button class="btn" type="submit" id="pay-btn">Continue to Payment</button>
+      <p class="err" id="form-error" hidden></p>
+      <p class="fine">You’ll pay through our secure card checkout. The e-gift card is issued as internal travel credit after payment succeeds — it is not a bank product. The recipient receives a unique code by email and can apply it to an eligible trip in the client portal.</p>
+    </form>
+    <aside class="card">
+      <div class="lbl">Live preview</div>
+      <p id="preview-note" class="lead" style="font-size:15px;margin:0 0 18px">To: Sarah<br>$500<br>“Happy Birthday! Here’s to your next adventure!”<br>From: Mike</p>
+      <div class="how">
+        <div class="how-item"><div class="how-n">01</div><strong>Pay securely</strong><p class="fine" style="margin-top:8px">Real card payment through Stripe. No usable credit is created if payment fails.</p></div>
+        <div class="how-item"><div class="how-n">02</div><strong>We email the code</strong><p class="fine" style="margin-top:8px">The recipient gets a branded email with a unique redemption code.</p></div>
+        <div class="how-item"><div class="how-n">03</div><strong>Apply to a trip</strong><p class="fine" style="margin-top:8px">Credit reduces the trip balance. Any remainder stays on the card.</p></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="success" id="success" hidden>
+  <div class="success-card">
+    <div class="ey">Confirmed</div>
+    <h2>Your Gift Is Ready ✈️</h2>
+    <p>Your e-gift card has been created successfully.</p>
+    <div class="success-dl">
+      <div><span>Recipient</span><strong id="ok-recipient">—</strong></div>
+      <div><span>Amount</span><strong id="ok-amount">—</strong></div>
+      <div><span>Delivery email</span><strong id="ok-email">—</strong></div>
+      <div><span>Delivery date</span><strong id="ok-date">—</strong></div>
+      <div><span>Confirmation</span><strong id="ok-id">—</strong></div>
+    </div>
+    <a class="btn" href="portal.html">Open client portal</a>
+    <a class="btn" href="gift-cards.html" style="background:transparent;color:var(--gold);border:1px solid var(--border);margin-top:10px;display:inline-block">Send another</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="ft-grid">
+    <div>
+      <a href="index.html" class="nav-logo">
+        <img src="assets/mgt-logo.png" alt="" width="96" height="96">
+        <div class="ft-logo-text">
+          <div class="nav-name">Martins Global Travels</div>
+          <div class="nav-sub">Where luxury meets the world</div>
+        </div>
+      </a>
+      <p class="ft-tag">"The world is a book, and those who do not travel read only one page."</p>
+    </div>
+    <div>
+      <div class="ft-ch">Explore</div>
+      <ul class="ft-links">
+        <li><a href="index.html#destinations">Destinations</a></li>
+        <li><a href="gift-cards.html">Gift Cards</a></li>
+        <li><a href="portal.html">Client Portal</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Company</div>
+      <ul class="ft-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Legal</div>
+      <ul class="ft-links">
+        <li><a href="index.html#privacy">Privacy</a></li>
+        <li><a href="index.html#terms">Terms</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-ch">Contact</div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div>
+      <div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div>
+    </div>
+  </div>
+  <div class="ft-bot"><div class="ft-copy">© 2026 Martins Global Travels. All Rights Reserved.</div></div>
+</footer>
+<script src="js/analytics-config.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/gift-cards.js"></script>
+<script src="i18n/translations.js"></script>
+<script src="i18n.js"></script>
+<script>
+(function(){
+  var ham=document.getElementById('ham');
+  var mob=document.getElementById('mob');
+  if(!ham||!mob)return;
+  ham.addEventListener('click',function(){
+    var open=mob.classList.toggle('open');
+    mob.setAttribute('aria-hidden',open?'false':'true');
+  });
+})();
+</script>
+</body>
+</html>
