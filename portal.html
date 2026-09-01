@@ -286,6 +286,13 @@ nav#nav{
       <button type="button" class="portal-btn portal-btn-outline" id="change-pw-btn">Change password</button>
       <button type="button" class="portal-btn portal-btn-outline" id="logout-btn">Sign out</button>
     </div>
+    <div class="portal-card" id="send-money-card">
+      <div class="portal-lbl">Send Money Link</div>
+      <p class="balance-note" id="send-link-note">Share this private link so someone can pay toward your trip.</p>
+      <p id="send-received" class="balance-note" hidden></p>
+      <input class="portal-inp" id="send-link-url" readonly value="">
+      <button type="button" class="portal-btn" id="copy-send-link-btn">Copy Link</button>
+    </div>
     <div class="portal-card" id="wallet-card">
       <div class="portal-lbl">Travel credit</div>
       <div id="credit-amount" class="balance-display">—</div>

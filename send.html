@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('mgt_theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light')}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="/assets/mgt-logo.png">
+<title>Send Money — Martins Global Travels</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#050505;--ink2:#0d0d0d;--gold:#c9a84c;--gold2:#dfc06e;--dim:rgba(255,255,255,.55);--border:rgba(255,255,255,.08)}
+body{min-height:100vh;font-family:'DM Sans',sans-serif;color:#fff;background:#050505}
+body::before{
+  content:'';position:fixed;inset:0;
+  background:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=70') center/cover;
+  opacity:.22;pointer-events:none;
+}
+body::after{content:'';position:fixed;inset:0;background:linear-gradient(180deg,#050505 8%,rgba(5,5,5,.72) 45%,#050505);pointer-events:none}
+.wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.brand img{width:52px;height:52px;object-fit:contain}
+.brand-name{font-family:'DM Serif Display',serif;font-size:16px}
+.brand-sub{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-top:3px}
+.card{width:min(440px,100%);background:var(--ink2);border:1px solid var(--border);padding:36px 28px 32px;text-align:center}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(32px,7vw,42px);margin-bottom:10px}
+.lead{font-size:16px;color:var(--dim);font-weight:300;line-height:1.6;margin-bottom:28px}
+.lbl{display:block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;text-align:left}
+.amt-wrap{display:flex;align-items:center;gap:8px;margin-bottom:22px;border:1px solid var(--border);background:#141414;padding:8px 16px}
+.amt-wrap span{font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold)}
+.amt{flex:1;width:100%;border:none;background:transparent;color:#fff;font-family:'DM Serif Display',serif;font-size:36px;outline:none}
+.btn{width:100%;padding:18px;border:none;background:var(--gold);color:var(--ink);font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer}
+.btn:hover:not(:disabled){background:var(--gold2)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.err{color:#e88;font-size:13px;margin-top:14px}
+.err[hidden],.ok[hidden]{display:none}
+.foot{margin-top:22px;font-size:12px;color:rgba(255,255,255,.28)}
+.success h1{color:var(--gold)}
+html[data-theme='light'] body::before{opacity:.12}
+html[data-theme='light'] body::after{background:linear-gradient(180deg,#f7f4ea 8%,rgba(247,244,234,.84) 45%,#f7f4ea)}
+html[data-theme='light'] .card{box-shadow:0 18px 50px rgba(0,0,0,.08)}
+html[data-theme='light'] .amt{color:#1a1a1a}
+html[data-theme='light'] .amt-wrap{background:#f6f3ea}
+html[data-theme='light'] .foot{color:rgba(0,0,0,.4)}
+</style>
+<link rel="stylesheet" href="/css/readable.css">
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+  <div class="wrap">
+    <a class="brand" href="/index.html">
+      <img src="/assets/mgt-logo.png" alt="">
+      <div>
+        <div class="brand-name">Martins Global Travels</div>
+        <div class="brand-sub">Send money</div>
+      </div>
+    </a>
+    <div class="card" id="pay-card">
+      <h1>Send Money</h1>
+      <p class="lead" id="lead">Send money toward a trip.</p>
+      <form id="form">
+        <label class="lbl" for="amount">Amount</label>
+        <div class="amt-wrap">
+          <span>$</span>
+          <input class="amt" id="amount" inputmode="decimal" autocomplete="off" placeholder="250" required>
+        </div>
+        <button class="btn" type="submit" id="send-btn">Send</button>
+        <p class="err" id="error" hidden></p>
+      </form>
+      <p class="foot">Secure payment · Martins Global Travels</p>
+    </div>
+    <div class="card success" id="thanks" hidden>
+      <h1>Payment Sent!</h1>
+      <p class="lead">Thank you.</p>
+    </div>
+  </div>
+  <script src="/js/send-money.js"></script>
+</body>
+</html>

@@ -44,13 +44,16 @@ export async function applyCheckoutSession(db, session) {
   if (existing) return { ok: true, userId, amountCents, duplicate: true };
 
   const paymentId = crypto.randomUUID();
+  const sendToken = session.metadata?.send_token || null;
+  const source =
+    sendToken || session.metadata?.booking_type === 'send_money' ? 'send_money' : 'portal';
   await db.batch([
     db
       .prepare(
-        `INSERT INTO payments (id, user_id, amount_cents, stripe_checkout_session_id, status)
-         VALUES (?, ?, ?, ?, 'completed')`
+        `INSERT INTO payments (id, user_id, amount_cents, stripe_checkout_session_id, status, source, send_token)
+         VALUES (?, ?, ?, ?, 'completed', ?, ?)`
       )
-      .bind(paymentId, userId, amountCents, session.id),
+      .bind(paymentId, userId, amountCents, session.id, source, sendToken),
     db
       .prepare(
         `UPDATE client_accounts

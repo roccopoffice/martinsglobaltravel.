@@ -16,6 +16,11 @@ export default {
       }
     }
 
+    if (/^\/send\/[A-Za-z0-9_-]{8,64}\/?$/.test(url.pathname)) {
+      return env.ASSETS.fetch(new Request(new URL('/send.html', request.url), request));
+    }
+
+
     if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/.netlify/functions/')) {
       return handleApiRequest(request, env);
     }

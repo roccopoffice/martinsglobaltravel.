@@ -4,6 +4,14 @@ import { hashPassword, verifyPassword, signToken, verifyToken, requireUser } fro
 import { applyCheckoutSession, sessionBelongsToUser } from './lib/payments.js';
 import { amadeusFetch, normalizeFlightOffers } from './lib/amadeus.js';
 import { computeFlightPricing } from './lib/flight-pricing.js';
+import {
+  sendMoneyInfo,
+  sendMoneyCheckout,
+  sendMoneyConfirm,
+  mySendMoneyLink,
+  adminSendMoney,
+} from './send-money-api.js';
+
 
 const TICKET_PACKAGES = {
   'evt-single': { name: 'Single event package', cents: 250000 },
@@ -413,10 +421,28 @@ async function adminListClients(request, env) {
   if (!auth.ok) return json(401, { error: auth.error });
 
   const { results } = await env.DB.prepare(
-    `SELECT id, first_name, last_name, full_name, email, balance_cents, credit_cents, notes, updated_at
-     FROM client_accounts
-     ORDER BY last_name ASC, first_name ASC`
+    `SELECT a.id, a.first_name, a.last_name, a.full_name, a.email, a.balance_cents, a.credit_cents,
+            a.notes, a.updated_at, l.token AS send_token, l.status AS send_link_status,
+            (SELECT COALESCE(SUM(p.amount_cents), 0) FROM payments p
+              WHERE p.user_id = a.id AND p.source = 'send_money' AND p.status = 'completed') AS send_received_cents
+     FROM client_accounts a
+     LEFT JOIN send_money_links l ON l.user_id = a.id
+     ORDER BY a.last_name ASC, a.first_name ASC`
   ).all();
+
+  const { results: sendPays } = await env.DB.prepare(
+    `SELECT user_id, amount_cents, status, created_at
+     FROM payments WHERE source = 'send_money'
+     ORDER BY created_at DESC LIMIT 200`
+  ).all();
+  const sendPaymentsByUser = {};
+  for (const pay of sendPays || []) {
+    (sendPaymentsByUser[pay.user_id] ||= []).push({
+      amountCents: pay.amount_cents,
+      status: pay.status,
+      createdAt: pay.created_at,
+    });
+  }
 
   const clients = (results || []).map((row) => {
     const name =
@@ -433,6 +459,10 @@ async function adminListClients(request, env) {
       creditDollars: ((row.credit_cents || 0) / 100).toFixed(2),
       notes: row.notes || '',
       updatedAt: row.updated_at,
+      sendToken: row.send_token || null,
+      sendLinkStatus: row.send_link_status || null,
+      sendReceivedCents: row.send_received_cents || 0,
+      sendPayments: sendPaymentsByUser[row.id] || [],
     };
   });
 
@@ -988,6 +1018,9 @@ const POST_ROUTES = {
   'flight-search': flightSearch,
   'create-flight-checkout': createFlightCheckout,
   'create-ticket-request': createTicketRequest,
+  'send-money/checkout': sendMoneyCheckout,
+  'send-money/confirm': sendMoneyConfirm,
+  'admin-send-money': adminSendMoney,
 };
 
 const GET_ROUTES = {
@@ -995,6 +1028,8 @@ const GET_ROUTES = {
   'auth/balance': authBalance,
   'wallet': walletInfo,
   'airport-search': airportSearch,
+  'send-money/info': sendMoneyInfo,
+  'send-money/link': mySendMoneyLink,
 };
 
 export async function handleApiRequest(request, env) {

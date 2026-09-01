@@ -328,6 +328,22 @@
                 <button type="button" class="btn btn-outline btn-sm credit-btn" data-email="${emailAttr}">Send credit</button>
                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-email="${emailAttr}" data-name="${escapeHtml(c.name)}">Remove client</button>
               </div>
+              <p class="hint" style="margin-top:16px">Send money link${c.sendLinkStatus ? ` · ${escapeHtml(c.sendLinkStatus)}` : ''} · received ${escapeHtml(formatMoney(((c.sendReceivedCents || 0) / 100).toFixed(2)))}</p>
+              <input class="inp" readonly data-send-url="${emailAttr}" value="${c.sendToken ? escapeHtml(location.origin + '/send/' + c.sendToken) : ''}">
+              <div class="detail-actions">
+                <button type="button" class="btn btn-sm btn-outline copy-send-btn" data-email="${emailAttr}">Copy link</button>
+                <button type="button" class="btn btn-sm btn-outline gen-send-btn" data-email="${emailAttr}">Generate link</button>
+                <button type="button" class="btn btn-sm btn-outline disable-send-btn" data-email="${emailAttr}">Disable link</button>
+              </div>
+              ${(c.sendPayments || []).length
+                ? `<p class="hint" style="margin-top:14px">Payments received through the link</p>${c.sendPayments
+                    .slice(0, 10)
+                    .map(
+                      (p) =>
+                        `<p class="hint">${escapeHtml(formatMoney(((p.amountCents || 0) / 100).toFixed(2)))} · ${escapeHtml(p.status)} · ${escapeHtml(p.createdAt || '')}</p>`
+                    )
+                    .join('')}`
+                : '<p class="hint" style="margin-top:14px">No send-money payments yet.</p>'}
             </div>
           </td>
         </tr>`;
@@ -379,6 +395,58 @@
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
           deleteClient(btn.dataset.email, btn.dataset.name, btn);
+        });
+      });
+
+      body.querySelectorAll('.copy-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const input = body.querySelector(`input[data-send-url="${CSS.escape(btn.dataset.email)}"]`);
+          if (!input?.value) {
+            showMsg('Generate a link first.', false);
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(input.value);
+            showMsg('Send-money link copied.', true);
+          } catch {
+            input.select();
+            showMsg('Copy the link from the box.', true);
+          }
+        });
+      });
+
+      body.querySelectorAll('.gen-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            const json = await api('admin-send-money', {
+              adminPassword,
+              email: btn.dataset.email,
+              action: 'generate',
+            });
+            showMsg('Send-money link ready for ' + json.client.name + '.', true);
+            loadClientList();
+          } catch (err) {
+            showMsg(err.message, false);
+          }
+        });
+      });
+
+      body.querySelectorAll('.disable-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            await api('admin-send-money', {
+              adminPassword,
+              email: btn.dataset.email,
+              action: 'disable',
+            });
+            showMsg('Send-money link disabled.', true);
+            loadClientList();
+          } catch (err) {
+            showMsg(err.message, false);
+          }
         });
       });
 

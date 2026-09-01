@@ -20,7 +20,9 @@
   ],
   "vars": {
     "SITE_URL": "https://martinsglobaltravel.com",
-    "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V"
+    "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V",
+    "SEND_MONEY_MIN_CENTS": "2000",
+    "SEND_MONEY_MAX_CENTS": "1000000"
   },
   "send_email": [
     {
