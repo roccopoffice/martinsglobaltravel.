@@ -43,13 +43,6 @@ export async function sendMoneyInfo(request, env) {
 }
 
 export async function sendMoneyCheckout(request, env) {
-  const stripe = stripeClient(env);
-  if (!stripe) {
-    return json(503, {
-      error: 'Card payments are not set up yet. Please try again later or call (508) 232-3003.',
-    });
-  }
-
   const body = await readJson(request);
   if (!body) return json(400, { error: 'Invalid request' });
 
@@ -69,6 +62,13 @@ export async function sendMoneyCheckout(request, env) {
   if (amountCents > limits.maxCents) {
     return json(400, {
       error: `The maximum you can send is $${(limits.maxCents / 100).toFixed(2)}.`,
+    });
+  }
+
+  const stripe = stripeClient(env);
+  if (!stripe) {
+    return json(503, {
+      error: 'Card payments are not set up yet. Please try again later or call (508) 232-3003.',
     });
   }
 
