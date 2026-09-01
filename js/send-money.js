@@ -31,7 +31,14 @@
       form.hidden = true;
       return;
     }
-    lead.textContent = "Send money toward " + json.firstName + "'s trip.";
+    const thanksLead = document.getElementById('thanks-lead');
+    if (json.destination === 'agency') {
+      lead.textContent = 'Send money to Martins Global Travels.';
+      if (thanksLead) thanksLead.textContent = 'Thank you. Martins Global Travels received your payment.';
+    } else {
+      lead.textContent = "Send money toward " + json.firstName + "'s trip.";
+      if (thanksLead) thanksLead.textContent = 'Thank you.';
+    }
   }
 
   form?.addEventListener('submit', async (e) => {

@@ -141,6 +141,7 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
       <button type="button" class="tab" data-tab="list">Client list</button>
       <button type="button" class="tab" data-tab="balance">Update balance</button>
       <button type="button" class="tab" data-tab="credits">Send money</button>
+      <button type="button" class="tab" data-tab="agency">Agency link</button>
       <button type="button" class="tab" data-tab="analytics">Analytics</button>
     </div>
 
@@ -210,6 +211,21 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
         <option value="remove">Remove credit (fix a mistake)</option>
       </select>
       <button type="button" class="btn" id="send-credit-btn">Send credit</button>
+    </div>
+
+    <div id="panel-agency" class="panel card" hidden>
+      <h2>Agency send-money link</h2>
+      <p class="hint">People pay Martins Global Travels directly with this link. It is not toward a client's trip and does not change anyone's balance.</p>
+      <p class="hint" id="agency-status">No link yet.</p>
+      <label class="lbl" for="agency-url">Your link</label>
+      <input class="inp" id="agency-url" readonly>
+      <div class="detail-actions">
+        <button type="button" class="btn btn-sm" id="agency-copy-btn">Copy link</button>
+        <button type="button" class="btn btn-sm btn-outline" id="agency-gen-btn">Generate link</button>
+        <button type="button" class="btn btn-sm btn-outline" id="agency-disable-btn">Disable link</button>
+      </div>
+      <p class="hint" id="agency-received" style="margin-top:16px">Money received: $0.00</p>
+      <div id="agency-payments"></div>
     </div>
 
     <button type="button" class="btn btn-outline" id="logout-btn">Sign out</button>

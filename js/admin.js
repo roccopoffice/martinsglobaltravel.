@@ -49,9 +49,11 @@
     $('panel-list').hidden = tabId !== 'list';
     $('panel-balance').hidden = tabId !== 'balance';
     $('panel-credits').hidden = tabId !== 'credits';
+    $('panel-agency').hidden = tabId !== 'agency';
     $('panel-analytics').hidden = tabId !== 'analytics';
     mainEl?.classList.toggle('wide', tabId === 'list' || tabId === 'analytics');
     if (tabId === 'list') loadClientList();
+    if (tabId === 'agency') loadAgencyLink();
     if (tabId === 'analytics') loadAnalytics();
   }
 
@@ -282,6 +284,53 @@
     }
   }
 
+  function renderAgencyPayments(payments) {
+    const box = $('agency-payments');
+    if (!box) return;
+    if (!payments?.length) {
+      box.innerHTML = '<p class="hint" style="margin-top:14px">No send-money payments yet.</p>';
+      return;
+    }
+    box.innerHTML =
+      '<p class="hint" style="margin-top:14px">Payments received through the agency link</p>' +
+      payments
+        .slice(0, 10)
+        .map(
+          (p) =>
+            `<p class="hint">${escapeHtml(formatMoney(((p.amount_cents || 0) / 100).toFixed(2)))} · ${escapeHtml(p.status || '')} · ${escapeHtml(p.created_at || '')}</p>`
+        )
+        .join('');
+  }
+
+  async function loadAgencyLink(action) {
+    if (!adminPassword) return;
+    const statusEl = $('agency-status');
+    const urlEl = $('agency-url');
+    const receivedEl = $('agency-received');
+    try {
+      const json = await api('admin-send-money', {
+        adminPassword,
+        target: 'agency',
+        ...(action ? { action } : {}),
+      });
+      if (urlEl) urlEl.value = json.url || '';
+      if (statusEl) {
+        statusEl.textContent = json.status
+          ? `Link is ${json.status}.`
+          : 'No link yet. Generate one to share.';
+      }
+      if (receivedEl) {
+        receivedEl.textContent =
+          'Money received: ' + formatMoney(((json.receivedCents || 0) / 100).toFixed(2));
+      }
+      renderAgencyPayments(json.payments || []);
+      return json;
+    } catch (e) {
+      if (statusEl) statusEl.textContent = e.message;
+      throw e;
+    }
+  }
+
   async function loadClientList() {
     const body = $('list-body');
     const countEl = $('list-count');
@@ -492,6 +541,49 @@
 
   $('refresh-list-btn')?.addEventListener('click', () => loadClientList());
   $('refresh-analytics-btn')?.addEventListener('click', () => loadAnalytics());
+
+  $('agency-copy-btn')?.addEventListener('click', async () => {
+    const input = $('agency-url');
+    if (!input?.value) {
+      showMsg('Generate a link first.', false);
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(input.value);
+      showMsg('Agency send-money link copied.', true);
+    } catch {
+      input.select();
+      showMsg('Copy the link from the box.', true);
+    }
+  });
+
+  $('agency-gen-btn')?.addEventListener('click', async () => {
+    const btn = $('agency-gen-btn');
+    setBusy(btn, true, 'Generate link');
+    showMsg('');
+    try {
+      await loadAgencyLink('generate');
+      showMsg('Agency send-money link is ready.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Generate link');
+    }
+  });
+
+  $('agency-disable-btn')?.addEventListener('click', async () => {
+    const btn = $('agency-disable-btn');
+    setBusy(btn, true, 'Disable link');
+    showMsg('');
+    try {
+      await loadAgencyLink('disable');
+      showMsg('Agency send-money link disabled.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Disable link');
+    }
+  });
 
   $('create-btn')?.addEventListener('click', async () => {
     const btn = $('create-btn');

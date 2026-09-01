@@ -1,5 +1,42 @@
 const TOKEN_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
 
+export const AGENCY_USER_ID = 'agency';
+export const AGENCY_EMAIL = 'agency@internal.martinsglobaltravels';
+
+export function isAgencyUserId(id) {
+  return String(id || '') === AGENCY_USER_ID;
+}
+
+export function isAgencyEmail(email) {
+  return String(email || '')
+    .trim()
+    .toLowerCase() === AGENCY_EMAIL;
+}
+
+export async function ensureAgencyAccount(db) {
+  const existing = await db
+    .prepare('SELECT id FROM client_accounts WHERE id = ? LIMIT 1')
+    .bind(AGENCY_USER_ID)
+    .first();
+  if (existing) return existing;
+  await db.batch([
+    db
+      .prepare(
+        `INSERT OR IGNORE INTO users (id, email, password_hash, must_change_password)
+         VALUES (?, ?, 'not-a-login', 0)`
+      )
+      .bind(AGENCY_USER_ID, AGENCY_EMAIL),
+    db
+      .prepare(
+        `INSERT OR IGNORE INTO client_accounts
+         (id, email, first_name, last_name, full_name, balance_cents, currency)
+         VALUES (?, ?, 'Martins', 'Global Travels', 'Martins Global Travels', 0, 'usd')`
+      )
+      .bind(AGENCY_USER_ID, AGENCY_EMAIL),
+  ]);
+  return { id: AGENCY_USER_ID };
+}
+
 export function sendMoneyLimits(env) {
   const minCents = parseInt(env.SEND_MONEY_MIN_CENTS || '2000', 10);
   const maxCents = parseInt(env.SEND_MONEY_MAX_CENTS || '1000000', 10);

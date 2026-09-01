@@ -63,27 +63,32 @@ async function testHelpers() {
     pass('Amount parsing', '1000 / 250 / invalid');
   } else fail('Amount parsing', 'mismatch');
 
+  function mockDb(ops) {
+    return {
+      prepare(sql) {
+        return {
+          bind() {
+            return {
+              sql,
+              async first() {
+                if (String(sql).includes('SELECT id FROM payments')) return null;
+                return null;
+              },
+              async run() {
+                return { success: true };
+              },
+            };
+          },
+        };
+      },
+      async batch(list) {
+        ops.push(list);
+      },
+    };
+  }
+
   const ops = [];
-  const db = {
-    prepare(sql) {
-      return {
-        bind() {
-          return {
-            async first() {
-              if (String(sql).includes('SELECT id FROM payments')) return null;
-              return null;
-            },
-            async run() {
-              return { success: true };
-            },
-          };
-        },
-      };
-    },
-    async batch(list) {
-      ops.push(list);
-    },
-  };
+  const db = mockDb(ops);
   const unpaid = await applyCheckoutSession(
     db,
     {
@@ -113,6 +118,33 @@ async function testHelpers() {
   if (paid.ok && paid.userId === 'client-sarah' && paid.amountCents === 25000 && ops.length === 1) {
     pass('Paid send-money session records against the client', '$250');
   } else fail('Paid send-money session records against the client', JSON.stringify(paid));
+
+  const agencyOps = [];
+  const agencyPaid = await applyCheckoutSession(
+    mockDb(agencyOps),
+    {
+      id: 'cs_test_agency',
+      payment_status: 'paid',
+      metadata: {
+        booking_type: 'send_money_agency',
+        user_id: 'agency',
+        amount_cents: '50000',
+        send_token: 'AgLinkToken12',
+      },
+    },
+    {}
+  );
+  const agencySql = (agencyOps[0] || []).map((s) => String(s.sql || '')).join('\n');
+  if (
+    agencyPaid.ok &&
+    agencyPaid.userId === 'agency' &&
+    agencyPaid.destination === 'agency' &&
+    agencyPaid.amountCents === 50000 &&
+    agencySql.includes('INSERT INTO payments') &&
+    !agencySql.includes('balance_cents')
+  ) {
+    pass('Agency send-money records payment without changing a client balance', '$500');
+  } else fail('Agency send-money skips client balance', JSON.stringify(agencyPaid) + ' ' + agencySql);
 }
 
 async function main() {
@@ -273,6 +305,86 @@ async function main() {
   if (row?.sendToken === newToken && row.sendLinkStatus === 'active') {
     pass('Admin list includes send-money link', row.sendToken);
   } else fail('Admin list send-money fields', JSON.stringify(row));
+
+  const agencyHidden = (list.json?.clients || []).some(
+    (c) => c.id === 'agency' || c.email === 'agency@internal.martinsglobaltravels'
+  );
+  if (!agencyHidden) pass('Agency account is not in the client list', 'hidden');
+  else fail('Agency account is not in the client list', 'found in list');
+
+  const reserved = await req('POST', '/api/admin-create-client', {
+    body: {
+      adminPassword: ADMIN_PW,
+      firstName: 'Agency',
+      lastName: 'Reserved',
+      email: 'agency@internal.martinsglobaltravels',
+      password: 'temp1234',
+      balanceDollars: '10.00',
+    },
+  });
+  if (!reserved.ok) pass('Reserved agency email cannot become a client', reserved.json?.error);
+  else fail('Reserved agency email cannot become a client', 'unexpected ok');
+
+  const agencyLogin = await req('POST', '/api/auth/login', {
+    body: { email: 'agency@internal.martinsglobaltravels', password: 'anything' },
+  });
+  if (agencyLogin.status === 401) pass('Agency account cannot sign in to the portal', '401');
+  else fail('Agency account cannot sign in to the portal', String(agencyLogin.status));
+
+  const agencyView = await req('POST', '/api/admin-send-money', {
+    body: { adminPassword: ADMIN_PW, target: 'agency' },
+  });
+  if (agencyView.ok && agencyView.json.destination === 'agency' && agencyView.json.client?.email == null) {
+    pass('Admin can open the agency send-money link', agencyView.json.status || 'none');
+  } else fail('Admin agency view', JSON.stringify(agencyView.json));
+
+  const agencyGen = await req('POST', '/api/admin-send-money', {
+    body: { adminPassword: ADMIN_PW, target: 'agency', action: 'generate' },
+  });
+  const agencyToken = agencyGen.json?.token;
+  if (agencyGen.ok && agencyToken && agencyToken.length >= 12 && agencyGen.json.url?.includes('/send/')) {
+    pass('Admin generates agency send-money link', agencyToken);
+  } else fail('Admin generates agency send-money link', JSON.stringify(agencyGen.json));
+
+  const agencyInfo = await req('GET', `/api/send-money/info?token=${agencyToken}`);
+  if (
+    agencyInfo.ok &&
+    agencyInfo.json.destination === 'agency' &&
+    !agencyInfo.json.firstName &&
+    !('email' in agencyInfo.json) &&
+    !('userId' in agencyInfo.json)
+  ) {
+    pass('Agency public page is for Martins Global Travels', 'destination=agency');
+  } else fail('Agency public info', JSON.stringify(agencyInfo.json));
+
+  const agencyPage = await fetch(`${BASE}/send/${agencyToken}`);
+  const agencyHtml = agencyPage.status === 200 ? await agencyPage.text() : '';
+  if (agencyPage.status === 200 && agencyHtml.includes('Send Money')) {
+    pass('GET /send/{agency-token} page', String(agencyPage.status));
+  } else fail('GET /send/{agency-token} page', String(agencyPage.status));
+
+  const agencyCheckout = await req('POST', '/api/send-money/checkout', {
+    body: { token: agencyToken, amountDollars: '100' },
+  });
+  if (agencyCheckout.status === 503 || (agencyCheckout.ok && agencyCheckout.json?.url)) {
+    pass('Agency checkout uses the same Stripe flow', String(agencyCheckout.status));
+  } else fail('Agency checkout', `${agencyCheckout.status} ${JSON.stringify(agencyCheckout.json)}`);
+
+  const agencyOff = await req('POST', '/api/admin-send-money', {
+    body: { adminPassword: ADMIN_PW, target: 'agency', action: 'disable' },
+  });
+  if (agencyOff.ok && agencyOff.json.status === 'disabled') pass('Admin disables agency link', 'disabled');
+  else fail('Admin disables agency link', JSON.stringify(agencyOff.json));
+
+  const agencyAfterOff = await req('GET', `/api/send-money/info?token=${agencyToken}`);
+  if (agencyAfterOff.status === 404) pass('Disabled agency link cannot be used', '404');
+  else fail('Disabled agency link cannot be used', String(agencyAfterOff.status));
+
+  const agencyPayOff = await req('POST', '/api/send-money/checkout', {
+    body: { token: agencyToken, amountDollars: '50' },
+  });
+  if (agencyPayOff.status === 404) pass('Disabled agency link cannot start Stripe', '404');
+  else fail('Disabled agency checkout', String(agencyPayOff.status));
 
   const failed = results.filter((r) => !r.ok);
   console.log(`\n${results.length - failed.length}/${results.length} checks passed`);
