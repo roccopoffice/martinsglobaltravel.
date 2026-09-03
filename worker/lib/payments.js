@@ -1,12 +1,16 @@
 import { AGENCY_USER_ID, isAgencyUserId } from './send-money.js';
 
-export async function applyCheckoutSession(db, session) {
+export async function applyCheckoutSession(db, session, env) {
   if (!session?.id) return { ok: false, error: 'Invalid session' };
   if (session.payment_status && session.payment_status !== 'paid') {
     return { ok: false, error: 'Payment not completed yet' };
   }
 
   const bookingType = session.metadata?.booking_type;
+  if (bookingType === 'gift_card' && env) {
+    const { activatePurchasedGiftCard } = await import('./gift-cards.js');
+    return activatePurchasedGiftCard(env, session);
+  }
   if (bookingType === 'flight' || bookingType === 'ticket') {
     const r = await db
       .prepare(

@@ -467,3 +467,21 @@ html[data-theme='light'] .cta-sec .body {
 html[data-theme='light'] .book-lead {
   color: rgba(255, 255, 255, 0.88) !important;
 }
+
+html[data-theme='light'] .amt-btn {
+  color: #111 !important;
+  background: #fff !important;
+  border-color: rgba(0, 0, 0, 0.16) !important;
+}
+
+html[data-theme='light'] .amt-btn.on,
+html[data-theme='light'] .amt-btn:hover {
+  color: #111 !important;
+  background: #f4ead0 !important;
+  border-color: #c9a84c !important;
+}
+
+html[data-theme='light'] #custom-amount {
+  color: #111 !important;
+  background: #fff !important;
+}

@@ -12,6 +12,24 @@ import {
   adminSendMoney,
 } from './send-money-api.js';
 import { AGENCY_USER_ID, isAgencyUserId, isAgencyEmail } from './lib/send-money.js';
+import {
+  giftCardsConfig,
+  giftCardsPurchase,
+  giftCardsConfirmPurchase,
+  giftCardsMy,
+  giftCardsTransactions,
+  giftCardsRedeem,
+  giftCardsQuote,
+  giftCardsApply,
+  adminGiftCardsList,
+  adminGiftCardsGet,
+  adminGiftCardsIssue,
+  adminGiftCardsAdjust,
+  adminGiftCardsDisable,
+  adminGiftCardsResend,
+  adminGiftCardsRestore,
+  adminGiftCardsSettings,
+} from './gift-cards-api.js';
 
 
 const TICKET_PACKAGES = {
@@ -381,7 +399,7 @@ async function confirmPayment(request, env) {
     return json(403, { error: 'Payment does not match this account' });
   }
 
-  const result = await applyCheckoutSession(env.DB, checkoutSession);
+  const result = await applyCheckoutSession(env.DB, checkoutSession, env);
   if (!result.ok) return json(500, { error: result.error });
   return json(200, { ok: true, balanceUpdated: true });
 }
@@ -403,7 +421,7 @@ async function stripeWebhook(request, env) {
   }
 
   if (stripeEvent.type === 'checkout.session.completed') {
-    const result = await applyCheckoutSession(env.DB, stripeEvent.data.object);
+    const result = await applyCheckoutSession(env.DB, stripeEvent.data.object, env);
     if (!result.ok) return new Response(result.error || 'Database update failed', { status: 500 });
   }
 
@@ -1037,6 +1055,20 @@ const POST_ROUTES = {
   'send-money/checkout': sendMoneyCheckout,
   'send-money/confirm': sendMoneyConfirm,
   'admin-send-money': adminSendMoney,
+  'gift-cards/purchase': giftCardsPurchase,
+  'gift-cards/confirm': giftCardsConfirmPurchase,
+  'gift-cards/redeem': giftCardsRedeem,
+  'gift-cards/quote': giftCardsQuote,
+  'gift-cards/apply': giftCardsApply,
+  'gift-cards/transactions': giftCardsTransactions,
+  'admin-gift-cards-list': adminGiftCardsList,
+  'admin-gift-cards-get': adminGiftCardsGet,
+  'admin-gift-cards-issue': adminGiftCardsIssue,
+  'admin-gift-cards-adjust': adminGiftCardsAdjust,
+  'admin-gift-cards-disable': adminGiftCardsDisable,
+  'admin-gift-cards-resend': adminGiftCardsResend,
+  'admin-gift-cards-restore': adminGiftCardsRestore,
+  'admin-gift-cards-settings': adminGiftCardsSettings,
 };
 
 const GET_ROUTES = {
@@ -1046,6 +1078,9 @@ const GET_ROUTES = {
   'airport-search': airportSearch,
   'send-money/info': sendMoneyInfo,
   'send-money/link': mySendMoneyLink,
+  'gift-cards/config': giftCardsConfig,
+  'gift-cards/my': giftCardsMy,
+  'gift-cards/transactions': giftCardsTransactions,
 };
 
 export async function handleApiRequest(request, env) {
