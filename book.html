@@ -35,7 +35,7 @@ nav#nav{
 .nav-name{font-family:'DM Serif Display',serif;font-size:15px;color:#fff}
 .nav-sub{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);margin-top:2px}
 .ft-logo-text{padding-left:14px;border-left:1px solid rgba(201,168,76,.28)}
-.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0;overflow:hidden}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0;overflow:visible}
 .nav-links{display:flex;flex-wrap:nowrap;align-items:center;gap:0;min-width:0}
 .nav-links a{
   font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
@@ -340,16 +340,12 @@ body.modal-open{overflow:hidden}
 .modal-pay{width:100%;margin-top:8px;padding:16px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
 .modal-pay:disabled{opacity:.5}
 
-@media(max-width:1680px){
-  nav#nav{padding-left:28px;padding-right:28px;gap:12px}
+@media(max-width:1800px){
+  nav#nav{padding-left:36px;padding-right:36px;overflow:visible}
   .nav-sub{display:none}
-  .nav-logo img{height:42px;width:42px}
-  .nav-name{font-size:14px}
-  .nav-links a{padding:8px 7px;letter-spacing:.8px;font-size:9.5px}
-  .nav-links a::after{left:7px;right:7px}
-  .nav-cta{padding:9px 12px;letter-spacing:1.2px}
-  .nav-right{gap:6px}
-  .lang-select{padding:7px 22px 7px 8px;max-width:110px}
+  .nav-logo img{height:44px;width:44px}
+  .nav-name{font-size:15px}
+  .nav-right{overflow:visible}
 }
 @media(max-width:1100px){
   nav#nav{padding-left:28px;padding-right:28px}

@@ -119,6 +119,85 @@ html {
   }
 }
 
+/* Laptop / 13–16" screens: keep a full header, just stacked so links stay readable */
+@media (max-width: 1800px) and (min-width: 1101px) {
+  :root {
+    --nav-offset: calc(120px + env(safe-area-inset-top, 0px));
+  }
+
+  nav#nav {
+    display: grid !important;
+    grid-template-columns: minmax(0, auto) minmax(40px, 1fr) auto auto auto;
+    grid-template-areas:
+      "logo . lang theme cta"
+      "links links links links links";
+    align-items: center;
+    column-gap: 14px;
+    row-gap: 2px;
+    padding: 10px 36px 8px !important;
+    padding-top: max(10px, env(safe-area-inset-top, 0px)) !important;
+    overflow: visible !important;
+    min-height: 0;
+  }
+
+  nav#nav .nav-logo {
+    grid-area: logo;
+    min-width: 0;
+  }
+
+  nav#nav .nav-right {
+    display: contents !important;
+    overflow: visible !important;
+  }
+
+  nav#nav .nav-links {
+    grid-area: links;
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    padding-top: 4px;
+    margin-top: 2px;
+    border-top: 1px solid rgba(201, 168, 76, 0.18);
+  }
+
+  nav#nav .lang-switcher {
+    grid-area: lang;
+  }
+
+  nav#nav .theme-toggle {
+    grid-area: theme;
+  }
+
+  nav#nav .nav-cta {
+    grid-area: cta;
+    justify-self: end;
+  }
+
+  nav#nav .ham {
+    display: none !important;
+  }
+
+  nav#nav .nav-sub {
+    display: none;
+  }
+
+  nav#nav .nav-links a {
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 8px 11px;
+  }
+
+  nav#nav .nav-links a::after {
+    left: 11px;
+    right: 11px;
+  }
+
+  .portal-main {
+    padding-top: calc(140px + env(safe-area-inset-top, 0px));
+  }
+}
+
 /* ══════════════════════════════════════
    LIGHT MODE (default)
 ══════════════════════════════════════ */
@@ -180,6 +259,12 @@ html[data-theme='light'] nav .nav-links a {
 html[data-theme='light'] nav .nav-links a:hover,
 html[data-theme='light'] nav .nav-links a.act {
   color: #1a1a1a !important;
+}
+
+@media (max-width: 1800px) and (min-width: 1101px) {
+  html[data-theme='light'] nav#nav .nav-links {
+    border-top-color: rgba(0, 0, 0, 0.08);
+  }
 }
 
 html[data-theme='light'] .nav-sub {
