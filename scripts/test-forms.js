@@ -55,6 +55,17 @@ async function main() {
   if (enquiry.ok && enquiryJson.ok) pass('POST /api/contact enquiry', `emailed=${enquiryJson.emailed}`);
   else fail('POST /api/contact enquiry', JSON.stringify(enquiryJson) || enquiry.status);
 
+  const autofill = await fetch(`${BASE}/api/newsletter`, {
+    method: 'POST',
+    body: new URLSearchParams({
+      email: `autofill-${stamp}@example.com`,
+      _honey: `autofill-${stamp}@example.com`,
+    }),
+  });
+  const autofillJson = await autofill.json().catch(() => ({}));
+  if (autofill.ok && autofillJson.ok) pass('POST /api/newsletter autofilled honeypot still saves', 'ok');
+  else fail('POST /api/newsletter autofilled honeypot still saves', JSON.stringify(autofillJson) || autofill.status);
+
   const nl = await fetch(`${BASE}/api/newsletter`, {
     method: 'POST',
     body: new URLSearchParams({ email: `news-${stamp}@example.com` }),
@@ -72,7 +83,8 @@ async function main() {
   const rows = listedJson.submissions || [];
   const foundEnquiry = rows.some((r) => r.email === email && r.form_type === 'enquiry');
   const foundNews = rows.some((r) => r.email === `news-${stamp}@example.com` && r.form_type === 'newsletter');
-  if (listed.ok && foundEnquiry && foundNews) pass('POST /api/admin-list-forms', `${rows.length} rows`);
+  const foundAutofill = rows.some((r) => r.email === `autofill-${stamp}@example.com` && r.form_type === 'newsletter');
+  if (listed.ok && foundEnquiry && foundNews && foundAutofill) pass('POST /api/admin-list-forms', `${rows.length} rows`);
   else fail('POST /api/admin-list-forms', JSON.stringify(listedJson).slice(0, 240));
 
   const failed = results.filter((r) => !r.ok);

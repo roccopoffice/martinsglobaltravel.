@@ -8,6 +8,15 @@ function validEmail(value) {
   return email.includes('@') && email.includes('.') ? email : '';
 }
 
+function isHoneypot(data, email) {
+  const honey = String(data._honey || '')
+    .trim()
+    .toLowerCase();
+  if (!honey) return false;
+  if (email && honey === email) return false;
+  return true;
+}
+
 async function readContactBody(request) {
   const contentType = request.headers.get('content-type') || '';
   if (contentType.includes('application/json')) {
@@ -42,14 +51,13 @@ function enquiryLines(data, name, email) {
 export async function submitContact(request, env) {
   const data = await readContactBody(request);
 
-  if (String(data._honey || '').trim()) {
-    return json(200, { ok: true });
-  }
-
   const firstName = String(data.firstName || '').trim();
   const lastName = String(data.lastName || '').trim();
   const name = String(data.name || '').trim() || [firstName, lastName].filter(Boolean).join(' ');
   const email = validEmail(data.email);
+  if (isHoneypot(data, email)) {
+    return json(200, { ok: true });
+  }
   const subject =
     String(data._subject || '').trim() || 'New enquiry — Martins Global Travels website';
 
@@ -114,11 +122,10 @@ export async function submitContact(request, env) {
 
 export async function submitNewsletter(request, env) {
   const data = await readContactBody(request);
-  if (String(data._honey || '').trim()) {
+  const email = validEmail(data.email);
+  if (isHoneypot(data, email)) {
     return json(200, { ok: true });
   }
-
-  const email = validEmail(data.email);
   if (!email) return json(400, { error: 'Enter a valid email address.' });
 
   const id = crypto.randomUUID();
