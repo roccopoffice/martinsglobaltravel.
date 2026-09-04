@@ -985,10 +985,11 @@ footer{background:var(--ink2);border-top:1px solid var(--border);padding:72px 52
       <p class="body" style="font-size:14px;margin-top:12px" data-i18n="home.nlBody">Exclusive offers, destination guides, and travel inspiration from our specialists.</p>
     </div>
     <div>
-      <div class="nl-form">
-        <input class="nl-inp" type="email" data-i18n-placeholder="home.nlPlaceholder" data-i18n-placeholder="home.nlPlaceholder" placeholder="Your email address...">
-        <button class="nl-btn" onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.subscribed'))||'Subscribed! Welcome aboard.')" data-i18n="common.subscribe">Subscribe</button>
-      </div>
+      <form class="nl-form" id="newsletter-form">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="nl-inp" id="nl-email" name="email" type="email" required data-i18n-placeholder="home.nlPlaceholder" placeholder="Your email address...">
+        <button class="nl-btn" type="submit" data-i18n="common.subscribe">Subscribe</button>
+      </form>
       <p style="font-size:11px;color:var(--dimmer);margin-top:12px;font-weight:300" data-i18n="footer.noSpam">No spam, ever. Unsubscribe any time.</p>
     </div>
   </div>

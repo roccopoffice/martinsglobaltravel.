@@ -12,6 +12,7 @@ import {
   adminSendMoney,
 } from './send-money-api.js';
 import { AGENCY_USER_ID, isAgencyUserId, isAgencyEmail } from './lib/send-money.js';
+import { submitContact, submitNewsletter, adminListForms } from './forms-api.js';
 import {
   giftCardsConfig,
   giftCardsPurchase,
@@ -1049,6 +1050,9 @@ const POST_ROUTES = {
   'admin-update-notes': adminUpdateNotes,
   'admin-delete-client': adminDeleteClient,
   'admin-get-analytics': adminGetAnalytics,
+  'admin-list-forms': adminListForms,
+  contact: submitContact,
+  newsletter: submitNewsletter,
   'flight-search': flightSearch,
   'create-flight-checkout': createFlightCheckout,
   'create-ticket-request': createTicketRequest,

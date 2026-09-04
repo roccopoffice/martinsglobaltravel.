@@ -1,13 +1,4 @@
-const CONTACT_TO = 'Jeanie@MartinsGlobalTravels.com';
-const CONTACT_FROM = 'website@martinsglobaltravels.com';
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
+import { CONTACT_TO, CONTACT_FROM, escapeHtml } from './site-email.js';
 
 function dollars(cents) {
   return `$${((cents || 0) / 100).toFixed(2)}`;

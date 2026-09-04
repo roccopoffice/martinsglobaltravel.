@@ -142,6 +142,7 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
       <button type="button" class="tab" data-tab="balance">Update balance</button>
       <button type="button" class="tab" data-tab="credits">Send money</button>
       <button type="button" class="tab" data-tab="agency">Agency link</button>
+      <button type="button" class="tab" data-tab="forms">Enquiries</button>
       <button type="button" class="tab" data-tab="analytics">Analytics</button>
     </div>
 
@@ -226,6 +227,15 @@ h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:16px;color:
       </div>
       <p class="hint" id="agency-received" style="margin-top:16px">Money received: $0.00</p>
       <div id="agency-payments"></div>
+    </div>
+
+    <div id="panel-forms" class="panel card" hidden>
+      <div class="list-toolbar">
+        <h2 style="margin:0">Website forms</h2>
+        <button type="button" class="btn btn-sm" id="refresh-forms-btn">Refresh</button>
+      </div>
+      <p class="hint">Enquiry and newsletter signups from the website. Cloudflare emails them to Jeanie@MartinsGlobalTravels.com. If email is still verifying, they still appear here.</p>
+      <div id="forms-body" class="list-loading">Loading…</div>
     </div>
 
     <button type="button" class="btn btn-outline" id="logout-btn">Sign out</button>
