@@ -31,8 +31,8 @@ nav#nav{
 .nav-sub{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-top:2px}
 .nav-back{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);border:1px solid var(--border);padding:10px 18px;transition:all .3s}
 .nav-back:hover{border-color:var(--gold);color:var(--gold)}
-.nav-right{display:flex;align-items:center;gap:18px;margin-left:auto}
-.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:2px}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0;overflow:visible}
+.nav-links{display:flex;flex-wrap:nowrap;align-items:center;gap:0;min-width:0}
 .nav-links a{
   font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
   color:rgba(255,255,255,.52);padding:10px 12px;position:relative;transition:color .25s;white-space:nowrap;
@@ -93,6 +93,18 @@ nav#nav{
 .ft-leg a{font-size:12px;color:rgba(255,255,255,.18);transition:color .25s}
 .ft-leg a:hover{color:var(--gold)}
 .ft-logo-text{padding-left:14px;border-left:1px solid rgba(201,168,76,.28)}
+@media(max-width:1800px){
+  nav#nav{padding:10px 36px;overflow:visible}
+  .nav-sub{display:none}
+  .nav-logo img{height:44px;width:44px}
+  .nav-name{font-size:15px}
+  .nav-right{overflow:visible}
+}
+@media(max-width:1100px){
+  nav#nav{padding:10px 28px}
+  .nav-right{display:none}
+  .ham{display:flex}
+}
 @media(max-width:1024px){
   nav#nav{padding:10px 28px}
   .nav-right{display:none}
@@ -202,7 +214,8 @@ nav#nav{
       <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
       <a href="index.html#about" data-i18n="nav.about">About</a>
       <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
-      <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
+      <a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a>
+      <a href="portal.html" class="act" data-i18n="nav.portal">Client Portal</a>
     </div>
     <div class="lang-switcher">
       <label class="visually-hidden" for="lang-select-desktop" data-i18n="a11y.langSwitcher">Select language</label>
@@ -232,7 +245,8 @@ nav#nav{
   <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
   <a href="index.html#about" data-i18n="nav.about">About</a>
   <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
-  <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
+  <a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a>
+  <a href="portal.html" class="act" data-i18n="nav.portal">Client Portal</a>
     <div class="mob-theme">
     <span data-i18n="theme.appearance">Appearance</span>
     <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode" data-i18n-aria="theme.darkMode">
@@ -285,6 +299,13 @@ nav#nav{
       <button type="button" class="portal-btn" id="pay-btn" disabled>Pay balance with card</button>
       <button type="button" class="portal-btn portal-btn-outline" id="change-pw-btn">Change password</button>
       <button type="button" class="portal-btn portal-btn-outline" id="logout-btn">Sign out</button>
+    </div>
+    <div class="portal-card" id="send-money-card">
+      <div class="portal-lbl">Send Money Link</div>
+      <p class="balance-note" id="send-link-note">Share this private link so someone can pay toward your trip.</p>
+      <p id="send-received" class="balance-note" hidden></p>
+      <input class="portal-inp" id="send-link-url" readonly value="">
+      <button type="button" class="portal-btn" id="copy-send-link-btn">Copy Link</button>
     </div>
     <div class="portal-card" id="wallet-card">
       <div class="portal-lbl">Travel credit</div>

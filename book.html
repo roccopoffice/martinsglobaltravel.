@@ -35,8 +35,8 @@ nav#nav{
 .nav-name{font-family:'DM Serif Display',serif;font-size:15px;color:#fff}
 .nav-sub{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold2);margin-top:2px}
 .ft-logo-text{padding-left:14px;border-left:1px solid rgba(201,168,76,.28)}
-.nav-right{display:flex;align-items:center;gap:18px;margin-left:auto}
-.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:2px}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0;overflow:visible}
+.nav-links{display:flex;flex-wrap:nowrap;align-items:center;gap:0;min-width:0}
 .nav-links a{
   font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;
   color:rgba(255,255,255,.52);padding:10px 12px;position:relative;transition:color .25s;white-space:nowrap;
@@ -340,6 +340,18 @@ body.modal-open{overflow:hidden}
 .modal-pay{width:100%;margin-top:8px;padding:16px;background:var(--gold);color:var(--ink);border:none;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
 .modal-pay:disabled{opacity:.5}
 
+@media(max-width:1800px){
+  nav#nav{padding-left:36px;padding-right:36px;overflow:visible}
+  .nav-sub{display:none}
+  .nav-logo img{height:44px;width:44px}
+  .nav-name{font-size:15px}
+  .nav-right{overflow:visible}
+}
+@media(max-width:1100px){
+  nav#nav{padding-left:28px;padding-right:28px}
+  .nav-right{display:none}
+  .ham{display:flex}
+}
 @media(max-width:1024px){
   nav#nav,.search-shell,.trust-band,.book-main,.cta-strip,.book-footer{padding-left:28px;padding-right:28px}
   nav#nav{padding-left:28px;padding-right:28px}
@@ -398,6 +410,7 @@ body.modal-open{overflow:hidden}
       <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
       <a href="index.html#about" data-i18n="nav.about">About</a>
       <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      <a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a>
       <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
     </div>
     <div class="lang-switcher">
@@ -428,6 +441,7 @@ body.modal-open{overflow:hidden}
   <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
   <a href="index.html#about" data-i18n="nav.about">About</a>
   <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+  <a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a>
   <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
     <div class="mob-theme">
     <span data-i18n="theme.appearance">Appearance</span>

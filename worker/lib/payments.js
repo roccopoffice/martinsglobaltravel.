@@ -1,10 +1,16 @@
-export async function applyCheckoutSession(db, session) {
+import { AGENCY_USER_ID, isAgencyUserId } from './send-money.js';
+
+export async function applyCheckoutSession(db, session, env) {
   if (!session?.id) return { ok: false, error: 'Invalid session' };
   if (session.payment_status && session.payment_status !== 'paid') {
     return { ok: false, error: 'Payment not completed yet' };
   }
 
   const bookingType = session.metadata?.booking_type;
+  if (bookingType === 'gift_card' && env) {
+    const { activatePurchasedGiftCard } = await import('./gift-cards.js');
+    return activatePurchasedGiftCard(env, session);
+  }
   if (bookingType === 'flight' || bookingType === 'ticket') {
     const r = await db
       .prepare(
@@ -19,6 +25,7 @@ export async function applyCheckoutSession(db, session) {
   let userId = session.metadata?.user_id || null;
   let amountCents = parseInt(session.metadata?.amount_cents || '0', 10);
   if (!amountCents && session.amount_total) amountCents = session.amount_total;
+  if (bookingType === 'send_money_agency') userId = AGENCY_USER_ID;
 
   if (!userId) {
     const email = (session.customer_details?.email || session.customer_email || '')
@@ -44,24 +51,35 @@ export async function applyCheckoutSession(db, session) {
   if (existing) return { ok: true, userId, amountCents, duplicate: true };
 
   const paymentId = crypto.randomUUID();
-  await db.batch([
+  const sendToken = session.metadata?.send_token || null;
+  const isAgency = isAgencyUserId(userId) || bookingType === 'send_money_agency';
+  const source =
+    sendToken || bookingType === 'send_money' || bookingType === 'send_money_agency'
+      ? 'send_money'
+      : 'portal';
+  const stmts = [
     db
       .prepare(
-        `INSERT INTO payments (id, user_id, amount_cents, stripe_checkout_session_id, status)
-         VALUES (?, ?, ?, ?, 'completed')`
+        `INSERT INTO payments (id, user_id, amount_cents, stripe_checkout_session_id, status, source, send_token)
+         VALUES (?, ?, ?, ?, 'completed', ?, ?)`
       )
-      .bind(paymentId, userId, amountCents, session.id),
-    db
-      .prepare(
-        `UPDATE client_accounts
-         SET balance_cents = CASE WHEN balance_cents - ? < 0 THEN 0 ELSE balance_cents - ? END,
-             updated_at = datetime('now')
-         WHERE id = ?`
-      )
-      .bind(amountCents, amountCents, userId),
-  ]);
+      .bind(paymentId, userId, amountCents, session.id, source, sendToken),
+  ];
+  if (!isAgency) {
+    stmts.push(
+      db
+        .prepare(
+          `UPDATE client_accounts
+           SET balance_cents = CASE WHEN balance_cents - ? < 0 THEN 0 ELSE balance_cents - ? END,
+               updated_at = datetime('now')
+           WHERE id = ?`
+        )
+        .bind(amountCents, amountCents, userId)
+    );
+  }
+  await db.batch(stmts);
 
-  return { ok: true, userId, amountCents };
+  return { ok: true, userId, amountCents, destination: isAgency ? 'agency' : 'client' };
 }
 
 export function sessionBelongsToUser(session, userId, userEmail) {

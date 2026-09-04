@@ -4,6 +4,34 @@ import { hashPassword, verifyPassword, signToken, verifyToken, requireUser } fro
 import { applyCheckoutSession, sessionBelongsToUser } from './lib/payments.js';
 import { amadeusFetch, normalizeFlightOffers } from './lib/amadeus.js';
 import { computeFlightPricing } from './lib/flight-pricing.js';
+import {
+  sendMoneyInfo,
+  sendMoneyCheckout,
+  sendMoneyConfirm,
+  mySendMoneyLink,
+  adminSendMoney,
+} from './send-money-api.js';
+import { AGENCY_USER_ID, isAgencyUserId, isAgencyEmail } from './lib/send-money.js';
+import { submitContact, submitNewsletter, adminListForms } from './forms-api.js';
+import {
+  giftCardsConfig,
+  giftCardsPurchase,
+  giftCardsConfirmPurchase,
+  giftCardsMy,
+  giftCardsTransactions,
+  giftCardsRedeem,
+  giftCardsQuote,
+  giftCardsApply,
+  adminGiftCardsList,
+  adminGiftCardsGet,
+  adminGiftCardsIssue,
+  adminGiftCardsAdjust,
+  adminGiftCardsDisable,
+  adminGiftCardsResend,
+  adminGiftCardsRestore,
+  adminGiftCardsSettings,
+} from './gift-cards-api.js';
+
 
 const TICKET_PACKAGES = {
   'evt-single': { name: 'Single event package', cents: 250000 },
@@ -37,7 +65,10 @@ async function authLogin(request, env) {
   if (!email || !password) return json(400, { error: 'Email and password are required.' });
 
   const user = await env.DB.prepare('SELECT * FROM users WHERE email = ? LIMIT 1').bind(email).first();
-  if (!user || !(await verifyPassword(password, user.password_hash))) {
+  if (!user || isAgencyUserId(user.id) || isAgencyEmail(user.email)) {
+    return json(401, { error: 'Invalid email or password.' });
+  }
+  if (!(await verifyPassword(password, user.password_hash))) {
     return json(401, { error: 'Invalid email or password.' });
   }
 
@@ -369,7 +400,7 @@ async function confirmPayment(request, env) {
     return json(403, { error: 'Payment does not match this account' });
   }
 
-  const result = await applyCheckoutSession(env.DB, checkoutSession);
+  const result = await applyCheckoutSession(env.DB, checkoutSession, env);
   if (!result.ok) return json(500, { error: result.error });
   return json(200, { ok: true, balanceUpdated: true });
 }
@@ -391,7 +422,7 @@ async function stripeWebhook(request, env) {
   }
 
   if (stripeEvent.type === 'checkout.session.completed') {
-    const result = await applyCheckoutSession(env.DB, stripeEvent.data.object);
+    const result = await applyCheckoutSession(env.DB, stripeEvent.data.object, env);
     if (!result.ok) return new Response(result.error || 'Database update failed', { status: 500 });
   }
 
@@ -413,10 +444,31 @@ async function adminListClients(request, env) {
   if (!auth.ok) return json(401, { error: auth.error });
 
   const { results } = await env.DB.prepare(
-    `SELECT id, first_name, last_name, full_name, email, balance_cents, credit_cents, notes, updated_at
-     FROM client_accounts
-     ORDER BY last_name ASC, first_name ASC`
+    `SELECT a.id, a.first_name, a.last_name, a.full_name, a.email, a.balance_cents, a.credit_cents,
+            a.notes, a.updated_at, l.token AS send_token, l.status AS send_link_status,
+            (SELECT COALESCE(SUM(p.amount_cents), 0) FROM payments p
+              WHERE p.user_id = a.id AND p.source = 'send_money' AND p.status = 'completed') AS send_received_cents
+     FROM client_accounts a
+     LEFT JOIN send_money_links l ON l.user_id = a.id
+     WHERE a.id != ?
+     ORDER BY a.last_name ASC, a.first_name ASC`
+  )
+    .bind(AGENCY_USER_ID)
+    .all();
+
+  const { results: sendPays } = await env.DB.prepare(
+    `SELECT user_id, amount_cents, status, created_at
+     FROM payments WHERE source = 'send_money'
+     ORDER BY created_at DESC LIMIT 200`
   ).all();
+  const sendPaymentsByUser = {};
+  for (const pay of sendPays || []) {
+    (sendPaymentsByUser[pay.user_id] ||= []).push({
+      amountCents: pay.amount_cents,
+      status: pay.status,
+      createdAt: pay.created_at,
+    });
+  }
 
   const clients = (results || []).map((row) => {
     const name =
@@ -433,6 +485,10 @@ async function adminListClients(request, env) {
       creditDollars: ((row.credit_cents || 0) / 100).toFixed(2),
       notes: row.notes || '',
       updatedAt: row.updated_at,
+      sendToken: row.send_token || null,
+      sendLinkStatus: row.send_link_status || null,
+      sendReceivedCents: row.send_received_cents || 0,
+      sendPayments: sendPaymentsByUser[row.id] || [],
     };
   });
 
@@ -454,10 +510,12 @@ async function adminCreateClient(request, env) {
 
   if (!firstName || !lastName) return json(400, { error: 'First and last name are required.' });
   if (!email || !email.includes('@')) return json(400, { error: 'A valid email is required.' });
+  if (isAgencyEmail(email)) return json(400, { error: 'That email is reserved.' });
   if (password.length < 6) return json(400, { error: 'Password must be at least 6 characters.' });
   if (balanceCents === null) return json(400, { error: 'Enter a valid balance amount.' });
 
   const existing = await env.DB.prepare('SELECT id FROM users WHERE email = ? LIMIT 1').bind(email).first();
+  if (existing && isAgencyUserId(existing.id)) return json(400, { error: 'That email is reserved.' });
   const passwordHash = await hashPassword(password);
   const fullName = `${firstName} ${lastName}`;
   let userId = existing?.id || crypto.randomUUID();
@@ -506,6 +564,7 @@ async function adminUpdateBalance(request, env) {
   const email = String(body.email || '').trim().toLowerCase();
   const balanceCents = dollarsToCents(body.balanceDollars);
   if (!email || !email.includes('@')) return json(400, { error: 'A valid email is required.' });
+  if (isAgencyEmail(email)) return json(404, { error: 'No client found with that email. Add them first.' });
   if (balanceCents === null) return json(400, { error: 'Enter a valid balance amount.' });
 
   await env.DB.prepare(
@@ -540,6 +599,7 @@ async function adminSendCredit(request, env) {
   const remove = body.action === 'remove';
 
   if (!email || !email.includes('@')) return json(400, { error: 'A valid email is required.' });
+  if (isAgencyEmail(email)) return json(404, { error: 'No client found with that email. Add them first.' });
   if (amountCents === null || amountCents <= 0) return json(400, { error: 'Enter a valid amount.' });
 
   const account = await env.DB.prepare(
@@ -598,6 +658,7 @@ async function adminUpdateNotes(request, env) {
   const email = String(body.email || '').trim().toLowerCase();
   const notes = String(body.notes ?? '');
   if (!email || !email.includes('@')) return json(400, { error: 'A valid email is required.' });
+  if (isAgencyEmail(email)) return json(404, { error: 'No client found with that email.' });
 
   await env.DB.prepare(
     `UPDATE client_accounts SET notes = ?, updated_at = datetime('now') WHERE email = ?`
@@ -632,6 +693,9 @@ async function adminDeleteClient(request, env) {
     .first();
 
   if (!account) return json(404, { error: 'No client found with that email.' });
+  if (isAgencyUserId(account.id) || isAgencyEmail(account.email)) {
+    return json(400, { error: 'This account cannot be removed.' });
+  }
   const name =
     [account.first_name, account.last_name].filter(Boolean).join(' ').trim() ||
     account.full_name ||
@@ -651,13 +715,14 @@ async function adminGetAnalytics(request, env) {
   const auth = verifyAdmin(body, env);
   if (!auth.ok) return json(401, { error: auth.error });
 
-  const { results: rows } = await env.DB.prepare(
+  const { results: allRows } = await env.DB.prepare(
     `SELECT id, balance_cents, email, first_name, last_name, full_name, updated_at FROM client_accounts`
   ).all();
+  const rows = (allRows || []).filter((row) => !isAgencyUserId(row.id));
 
   let totalOwedCents = 0;
   let clientsWithBalance = 0;
-  for (const row of rows || []) {
+  for (const row of rows) {
     const bal = row.balance_cents || 0;
     if (bal > 0) {
       totalOwedCents += bal;
@@ -673,7 +738,7 @@ async function adminGetAnalytics(request, env) {
   let totalCollectedCents = 0;
   for (const p of payRows || []) totalCollectedCents += p.amount_cents || 0;
 
-  const accountById = Object.fromEntries((rows || []).map((r) => [r.id, r]));
+  const accountById = Object.fromEntries((allRows || []).map((r) => [r.id, r]));
   const recentPayments = (payRows || []).slice(0, 10).map((p) => {
     const acc = accountById[p.user_id];
     const name = acc
@@ -985,9 +1050,29 @@ const POST_ROUTES = {
   'admin-update-notes': adminUpdateNotes,
   'admin-delete-client': adminDeleteClient,
   'admin-get-analytics': adminGetAnalytics,
+  'admin-list-forms': adminListForms,
+  contact: submitContact,
+  newsletter: submitNewsletter,
   'flight-search': flightSearch,
   'create-flight-checkout': createFlightCheckout,
   'create-ticket-request': createTicketRequest,
+  'send-money/checkout': sendMoneyCheckout,
+  'send-money/confirm': sendMoneyConfirm,
+  'admin-send-money': adminSendMoney,
+  'gift-cards/purchase': giftCardsPurchase,
+  'gift-cards/confirm': giftCardsConfirmPurchase,
+  'gift-cards/redeem': giftCardsRedeem,
+  'gift-cards/quote': giftCardsQuote,
+  'gift-cards/apply': giftCardsApply,
+  'gift-cards/transactions': giftCardsTransactions,
+  'admin-gift-cards-list': adminGiftCardsList,
+  'admin-gift-cards-get': adminGiftCardsGet,
+  'admin-gift-cards-issue': adminGiftCardsIssue,
+  'admin-gift-cards-adjust': adminGiftCardsAdjust,
+  'admin-gift-cards-disable': adminGiftCardsDisable,
+  'admin-gift-cards-resend': adminGiftCardsResend,
+  'admin-gift-cards-restore': adminGiftCardsRestore,
+  'admin-gift-cards-settings': adminGiftCardsSettings,
 };
 
 const GET_ROUTES = {
@@ -995,6 +1080,11 @@ const GET_ROUTES = {
   'auth/balance': authBalance,
   'wallet': walletInfo,
   'airport-search': airportSearch,
+  'send-money/info': sendMoneyInfo,
+  'send-money/link': mySendMoneyLink,
+  'gift-cards/config': giftCardsConfig,
+  'gift-cards/my': giftCardsMy,
+  'gift-cards/transactions': giftCardsTransactions,
 };
 
 export async function handleApiRequest(request, env) {

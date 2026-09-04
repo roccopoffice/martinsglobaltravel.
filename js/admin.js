@@ -49,9 +49,13 @@
     $('panel-list').hidden = tabId !== 'list';
     $('panel-balance').hidden = tabId !== 'balance';
     $('panel-credits').hidden = tabId !== 'credits';
+    $('panel-agency').hidden = tabId !== 'agency';
+    $('panel-forms').hidden = tabId !== 'forms';
     $('panel-analytics').hidden = tabId !== 'analytics';
-    mainEl?.classList.toggle('wide', tabId === 'list' || tabId === 'analytics');
+    mainEl?.classList.toggle('wide', tabId === 'list' || tabId === 'analytics' || tabId === 'forms');
     if (tabId === 'list') loadClientList();
+    if (tabId === 'agency') loadAgencyLink();
+    if (tabId === 'forms') loadForms();
     if (tabId === 'analytics') loadAnalytics();
   }
 
@@ -93,7 +97,7 @@
           <h3 class="lbl" style="margin-bottom:12px">Website traffic</h3>
           <div class="analytics-hint">${escapeHtml(site?.message || 'Website analytics is not set up yet. Your web person can follow SETUP-ANALYTICS.md.')}</div>
           <div class="link-list">
-            <a href="https://app.netlify.com" target="_blank" rel="noopener">Netlify → Forms (enquiry submissions)</a>
+            <a href="#" data-open-forms>Open Enquiries tab</a>
             <a href="https://martinsglobaltravel.com" target="_blank" rel="noopener">View live website</a>
           </div>
         </div>`;
@@ -151,7 +155,7 @@
         </div>
         <div class="link-list" style="margin-top:16px">
           <a href="https://analytics.google.com" target="_blank" rel="noopener">Open full Google Analytics dashboard</a>
-          <a href="https://app.netlify.com" target="_blank" rel="noopener">Netlify → Forms (enquiry submissions)</a>
+          <a href="#" data-open-forms>Open Enquiries tab</a>
         </div>
       </div>`;
   }
@@ -193,6 +197,47 @@
         <h3 class="lbl" style="margin-bottom:8px">Recent portal payments</h3>
         ${recent}
       `;
+    } catch (e) {
+      body.className = 'list-empty';
+      body.textContent = e.message;
+    }
+  }
+
+  async function loadForms() {
+    const body = $('forms-body');
+    if (!body || !adminPassword) return;
+
+    body.className = 'list-loading';
+    body.textContent = 'Loading form submissions…';
+
+    try {
+      const json = await api('admin-list-forms', { adminPassword });
+      const rows = json.submissions || [];
+      if (!rows.length) {
+        body.className = '';
+        body.innerHTML = '<p class="hint">No website form submissions yet.</p>';
+        return;
+      }
+
+      body.className = '';
+      body.innerHTML = `<table class="mini-table">
+        <thead><tr><th>When</th><th>Type</th><th>From</th><th>Details</th><th>Emailed</th></tr></thead>
+        <tbody>${rows
+          .map((r) => {
+            const who = [r.name, r.email].filter(Boolean).join(' · ');
+            const bits = [r.phone, r.destination, r.package, r.travelers, r.message]
+              .filter(Boolean)
+              .join(' · ');
+            return `<tr>
+              <td>${escapeHtml(formatDate(r.created_at))}</td>
+              <td>${escapeHtml(r.form_type || '')}</td>
+              <td>${escapeHtml(who)}</td>
+              <td>${escapeHtml(bits || '—')}</td>
+              <td>${r.emailed ? 'Yes' : 'Saved'}</td>
+            </tr>`;
+          })
+          .join('')}</tbody>
+      </table>`;
     } catch (e) {
       body.className = 'list-empty';
       body.textContent = e.message;
@@ -282,6 +327,53 @@
     }
   }
 
+  function renderAgencyPayments(payments) {
+    const box = $('agency-payments');
+    if (!box) return;
+    if (!payments?.length) {
+      box.innerHTML = '<p class="hint" style="margin-top:14px">No send-money payments yet.</p>';
+      return;
+    }
+    box.innerHTML =
+      '<p class="hint" style="margin-top:14px">Payments received through the agency link</p>' +
+      payments
+        .slice(0, 10)
+        .map(
+          (p) =>
+            `<p class="hint">${escapeHtml(formatMoney(((p.amount_cents || 0) / 100).toFixed(2)))} · ${escapeHtml(p.status || '')} · ${escapeHtml(p.created_at || '')}</p>`
+        )
+        .join('');
+  }
+
+  async function loadAgencyLink(action) {
+    if (!adminPassword) return;
+    const statusEl = $('agency-status');
+    const urlEl = $('agency-url');
+    const receivedEl = $('agency-received');
+    try {
+      const json = await api('admin-send-money', {
+        adminPassword,
+        target: 'agency',
+        ...(action ? { action } : {}),
+      });
+      if (urlEl) urlEl.value = json.url || '';
+      if (statusEl) {
+        statusEl.textContent = json.status
+          ? `Link is ${json.status}.`
+          : 'No link yet. Generate one to share.';
+      }
+      if (receivedEl) {
+        receivedEl.textContent =
+          'Money received: ' + formatMoney(((json.receivedCents || 0) / 100).toFixed(2));
+      }
+      renderAgencyPayments(json.payments || []);
+      return json;
+    } catch (e) {
+      if (statusEl) statusEl.textContent = e.message;
+      throw e;
+    }
+  }
+
   async function loadClientList() {
     const body = $('list-body');
     const countEl = $('list-count');
@@ -328,6 +420,22 @@
                 <button type="button" class="btn btn-outline btn-sm credit-btn" data-email="${emailAttr}">Send credit</button>
                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-email="${emailAttr}" data-name="${escapeHtml(c.name)}">Remove client</button>
               </div>
+              <p class="hint" style="margin-top:16px">Send money link${c.sendLinkStatus ? ` · ${escapeHtml(c.sendLinkStatus)}` : ''} · received ${escapeHtml(formatMoney(((c.sendReceivedCents || 0) / 100).toFixed(2)))}</p>
+              <input class="inp" readonly data-send-url="${emailAttr}" value="${c.sendToken ? escapeHtml(location.origin + '/send/' + c.sendToken) : ''}">
+              <div class="detail-actions">
+                <button type="button" class="btn btn-sm btn-outline copy-send-btn" data-email="${emailAttr}">Copy link</button>
+                <button type="button" class="btn btn-sm btn-outline gen-send-btn" data-email="${emailAttr}">Generate link</button>
+                <button type="button" class="btn btn-sm btn-outline disable-send-btn" data-email="${emailAttr}">Disable link</button>
+              </div>
+              ${(c.sendPayments || []).length
+                ? `<p class="hint" style="margin-top:14px">Payments received through the link</p>${c.sendPayments
+                    .slice(0, 10)
+                    .map(
+                      (p) =>
+                        `<p class="hint">${escapeHtml(formatMoney(((p.amountCents || 0) / 100).toFixed(2)))} · ${escapeHtml(p.status)} · ${escapeHtml(p.createdAt || '')}</p>`
+                    )
+                    .join('')}`
+                : '<p class="hint" style="margin-top:14px">No send-money payments yet.</p>'}
             </div>
           </td>
         </tr>`;
@@ -382,6 +490,58 @@
         });
       });
 
+      body.querySelectorAll('.copy-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const input = body.querySelector(`input[data-send-url="${CSS.escape(btn.dataset.email)}"]`);
+          if (!input?.value) {
+            showMsg('Generate a link first.', false);
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(input.value);
+            showMsg('Send-money link copied.', true);
+          } catch {
+            input.select();
+            showMsg('Copy the link from the box.', true);
+          }
+        });
+      });
+
+      body.querySelectorAll('.gen-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            const json = await api('admin-send-money', {
+              adminPassword,
+              email: btn.dataset.email,
+              action: 'generate',
+            });
+            showMsg('Send-money link ready for ' + json.client.name + '.', true);
+            loadClientList();
+          } catch (err) {
+            showMsg(err.message, false);
+          }
+        });
+      });
+
+      body.querySelectorAll('.disable-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            await api('admin-send-money', {
+              adminPassword,
+              email: btn.dataset.email,
+              action: 'disable',
+            });
+            showMsg('Send-money link disabled.', true);
+            loadClientList();
+          } catch (err) {
+            showMsg(err.message, false);
+          }
+        });
+      });
+
       body.querySelectorAll('tr.client-detail').forEach((row) => {
         row.addEventListener('click', (e) => e.stopPropagation());
       });
@@ -424,6 +584,56 @@
 
   $('refresh-list-btn')?.addEventListener('click', () => loadClientList());
   $('refresh-analytics-btn')?.addEventListener('click', () => loadAnalytics());
+  $('refresh-forms-btn')?.addEventListener('click', () => loadForms());
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-open-forms]');
+    if (!link) return;
+    e.preventDefault();
+    switchTab('forms');
+  });
+
+  $('agency-copy-btn')?.addEventListener('click', async () => {
+    const input = $('agency-url');
+    if (!input?.value) {
+      showMsg('Generate a link first.', false);
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(input.value);
+      showMsg('Agency send-money link copied.', true);
+    } catch {
+      input.select();
+      showMsg('Copy the link from the box.', true);
+    }
+  });
+
+  $('agency-gen-btn')?.addEventListener('click', async () => {
+    const btn = $('agency-gen-btn');
+    setBusy(btn, true, 'Generate link');
+    showMsg('');
+    try {
+      await loadAgencyLink('generate');
+      showMsg('Agency send-money link is ready.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Generate link');
+    }
+  });
+
+  $('agency-disable-btn')?.addEventListener('click', async () => {
+    const btn = $('agency-disable-btn');
+    setBusy(btn, true, 'Disable link');
+    showMsg('');
+    try {
+      await loadAgencyLink('disable');
+      showMsg('Agency send-money link disabled.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Disable link');
+    }
+  });
 
   $('create-btn')?.addEventListener('click', async () => {
     const btn = $('create-btn');

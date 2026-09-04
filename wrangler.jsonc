@@ -9,7 +9,8 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*", "/.netlify/functions/*", "/send/*"]
   },
   "d1_databases": [
     {
@@ -18,15 +19,20 @@
       "database_id": "02619fd8-1025-4577-94b2-4d58fedb98f8"
     }
   ],
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
   "vars": {
     "SITE_URL": "https://martinsglobaltravel.com",
-    "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V"
+    "GA4_MEASUREMENT_ID": "G-Q3CNPW3C8V",
+    "SEND_MONEY_MIN_CENTS": "2000",
+    "SEND_MONEY_MAX_CENTS": "1000000"
   },
   "send_email": [
     {
       "name": "EMAIL",
       "destination_address": "Jeanie@MartinsGlobalTravels.com",
-      "allowed_sender_addresses": ["website@martinsglobaltravels.com"]
+      "allowed_sender_addresses": ["website@martinsglobaltravel.com"]
     }
   ]
 }

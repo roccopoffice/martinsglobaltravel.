@@ -117,6 +117,48 @@
     }
   }
 
+  async function loadSendLink() {
+    const urlEl = $('send-link-url');
+    const noteEl = $('send-link-note');
+    const receivedEl = $('send-received');
+    const copyBtn = $('copy-send-link-btn');
+    if (!urlEl) return;
+    const res = await fetch(API + 'send-money/link', { headers: authHeaders() });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      if (noteEl) noteEl.textContent = json.error || 'Could not load your send-money link.';
+      copyBtn.hidden = true;
+      return;
+    }
+    if (receivedEl) {
+      receivedEl.hidden = false;
+      receivedEl.textContent = 'Money received: ' + formatMoney(json.receivedCents || 0, 'usd');
+    }
+    if (json.status === 'disabled' || !json.url) {
+      urlEl.value = '';
+      urlEl.hidden = true;
+      copyBtn.hidden = true;
+      if (noteEl) noteEl.textContent = 'Your send-money link is disabled. Ask Martins Global Travels if you need it turned back on.';
+      return;
+    }
+    urlEl.hidden = false;
+    urlEl.value = json.url;
+    copyBtn.hidden = false;
+    if (noteEl) noteEl.textContent = 'Share this private link so someone can pay toward your trip.';
+  }
+
+  $('copy-send-link-btn')?.addEventListener('click', async () => {
+    const url = $('send-link-url')?.value;
+    if (!url) return;
+    try {
+      await navigator.clipboard.writeText(url);
+      showBanner('Link copied.', 'success');
+    } catch {
+      $('send-link-url').select();
+      showBanner('Copy the link from the box above.', 'warn');
+    }
+  });
+
   async function loadBalance() {
     const res = await fetch(API + 'auth/balance', { headers: authHeaders() });
     const json = await res.json().catch(() => ({}));
@@ -243,7 +285,7 @@
       showPasswordModal({ required: true });
       return;
     }
-    await Promise.all([loadBalance(), loadWallet()]);
+    await Promise.all([loadBalance(), loadWallet(), loadSendLink()]);
   }
 
   async function restoreSession() {
@@ -304,7 +346,7 @@
     document.body.style.overflow = '';
     if (currentUser) currentUser.must_change_password = false;
     showBanner('Password updated successfully.', 'success');
-    await Promise.all([loadBalance(), loadWallet()]);
+    await Promise.all([loadBalance(), loadWallet(), loadSendLink()]);
   }
 
   loginForm?.addEventListener('submit', async (e) => {
