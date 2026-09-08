@@ -756,11 +756,11 @@ async function adminGetAnalytics(request, env) {
     env.GA4_PROPERTY_ID && env.GA4_SERVICE_ACCOUNT_JSON
       ? {
           configured: false,
-          message: 'GA4 admin charts require a separate setup step (see SETUP-ANALYTICS.md).',
+          message: 'Website traffic is in Google Analytics (G-Q3CNPW3C8V). Portal payment totals are listed below.',
         }
       : {
           configured: false,
-          message: 'Add GA4_PROPERTY_ID and GA4_SERVICE_ACCOUNT_JSON in Cloudflare to enable site analytics.',
+          message: 'Website traffic is in Google Analytics. Portal payment totals are listed below.',
         };
 
   return json(200, {

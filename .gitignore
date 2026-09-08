@@ -5,7 +5,3 @@ js/config.js
 !.env.example
 .dev.vars
 .wrangler
-
-# Local duplicate copies - not part of the site
-Martins Global Travels Finished/
-Martins Global Travels Finished - Copy/

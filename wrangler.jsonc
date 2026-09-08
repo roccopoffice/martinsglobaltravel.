@@ -1,5 +1,5 @@
 {
-  // Cloudflare Workers + D1 backend (no Supabase). Static assets + /api/* routes.
+  // Cloudflare Workers + D1. Static assets + /api/* routes.
   "$schema": "node_modules/wrangler/config-schema.json",
   "account_id": "9d1ca5329918e495aa0b71c99de6369a",
   "name": "martinsglobaltravel",

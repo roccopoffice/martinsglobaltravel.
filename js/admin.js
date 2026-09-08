@@ -103,7 +103,7 @@
       return `
         <div class="site-section">
           <h3 class="lbl" style="margin-bottom:12px">Website traffic</h3>
-          <div class="analytics-hint">${escapeHtml(site?.message || 'Website analytics is not set up yet. Your web person can follow SETUP-ANALYTICS.md.')}</div>
+          <div class="analytics-hint">${escapeHtml(site?.message || 'Website traffic charts live in Google Analytics. Portal payment totals are below once clients pay.')}</div>
           <div class="link-list">
             <a href="#" data-open-forms>Open Enquiries tab</a>
             <a href="https://martinsglobaltravel.com" target="_blank" rel="noopener">View live website</a>
