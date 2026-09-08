@@ -1,6 +1,6 @@
 /**
- * Writes js/analytics-config.js at build time from Cloudflare env vars.
- * Local: set GA4_MEASUREMENT_ID, then node scripts/generate-config.js
+ * Writes js/analytics-config.js from GA4_MEASUREMENT_ID.
+ * The committed file already has the live measurement ID.
  */
 
 const fs = require('fs');

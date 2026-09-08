@@ -92,7 +92,12 @@ html[data-theme='dark'] .page .legal-prose li {
 
 html[data-theme='dark'] nav .nav-links a {
   color: rgba(255, 255, 255, 0.76) !important;
-  font-size: 12px !important;
+}
+
+@media (min-width: 1801px) {
+  html[data-theme='dark'] nav .nav-links a {
+    font-size: 12px !important;
+  }
 }
 
 html[data-theme='dark'] nav .nav-links a:hover,

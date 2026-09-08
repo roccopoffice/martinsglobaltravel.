@@ -1,6 +1,9 @@
 {
   "name": "martins-global-travels",
   "private": true,
+  "scripts": {
+    "test:send-money": "node scripts/test-send-money.js"
+  },
   "dependencies": {
     "@google-analytics/data": "^4.12.0",
     "stripe": "^17.7.0"
