@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/mgt-logo.png">
 <title>Client Portal — Martins Global Travels</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -277,10 +280,10 @@ nav#nav{
         <p id="login-error" class="portal-error" hidden></p>
         <button type="button" class="portal-link-btn" id="forgot-toggle">Forgot password?</button>
         <div id="forgot-panel" hidden>
-          <p class="portal-lead" style="margin-bottom:12px;font-size:13px">We will email you a link to reset your password.</p>
+          <p class="portal-lead" style="margin-bottom:12px;font-size:13px">Jeanie can reset your password. Email or call and she will send a new temporary password.</p>
           <label class="portal-lbl" for="forgot-email">Email</label>
           <input class="portal-inp" id="forgot-email" type="email" autocomplete="email">
-          <button type="button" class="portal-btn" id="forgot-send-btn">Send reset link</button>
+          <button type="button" class="portal-btn" id="forgot-send-btn">How to reset</button>
           <p id="forgot-msg" class="portal-error" style="color:var(--gold2);margin-top:10px" hidden></p>
         </div>
       </form>
@@ -296,6 +299,13 @@ nav#nav{
       <div class="portal-lbl">Balance owed</div>
       <div id="balance-amount" class="balance-display">—</div>
       <p id="balance-note" class="balance-note">Loading…</p>
+      <div id="credit-apply-box" hidden style="margin:18px 0;padding-top:16px;border-top:1px solid var(--border)">
+        <div class="portal-lbl">Have a Gift Card or Travel Credit?</div>
+        <p id="trip-quote" class="balance-note" hidden></p>
+        <input class="portal-inp" id="gift-code" type="text" autocomplete="off" placeholder="TRVL-8K4P-X92M" style="text-transform:uppercase">
+        <button type="button" class="portal-btn" id="apply-code-btn">Apply Credit</button>
+        <button type="button" class="portal-btn portal-btn-outline" id="apply-available-btn">Apply available travel credit</button>
+      </div>
       <button type="button" class="portal-btn" id="pay-btn" disabled>Pay balance with card</button>
       <button type="button" class="portal-btn portal-btn-outline" id="change-pw-btn">Change password</button>
       <button type="button" class="portal-btn portal-btn-outline" id="logout-btn">Sign out</button>
@@ -319,7 +329,15 @@ nav#nav{
       </div>
       <div id="wallet-history" class="wallet-history" hidden></div>
     </div>
-    <p class="portal-foot">Questions about your trip? <a href="index.html" onclick="if(window.go){return true}">Contact us</a> or call <a href="tel:+15082323003">(508) 232-3003</a>.</p>
+    <div class="portal-card" id="travel-credits-card">
+      <div class="portal-lbl">My Travel Credits</div>
+      <div id="gc-total" class="balance-display">—</div>
+      <p id="gc-empty" class="balance-note">You don't have any travel credits yet.</p>
+      <a class="portal-btn" id="gc-give-btn" href="gift-cards.html" style="display:block;text-align:center">Give a Gift Card</a>
+      <div id="gc-list" class="wallet-history" hidden></div>
+      <div id="gc-detail" class="wallet-history" hidden></div>
+    </div>
+    <p class="portal-foot">Questions about your trip? <a href="index.html#contact">Contact us</a> or call <a href="tel:+15082323003">(508) 232-3003</a>.</p>
   </section>
 </main>
 
@@ -340,7 +358,7 @@ nav#nav{
       <ul class="ft-links">
         <li><a href="index.html#destinations" data-i18n="nav.destinations">Destinations</a></li>
         <li><a href="index.html#packages" data-i18n="nav.packages">Packages</a></li>
-        <li><a href="book.html" data-i18n="bookNav.bookTravel">Book Travel</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
         <li><a href="portal.html" data-i18n="nav.portal">Client Portal</a></li>
       </ul>
     </div>
@@ -389,10 +407,9 @@ nav#nav{
   </div>
 </div>
 
-<script src="js/analytics-config.js"></script>
-<script src="js/analytics.js"></script>
-<script src="js/config.js"></script>
-<script src="js/portal.js"></script>
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js" defer></script>
+<script src="js/portal.js" defer></script>
 <script>
 (function(){
   var ham=document.getElementById('ham');
