@@ -2,7 +2,6 @@
   "name": "martins-global-travels",
   "private": true,
   "dependencies": {
-    "@google-analytics/data": "^4.12.0",
     "stripe": "^17.7.0"
   }
 }

@@ -49,9 +49,21 @@
     $('panel-list').hidden = tabId !== 'list';
     $('panel-balance').hidden = tabId !== 'balance';
     $('panel-credits').hidden = tabId !== 'credits';
+    $('panel-agency').hidden = tabId !== 'agency';
+    if ($('panel-giftcards')) $('panel-giftcards').hidden = tabId !== 'giftcards';
+    $('panel-forms').hidden = tabId !== 'forms';
     $('panel-analytics').hidden = tabId !== 'analytics';
-    mainEl?.classList.toggle('wide', tabId === 'list' || tabId === 'analytics');
+    mainEl?.classList.toggle(
+      'wide',
+      tabId === 'list' || tabId === 'analytics' || tabId === 'forms' || tabId === 'giftcards'
+    );
     if (tabId === 'list') loadClientList();
+    if (tabId === 'agency') loadAgencyLink();
+    if (tabId === 'giftcards') {
+      loadGiftCards();
+      loadGiftSettings();
+    }
+    if (tabId === 'forms') loadForms();
     if (tabId === 'analytics') loadAnalytics();
   }
 
@@ -91,9 +103,9 @@
       return `
         <div class="site-section">
           <h3 class="lbl" style="margin-bottom:12px">Website traffic</h3>
-          <div class="analytics-hint">${escapeHtml(site?.message || 'Website analytics is not set up yet. Your web person can follow SETUP-ANALYTICS.md.')}</div>
+          <div class="analytics-hint">${escapeHtml(site?.message || 'Website traffic charts live in Google Analytics. Portal payment totals are below once clients pay.')}</div>
           <div class="link-list">
-            <a href="https://app.netlify.com" target="_blank" rel="noopener">Netlify → Forms (enquiry submissions)</a>
+            <a href="#" data-open-forms>Open Enquiries tab</a>
             <a href="https://martinsglobaltravel.com" target="_blank" rel="noopener">View live website</a>
           </div>
         </div>`;
@@ -151,7 +163,7 @@
         </div>
         <div class="link-list" style="margin-top:16px">
           <a href="https://analytics.google.com" target="_blank" rel="noopener">Open full Google Analytics dashboard</a>
-          <a href="https://app.netlify.com" target="_blank" rel="noopener">Netlify → Forms (enquiry submissions)</a>
+          <a href="#" data-open-forms>Open Enquiries tab</a>
         </div>
       </div>`;
   }
@@ -193,6 +205,47 @@
         <h3 class="lbl" style="margin-bottom:8px">Recent portal payments</h3>
         ${recent}
       `;
+    } catch (e) {
+      body.className = 'list-empty';
+      body.textContent = e.message;
+    }
+  }
+
+  async function loadForms() {
+    const body = $('forms-body');
+    if (!body || !adminPassword) return;
+
+    body.className = 'list-loading';
+    body.textContent = 'Loading form submissions…';
+
+    try {
+      const json = await api('admin-list-forms', { adminPassword });
+      const rows = json.submissions || [];
+      if (!rows.length) {
+        body.className = '';
+        body.innerHTML = '<p class="hint">No website form submissions yet.</p>';
+        return;
+      }
+
+      body.className = '';
+      body.innerHTML = `<table class="mini-table">
+        <thead><tr><th>When</th><th>Type</th><th>From</th><th>Details</th><th>Emailed</th></tr></thead>
+        <tbody>${rows
+          .map((r) => {
+            const who = [r.name, r.email].filter(Boolean).join(' · ');
+            const bits = [r.phone, r.destination, r.package, r.travelers, r.message]
+              .filter(Boolean)
+              .join(' · ');
+            return `<tr>
+              <td>${escapeHtml(formatDate(r.created_at))}</td>
+              <td>${escapeHtml(r.form_type || '')}</td>
+              <td>${escapeHtml(who)}</td>
+              <td>${escapeHtml(bits || '—')}</td>
+              <td>${r.emailed ? 'Yes' : 'Saved'}</td>
+            </tr>`;
+          })
+          .join('')}</tbody>
+      </table>`;
     } catch (e) {
       body.className = 'list-empty';
       body.textContent = e.message;
@@ -282,6 +335,53 @@
     }
   }
 
+  function renderAgencyPayments(payments) {
+    const box = $('agency-payments');
+    if (!box) return;
+    if (!payments?.length) {
+      box.innerHTML = '<p class="hint" style="margin-top:14px">No send-money payments yet.</p>';
+      return;
+    }
+    box.innerHTML =
+      '<p class="hint" style="margin-top:14px">Payments received through the agency link</p>' +
+      payments
+        .slice(0, 10)
+        .map(
+          (p) =>
+            `<p class="hint">${escapeHtml(formatMoney(((p.amount_cents || 0) / 100).toFixed(2)))} · ${escapeHtml(p.status || '')} · ${escapeHtml(p.created_at || '')}</p>`
+        )
+        .join('');
+  }
+
+  async function loadAgencyLink(action) {
+    if (!adminPassword) return;
+    const statusEl = $('agency-status');
+    const urlEl = $('agency-url');
+    const receivedEl = $('agency-received');
+    try {
+      const json = await api('admin-send-money', {
+        adminPassword,
+        target: 'agency',
+        ...(action ? { action } : {}),
+      });
+      if (urlEl) urlEl.value = json.url || '';
+      if (statusEl) {
+        statusEl.textContent = json.status
+          ? `Link is ${json.status}.`
+          : 'No link yet. Generate one to share.';
+      }
+      if (receivedEl) {
+        receivedEl.textContent =
+          'Money received: ' + formatMoney(((json.receivedCents || 0) / 100).toFixed(2));
+      }
+      renderAgencyPayments(json.payments || []);
+      return json;
+    } catch (e) {
+      if (statusEl) statusEl.textContent = e.message;
+      throw e;
+    }
+  }
+
   async function loadClientList() {
     const body = $('list-body');
     const countEl = $('list-count');
@@ -328,6 +428,22 @@
                 <button type="button" class="btn btn-outline btn-sm credit-btn" data-email="${emailAttr}">Send credit</button>
                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-email="${emailAttr}" data-name="${escapeHtml(c.name)}">Remove client</button>
               </div>
+              <p class="hint" style="margin-top:16px">Send money link${c.sendLinkStatus ? ` · ${escapeHtml(c.sendLinkStatus)}` : ''} · received ${escapeHtml(formatMoney(((c.sendReceivedCents || 0) / 100).toFixed(2)))}</p>
+              <input class="inp" readonly data-send-url="${emailAttr}" value="${c.sendToken ? escapeHtml(location.origin + '/send/' + c.sendToken) : ''}">
+              <div class="detail-actions">
+                <button type="button" class="btn btn-sm btn-outline copy-send-btn" data-email="${emailAttr}">Copy link</button>
+                <button type="button" class="btn btn-sm btn-outline gen-send-btn" data-email="${emailAttr}">Generate link</button>
+                <button type="button" class="btn btn-sm btn-outline disable-send-btn" data-email="${emailAttr}">Disable link</button>
+              </div>
+              ${(c.sendPayments || []).length
+                ? `<p class="hint" style="margin-top:14px">Payments received through the link</p>${c.sendPayments
+                    .slice(0, 10)
+                    .map(
+                      (p) =>
+                        `<p class="hint">${escapeHtml(formatMoney(((p.amountCents || 0) / 100).toFixed(2)))} · ${escapeHtml(p.status)} · ${escapeHtml(p.createdAt || '')}</p>`
+                    )
+                    .join('')}`
+                : '<p class="hint" style="margin-top:14px">No send-money payments yet.</p>'}
             </div>
           </td>
         </tr>`;
@@ -382,6 +498,58 @@
         });
       });
 
+      body.querySelectorAll('.copy-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const input = body.querySelector(`input[data-send-url="${CSS.escape(btn.dataset.email)}"]`);
+          if (!input?.value) {
+            showMsg('Generate a link first.', false);
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(input.value);
+            showMsg('Send-money link copied.', true);
+          } catch {
+            input.select();
+            showMsg('Copy the link from the box.', true);
+          }
+        });
+      });
+
+      body.querySelectorAll('.gen-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            const json = await api('admin-send-money', {
+              adminPassword,
+              email: btn.dataset.email,
+              action: 'generate',
+            });
+            showMsg('Send-money link ready for ' + json.client.name + '.', true);
+            loadClientList();
+          } catch (err) {
+            showMsg(err.message, false);
+          }
+        });
+      });
+
+      body.querySelectorAll('.disable-send-btn').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            await api('admin-send-money', {
+              adminPassword,
+              email: btn.dataset.email,
+              action: 'disable',
+            });
+            showMsg('Send-money link disabled.', true);
+            loadClientList();
+          } catch (err) {
+            showMsg(err.message, false);
+          }
+        });
+      });
+
       body.querySelectorAll('tr.client-detail').forEach((row) => {
         row.addEventListener('click', (e) => e.stopPropagation());
       });
@@ -406,7 +574,8 @@
       loginSec.hidden = true;
       toolsSec.hidden = false;
       showMsg('Signed in. You can add clients or view the list.', true);
-      loadClientList();
+      if (location.hash === '#gift-cards') switchTab('giftcards');
+      else loadClientList();
     } catch (e) {
       showMsg(e.message, false);
     } finally {
@@ -424,6 +593,56 @@
 
   $('refresh-list-btn')?.addEventListener('click', () => loadClientList());
   $('refresh-analytics-btn')?.addEventListener('click', () => loadAnalytics());
+  $('refresh-forms-btn')?.addEventListener('click', () => loadForms());
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('[data-open-forms]');
+    if (!link) return;
+    e.preventDefault();
+    switchTab('forms');
+  });
+
+  $('agency-copy-btn')?.addEventListener('click', async () => {
+    const input = $('agency-url');
+    if (!input?.value) {
+      showMsg('Generate a link first.', false);
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(input.value);
+      showMsg('Agency send-money link copied.', true);
+    } catch {
+      input.select();
+      showMsg('Copy the link from the box.', true);
+    }
+  });
+
+  $('agency-gen-btn')?.addEventListener('click', async () => {
+    const btn = $('agency-gen-btn');
+    setBusy(btn, true, 'Generate link');
+    showMsg('');
+    try {
+      await loadAgencyLink('generate');
+      showMsg('Agency send-money link is ready.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Generate link');
+    }
+  });
+
+  $('agency-disable-btn')?.addEventListener('click', async () => {
+    const btn = $('agency-disable-btn');
+    setBusy(btn, true, 'Disable link');
+    showMsg('');
+    try {
+      await loadAgencyLink('disable');
+      showMsg('Agency send-money link disabled.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Disable link');
+    }
+  });
 
   $('create-btn')?.addEventListener('click', async () => {
     const btn = $('create-btn');
@@ -497,6 +716,255 @@
       showMsg(e.message, false);
     } finally {
       setBusy(btn, false, 'Send credit');
+    }
+  });
+
+  let giftCardsCache = [];
+
+  function gcMoney(cents) {
+    return formatMoney(((cents || 0) / 100).toFixed(2));
+  }
+
+  async function loadGiftCards() {
+    const body = $('gc-list-body');
+    if (!body || !adminPassword) return;
+    body.className = 'list-loading';
+    body.textContent = 'Loading gift cards…';
+    try {
+      const json = await api('admin-gift-cards-list', {
+        adminPassword,
+        q: $('gc-q')?.value || '',
+      });
+      giftCardsCache = json.giftCards || [];
+      if (!giftCardsCache.length) {
+        body.className = 'list-empty';
+        body.textContent = 'No gift cards yet.';
+        return;
+      }
+      body.className = '';
+      body.innerHTML = `<table class="client-table">
+        <thead><tr><th>Recipient</th><th>Type</th><th>Status</th><th>Balance</th><th></th></tr></thead>
+        <tbody>${giftCardsCache
+          .map(
+            (c) => `<tr class="client-row" data-id="${escapeHtml(c.id)}">
+              <td data-label="Recipient">${escapeHtml(c.recipientName || '')}<div class="email">${escapeHtml(c.recipientEmail || '')}</div></td>
+              <td data-label="Type">${escapeHtml(c.type)}</td>
+              <td data-label="Status">${escapeHtml(c.status)} · ••••${escapeHtml(c.codeLastFour || '')}</td>
+              <td data-label="Balance" class="bal">${escapeHtml(gcMoney(c.currentBalanceCents))}</td>
+              <td><button type="button" class="btn btn-sm gc-open" data-id="${escapeHtml(c.id)}">View</button></td>
+            </tr>`
+          )
+          .join('')}</tbody></table>`;
+      body.querySelectorAll('.gc-open').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openGiftCard(btn.dataset.id);
+        });
+      });
+    } catch (e) {
+      body.className = 'list-empty';
+      body.textContent = e.message;
+    }
+  }
+
+  async function openGiftCard(id) {
+    const wrap = $('gc-detail-body');
+    wrap.hidden = false;
+    wrap.innerHTML = '<p class="list-loading">Loading…</p>';
+    try {
+      const json = await api('admin-gift-cards-get', { adminPassword, id });
+      const c = json.giftCard;
+      const txs = json.transactions || [];
+      const apps = json.applications || [];
+      wrap.innerHTML = `
+        <h3 class="lbl">Card ${escapeHtml(c.id.slice(0, 8))} · ••••${escapeHtml(c.codeLastFour || '')}</h3>
+        <p class="hint">${escapeHtml(c.type)} · ${escapeHtml(c.status)} · Original ${escapeHtml(gcMoney(c.originalAmountCents))} · Remaining ${escapeHtml(gcMoney(c.currentBalanceCents))}<br>
+        Recipient: ${escapeHtml(c.recipientName || '')} (${escapeHtml(c.recipientEmail || '')})<br>
+        Payment: ${escapeHtml(c.paymentId || 'none')} · Stripe: ${escapeHtml(c.stripeSessionId || 'none')}</p>
+        <div class="row row-wrap">
+          <div>
+            <label class="lbl" for="gc-adj-amt">Adjust amount ($)</label>
+            <input class="inp" id="gc-adj-amt" inputmode="decimal">
+          </div>
+          <div>
+            <label class="lbl" for="gc-adj-reason">Reason (required)</label>
+            <input class="inp" id="gc-adj-reason" placeholder="Correction, goodwill…">
+          </div>
+        </div>
+        <div class="detail-actions">
+          <button type="button" class="btn btn-sm" id="gc-adj-add">Add</button>
+          <button type="button" class="btn btn-outline btn-sm" id="gc-adj-remove">Remove</button>
+          <button type="button" class="btn btn-outline btn-sm" id="gc-disable">${c.status === 'disabled' ? 'Re-enable' : 'Disable'}</button>
+          <button type="button" class="btn btn-outline btn-sm" id="gc-resend">Resend email</button>
+        </div>
+        <h3 class="lbl" style="margin-top:18px">Ledger</h3>
+        <table class="mini-table"><thead><tr><th>When</th><th>Type</th><th>Amount</th><th>Balance after</th></tr></thead>
+        <tbody>${txs
+          .map(
+            (t) =>
+              `<tr><td>${escapeHtml(formatDate(t.created_at))}</td><td>${escapeHtml(t.transaction_type)} — ${escapeHtml(t.reason || '')}</td><td>${escapeHtml(gcMoney(t.amount_cents))}</td><td>${escapeHtml(gcMoney(t.balance_after_cents))}</td></tr>`
+          )
+          .join('')}</tbody></table>
+        <h3 class="lbl" style="margin-top:18px">Trip applications</h3>
+        ${
+          apps.length
+            ? `<table class="mini-table"><thead><tr><th>When</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${apps
+                .map(
+                  (a) =>
+                    `<tr><td>${escapeHtml(formatDate(a.created_at))}</td><td>${escapeHtml(gcMoney(a.amount_cents))}</td><td>${escapeHtml(a.status)}</td><td>${
+                      a.status === 'applied'
+                        ? `<button type="button" class="btn btn-sm gc-restore" data-id="${escapeHtml(a.id)}">Restore credit</button>`
+                        : ''
+                    }</td></tr>`
+                )
+                .join('')}</tbody></table>`
+            : '<p class="hint">None yet.</p>'
+        }`;
+      $('gc-adj-add')?.addEventListener('click', () => adjustGift(id, 'add'));
+      $('gc-adj-remove')?.addEventListener('click', () => adjustGift(id, 'remove'));
+      $('gc-disable')?.addEventListener('click', () =>
+        disableGift(id, c.status === 'disabled' ? 'active' : 'disabled')
+      );
+      $('gc-resend')?.addEventListener('click', () => resendGift(id));
+      wrap.querySelectorAll('.gc-restore').forEach((btn) => {
+        btn.addEventListener('click', () => restoreGift(btn.dataset.id));
+      });
+    } catch (e) {
+      wrap.innerHTML = `<p class="msg err">${escapeHtml(e.message)}</p>`;
+    }
+  }
+
+  async function adjustGift(id, action) {
+    try {
+      const json = await api('admin-gift-cards-adjust', {
+        adminPassword,
+        id,
+        action,
+        amountDollars: $('gc-adj-amt').value,
+        reason: $('gc-adj-reason').value,
+      });
+      showMsg('Balance updated.', true);
+      openGiftCard(json.giftCard.id);
+      loadGiftCards();
+    } catch (e) {
+      showMsg(e.message, false);
+    }
+  }
+
+  async function disableGift(id, status) {
+    try {
+      await api('admin-gift-cards-disable', {
+        adminPassword,
+        id,
+        status,
+        reason: status === 'disabled' ? 'Disabled by staff' : 'Re-enabled by staff',
+      });
+      showMsg(status === 'disabled' ? 'Card disabled.' : 'Card re-enabled.', true);
+      openGiftCard(id);
+      loadGiftCards();
+    } catch (e) {
+      showMsg(e.message, false);
+    }
+  }
+
+  async function resendGift(id) {
+    try {
+      const json = await api('admin-gift-cards-resend', { adminPassword, id });
+      showMsg(json.ok ? `Email queued for ${json.recipientEmail}.` : 'Resend attempted.', true);
+    } catch (e) {
+      showMsg(e.message, false);
+    }
+  }
+
+  async function restoreGift(applicationId) {
+    const reason = window.prompt('Reason for restoring this gift-card credit to the card (required):');
+    if (!reason) return;
+    try {
+      const json = await api('admin-gift-cards-restore', { adminPassword, applicationId, reason });
+      showMsg(`Restored ${gcMoney(json.restoredCents)} to the gift card.`, true);
+      loadGiftCards();
+    } catch (e) {
+      showMsg(e.message, false);
+    }
+  }
+
+  async function loadGiftSettings() {
+    if (!adminPassword) return;
+    try {
+      const json = await api('admin-gift-cards-settings', { adminPassword });
+      const s = json.raw || {};
+      if ($('gc-min')) $('gc-min').value = ((s.min_amount_cents || 0) / 100).toFixed(2);
+      if ($('gc-max')) $('gc-max').value = ((s.max_amount_cents || 0) / 100).toFixed(2);
+      if ($('gc-combine')) $('gc-combine').checked = Number(s.allow_combine) === 1;
+      if ($('gc-transfer')) $('gc-transfer').checked = Number(s.transferable) === 1;
+    } catch {
+      /* ignore until signed in */
+    }
+  }
+
+  $('gc-search-btn')?.addEventListener('click', loadGiftCards);
+  $('gc-q')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') loadGiftCards();
+  });
+  $('gc-export-btn')?.addEventListener('click', () => {
+    const rows = [
+      ['id', 'type', 'status', 'recipient', 'email', 'original', 'balance', 'last4', 'created'].join(','),
+      ...giftCardsCache.map((c) =>
+        [
+          c.id,
+          c.type,
+          c.status,
+          JSON.stringify(c.recipientName || ''),
+          c.recipientEmail || '',
+          (c.originalAmountCents || 0) / 100,
+          (c.currentBalanceCents || 0) / 100,
+          c.codeLastFour || '',
+          c.createdAt || '',
+        ].join(',')
+      ),
+    ];
+    const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'gift-cards.csv';
+    a.click();
+  });
+  $('gc-issue-btn')?.addEventListener('click', async () => {
+    const btn = $('gc-issue-btn');
+    setBusy(btn, true, 'Issue promotional credit');
+    try {
+      const json = await api('admin-gift-cards-issue', {
+        adminPassword,
+        recipientName: $('gc-issue-name').value,
+        recipientEmail: $('gc-issue-email').value,
+        amountDollars: $('gc-issue-amount').value,
+        giftMessage: $('gc-issue-msg').value,
+        reason: $('gc-issue-msg').value || 'Promotional travel credit',
+      });
+      showMsg(json.message, true);
+      const codeEl = $('gc-issue-code');
+      codeEl.hidden = false;
+      codeEl.textContent = 'Give the recipient this code: ' + json.code;
+      loadGiftCards();
+    } catch (e) {
+      showMsg(e.message, false);
+    } finally {
+      setBusy(btn, false, 'Issue promotional credit');
+    }
+  });
+  $('gc-save-settings')?.addEventListener('click', async () => {
+    try {
+      await api('admin-gift-cards-settings', {
+        adminPassword,
+        save: true,
+        min_amount_cents: Math.round(parseFloat($('gc-min').value || '0') * 100),
+        max_amount_cents: Math.round(parseFloat($('gc-max').value || '0') * 100),
+        allow_combine: $('gc-combine').checked ? 1 : 0,
+        transferable: $('gc-transfer').checked ? 1 : 0,
+      });
+      showMsg('Gift card policy saved.', true);
+    } catch (e) {
+      showMsg(e.message, false);
     }
   });
 
