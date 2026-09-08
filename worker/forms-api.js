@@ -153,6 +153,7 @@ export async function submitNewsletter(request, env) {
       )}</p></div>`,
     });
     emailed = !!sent.ok;
+    if (!sent.ok) console.error('Newsletter email not sent:', sent.reason);
   } catch (err) {
     console.error('Newsletter email failed:', err);
   }
