@@ -416,7 +416,7 @@ async function stripeWebhook(request, env) {
   const rawBody = await request.text();
   let stripeEvent;
   try {
-    stripeEvent = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
+    stripeEvent = await stripe.webhooks.constructEventAsync(rawBody, sig, webhookSecret);
   } catch (err) {
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
