@@ -1,5 +1,7 @@
 import {
+  brandedFormEmail,
   CONTACT_FROM,
+  CONTACT_SITE,
   CONTACT_TO,
   isLookalikeDomain,
   sanitizeEmail,
@@ -36,6 +38,29 @@ else fail('gmail is not lookalike', 'false positive');
 
 if (!isLookalikeDomain(CONTACT_FROM, 'website@martinsglobaltravel.com')) pass('same domain is not lookalike');
 else fail('same domain is not lookalike', 'false positive');
+
+const branded = brandedFormEmail({
+  kind: 'enquiry',
+  name: 'Alexandra Chen',
+  email: 'alexandra@example.com',
+  fields: [
+    { label: 'Destination', value: 'Japan / Asia Pacific' },
+    { label: 'Package', value: 'Signature Journey' },
+  ],
+  message: 'Cherry blossom dates in Kyoto.',
+});
+if (branded.html.includes(`${CONTACT_SITE}/assets/mgt-logo.png`)) pass('branded email includes logo');
+else fail('branded email includes logo', 'missing logo url');
+if (branded.html.includes('#c9a84c') && branded.html.includes('DM Serif Display')) {
+  pass('branded email uses gold and site fonts');
+} else {
+  fail('branded email uses gold and site fonts', 'missing brand styles');
+}
+if (branded.html.includes('Japan / Asia Pacific') && branded.text.includes('Cherry blossom')) {
+  pass('branded email includes form details');
+} else {
+  fail('branded email includes form details', 'missing fields');
+}
 
 const failed = checks.filter((c) => !c.ok);
 console.log(`\n${checks.length - failed.length}/${checks.length} checks passed`);

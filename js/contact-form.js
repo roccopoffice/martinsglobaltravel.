@@ -49,7 +49,7 @@
 
   var form = document.getElementById("enquiry-form");
   if (form) {
-    ensureHidden(form, "_subject", "New enquiry — Martins Global Travels website");
+    ensureHidden(form, "_subject", "New enquiry from the website");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();

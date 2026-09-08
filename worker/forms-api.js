@@ -1,5 +1,5 @@
 import { json, verifyAdmin } from './lib/http.js';
-import { CONTACT_TO, escapeHtml, formNotice, sendSiteEmail } from './lib/site-email.js';
+import { brandedFormEmail, CONTACT_TO, sendSiteEmail } from './lib/site-email.js';
 
 function validEmail(value) {
   const email = String(value || '')
@@ -34,18 +34,19 @@ async function readContactBody(request) {
   }
 }
 
-function enquiryLines(data, name, email) {
-  const skip = new Set(['_honey', '_subject', '_next', 'name', 'formType']);
-  const lines = [`Name: ${name}`, `Email: ${email}`];
-  for (const [key, value] of Object.entries(data)) {
-    if (skip.has(key) || value == null || String(value).trim() === '') continue;
-    const label = key
-      .replace(/([A-Z])/g, ' $1')
-      .replace(/^./, (c) => c.toUpperCase())
-      .trim();
-    lines.push(`${label}: ${String(value).trim()}`);
-  }
-  return lines;
+function enquiryFields(data, name, email) {
+  const pairs = [
+    ['Name', name],
+    ['Email', email],
+    ['Phone', data.phone],
+    ['Destination', data.destination],
+    ['Package', data.package],
+    ['Departure', data.departureDate],
+    ['Travelers', data.travelers],
+  ];
+  return pairs
+    .map(([label, value]) => ({ label, value: String(value || '').trim() }))
+    .filter((field) => field.value);
 }
 
 export async function submitContact(request, env) {
@@ -58,18 +59,18 @@ export async function submitContact(request, env) {
   if (isHoneypot(data, email)) {
     return json(200, { ok: true });
   }
-  const subject = String(data._subject || '').trim() || 'Website enquiry';
-
   if (!name || !email) {
     return json(400, { error: 'Name and a valid email are required.' });
   }
 
-  const lines = enquiryLines(data, name, email);
-  const body = formNotice(
-    'new enquiry',
-    lines.join('\n'),
-    lines.map((line) => `<p style="margin:0 0 8px">${escapeHtml(line)}</p>`).join('')
-  );
+  const subject = `New enquiry from ${name}`;
+  const body = brandedFormEmail({
+    kind: 'enquiry',
+    name,
+    email,
+    fields: enquiryFields(data, name, email),
+    message: String(data.message || '').trim(),
+  });
 
   const id = crypto.randomUUID();
   try {
@@ -143,15 +144,16 @@ export async function submitNewsletter(request, env) {
 
   let emailed = false;
   try {
-    const notice = formNotice(
-      'newsletter signup',
-      `New newsletter signup\nEmail: ${email}`,
-      `<p style="margin:0 0 8px">New newsletter signup</p><p style="margin:0">Email: ${escapeHtml(email)}</p>`
-    );
+    const notice = brandedFormEmail({
+      kind: 'newsletter',
+      name: '',
+      email,
+      fields: [{ label: 'Email', value: email }],
+    });
     const sent = await sendSiteEmail(env, {
       to: CONTACT_TO,
       replyTo: email,
-      subject: 'Website newsletter signup',
+      subject: 'Newsletter signup',
       text: notice.text,
       html: notice.html,
     });
