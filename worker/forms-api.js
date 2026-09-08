@@ -1,5 +1,5 @@
 import { json, verifyAdmin } from './lib/http.js';
-import { CONTACT_TO, escapeHtml, sendSiteEmail } from './lib/site-email.js';
+import { CONTACT_TO, escapeHtml, formNotice, sendSiteEmail } from './lib/site-email.js';
 
 function validEmail(value) {
   const email = String(value || '')
@@ -58,18 +58,18 @@ export async function submitContact(request, env) {
   if (isHoneypot(data, email)) {
     return json(200, { ok: true });
   }
-  const subject =
-    String(data._subject || '').trim() || 'New enquiry — Martins Global Travels website';
+  const subject = String(data._subject || '').trim() || 'Website enquiry';
 
   if (!name || !email) {
     return json(400, { error: 'Name and a valid email are required.' });
   }
 
   const lines = enquiryLines(data, name, email);
-  const text = lines.join('\n');
-  const html = `<div style="font-family:system-ui,sans-serif;line-height:1.5">${lines
-    .map((line) => `<p>${escapeHtml(line)}</p>`)
-    .join('')}</div>`;
+  const body = formNotice(
+    'new enquiry',
+    lines.join('\n'),
+    lines.map((line) => `<p style="margin:0 0 8px">${escapeHtml(line)}</p>`).join('')
+  );
 
   const id = crypto.randomUUID();
   try {
@@ -101,8 +101,8 @@ export async function submitContact(request, env) {
       to: CONTACT_TO,
       replyTo: email,
       subject,
-      text,
-      html,
+      text: body.text,
+      html: body.html,
     });
     emailed = !!sent.ok;
     if (!sent.ok) console.error('Contact form email not sent:', sent.reason);
@@ -143,14 +143,17 @@ export async function submitNewsletter(request, env) {
 
   let emailed = false;
   try {
+    const notice = formNotice(
+      'newsletter signup',
+      `New newsletter signup\nEmail: ${email}`,
+      `<p style="margin:0 0 8px">New newsletter signup</p><p style="margin:0">Email: ${escapeHtml(email)}</p>`
+    );
     const sent = await sendSiteEmail(env, {
       to: CONTACT_TO,
       replyTo: email,
-      subject: 'New newsletter signup — Martins Global Travels website',
-      text: `New newsletter signup\nEmail: ${email}`,
-      html: `<div style="font-family:system-ui,sans-serif;line-height:1.5"><p>New newsletter signup</p><p>Email: ${escapeHtml(
-        email
-      )}</p></div>`,
+      subject: 'Website newsletter signup',
+      text: notice.text,
+      html: notice.html,
     });
     emailed = !!sent.ok;
     if (!sent.ok) console.error('Newsletter email not sent:', sent.reason);

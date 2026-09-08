@@ -67,7 +67,7 @@ export function giftCardEmailContent(card, code, env) {
 }
 
 async function sendRaw(env, { to, subject, text, html }) {
-  return sendSiteEmail(env, { to, subject, text, html });
+  return sendSiteEmail(env, { to, subject, text, html, fromName: 'Martins Global Travels' });
 }
 
 export async function sendGiftCardEmail(env, card, code) {
