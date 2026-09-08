@@ -31,7 +31,7 @@
   "send_email": [
     {
       "name": "EMAIL",
-      "destination_address": "Jeanie@MartinsGlobalTravels.com",
+      "destination_address": "jeanie@martinsglobaltravels.com",
       "allowed_sender_addresses": ["website@martinsglobaltravel.com"]
     }
   ]

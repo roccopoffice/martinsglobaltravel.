@@ -1,4 +1,4 @@
-export const CONTACT_TO = 'Jeanie@MartinsGlobalTravels.com';
+export const CONTACT_TO = 'jeanie@martinsglobaltravels.com';
 export const CONTACT_FROM = 'website@martinsglobaltravel.com';
 
 export function escapeHtml(value) {
