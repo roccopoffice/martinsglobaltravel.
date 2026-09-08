@@ -1,6 +1,5 @@
 node_modules/
 js/config.js
-js/analytics-config.js
 .env
 .env.*
 !.env.example

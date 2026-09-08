@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/mgt-logo.png">
 <title>E-Gift Cards — Martins Global Travels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -200,9 +202,11 @@ textarea.inp{min-height:90px;resize:vertical}
     <div class="nav-links">
       <a href="index.html" data-i18n="nav.home">Home</a>
       <a href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
-      <a href="gift-cards.html" class="act" data-i18n="nav.giftCards">Gift Cards</a>
       <a href="index.html#packages" data-i18n="nav.packages">Packages</a>
+      <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="index.html#about" data-i18n="nav.about">About</a>
       <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      <a href="gift-cards.html" class="act" data-i18n="nav.giftCards">Gift Cards</a>
       <a href="portal.html" data-i18n="nav.portal">Client Portal</a>
     </div>
     <div class="lang-switcher">
@@ -223,9 +227,13 @@ textarea.inp{min-height:90px;resize:vertical}
 </nav>
 <div class="mob" id="mob" aria-hidden="true">
   <a href="index.html">Home</a>
+  <a href="index.html#destinations">Destinations</a>
+  <a href="index.html#packages">Packages</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact">Contact</a>
   <a href="gift-cards.html">Gift Cards</a>
   <a href="portal.html">Client Portal</a>
-  <a href="index.html#contact">Contact</a>
 </div>
 
 <section class="hero">
@@ -364,8 +372,8 @@ textarea.inp{min-height:90px;resize:vertical}
   </div>
   <div class="ft-bot"><div class="ft-copy">© 2026 Martins Global Travels. All Rights Reserved.</div></div>
 </footer>
-<script src="js/analytics-config.js"></script>
-<script src="js/analytics.js"></script>
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js" defer></script>
 <script src="js/gift-cards.js"></script>
 <script src="i18n/translations.js"></script>
 <script src="i18n.js"></script>

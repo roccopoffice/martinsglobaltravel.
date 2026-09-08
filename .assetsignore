@@ -20,5 +20,13 @@ worker/
 migrations/
 .wrangler
 *.md
+*.pdf
+mgt-logo.png
+mgt-logo-opaque-backup.png
+i18n/generated
+js/book-hero-visual.js
+js/config.example.js
+js/analytics-config.example.js
+assets/world-cup-popup.png
 Martins Global Travels Finished
 Martins Global Travels Finished - Copy

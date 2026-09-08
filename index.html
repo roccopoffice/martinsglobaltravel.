@@ -11,6 +11,8 @@
 <link rel="apple-touch-icon" href="assets/mgt-logo.png">
 <title data-i18n-title="meta.title">Martins Global Travels</title>
 <!-- Your photos: save as JPG/PNG/WebP in assets/photos/ using the names in data-local (e.g. hero.jpg matches data-local="assets/photos/hero") -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -649,8 +651,8 @@ footer{background:var(--ink2);border-top:1px solid var(--border);padding:72px 52
 <link rel="stylesheet" href="css/readable.css">
 <link rel="stylesheet" href="css/theme.css">
 <script src="js/theme.js" defer></script>
-<script src="js/analytics-config.js"></script>
-<script src="js/analytics.js"></script>
+<script src="js/analytics-config.js" defer></script>
+<script src="js/analytics.js" defer></script>
 </head>
 <body>
 
@@ -1013,7 +1015,8 @@ footer{background:var(--ink2);border-top:1px solid var(--border);padding:72px 52
       <div><div class="ft-ch" data-i18n="footer.packages">Packages</div><ul class="ft-links"><li><a onclick="go('packages')">Honeymoons</a></li><li><a onclick="go('packages')">Family Holidays</a></li><li><a onclick="go('packages')">Adventure Tours</a></li><li><a onclick="go('packages')">Luxury Escapes</a></li><li><a onclick="go('packages')">Cruises</a></li></ul></div>
       <div><div class="ft-ch" data-i18n="footer.company">Company</div><ul class="ft-links"><li><a onclick="go('about')" data-i18n="footer.aboutUs">About Us</a></li><li><a onclick="go('about')" data-i18n="footer.ourTeam">Our Team</a></li><li><a onclick="go('faq')" data-i18n="nav.faq">FAQ</a></li>
 <li><a href="gift-cards.html" data-i18n="nav.giftCards">Gift Cards</a></li>
-<li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.blogSoon'))||'Blog coming soon!')" data-i18n="footer.travelBlog" data-i18n="footer.travelBlog">Travel Blog</a></li><li><a onclick="toast((window.MartinsI18n&&MartinsI18n.t('toast.careersSoon'))||'Careers coming soon!')" data-i18n="footer.careers" data-i18n="footer.careers">Careers</a></li></ul></div>
+<li><a href="portal.html" data-i18n="nav.portal">Client Portal</a></li>
+<li><a onclick="go('contact')" data-i18n="nav.contact">Contact</a></li></ul></div>
       <div><div class="ft-ch" data-i18n="footer.contact">Contact</div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="tel:+15082323003">(508) 232-3003</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><a href="mailto:Jeanie@MartinsGlobalTravels.com">Jeanie@MartinsGlobalTravels.com</a></div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv">1350 Belmont St, Suite 114, Brockton, MA</div></div><div class="ft-ci"><div class="ft-dot"></div><div class="ft-cv"><span data-i18n="footer.licensed">Licensed US Travel Agency</span></div></div></div>
     </div>
     <div class="ft-bot"><div class="ft-copy" data-i18n="footer.copyright">© 2026 Martins Global Travels. All Rights Reserved.</div><div class="ft-leg"><a onclick="go('privacy')" data-i18n="common.privacy">Privacy</a><a onclick="go('terms')" data-i18n="common.terms">Terms</a><a onclick="goPrivacyCookies()" data-i18n="common.cookies">Cookies</a></div></div>
