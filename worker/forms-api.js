@@ -105,6 +105,7 @@ export async function submitContact(request, env) {
       html,
     });
     emailed = !!sent.ok;
+    if (!sent.ok) console.error('Contact form email not sent:', sent.reason);
   } catch (err) {
     console.error('Contact form email failed:', err);
   }

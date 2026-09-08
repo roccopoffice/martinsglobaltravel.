@@ -1,4 +1,4 @@
-import { CONTACT_TO, CONTACT_FROM, escapeHtml } from './site-email.js';
+import { CONTACT_TO, escapeHtml, sendSiteEmail } from './site-email.js';
 
 function dollars(cents) {
   return `$${((cents || 0) / 100).toFixed(2)}`;
@@ -67,15 +67,7 @@ export function giftCardEmailContent(card, code, env) {
 }
 
 async function sendRaw(env, { to, subject, text, html }) {
-  if (!env.EMAIL?.send) return { ok: false, reason: 'not_configured' };
-  await env.EMAIL.send({
-    to,
-    from: { email: CONTACT_FROM, name: 'Martins Global Travels' },
-    subject,
-    text,
-    html,
-  });
-  return { ok: true };
+  return sendSiteEmail(env, { to, subject, text, html });
 }
 
 export async function sendGiftCardEmail(env, card, code) {
