@@ -21,8 +21,8 @@ migrations/
 .wrangler
 *.md
 *.pdf
-mgt-logo.png
-mgt-logo-opaque-backup.png
+/mgt-logo.png
+/mgt-logo-opaque-backup.png
 i18n/generated
 js/book-hero-visual.js
 js/config.example.js
