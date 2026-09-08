@@ -11,7 +11,7 @@ const { html } = brandedFormEmail({
     { label: 'Phone', value: '(508) 232-3003' },
     { label: 'Destination', value: 'Japan / Asia Pacific' },
     { label: 'Package', value: 'Signature Journey' },
-    { label: 'Departure', value: '2026-04-12' },
+    { label: 'Departure', value: 'April 12, 2026' },
     { label: 'Travelers', value: '2 People' },
   ],
   message:

@@ -34,6 +34,18 @@ async function readContactBody(request) {
   }
 }
 
+function prettyDate(value) {
+  const raw = String(value || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+  const [year, month, day] = raw.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
 function enquiryFields(data, name, email) {
   const pairs = [
     ['Name', name],
@@ -41,7 +53,7 @@ function enquiryFields(data, name, email) {
     ['Phone', data.phone],
     ['Destination', data.destination],
     ['Package', data.package],
-    ['Departure', data.departureDate],
+    ['Departure', prettyDate(data.departureDate)],
     ['Travelers', data.travelers],
   ];
   return pairs
